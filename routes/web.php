@@ -33,13 +33,17 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::get('orders', 'App\Http\Controllers\Admin\OrdersController@index_page')->name('admin-order');
 
-        Route::prefix('category')->group(function () {
-            Route::get('/', 'App\Http\Controllers\Admin\CategoryController@category_index_page')->name('admin-category-list');
-            Route::get('add', 'App\Http\Controllers\Admin\CategoryController@category_add_page')->name('admin-category-add');
-            Route::get('image', 'App\Http\Controllers\Admin\CategoryController@category_image_page')->name('admin-category-image');
-        });
-
         Route::prefix('products')->group(function () {
+
+            Route::prefix('category')->group(function () {
+                Route::get('/', 'App\Http\Controllers\Admin\CategoryController@category_index_page')->name('admin-category-list');
+                Route::get('add', 'App\Http\Controllers\Admin\CategoryController@category_add_page')->name('admin-category-add');
+                Route::get('edit/{id}', 'App\Http\Controllers\Admin\CategoryController@category_edit_page')->name('admin-category-edit');
+                Route::get('image', 'App\Http\Controllers\Admin\CategoryController@category_image_page')->name('admin-category-image');
+                Route::post('save-categories', 'App\Http\Controllers\Admin\CategoryController@save_category_details')->name('admin-save-categories');
+                Route::delete('delete/{id}', 'App\Http\Controllers\Admin\CategoryController@delete_category')->name('admin-delete-categories');
+            });
+
             Route::get('/', 'App\Http\Controllers\Admin\ProductsController@products_index_page')->name('admin-product-list');
             Route::get('add', 'App\Http\Controllers\Admin\ProductsController@products_add_page')->name('admin-product-add');
             Route::get('bestsellers', 'App\Http\Controllers\Admin\ProductsController@products_bestseller_page')->name('admin-product-bestseller-page');

@@ -1,4 +1,4 @@
-/* Dore Main Script 
+/* Dore Main Script
 
 Table of Contents
 
@@ -40,7 +40,7 @@ Table of Contents
   03.33. Showing Body
   03.34. Keyboard Shortcuts
   03.35. Context Menu
-  03.36. Select from Library 
+  03.36. Select from Library
   03.37. Feedback
   03.38. Smart Wizard
   03.39. Countdown
@@ -65,6 +65,21 @@ $.fn.addCommas = function (nStr) {
 
 // State Button
 (function ($) {
+
+    let basepath = window.location.pathname.split('/')[2];
+    $.each($('.main-menu li a'), function(index, item){
+        if($(item).attr('href') == '#'+basepath){
+            $(item).parent('li').addClass("active");
+        }
+    });
+
+    let window_href = window.location.href;
+    $.each($('.sub-menu li a'), function(index, item){
+        if($(item).attr('href') == window_href){
+            $(item).parent('li').addClass("active");
+        }
+    });
+
   $.fn.stateButton = function (options) {
     if (this.length > 1) {
       this.each(function () { $(this).stateButton(options) });
@@ -670,7 +685,7 @@ $.nzradmin = function (element, options) {
           $(event.target).hasClass("sidebar")
         )
       ) {
-        // Prevent sub menu closing on collapse click 
+        // Prevent sub menu closing on collapse click
         if ($(event.target).parents("a[data-toggle='collapse']").length > 0 || $(event.target).attr("data-toggle") == 'collapse') {
           return;
         }
@@ -2855,1129 +2870,1129 @@ $.nzradmin = function (element, options) {
     }
 
     /* 03.11. Datatable */
-    if ($().DataTable) {
-      $(".data-table-standard").DataTable({
-        bLengthChange: false,
-        searching: false,
-        destroy: true,
-        info: false,
-        sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 6,
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          }
-        },
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        }
-      });
-
-      $(".data-tables-pagination").DataTable({
-        bLengthChange: false,
-        searching: false,
-        destroy: true,
-        info: false,
-        sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 8,
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          }
-        },
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        }
-      });
-
-      var dataTablePs;
-      $(".data-table-scrollable").DataTable({
-        searching: false,
-        bLengthChange: false,
-        destroy: true,
-        info: false,
-        paging: false,
-        sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        responsive: !0,
-        deferRender: !0,
-        scrollY: "calc(100vh - 400px)",
-        scrollCollapse: !0,
-        "fnInitComplete": function () {
-          dataTablePs = new PerfectScrollbar('.dataTables_scrollBody', { suppressScrollX: true });
-          dataTablePs.isRtl = false;
-        },
-        "fnDrawCallback": function (oSettings) {
-          dataTablePs = new PerfectScrollbar('.dataTables_scrollBody', { suppressScrollX: true });
-          dataTablePs.isRtl = false;
-        }
-      });
-
-      $(".data-table-orders").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "orderno" },
-          { "data": "orderdate" },
-          { "data": "customername" },
-          { "data": "orderamt" },
-          { "data": "txnid" },
-          { "data": "orderstatus" }, 
-          { "data": "orderactions" }        
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-customer-orders").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "orderno" },
-          { "data": "orderdate" },
-          { "data": "orderdesc" },
-          { "data": "orderamt" },
-          { "data": "txnid" },
-          { "data": "orderstatus" }, 
-          { "data": "orderactions" }        
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });   
-      $(".data-table-disman-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "issueno" },
-          { "data": "validupto" },
-          { "data": "validfor" },
-          { "data": "dsctype" },
-          { "data": "dsccode" },
-          { "data": "dscval" },
-          { "data": "customerusage" }, 
-          { "data": "orderactions" }        
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });          
-      $(".data-table-category").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "categoryname" },
-          { "data": "adddate" },
-          { "data": "nosofproducts" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-products").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "adddate" },
-          { "data": "productimg" },
-          { "data": "productname" },
-          { "data": "categoryname" },
-          { "data": "labelled" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-shipping-rate-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "adddate" },
-          { "data": "ruledesc" },
-          { "data": "shippingrate" },
-          { "data": "noshippingrate" },
-          { "data": "rulestatus" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-recipes-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "upredate" },
-          { "data": "recipeimg" },
-          { "data": "recipename" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-$(".data-table-events-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "evendate" },
-          { "data": "eventname" },
-          { "data": "eventimg" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-events-gallery-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "evendate" },
-          { "data": "eventname" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-static-pages").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "sttpage" },
-          { "data": "pagelink" },
-          { "data": "pagetitle" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-event-gallery").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "eventimg" },
-          { "data": "eventname" },
-          { "data": "uploaddate" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-prdprice").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "adddate" },
-          { "data": "listingname" },
-          { "data": "pkgwt" },
-          { "data": "cost" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-products-gallry").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "adddate" },
-          { "data": "imgsrc" },
-          { "data": "catname" },
-          { "data": "prdname" },
-          { "data": "imglbl" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-products-display").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "catname" },
-          { "data": "prdname" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      }); 
-      $(".data-table-customer-access-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "regdate" },
-          { "data": "customername" },
-          { "data": "mobileno" },
-          { "data": "custemail" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      }); 
-
-      $(".data-table-gallery").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "adddate" },
-          { "data": "productimg" },
-          { "data": "productname" },
-          { "data": "categoryname" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-permission").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "adddate" },
-          { "data": "productimg" },
-          { "data": "productname" },
-          { "data": "categoryname" },
-          { "data": "labelled" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-kharighar-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "kharigharname" },
-          { "data": "shopestname" },
-          { "data": "mobileno" },
-    //      { "data": "telno" },
-          { "data": "email" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-kharighar-tasks").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "ordering": false,
-        "columns": [
-          { "data": "entrydate" },
-          { "data": "taskid" },
-          { "data": "karigharinfo" },
-          { "data": "ordertasked" },
-          { "data": "targertdate" },
-          { "data": "lastentry" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-kharighar-tasks-completed").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "entrydate" },
-          { "data": "taskid" },
-          { "data": "karigharinfo" },
-          { "data": "ordertasked" },
-          { "data": "closingentry" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });  
-      $(".data-table-liveshow-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "instancename" },
-          { "data": "startdatetime" },
-          { "data": "enddatetime" },
-          { "data": "productlist" },
-          { "data": "userassign" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-ls-products").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "productimg" },
-          { "data": "productname" },
-          { "data": "categoryname" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });   
-      $(".data-table-ls-customers").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "custname" },
-          { "data": "custemail" },
-          { "data": "custmob" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      }); 
-      $(".data-table-ls-products-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "prdimg" },
-          { "data": "prdname" },
-          { "data": "catname" },
-          { "data": "liveshow" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-ls-customers-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "custname" },
-          { "data": "custemail" },
-          { "data": "custmob" },
-          { "data": "liveshow" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });
-      $(".data-table-customer-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "srno" },
-          { "data": "customername" },
-          { "data": "shopestname" },
-          { "data": "mobileno" },
-    //      { "data": "telno" },
-          { "data": "email" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });  
-      $(".data-table-reviews").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "reviewdate" },
-          { "data": "productname" },
-          { "data": "customername" },
-          { "data": "cusrating" },
-        //  { "data": "cuscomment" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      }); 
-      $(".data-table-reviews-list").DataTable({
-        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        "columns": [
-          { "data": "reviewdate" },
-          { "data": "productname" },
-          { "data": "customername" },
-          { "data": "cusrating" },
-          { "data": "curstatus" },
-          { "data": "lastupdate" },
-          { "data": "actions" }
-        ],
-        drawCallback: function () {
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-        },
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          },
-          search: "_INPUT_",
-          searchPlaceholder: "Search...",
-          lengthMenu: "Items Per Page _MENU_"
-        },
-      });           
-      // Datatable with rows
-      var $dataTableRows = $("#datatableRows").DataTable({
-        bLengthChange: false,
-        buttons: [
-          'copy',
-          'excel',
-          'csv',
-          'pdf'
-        ],
-        destroy: true,
-        info: false,
-        sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        pageLength: 10,
-        columns: [
-          { data: "Name" },
-          { data: "Sales" },
-          { data: "Stock" },
-          { data: "Category" },
-          { data: "Check" }
-        ],
-        language: {
-          paginate: {
-            previous: "<i class='simple-icon-arrow-left'></i>",
-            next: "<i class='simple-icon-arrow-right'></i>"
-          }
-        },
-        drawCallback: function () {
-          unCheckAllRows();
-          $("#checkAllDataTables").prop("checked", false);
-          $("#checkAllDataTables").prop("indeterminate", false).trigger("change");
-
-          $($(".dataTables_wrapper .pagination li:first-of-type"))
-            .find("a")
-            .addClass("prev");
-          $($(".dataTables_wrapper .pagination li:last-of-type"))
-            .find("a")
-            .addClass("next");
-          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-          var api = $(this).dataTable().api();
-          $("#pageCountDatatable span").html("Displaying " + parseInt(api.page.info().start + 1) + "-" + api.page.info().end + " of " + api.page.info().recordsTotal + " items");
-        }
-      });
-
-      $("#dataTablesCopy").on("click", function(event) {
-        event.preventDefault();
-        $dataTableRows.buttons(0).trigger();
-      });
-
-      $("#dataTablesExcel").on("click", function(event) {
-        event.preventDefault();
-        $dataTableRows.buttons(1).trigger();
-      });
-      
-      $("#dataTablesCsv").on("click", function(event) {
-        event.preventDefault();
-        $dataTableRows.buttons(2).trigger();
-      });
-      
-      $("#dataTablesPdf").on("click", function(event) {
-        event.preventDefault();
-        $dataTableRows.buttons(3).trigger();
-      });
-
-      $('#datatableRows tbody').on('click', 'tr', function () {
-        $(this).toggleClass('selected');
-        var $checkBox = $(this).find(".custom-checkbox input");
-        $checkBox.prop("checked", !$checkBox.prop("checked")).trigger("change");
-        controlCheckAll();
-      });
-
-      function controlCheckAll() {
-        var anyChecked = false;
-        var allChecked = true;
-        $('#datatableRows tbody tr .custom-checkbox input').each(function () {
-          if ($(this).prop("checked")) {
-            anyChecked = true;
-          } else {
-            allChecked = false;
-          }
-        });
-        if (anyChecked) {
-          $("#checkAllDataTables").prop("indeterminate", anyChecked);
-        } else {
-          $("#checkAllDataTables").prop("indeterminate", anyChecked);
-          $("#checkAllDataTables").prop("checked", anyChecked);
-        }
-        if (allChecked) {
-          $("#checkAllDataTables").prop("indeterminate", false);
-          $("#checkAllDataTables").prop("checked", allChecked);
-        }
-      }
-
-      function unCheckAllRows() {
-        $('#datatableRows tbody tr').removeClass('selected');
-        $('#datatableRows tbody tr .custom-checkbox input').prop("checked", false).trigger("change");
-      }
-
-      function checkAllRows() {
-        $('#datatableRows tbody tr').addClass('selected');
-        $('#datatableRows tbody tr .custom-checkbox input').prop("checked", true).trigger("change");
-      }
-
-      $("#checkAllDataTables").on("click", function (event) {
-        var isCheckedAll = $("#checkAllDataTables").prop("checked");
-        if (isCheckedAll) {
-          checkAllRows();
-        } else {
-          unCheckAllRows();
-        }
-      });
-
-      function getSelectedRows() {
-        //Getting Selected Ones
-        console.log($dataTableRows.rows('.selected').data());
-      }
-
-      $("#searchDatatable").on("keyup", function (event) {
-        $dataTableRows.search($(this).val()).draw();
-      });
-
-      $("#pageCountDatatable .dropdown-menu a").on("click", function (event) {
-        var selText = $(this).text();
-        $dataTableRows.page.len(parseInt(selText)).draw();
-      });
-
-      var $addToDatatableButton = $("#addToDatatable").stateButton();
-
-      // Validation when modal shown
-      $('#rightModal').on('shown.bs.modal', function (e) {
-        $("#addToDatatableForm").validate(
-          {
-            rules: {
-              Sales: {
-                required: true,
-                number: true,
-                min: 3000
-              },
-              Stock: {
-                required: true,
-                number: true,
-              },
-              Category: {
-                required: true
-              },
-              Name: {
-                required: true
-              }
-            }
-          }
-        )
-      })
-
-      //Adding to datatable from right modal
-      $("#addToDatatable").on("click", function (event) {
-        if ($("#addToDatatableForm").valid()) {
-          $addToDatatableButton.showSpinner();
-          var inputs = $("#addToDatatableForm").find(':input');
-          var data = {};
-          inputs.each(function () {
-            data[$(this).attr("name")] = $(this).val();
-          });
-          data["Check"] = '<label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check"><input type="checkbox" class="custom-control-input"><span class="custom-control-label">&nbsp;</span></label>';
-          $dataTableRows.row.add(data).draw();
-          setTimeout(function () {
-            $addToDatatableButton.showSuccess(true, "New row added!");
-            setTimeout(function () {
-              $("#rightModal").modal("toggle");
-              $addToDatatableButton.reset();
-              inputs.each(function () {
-                $(this).val("");
-              });
-              if ($("#addToDatatableForm").find('select').data('select2')) {
-                $("#addToDatatableForm").find('select').val('').trigger('change');
-              }
-              $("#addToDatatableForm").validate().resetForm();
-            }, 1000);
-          }, 1000);
-        }
-      });
-    }
+//     if ($().DataTable) {
+//       $(".data-table-standard").DataTable({
+//         bLengthChange: false,
+//         searching: false,
+//         destroy: true,
+//         info: false,
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 6,
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           }
+//         },
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         }
+//       });
+//
+//       $(".data-tables-pagination").DataTable({
+//         bLengthChange: false,
+//         searching: false,
+//         destroy: true,
+//         info: false,
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 8,
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           }
+//         },
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         }
+//       });
+//
+//       var dataTablePs;
+//       $(".data-table-scrollable").DataTable({
+//         searching: false,
+//         bLengthChange: false,
+//         destroy: true,
+//         info: false,
+//         paging: false,
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         responsive: !0,
+//         deferRender: !0,
+//         scrollY: "calc(100vh - 400px)",
+//         scrollCollapse: !0,
+//         "fnInitComplete": function () {
+//           dataTablePs = new PerfectScrollbar('.dataTables_scrollBody', { suppressScrollX: true });
+//           dataTablePs.isRtl = false;
+//         },
+//         "fnDrawCallback": function (oSettings) {
+//           dataTablePs = new PerfectScrollbar('.dataTables_scrollBody', { suppressScrollX: true });
+//           dataTablePs.isRtl = false;
+//         }
+//       });
+//
+//       $(".data-table-orders").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "orderno" },
+//           { "data": "orderdate" },
+//           { "data": "customername" },
+//           { "data": "orderamt" },
+//           { "data": "txnid" },
+//           { "data": "orderstatus" },
+//           { "data": "orderactions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-customer-orders").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "orderno" },
+//           { "data": "orderdate" },
+//           { "data": "orderdesc" },
+//           { "data": "orderamt" },
+//           { "data": "txnid" },
+//           { "data": "orderstatus" },
+//           { "data": "orderactions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-disman-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "issueno" },
+//           { "data": "validupto" },
+//           { "data": "validfor" },
+//           { "data": "dsctype" },
+//           { "data": "dsccode" },
+//           { "data": "dscval" },
+//           { "data": "customerusage" },
+//           { "data": "orderactions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-category").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "categoryname" },
+//           { "data": "adddate" },
+//           { "data": "nosofproducts" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-products").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "adddate" },
+//           { "data": "productimg" },
+//           { "data": "productname" },
+//           { "data": "categoryname" },
+//           { "data": "labelled" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-shipping-rate-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "adddate" },
+//           { "data": "ruledesc" },
+//           { "data": "shippingrate" },
+//           { "data": "noshippingrate" },
+//           { "data": "rulestatus" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-recipes-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "upredate" },
+//           { "data": "recipeimg" },
+//           { "data": "recipename" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+// $(".data-table-events-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "evendate" },
+//           { "data": "eventname" },
+//           { "data": "eventimg" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-events-gallery-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "evendate" },
+//           { "data": "eventname" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-static-pages").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "sttpage" },
+//           { "data": "pagelink" },
+//           { "data": "pagetitle" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-event-gallery").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "eventimg" },
+//           { "data": "eventname" },
+//           { "data": "uploaddate" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-prdprice").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "adddate" },
+//           { "data": "listingname" },
+//           { "data": "pkgwt" },
+//           { "data": "cost" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-products-gallry").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "adddate" },
+//           { "data": "imgsrc" },
+//           { "data": "catname" },
+//           { "data": "prdname" },
+//           { "data": "imglbl" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-products-display").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "catname" },
+//           { "data": "prdname" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-customer-access-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "regdate" },
+//           { "data": "customername" },
+//           { "data": "mobileno" },
+//           { "data": "custemail" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//
+//       $(".data-table-gallery").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "adddate" },
+//           { "data": "productimg" },
+//           { "data": "productname" },
+//           { "data": "categoryname" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-permission").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "adddate" },
+//           { "data": "productimg" },
+//           { "data": "productname" },
+//           { "data": "categoryname" },
+//           { "data": "labelled" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-kharighar-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "kharigharname" },
+//           { "data": "shopestname" },
+//           { "data": "mobileno" },
+//     //      { "data": "telno" },
+//           { "data": "email" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-kharighar-tasks").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "ordering": false,
+//         "columns": [
+//           { "data": "entrydate" },
+//           { "data": "taskid" },
+//           { "data": "karigharinfo" },
+//           { "data": "ordertasked" },
+//           { "data": "targertdate" },
+//           { "data": "lastentry" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-kharighar-tasks-completed").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "entrydate" },
+//           { "data": "taskid" },
+//           { "data": "karigharinfo" },
+//           { "data": "ordertasked" },
+//           { "data": "closingentry" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-liveshow-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "instancename" },
+//           { "data": "startdatetime" },
+//           { "data": "enddatetime" },
+//           { "data": "productlist" },
+//           { "data": "userassign" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-ls-products").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "productimg" },
+//           { "data": "productname" },
+//           { "data": "categoryname" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-ls-customers").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "custname" },
+//           { "data": "custemail" },
+//           { "data": "custmob" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-ls-products-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "prdimg" },
+//           { "data": "prdname" },
+//           { "data": "catname" },
+//           { "data": "liveshow" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-ls-customers-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "custname" },
+//           { "data": "custemail" },
+//           { "data": "custmob" },
+//           { "data": "liveshow" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-customer-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "srno" },
+//           { "data": "customername" },
+//           { "data": "shopestname" },
+//           { "data": "mobileno" },
+//     //      { "data": "telno" },
+//           { "data": "email" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-reviews").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "reviewdate" },
+//           { "data": "productname" },
+//           { "data": "customername" },
+//           { "data": "cusrating" },
+//         //  { "data": "cuscomment" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       $(".data-table-reviews-list").DataTable({
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         "columns": [
+//           { "data": "reviewdate" },
+//           { "data": "productname" },
+//           { "data": "customername" },
+//           { "data": "cusrating" },
+//           { "data": "curstatus" },
+//           { "data": "lastupdate" },
+//           { "data": "actions" }
+//         ],
+//         drawCallback: function () {
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//         },
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           },
+//           search: "_INPUT_",
+//           searchPlaceholder: "Search...",
+//           lengthMenu: "Items Per Page _MENU_"
+//         },
+//       });
+//       // Datatable with rows
+//       var $dataTableRows = $("#datatableRows").DataTable({
+//         bLengthChange: false,
+//         buttons: [
+//           'copy',
+//           'excel',
+//           'csv',
+//           'pdf'
+//         ],
+//         destroy: true,
+//         info: false,
+//         sDom: '<"row view-filter"<"col-sm-12"<"float-left"l><"float-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+//         pageLength: 10,
+//         columns: [
+//           { data: "Name" },
+//           { data: "Sales" },
+//           { data: "Stock" },
+//           { data: "Category" },
+//           { data: "Check" }
+//         ],
+//         language: {
+//           paginate: {
+//             previous: "<i class='simple-icon-arrow-left'></i>",
+//             next: "<i class='simple-icon-arrow-right'></i>"
+//           }
+//         },
+//         drawCallback: function () {
+//           unCheckAllRows();
+//           $("#checkAllDataTables").prop("checked", false);
+//           $("#checkAllDataTables").prop("indeterminate", false).trigger("change");
+//
+//           $($(".dataTables_wrapper .pagination li:first-of-type"))
+//             .find("a")
+//             .addClass("prev");
+//           $($(".dataTables_wrapper .pagination li:last-of-type"))
+//             .find("a")
+//             .addClass("next");
+//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+//           var api = $(this).dataTable().api();
+//           $("#pageCountDatatable span").html("Displaying " + parseInt(api.page.info().start + 1) + "-" + api.page.info().end + " of " + api.page.info().recordsTotal + " items");
+//         }
+//       });
+//
+//       $("#dataTablesCopy").on("click", function(event) {
+//         event.preventDefault();
+//         $dataTableRows.buttons(0).trigger();
+//       });
+//
+//       $("#dataTablesExcel").on("click", function(event) {
+//         event.preventDefault();
+//         $dataTableRows.buttons(1).trigger();
+//       });
+//
+//       $("#dataTablesCsv").on("click", function(event) {
+//         event.preventDefault();
+//         $dataTableRows.buttons(2).trigger();
+//       });
+//
+//       $("#dataTablesPdf").on("click", function(event) {
+//         event.preventDefault();
+//         $dataTableRows.buttons(3).trigger();
+//       });
+//
+//       $('#datatableRows tbody').on('click', 'tr', function () {
+//         $(this).toggleClass('selected');
+//         var $checkBox = $(this).find(".custom-checkbox input");
+//         $checkBox.prop("checked", !$checkBox.prop("checked")).trigger("change");
+//         controlCheckAll();
+//       });
+//
+//       function controlCheckAll() {
+//         var anyChecked = false;
+//         var allChecked = true;
+//         $('#datatableRows tbody tr .custom-checkbox input').each(function () {
+//           if ($(this).prop("checked")) {
+//             anyChecked = true;
+//           } else {
+//             allChecked = false;
+//           }
+//         });
+//         if (anyChecked) {
+//           $("#checkAllDataTables").prop("indeterminate", anyChecked);
+//         } else {
+//           $("#checkAllDataTables").prop("indeterminate", anyChecked);
+//           $("#checkAllDataTables").prop("checked", anyChecked);
+//         }
+//         if (allChecked) {
+//           $("#checkAllDataTables").prop("indeterminate", false);
+//           $("#checkAllDataTables").prop("checked", allChecked);
+//         }
+//       }
+//
+//       function unCheckAllRows() {
+//         $('#datatableRows tbody tr').removeClass('selected');
+//         $('#datatableRows tbody tr .custom-checkbox input').prop("checked", false).trigger("change");
+//       }
+//
+//       function checkAllRows() {
+//         $('#datatableRows tbody tr').addClass('selected');
+//         $('#datatableRows tbody tr .custom-checkbox input').prop("checked", true).trigger("change");
+//       }
+//
+//       $("#checkAllDataTables").on("click", function (event) {
+//         var isCheckedAll = $("#checkAllDataTables").prop("checked");
+//         if (isCheckedAll) {
+//           checkAllRows();
+//         } else {
+//           unCheckAllRows();
+//         }
+//       });
+//
+//       function getSelectedRows() {
+//         //Getting Selected Ones
+//         console.log($dataTableRows.rows('.selected').data());
+//       }
+//
+//       $("#searchDatatable").on("keyup", function (event) {
+//         $dataTableRows.search($(this).val()).draw();
+//       });
+//
+//       $("#pageCountDatatable .dropdown-menu a").on("click", function (event) {
+//         var selText = $(this).text();
+//         $dataTableRows.page.len(parseInt(selText)).draw();
+//       });
+//
+//       var $addToDatatableButton = $("#addToDatatable").stateButton();
+//
+//       // Validation when modal shown
+//       $('#rightModal').on('shown.bs.modal', function (e) {
+//         $("#addToDatatableForm").validate(
+//           {
+//             rules: {
+//               Sales: {
+//                 required: true,
+//                 number: true,
+//                 min: 3000
+//               },
+//               Stock: {
+//                 required: true,
+//                 number: true,
+//               },
+//               Category: {
+//                 required: true
+//               },
+//               Name: {
+//                 required: true
+//               }
+//             }
+//           }
+//         )
+//       })
+//
+//       //Adding to datatable from right modal
+//       $("#addToDatatable").on("click", function (event) {
+//         if ($("#addToDatatableForm").valid()) {
+//           $addToDatatableButton.showSpinner();
+//           var inputs = $("#addToDatatableForm").find(':input');
+//           var data = {};
+//           inputs.each(function () {
+//             data[$(this).attr("name")] = $(this).val();
+//           });
+//           data["Check"] = '<label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check"><input type="checkbox" class="custom-control-input"><span class="custom-control-label">&nbsp;</span></label>';
+//           $dataTableRows.row.add(data).draw();
+//           setTimeout(function () {
+//             $addToDatatableButton.showSuccess(true, "New row added!");
+//             setTimeout(function () {
+//               $("#rightModal").modal("toggle");
+//               $addToDatatableButton.reset();
+//               inputs.each(function () {
+//                 $(this).val("");
+//               });
+//               if ($("#addToDatatableForm").find('select').data('select2')) {
+//                 $("#addToDatatableForm").find('select').val('').trigger('change');
+//               }
+//               $("#addToDatatableForm").validate().resetForm();
+//             }, 1000);
+//           }, 1000);
+//         }
+//       });
+//     }
 
     /* 03.12. Notification */
     function showNotification(placementFrom, placementAlign, type) {
@@ -4189,8 +4204,8 @@ $(".data-table-events-list").DataTable({
         containerCssClass: ":all:"
       });
     }
-    /* Time Picker */    
-    
+    /* Time Picker */
+
     $('.clockpicker').clockpicker();
 
     /* 03.19. Datepicker */

@@ -23,16 +23,11 @@
                                         <label class="form-group has-float-label mb-4">
                                             <select id="CategoryList" class="form-control select2-single select2-hidden-accessible" data-width="100%" tabindex="-1" aria-hidden="true">
                                                 <option label="&nbsp;">Select Category</option>
-                                                <option value="1">Mojitos</option>
-                                                <option value="2">Crushes</option>
-                                                <option value="3">Fruit Twists</option>
-                                                <option value="4">Ice Tea</option>
-                                                <option value="5">Jams</option>
-                                                <option value="6">Sauces</option>
-                                                <option value="7">Sweet Chilli Chutneys</option>
-                                                <option value="8">Fruit Fillings</option>
+                                                @foreach($categories as $option)
+                                                    <option value="{{$option->id}}">{{$option->name}}</option>
+                                                @endforeach
                                             </select>
-                                            <span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-control" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-CategoryList-container"><span class="select2-selection__rendered" id="select2-CategoryList-container" title="Select Category">Select Category</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+{{--                                            <span class="select2 select2-container select2-container--bootstrap" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-control" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-CategoryList-container"><span class="select2-selection__rendered" id="select2-CategoryList-container" title="Select Category">Select Category</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>--}}
                                             <span>Category Name</span>
                                         </label>
                                     </div>
@@ -90,69 +85,6 @@
                                                     <div class="img lightbox"><a href="img/category/mojito.jpg"><img src="img/category/mojito.jpg"></a></div>
                                                 </td>
                                                 <td>Mojitos</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">2</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/crushes.jpg"><img src="img/category/crushes.jpg"></a></div>
-                                                </td>
-                                                <td>Crushes</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">3</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/fruits-twist.jpg"><img src="img/category/fruits-twist.jpg"></a></div>
-                                                </td>
-                                                <td>Fruit Twists</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">4</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/ice-tea.jpg"><img src="img/category/ice-tea.jpg"></a></div>
-                                                </td>
-                                                <td>Ice Tea</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">5</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/jams.jpg"><img src="img/category/jams.jpg"></a></div>
-                                                </td>
-                                                <td>Jams</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">5</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/chutney.jpg"><img src="img/category/chutney.jpg"></a></div>
-                                                </td>
-                                                <td>Sweet Chilli Chutneys</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">6</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/sauces.jpg"><img src="img/category/sauces.jpg"></a></div>
-                                                </td>
-                                                <td>Sauces</td>
-                                                <td>20/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">6</td>
-                                                <td>
-                                                    <div class="img lightbox"><a href="img/category/fruits-twist.jpg"><img src="img/category/fruits-twist.jpg"></a></div>
-                                                </td>
-                                                <td>Fruit Fillings</td>
                                                 <td>20/04/2020</td>
                                                 <td class="text-center"><a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a></td>
                                             </tr>

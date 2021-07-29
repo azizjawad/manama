@@ -39,91 +39,33 @@
                                     <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 57.2083px;">#</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 130.222px;">Date</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Category Name: activate to sort column ascending" style="width: 262.611px;">Category Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="No. of Products: activate to sort column ascending" style="width: 248.667px;">No. of Products</th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="No. of Products: activate to sort column ascending" style="width: 248.667px;">Category Description</th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="No. of Products: activate to sort column ascending" style="width: 248.667px;">Page Slug</th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 130.222px;">Date</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 267.625px;">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">1</td>
-                                        <td>20/04/2020</td>
-                                        <td>Mojitos</td>
-                                        <td>12</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">2</td>
-                                        <td>20/04/2020</td>
-                                        <td>Crushes</td>
-                                        <td>10</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">3</td>
-                                        <td>20/04/2020</td>
-                                        <td>Fruit Twists</td>
-                                        <td>22</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">4</td>
-                                        <td>20/04/2020</td>
-                                        <td>Ice Tea</td>
-                                        <td>8</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">5</td>
-                                        <td>20/04/2020</td>
-                                        <td>Jams</td>
-                                        <td>5</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">6</td>
-                                        <td>20/04/2020</td>
-                                        <td>Sauces</td>
-                                        <td>12</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">8</td>
-                                        <td>20/04/2020</td>
-                                        <td>Sweet Chilli Chutneys</td>
-                                        <td>7</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">9</td>
-                                        <td>20/04/2020</td>
-                                        <td>Fruit Fillings</td>
-                                        <td>5</td>
-                                        <td class="text-center"><a href="Category.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
+                                    @foreach($categories as $record)
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">{{$loop->index + 1}}</td>
+                                            <td>{{$record->name}}</td>
+                                            <td>{{$record->description}}</td>
+                                            <td>{{$record->page_slug}}</td>
+                                            <td>{{date('d M Y',strtotime($record->created_at))}}</td>
+                                            <td class="text-center">
+                                                <a href="{{route('admin-category-edit', $record->id)}}" class="las la-edit btn btn-secondary mx-1"></a>
+                                                <a data-delete='{{$record->id}}' href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1 delete_item"></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 <div class="row view-pager">
                                     <div class="col-sm-12">
                                         <div class="text-center">
-                                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 8 of 8 entries</div>
+                                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing total {{sizeof($categories)}} entries</div>
                                             <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
                                                 <ul class="pagination pagination-sm">
                                                     <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>

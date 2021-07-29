@@ -184,7 +184,7 @@ right:15px;
   height: 34px;
 }
 
-.color-switch .switch input { 
+.color-switch .switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -304,4 +304,8 @@ main {
   display: none;
 }
 
+}
+
+#swal2-title {
+    font-size: 1.2rem;
 }

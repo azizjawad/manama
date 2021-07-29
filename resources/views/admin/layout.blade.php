@@ -25,6 +25,7 @@
     <meta name="msapplication-TileColor" content="#FFF" />
     <meta name="msapplication-square70x70logo" content="{{asset('img/faviconss/msapplication-tiny.png')}}" />
     <meta name="msapplication-square150x150logo" content="{{asset('img/faviconss/msapplication-square.png')}}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Mobile browser coloring -->
     <!-- =================================================================================================== -->
@@ -132,7 +133,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="{{ Route('admin-order') }}">
                         <i class="iconsminds-basket-coins"></i>
                         <span>Orders</span>
@@ -145,7 +146,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#users">
+                    <a href="#customers">
                         <i class="iconsminds-male-female"></i>
                         <span>Customers</span>
                     </a>
@@ -255,7 +256,7 @@
                     </div>
                 </li>
             </ul>
-            <ul class="list-unstyled" data-link="users">
+            <ul class="list-unstyled" data-link="customers">
                 <li>
                     <a href="{{Route('admin-customer-manage')}}">
                         <i class="simple-icon-eye"></i> <span class="d-inline-block">Manage Customers</span>
@@ -299,7 +300,6 @@
                 </li>
 
             </ul>
-
             <ul class="list-unstyled" data-link="cms-management">
                 <li>
                     <a href="{{Route('admin-home-banner')}}">
@@ -373,6 +373,7 @@
 </footer>
 
 <script src="{{asset('js/vendor/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('js/vendor/jquery.validate/jquery.validate.js')}}"></script>
 <script src="{{asset('js/vendor/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
 <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>
@@ -390,13 +391,15 @@
 <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('js/vendor/bootstrap-clockpicker.min.js')}}"></script>
 <script src="{{asset('js/vendor/jquery-clockpicker.min.js')}}"></script>
-<script src="{{asset('js/vendor/bootstrap-tagsinput.min.js')}}"></script>
+{{--<script src="{{asset('js/vendor/bootstrap-tagsinput.min.js')}}"></script>--}}
 <script src="{{asset('js/vendor/Sortable.js')}}"></script>
 <script src="{{asset('js/vendor/mousetrap.min.js')}}"></script>
 <script src="{{asset('js/vendor/baguetteBox.min.js')}}"></script>
 <script src="{{asset('js/vendor/intlTelInput-jquery.min.js')}}"></script>
 <script src="{{asset('js/nzradmin.script.js')}}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{asset('js/custom.js')}}"></script>
 </body>
 
 </html>
