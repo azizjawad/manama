@@ -46,6 +46,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
             Route::get('/', 'App\Http\Controllers\Admin\ProductsController@products_index_page')->name('admin-product-list');
             Route::get('add', 'App\Http\Controllers\Admin\ProductsController@products_add_page')->name('admin-product-add');
+            Route::post('save-product', 'App\Http\Controllers\Admin\ProductsController@save_product')->name('admin-save-product');
+
             Route::get('bestsellers', 'App\Http\Controllers\Admin\ProductsController@products_bestseller_page')->name('admin-product-bestseller-page');
             Route::get('price', 'App\Http\Controllers\Admin\ProductsController@products_price_page')->name('admin-product-price');
             Route::get('gallery', 'App\Http\Controllers\Admin\ProductsController@products_gallery_page')->name('admin-product-gallery');
