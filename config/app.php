@@ -1,4 +1,5 @@
 <?php
+const LABEL = array('No label', 'New', 'Featured');
 
 return [
 

@@ -61,6 +61,7 @@
     <link rel="stylesheet" href="{{asset('css/vendor/baguetteBox.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/intlTelInput.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    <script src="{{asset('js/vendor/jquery-3.3.1.min.js')}}"></script>
 </head>
 
 <body id="app-container" class="menu-default show-spinner">
@@ -372,7 +373,6 @@
     </div>
 </footer>
 
-<script src="{{asset('js/vendor/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('js/vendor/jquery.validate/jquery.validate.js')}}"></script>
 <script src="{{asset('js/vendor/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>

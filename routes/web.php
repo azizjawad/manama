@@ -40,16 +40,24 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
                 Route::get('add', 'App\Http\Controllers\Admin\CategoryController@category_add_page')->name('admin-category-add');
                 Route::get('edit/{id}', 'App\Http\Controllers\Admin\CategoryController@category_edit_page')->name('admin-category-edit');
                 Route::get('image', 'App\Http\Controllers\Admin\CategoryController@category_image_page')->name('admin-category-image');
+                Route::delete('image/delete/{id}', 'App\Http\Controllers\Admin\CategoryController@delete_category_image');
                 Route::post('save-categories', 'App\Http\Controllers\Admin\CategoryController@save_category_details')->name('admin-save-categories');
+                Route::post('save-category-image', 'App\Http\Controllers\Admin\CategoryController@save_category_image')->name('admin-save-category-image');
                 Route::delete('delete/{id}', 'App\Http\Controllers\Admin\CategoryController@delete_category')->name('admin-delete-categories');
             });
 
             Route::get('/', 'App\Http\Controllers\Admin\ProductsController@products_index_page')->name('admin-product-list');
             Route::get('add', 'App\Http\Controllers\Admin\ProductsController@products_add_page')->name('admin-product-add');
+            Route::get('edit/{id}', 'App\Http\Controllers\Admin\ProductsController@products_edit_page')->name('admin-product-edit');
             Route::post('save-product', 'App\Http\Controllers\Admin\ProductsController@save_product')->name('admin-save-product');
+            Route::delete('delete/{id}', 'App\Http\Controllers\Admin\ProductsController@delete_product')->name('admin-delete-product');
+
 
             Route::get('bestsellers', 'App\Http\Controllers\Admin\ProductsController@products_bestseller_page')->name('admin-product-bestseller-page');
+
             Route::get('price', 'App\Http\Controllers\Admin\ProductsController@products_price_page')->name('admin-product-price');
+            Route::post('price/save', 'App\Http\Controllers\Admin\ProductsController@save_product_info')->name('admin-save-product-info');
+
             Route::get('gallery', 'App\Http\Controllers\Admin\ProductsController@products_gallery_page')->name('admin-product-gallery');
             Route::get('visibility', 'App\Http\Controllers\Admin\ProductsController@products_visibility_page')->name('admin-product-visibility');
         });

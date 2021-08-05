@@ -13,74 +13,38 @@
                         <h5 class="mb-4 font-weight-bold">Category List</h5>
                         <div class="separator mb-5"></div>
                         <div class="table-responsive">
-                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                <div class="row view-filter">
-                                    <div class="col-sm-12">
-                                        <div class="float-right">
-                                            <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                <label>
-                                                    Items Per Page
-                                                    <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="100">100</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="float-left">
-                                            <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search..." aria-controls="DataTables_Table_0"></label></div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <table class="data-table data-table-category dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 57.2083px;">#</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Category Name: activate to sort column ascending" style="width: 262.611px;">Category Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="No. of Products: activate to sort column ascending" style="width: 248.667px;">Category Description</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="No. of Products: activate to sort column ascending" style="width: 248.667px;">Page Slug</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 130.222px;">Date</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 267.625px;">Actions</th>
+                            <table class="data-table data-table-category">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category Name</th>
+                                    <th>Category Description</th>
+                                    <th style="width: 100px;">Page Slug</th>
+                                    <th style="width: 80px;">Date</th>
+                                    <th style="width: 200px;">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($categories as $record)
+                                    <tr>
+                                        <td>{{$loop->index + 1}}</td>
+                                        <td>{{$record->name}}</td>
+                                        <td>{{$record->description}}</td>
+                                        <td>{{$record->page_slug}}</td>
+                                        <td>{{date('d M Y',strtotime($record->created_at))}}</td>
+                                        <td class="text-center">
+                                            <a href="{{route('admin-category-edit', $record->id)}}" class="las la-edit btn btn-secondary mx-1"></a>
+                                            <a data-delete='{{$record->id}}' href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1 delete_item"></a>
+                                        </td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($categories as $record)
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">{{$loop->index + 1}}</td>
-                                            <td>{{$record->name}}</td>
-                                            <td>{{$record->description}}</td>
-                                            <td>{{$record->page_slug}}</td>
-                                            <td>{{date('d M Y',strtotime($record->created_at))}}</td>
-                                            <td class="text-center">
-                                                <a href="{{route('admin-category-edit', $record->id)}}" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a data-delete='{{$record->id}}' href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1 delete_item"></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <div class="row view-pager">
-                                    <div class="col-sm-12">
-                                        <div class="text-center">
-                                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing total {{sizeof($categories)}} entries</div>
-                                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                <ul class="pagination pagination-sm">
-                                                    <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>
-                                                    <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                    <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link next"><i class="simple-icon-arrow-right"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

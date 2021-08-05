@@ -14,10 +14,7 @@
                         <form id="kt_categories_form" name="kt_categories_form" action="{{Route('admin-save-categories')}}">
                             @csrf
                             <label class="form-group has-float-label mb-4">
-                                <div class="bootstrap-tagsinput">
-                                    <input type="text" name="name">
-                                </div>
-                                <input data-role="tagsinput" type="text" style="display: none;">
+                                <input class="form-control" name="name" type="text">
                                 <span>Category Name</span>
                             </label>
                             <label class="form-group has-float-label mb-4">
@@ -25,8 +22,7 @@
                                 <span>Category Desc</span>
                             </label>
                             <label class="form-group has-float-label mb-4">
-                                <div class="bootstrap-tagsinput"><input name="meta_title" type="text" placeholder=""></div>
-                                <input data-role="tagsinput" type="text" style="display: none;">
+                                <input class="form-control" name="meta_title" type="text">
                                 <span>Meta Page Title</span>
                             </label>
                             <label class="form-group has-float-label mb-4">
@@ -34,8 +30,7 @@
                                 <span>Meta Page Description</span>
                             </label>
                             <label class="form-group has-float-label mb-1">
-                                <div class="bootstrap-tagsinput"><input type="text" name="page_slug" placeholder=""></div>
-                                <input data-role="tagsinput" type="text" style="display: none;">
+                                <input class="form-control" name="page_slug" type="text">
                                 <span>Page URL</span>
                             </label>
                             <label class="tooltip-text mb-4">(Please use lowercase letters and user hyphen (-) instead of space e.g page-link)</label>

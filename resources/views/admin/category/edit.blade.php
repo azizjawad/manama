@@ -18,10 +18,7 @@
                         <form id="kt_categories_form" name="kt_categories_form" action="{{Route('admin-save-categories')}}">
                             @csrf
                             <label class="form-group has-float-label mb-4">
-                                <div class="bootstrap-tagsinput">
-                                    <input type="text" value="{{$category->name}}" name="name">
-                                </div>
-                                <input data-role="tagsinput" type="text" style="display: none;">
+                                <input type="text" class="form-control" value="{{$category->name}}" name="name">
                                 <span>Category Name</span>
                             </label>
                             <label class="form-group has-float-label mb-4">
@@ -29,10 +26,7 @@
                                 <span>Category Desc</span>
                             </label>
                             <label class="form-group has-float-label mb-4">
-                                <div class="bootstrap-tagsinput">
-                                    <input name="meta_title" value="{{$category->meta_title}}" type="text" placeholder="">
-                                </div>
-                                <input data-role="tagsinput" type="text" style="display: none;">
+                                <input name="meta_title" class="form-control" value="{{$category->meta_title}}" type="text" placeholder="">
                                 <span>Meta Page Title</span>
                             </label>
                             <label class="form-group has-float-label mb-4">
@@ -40,8 +34,7 @@
                                 <span>Meta Page Description</span>
                             </label>
                             <label class="form-group has-float-label mb-1">
-                                <div class="bootstrap-tagsinput"><input type="text" name="page_slug" value="{{$category->page_slug}}" placeholder=""></div>
-                                <input data-role="tagsinput" type="text" style="display: none;">
+                                <input type="text" class="form-control" name="page_slug" value="{{$category->page_slug}}" placeholder="">
                                 <span>Page URL</span>
                             </label>
                             <label class="tooltip-text mb-4">(Please use lowercase letters and user hyphen (-) instead of space e.g page-link)</label>
