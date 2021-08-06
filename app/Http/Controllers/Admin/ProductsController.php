@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\CategoriesModel;
 use App\Models\ProductInfoModel;
+use App\Models\ProductsGalleryModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,7 +45,13 @@ class ProductsController extends Controller
     }
 
     public function products_gallery_page(){
-        return view('admin.products.gallery');
+        $data['products'] = ProductsModel::select('id','name')->get();
+
+        $data['products_gallery'] = ProductsGalleryModel::select('products_gallery.*','products.name as product_name')
+            ->join('products','products.id','products_gallery.product_id')
+            ->get();
+
+        return view('admin.products.gallery',$data);
     }
 
     public function products_visibility_page(){
@@ -94,7 +101,7 @@ class ProductsController extends Controller
             } else {
 
                 if(isset($fields['image']))
-                    return response(['status' => false, 'message' => 'Product image is mandatory']);
+                    return response(['status' => false, 'message' => 'Product image is mandatory'],400);
 
                 $fields['created_by'] = Auth::user()->id;
                 $status = ProductsModel::create($fields);
@@ -135,7 +142,6 @@ class ProductsController extends Controller
         }else {
 
             $fields = array(
-                'product_id' => $post['product_id'],
                 'listing_name' => $post['listing_name'],
                 'packaging_weight' => $post['packaging_weight'],
                 'packaging_type' => $post['packaging_type'],
@@ -145,6 +151,13 @@ class ProductsController extends Controller
                 'hsn_code' => $post['hsn_code'],
                 'sell_as_single' => $post['sell_as_single'] ?? 0
             );
+
+            if(isset($post['product_info_id']) && !empty($post['product_info_id'])){
+                ProductInfoModel::find($post['product_info_id'])->update($fields);
+                return response(['status' => true, 'message' => 'Product Info submitted successfully.']);
+            }
+
+            $fields['product_id'] =  $post['product_id'];
             $status = ProductInfoModel::where('product_id', $post['product_id'])->exists();
 
             if ($status) {
@@ -160,5 +173,68 @@ class ProductsController extends Controller
             else
                 return response(['status' => false], 500);
         }
+    }
+
+    public function update_product_status(Request $request){
+        $post = $request->post();
+
+        $validator = Validator::make($post, [
+            'product_id'  => ['required'],
+            'status'  => ['required'],
+        ]);;
+
+        if ($validator->fails())
+            return response(['status' => false, 'errors' => $validator->errors()], 400);
+
+        $status =  array('offline','online')[$post['status']];
+        $product = ProductsModel::find($post['product_id']);
+        if($product->update(['status' => $post['status']]))
+            return response(['status' => true, 'message' => "Success!! $product->name is now $status"]);
+
+        return response(['status' => false, 'message' => "Something went wrong, please try again."]);
+    }
+
+    public function add_products_gallery(Request $request){
+        $post = $request->post();
+
+        $validator = Validator::make($post, [
+            'product_id'  => ['required'],
+            'image_label' => ['required'],
+            'image.*'     => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($validator->fails())
+            return response(['status' => false, 'errors' => $validator->errors()], 400);
+
+        if (isset($request->file('image')[0])) {
+            $imagePath = $request->file('image')[0];
+            $file = $imagePath->getClientOriginalName();
+            $imageName = pathinfo($file, PATHINFO_FILENAME) . '-' . time() . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            $path = public_path() . '/products-gallery';
+            File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+            $imagePath->storeAs('uploads/products-gallery', $imageName, 'public');
+            $fields['image'] = $imageName;
+            $fields = array(
+                'product_id'  => $post['product_id'],
+                'image_label' => $post['image_label'],
+                'image_path'  => $imageName,
+                'created_by'  => Auth::user()->id
+            );
+            $status = ProductsGalleryModel::create($fields);
+        }else return response(['status' => false, 'message' => 'Product image is mandatory'],400);
+
+        if ($status)
+            return response(['status' => true, 'message' => 'Product created successfully.']);
+        else
+            return response(['status' => false], 500);
+    }
+
+    public function delete_product_gallery($id){
+        $status = false;
+        if(is_numeric($id)) {
+            $status = ProductsGalleryModel::find($id)->delete();
+            return response(['status' => $status], 200);
+        }
+        return response(['status' => (bool) $status], 404);
     }
 }

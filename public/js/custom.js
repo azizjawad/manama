@@ -58,33 +58,39 @@ function ajax_function(form){
         success: (res) => {
             button.attr('disabled', false).text('Submit');
             if(res.status === true){
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: res.message,
-                    showConfirmButton: false,
-                    timer: 2500,
-                    width: '380px',
-                    height: '300px'
-                });
-                form[0].reset()
+                form[0].reset();
+                success_notification(res.message);
             }
         },
         error: (res) => {
             button.attr('disabled', false).text('Submit');
-            Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'Oops! something went wrong, please try again.',
-                showConfirmButton: false,
-                timer: 2500,
-                width: '380px',
-                height: '300px'
-            });
+            error_notification()
         }
     });
 }
+function success_notification(message = 'Success!! Action completed successfully.'){
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: message,
+        showConfirmButton: false,
+        timer: 2500,
+        width: '380px',
+        height: '300px'
+    });
+}
+function error_notification(message = 'Oops!! Something went wrong, please try again.'){
+    Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: message,
+        showConfirmButton: false,
+        timer: 2500,
+        width: '380px',
+        height: '300px'
+    });
 
+}
 (function ($) {
     $('#kt_categories_form').validate({
         rules: {
@@ -140,20 +146,56 @@ function ajax_function(form){
         },
         submitHandler: function (){
             let form = $('#kt_product_form');
-            let data = new FormData();
-            let button = form.find('button[type="submit"]');
-
-            $.each(form.serializeArray(), function (key, input) {
-                data.append(input.name, input.value);
-            });
-
-            //File data
-            var file_data = $('input[name="image"]')[0].files;
-            for (var i = 0; i < file_data.length; i++) {
-                data.append("image[]", file_data[i]);
-            }
-            multipart_ajax(form, data, button);
+            image_data_creation(form);
         }
+    });
+
+    $('.edit_product_info').click(function (){
+        $.each($(this).data(), function (key,data){
+            $(`input[name="${key}"]`).val(data);
+            $(`select[name="${key}"]`).val(data).trigger('change');
+        });
+        $('#productList').attr('disabled',true);
+    });
+
+    $('#addpriceentry').on('hide.bs.modal', function () {
+        $('#kt_product_info_form')[0].reset();
+        $('#productList').attr('disabled',false);
+        $('#product_info_id').val('');
+    });
+
+    $('.is_product_online').click(function (){
+        let product_id = $(this).data('product_id');
+        let status = $(this).attr('data-status');
+        $('input[name="product_online"]').prop('checked',(status == 1));
+        $('#product_id_modal').val(product_id);
+        $('#prdvisibilty').modal('show');
+    });
+
+    $('#prdvisibilty').on('hide.bs.modal', function () {
+        $('#product_id_modal').val('');
+    });
+
+    $('input[name="product_online"]').click(function (){
+       let value = $('input[name="product_online"]:checked').length;
+       let product_id = $('#product_id_modal').val();
+       $(this).prop('disabled',true);
+       $.ajax({
+           url: window.location.pathname + "/update-product-status/",
+           data:{product_id:product_id,status: value},
+           headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+           type:"post",
+           success: (res) => {
+               $(this).prop('disabled',false);
+               if(res.status === true) {
+                   $('td').find(`[data-product_id='${product_id}']`).attr('data-status',value);
+                   success_notification(res.message);
+                   $('#prdvisibilty').modal('hide');
+               }else{
+                   error_notification(res.message);
+               }
+           }
+       })
     });
 
     $('#kt_product_info_form').validate({
@@ -205,21 +247,44 @@ function ajax_function(form){
         errorElement: 'div',
         submitHandler: function (){
             let form = $('#kt_category_image_form');
-            let data = new FormData();
-            let button = form.find('button[type="submit"]');
-
-            $.each(form.serializeArray(), function (key, input) {
-                data.append(input.name, input.value);
-            });
-
-            //File data
-            var file_data = $('input[name="image"]')[0].files;
-            for (var i = 0; i < file_data.length; i++) {
-                data.append("image[]", file_data[i]);
-            }
-            multipart_ajax(form, data, button);
+            image_data_creation(form);
         }
     });
+
+    $('#kt_products_gallery_form').validate({
+        rules: {
+            product_id: {
+                required: true
+            },
+            image_label: {
+                required: true
+            },
+            image: {
+                required: true
+            },
+        },
+        errorElement: 'div',
+        submitHandler: function (){
+            let form = $('#kt_products_gallery_form');
+            image_data_creation(form);
+        }
+    });
+
+    function image_data_creation(form){
+        let data = new FormData();
+        let button = form.find('button[type="submit"]');
+
+        $.each(form.serializeArray(), function (key, input) {
+            data.append(input.name, input.value);
+        });
+
+        //File data
+        var file_data = $('input[name="image"]')[0].files;
+        for (var i = 0; i < file_data.length; i++) {
+            data.append("image[]", file_data[i]);
+        }
+        multipart_ajax(form, data, button);
+    }
 
     $('a.delete_item').click(function (){
         let delete_id = $(this).data('delete');
@@ -242,15 +307,7 @@ function ajax_function(form){
                         type: "delete",
                         success: (res) => {
                             if (res.status === true) {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Row has been deleted successfully.',
-                                    showConfirmButton: false,
-                                    timer: 2000,
-                                    width: '380px',
-                                    height: '300px'
-                                });
+                                success_notification('Row has been deleted successfully.');
                                 $(this).parents('tr').remove();
                             }
                         }

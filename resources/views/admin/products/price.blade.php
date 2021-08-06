@@ -11,7 +11,7 @@
                 <div class="col-12 mb-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#addpriceentry" class="btn btn-secondary mb-2 float-right adjust-margin-01">Add Price</a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#addpriceentry" class="btn btn-secondary mb-2 float-right adjust-margin-01">Save Product Info</a>
                             <h5 class="mb-4 font-weight-bold">Price List</h5>
                             <div class="separator mb-5"></div>
                             <div class="table-responsive">
@@ -37,7 +37,21 @@
                                             <td>{{$key->cost_price}}</td>
                                             <td>{{date('d M Y', strtotime($key->updated_at))}}</td>
                                             <td class="text-center">
-                                                <a href="Price.List.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)"
+                                                   data-product_id="{{$key->product_id}}"
+                                                   data-product_info_id="{{$key->id}}"
+                                                   data-listing_name="{{$key->listing_name}}"
+                                                   data-packaging_weight="{{$key->packaging_weight}}"
+                                                   data-packaging_type="{{$key->packaging_type}}"
+                                                   data-cost_price="{{$key->cost_price}}"
+                                                   data-barcode="{{$key->barcode}}"
+                                                   data-sku_code="{{$key->sku_code}}"
+                                                   data-hsn_code="{{$key->hsn_code}}"
+                                                   data-sell_as_single="{{$key->sell_as_single}}"
+                                                   data-toggle="modal"
+                                                   data-target="#addpriceentry"
+                                                   class="las la-edit btn btn-secondary mx-1 edit_product_info">
+                                                </a>
                                                 <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
                                             </td>
                                         </tr>
@@ -55,17 +69,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-bold">List the Product</h5>
+                    <h5 class="modal-title font-weight-bold">Product Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form id="kt_product_info_form" name="kt_product_info_form" action="{{Route('admin-save-product-info')}}">
+                        @csrf
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-4">
                                 <select id="productList" name="product_id" class="form-control select2-single" data-width="100%">
-                                    <option selected value="" label="&nbsp;">Select Product</option>
                                     @foreach($products as $product)
                                         <option value="{{$product->id}}">{{$product->name}}</option>
                                     @endforeach
@@ -127,7 +141,8 @@
                             </div>
                         </div>
                         <div  class="form-group text-right">
-                            <button class="btn btn-secondary" type="submit">List the Product</button>
+                            <input type="hidden" value="" id="product_info_id" name="product_info_id">
+                            <button class="btn btn-secondary" type="submit">Save Product Info</button>
                         </div>
                     </form>
                 </div>

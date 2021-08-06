@@ -244,15 +244,15 @@
                                     <i class="simple-icon-picture"></i> <span class="d-inline-block">Product Gallery</span>
                                 </a>
                             </li>
-                            <div id="manageProductsSecurity" class="collapse show">
-                                <ul class="list-unstyled inner-level-menu">
-                                    <li>
-                                        <a href="{{Route('admin-product-visibility')}}">
-                                            <i class="simple-icon-eye"></i> <span class="d-inline-block">Product Visibility</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+{{--                            <div id="manageProductsSecurity" class="collapse show">--}}
+{{--                                <ul class="list-unstyled inner-level-menu">--}}
+{{--                                    <li>--}}
+{{--                                        <a href="{{Route('admin-product-visibility')}}">--}}
+{{--                                            <i class="simple-icon-eye"></i> <span class="d-inline-block">Product Visibility</span>--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
                         </ul>
                     </div>
                 </li>

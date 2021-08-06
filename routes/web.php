@@ -50,6 +50,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::get('add', 'App\Http\Controllers\Admin\ProductsController@products_add_page')->name('admin-product-add');
             Route::get('edit/{id}', 'App\Http\Controllers\Admin\ProductsController@products_edit_page')->name('admin-product-edit');
             Route::post('save-product', 'App\Http\Controllers\Admin\ProductsController@save_product')->name('admin-save-product');
+            Route::post('update-product-status', 'App\Http\Controllers\Admin\ProductsController@update_product_status');
             Route::delete('delete/{id}', 'App\Http\Controllers\Admin\ProductsController@delete_product')->name('admin-delete-product');
 
 
@@ -59,7 +60,9 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::post('price/save', 'App\Http\Controllers\Admin\ProductsController@save_product_info')->name('admin-save-product-info');
 
             Route::get('gallery', 'App\Http\Controllers\Admin\ProductsController@products_gallery_page')->name('admin-product-gallery');
-            Route::get('visibility', 'App\Http\Controllers\Admin\ProductsController@products_visibility_page')->name('admin-product-visibility');
+            Route::post('gallery/save', 'App\Http\Controllers\Admin\ProductsController@add_products_gallery')->name('admin-save-products-gallery');
+            Route::delete('gallery/delete/{id}', 'App\Http\Controllers\Admin\ProductsController@delete_product_gallery');
+//            Route::get('visibility', 'App\Http\Controllers\Admin\ProductsController@products_visibility_page')->name('admin-product-visibility');
         });
 
         Route::prefix('customers')->group(function () {
