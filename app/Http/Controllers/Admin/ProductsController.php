@@ -224,7 +224,7 @@ class ProductsController extends Controller
         }else return response(['status' => false, 'message' => 'Product image is mandatory'],400);
 
         if ($status)
-            return response(['status' => true, 'message' => 'Product created successfully.']);
+            return response(['status' => true, 'message' => 'Success!! Product image added successfully.']);
         else
             return response(['status' => false], 500);
     }

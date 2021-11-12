@@ -5,6 +5,7 @@
         <div class="col-12">
             <h1>Customers</h1>
             <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+
             </nav>
             <div class="separator mb-5"></div>
             <div class="col-12 mb-4">
@@ -12,86 +13,129 @@
                     <div class="card-body">
                         <h5 class="mb-4 font-weight-bold">Manage Customers</h5>
                         <div class="separator mb-5"></div>
+
                         <div class="table-responsive">
-                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                <div class="row view-filter">
-                                    <div class="col-sm-12">
-                                        <div class="float-right">
-                                            <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                <label>
-                                                    Items Per Page
-                                                    <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="100">100</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="float-left">
-                                            <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search..." aria-controls="DataTables_Table_0"></label></div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <table class="data-table data-table-customer-access-list dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                    <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Registration Date: activate to sort column descending" style="width: 178.431px;">Registration Date</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Customer's Name: activate to sort column ascending" style="width: 178.875px;">Customer's Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mobile No.: activate to sort column ascending" style="width: 134.417px;">Mobile No.</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="E-mail: activate to sort column ascending" style="width: 201.75px;">E-mail</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 272.861px;">Actions</th>
-                                    </tr>
-                                    </thead>
+                            <table class="data-table data-table-customer-access-list">
+                                <thead>
+                                <tr>
+                                    <th>Registration Date</th>
+                                    <th>Customer's Name</th>
+                                    <th>Mobile No.</th>
+                                    <th>E-mail</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td>{{date('d M Y',strtotime($user->created_at))}}</td>
+                                            <td>{{ucwords($user->name)}}</td>
+                                            <td>{{$user->mobile ?? 'N/A'}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal"  data-target="#activationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
+                                                {{--                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#customerpwdrt" title="Reset Password" class="las la-key btn btn-secondary mx-1"></a>--}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Actvation Toggle Modal -->
+
+    <div class="modal fade bd-example-modal-sm" id="activationmodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Toggle Customer Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="alert alert-warning mb-5" role="alert">* Please note, This will only manage customer access to his account. If you wish to delete the customer, delete from the list.</div>
+                    <p><b>Customer Name:</b> John Doe Smith</p>
+                    <label class="form-label font-weight-bold" id="switch4-label">Customer Active</label>
+                    <div class="custom-switch custom-switch-primary-inverse mb-2">
+                        <input class="custom-switch-input" id="switch4" type="checkbox" checked>
+                        <label class="custom-switch-btn" for="switch4"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Popup -->
+
+    <div class="modal fade bd-example-modal-lg" id="customerDetails" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Customer Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+
                                     <tbody>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">09/04/2020</td>
+                                    <tr>
+                                        <td class="font-weight-bold">Customer Name</td>
                                         <td>John Doe Smith</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Customer Status</td>
+                                        <td>Active</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Wishlist Products</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Total Orders</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Mobile No.</td>
                                         <td>+91-9876543210</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">E-mail</td>
                                         <td>john.dsmith@gmail.com</td>
-                                        <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#activationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#customerpwdrt" title="Reset Password" class="las la-key btn btn-secondary mx-1"></a>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Delivery Address 1</td>
+                                        <td>
+                                            <b>Home Address</b><br>
+                                            Jason Smith<br>
+                                            Jewel World, 175, Kalbadevi Road,
+                                            Marine Lines East, Panjarpole,
+                                            Bhuleshwar, Mumbai, Maharashtra 400018<br>
+                                            Alternate Mobile Number : +91-9877895411
                                         </td>
                                     </tr>
-                                    <tr role="row" class="even">
-                                        <td class="sorting_1">09/04/2020</td>
-                                        <td>Jake Doe Smith</td>
-                                        <td>+91-995621470</td>
-                                        <td>jake.dsmith@gmail.com</td>
-                                        <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#activationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#customerpwdrt" title="Reset Password" class="las la-key btn btn-secondary mx-1"></a>
-                                        </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">09/04/2020</td>
-                                        <td>Jorden Doe Smith</td>
-                                        <td>+91-8765432109</td>
-                                        <td>jorden.dsmith@gmail.com</td>
-                                        <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#activationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#customerpwdrt" title="Reset Password" class="las la-key btn btn-secondary mx-1"></a>
-                                        </td>
+                                    <tr>
+                                        <td class="font-weight-bold">Delivery Address 2</td>
+                                        <td>
+                                            <b>Office Address</b><br>
+                                            Jason Smith<br>
+                                            Jewel World, 175, Kalbadevi Road,
+                                            Marine Lines East, Panjarpole,
+                                            Bhuleshwar, Mumbai, Maharashtra 400018<br>
+                                            Alternate Mobile Number : +91-7877895411</td>
                                     </tr>
                                     </tbody>
                                 </table>
-                                <div class="row view-pager">
-                                    <div class="col-sm-12">
-                                        <div class="text-center">
-                                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 3 of 3 entries</div>
-                                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                <ul class="pagination pagination-sm">
-                                                    <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>
-                                                    <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                    <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link next"><i class="simple-icon-arrow-right"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,4 +143,36 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Customer Password Form -->
+
+    {{--    <div class="modal fade modal-right" id="customerpwdrt" tabindex="-1" role="dialog"--}}
+    {{--         aria-labelledby="exampleModalRight" aria-hidden="true">--}}
+    {{--        <div class="modal-dialog" role="document">--}}
+    {{--            <div class="modal-content">--}}
+    {{--                <div class="modal-header">--}}
+    {{--                    <h5 class="modal-title font-weight-bold">Customer Password Reset</h5>--}}
+    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+    {{--                        <span aria-hidden="true">&times;</span>--}}
+    {{--                    </button>--}}
+    {{--                </div>--}}
+    {{--                <div class="modal-body">--}}
+
+    {{--                    <form>--}}
+    {{--                        <div class="alert alert-warning mb-3" role="alert">* Please note, password instructions will be sent on the registered email. Please only toggle the button below if you wish to reset the password now.</div>--}}
+    {{--                        <label class="form-label font-weight-bold" id="switch6-label">Confirm Reset</label>--}}
+    {{--                        <div class="custom-switch custom-switch-primary-inverse mb-2">--}}
+    {{--                            <input class="custom-switch-input" id="switch6" type="checkbox">--}}
+    {{--                            <label class="custom-switch-btn" for="switch6"></label>--}}
+    {{--                        </div>--}}
+    {{--                        <div  class="form-group text-right">--}}
+    {{--                            <p><a href="javascript:void(0);" class="btn btn-secondary">Send Reset Instructions</a></p>--}}
+    {{--                        </div>--}}
+    {{--                    </form>--}}
+    {{--                </div>--}}
+
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection
