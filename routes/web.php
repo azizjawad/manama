@@ -23,6 +23,12 @@ Route::get('admin/logout', function () {
     return Redirect::to('/admin');
 })->name('admin-logout');
 
+Route::get('logout', function () {
+    auth()->logout();
+    Session()->flush();
+    return Redirect::to('/');
+})->name('logout');
+
 Auth::routes();
 
 Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
@@ -93,7 +99,25 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     });
 });
 
+Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
+    Route::prefix('account')->group(function () {
+        Route::get('/my-account', 'App\Http\Controllers\MyAccountController@index')->name('my-account');
+        Route::get('/my-wishlist', 'App\Http\Controllers\MyAccountController@my_wishlist')->name('my-wishlist');
+        Route::get('/change-password', 'App\Http\Controllers\MyAccountController@change_password')->name('change-password');
+        Route::get('/edit-profile', 'App\Http\Controllers\MyAccountController@edit_profile')->name('edit-profile');
+        Route::get('/order-history', 'App\Http\Controllers\MyAccountController@order_history')->name('order-history');
+        Route::get('/manage-address', 'App\Http\Controllers\MyAccountController@manage_address')->name('manage-address');
+        Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
+        Route::get('/cart', 'App\Http\Controllers\MyAccountController@cart')->name('cart');
+        Route::get('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
+        Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
+    });
+
+});
+
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index'])->name('home');
-
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('home');
+
+Route::get('category', 'App\Http\Controllers\ProductController@category_page')->name('category');
+Route::get('product', 'App\Http\Controllers\ProductController@index_page')->name('product');
