@@ -5,137 +5,145 @@
         <div class="col-12">
             <h1>CMS Management</h1>
             <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+
             </nav>
             <div class="separator mb-5"></div>
             <div class="row">
                 <div class="col-12 mb-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#addrecipe" class="btn btn-secondary mb-2 float-right adjust-margin-01">Add Recipe</a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static"
+                               data-target="#addrecipe" class="btn btn-secondary mb-2 float-right adjust-margin-01">Add
+                                Recipe</a>
                             <h5 class="mb-4 font-weight-bold">Recipes Page CMS</h5>
                             <div class="separator mb-5"></div>
-                            <div class="table-responsive">
-                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                    <div class="row view-filter">
-                                        <div class="col-sm-12">
-                                            <div class="float-right">
-                                                <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                    <label>
-                                                        Items Per Page
-                                                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                            <option value="10">10</option>
-                                                            <option value="25">25</option>
-                                                            <option value="50">50</option>
-                                                            <option value="100">100</option>
-                                                        </select>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="float-left">
-                                                <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search..." aria-controls="DataTables_Table_0"></label></div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                    <table class="data-table data-table-recipes-list dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                        <thead>
-                                        <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 63.1944px;">#</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 141.167px;">Date</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Image: activate to sort column ascending" style="width: 144.347px;">Image</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Recipe Name: activate to sort column ascending" style="width: 359.778px;">Recipe Name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 287.847px;">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">1</td>
-                                            <td>20/04/2020</td>
-                                            <td>
-                                                <div class="img prd lightbox"><a href="img/recipes/classic-mojito-recipe.png"><img src="img/recipes/classic-mojito-recipe.png"></a></div>
-                                            </td>
-                                            <td>Classic Mojito</td>
-                                            <td class="text-center"><a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">1</td>
-                                            <td>20/04/2020</td>
-                                            <td>
-                                                <div class="img prd lightbox"><a href="img/recipes/caramel-apple-pie-recipe.jpg"><img src="img/recipes/caramel-apple-pie-recipe.jpg"></a></div>
-                                            </td>
-                                            <td>Caramel Apple Pie</td>
-                                            <td class="text-center"><a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">2</td>
-                                            <td>20/04/2020</td>
-                                            <td>
-                                                <div class="img prd lightbox"><a href="img/recipes/banana-nutella-recipe.png"><img src="img/recipes/banana-nutella-recipe.png"></a></div>
-                                            </td>
-                                            <td>Banana Nutella Milkshake</td>
-                                            <td class="text-center"><a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">3</td>
-                                            <td>20/04/2020</td>
-                                            <td>
-                                                <div class="img prd lightbox"><a href="img/recipes/batched-spooked-punch-recipe.png"><img src="img/recipes/batched-spooked-punch-recipe.png"></a></div>
-                                            </td>
-                                            <td>Batched Spooked Punch</td>
-                                            <td class="text-center"><a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">4</td>
-                                            <td>20/04/2020</td>
-                                            <td>
-                                                <div class="img prd lightbox"><a href="img/recipes/beach-bottom-punch-recipe.png"><img src="img/recipes/beach-bottom-punch-recipe.png"></a></div>
-                                            </td>
-                                            <td>Beach Bottom Punch</td>
-                                            <td class="text-center"><a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1">5</td>
-                                            <td>20/04/2020</td>
-                                            <td>
-                                                <div class="img prd lightbox"><a href="img/recipes/blackcurrant-nourish-shake-recipe.jpg"><img src="img/recipes/blackcurrant-nourish-shake-recipe.jpg"></a></div>
-                                            </td>
-                                            <td>Blackcurrant Nourish Shake</td>
-                                            <td class="text-center"><a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row view-pager">
-                                        <div class="col-sm-12">
-                                            <div class="text-center">
-                                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 6 of 6 entries</div>
-                                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                    <ul class="pagination pagination-sm">
-                                                        <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>
-                                                        <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                        <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link next"><i class="simple-icon-arrow-right"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">?</button>
+                                    <strong>{{ $message }}</strong>
                                 </div>
+                            @endif
+
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <div class="table-responsive">
+                                <table class="data-table data-table-recipes-list">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Recipe Name</th>
+                                        <th>Image</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($recipes as $recipe)
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{$recipe->rcp_name}}</td>
+                                        <td>
+                                            <div class="img prd lightbox">
+                                                <a href="{{asset('/images/recipe/display-img/'.$recipe->rcp_display_img)}}">
+                                                    <img src="{{asset('/images/recipe/display-img/'.$recipe->rcp_display_img)}}"/>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>{{$recipe->created_at}}</td>
+                                        <td class="text-center">
+                                            <a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
+                                            <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
+        <div class="modal fade modal-right" id="addrecipe" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalRight" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold">Add Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('admin-save-recipes')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group mb-4">
+                                <label class="form-group has-float-label mb-1">
+                                    <input data-role="tagsinput" value="{{old('rcp_name')}}" name="rcp_name" type="text"> <span>Recipes Name</span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label>Recipes Description<br>(use Redactor or any WYSIWYG html editor)</label>
+                                <textarea class="form-control" name="rcp_description" rows="7" required>{{old('rcp_description')}}</textarea>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="alert alert-warning my-4" role="alert">* Adding video is optional, if you
+                                    need to add it copy the video ID. If your video url is
+                                    https://www.youtube.com/watch?v=IbOyBIS57C0 then copy & paste 'IbOyBIS57C0'
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-group has-float-label mb-1">
+                                    <input data-role="tagsinput" value="{{old('youtube_url')}}" name="youtube_url" type="url" >
+                                    <span>Youtube Video (optional)</span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="form-group has-float-label mb-1">
+                                    <input required class="form-control" name="rcp_display_img" type="file"
+                                           accept=".jpg,.png"><span>Recipes Display Image</span></label>
+                                <label class="tooltip-text mb-4">(Only upload 600x600 size images.)</label>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="form-group has-float-label mb-1">
+                                    <input class="form-control" name="rcp_homepage_img" type="file"
+                                           accept=".jpg,.png"><span>Recipes Homepage Image</span></label>
+                                <label class="tooltip-text mb-4">(Only upload 900x600 (3:2) size images.)</label>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-group has-float-label mb-1">
+                                    <input data-role="tagsinput" value="{{old('rcp_meta_title')}}" name="rcp_meta_title" type="text"> <span>Meta Page Title</span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-group has-float-label mb-4">
+                                    <textarea class="form-control" name="rcp_meta_description" rows="4"
+                                              required>{{old('rcp_meta_description')}}</textarea>
+                                    <span>Meta Page Description</span>
+                                </label>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-group has-float-label mb-1">
+                                    <input data-role="tagsinput" name="rcp_page_slug" type="text" value="{{old('rcp_page_slug')}}">
+                                    <span>Page Name</span>
+                                </label>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-secondary" type="submit">Add Recipe</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 @endsection

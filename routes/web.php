@@ -89,9 +89,13 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::prefix('cms')->group(function () {
             Route::get('home-banner', 'App\Http\Controllers\Admin\CMSController@home_banner_page')->name('admin-home-banner');
+            Route::post('save-home-banner', 'App\Http\Controllers\Admin\CMSController@save_home_banner_page')->name('admin-save-home-banner');
             Route::get('advertisement', 'App\Http\Controllers\Admin\CMSController@advertisement_page')->name('admin-advertisement');
+            Route::post('save-advertisement', 'App\Http\Controllers\Admin\CMSController@save_advertisement')->name('admin-save-advertisement');
             Route::get('recipes', 'App\Http\Controllers\Admin\CMSController@recipes_page')->name('admin-recipes');
+            Route::post('save-recipes', 'App\Http\Controllers\Admin\CMSController@save_recipes')->name('admin-save-recipes');
             Route::get('news-events', 'App\Http\Controllers\Admin\CMSController@news_events_page')->name('admin-news-events');
+            Route::post('save-news-events', 'App\Http\Controllers\Admin\CMSController@save_news_events')->name('admin-save-news-events');
             Route::get('news-events-gallery', 'App\Http\Controllers\Admin\CMSController@news_events_gallery_page')->name('admin-news-events-gallery');
             Route::get('page-metas', 'App\Http\Controllers\Admin\CMSController@meta_page')->name('admin-meta');;
         });

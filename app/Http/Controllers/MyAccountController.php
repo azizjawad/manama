@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewsEvent;
+use App\Models\NewsEventModel;
 use Illuminate\Http\Request;
 
 class MyAccountController extends Controller

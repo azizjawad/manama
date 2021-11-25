@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\CategoriesModel;
 use App\Models\ProductInfoModel;
-use App\Models\ProductsGalleryModel;
+use App\Models\HomepageBannersModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,7 +47,7 @@ class ProductsController extends Controller
     public function products_gallery_page(){
         $data['products'] = ProductsModel::select('id','name')->get();
 
-        $data['products_gallery'] = ProductsGalleryModel::select('products_gallery.*','products.name as product_name')
+        $data['products_gallery'] = HomepageBannersModel::select('products_gallery.*','products.name as product_name')
             ->join('products','products.id','products_gallery.product_id')
             ->get();
 
@@ -220,7 +220,7 @@ class ProductsController extends Controller
                 'image_path'  => $imageName,
                 'created_by'  => Auth::user()->id
             );
-            $status = ProductsGalleryModel::create($fields);
+            $status = HomepageBannersModel::create($fields);
         }else return response(['status' => false, 'message' => 'Product image is mandatory'],400);
 
         if ($status)
@@ -232,7 +232,7 @@ class ProductsController extends Controller
     public function delete_product_gallery($id){
         $status = false;
         if(is_numeric($id)) {
-            $status = ProductsGalleryModel::find($id)->delete();
+            $status = HomepageBannersModel::find($id)->delete();
             return response(['status' => $status], 200);
         }
         return response(['status' => (bool) $status], 404);

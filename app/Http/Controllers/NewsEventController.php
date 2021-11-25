@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewsEvent;
+use App\Models\NewsEventModel;
 use Illuminate\Http\Request;
 
 class NewsEventController extends Controller
@@ -41,10 +41,10 @@ class NewsEventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NewsEvent  $newsEvent
+     * @param  \App\Models\NewsEventModel  $newsEvent
      * @return \Illuminate\Http\Response
      */
-    public function show(NewsEvent $newsEvent)
+    public function show(NewsEventModel $newsEvent)
     {
         //
     }
@@ -52,10 +52,10 @@ class NewsEventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NewsEvent  $newsEvent
+     * @param  \App\Models\NewsEventModel  $newsEvent
      * @return \Illuminate\Http\Response
      */
-    public function edit(NewsEvent $newsEvent)
+    public function edit(NewsEventModel $newsEvent)
     {
         //
     }
@@ -64,10 +64,10 @@ class NewsEventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NewsEvent  $newsEvent
+     * @param  \App\Models\NewsEventModel  $newsEvent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NewsEvent $newsEvent)
+    public function update(Request $request, NewsEventModel $newsEvent)
     {
         //
     }
@@ -75,10 +75,10 @@ class NewsEventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NewsEvent  $newsEvent
+     * @param  \App\Models\NewsEventModel  $newsEvent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NewsEvent $newsEvent)
+    public function destroy(NewsEventModel $newsEvent)
     {
         //
     }

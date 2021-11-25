@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\NewsEvent;
+use App\Models\NewsEventModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NewsEventFactory extends Factory
@@ -12,7 +12,7 @@ class NewsEventFactory extends Factory
      *
      * @var string
      */
-    protected $model = NewsEvent::class;
+    protected $model = NewsEventModel::class;
 
     /**
      * Define the model's default state.

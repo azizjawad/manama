@@ -13,10 +13,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#addupcommingevent" class="btn btn-secondary mb-2 float-right adjust-margin-01">Add Event</a>
-                                    <h5 class="mb-4 font-weight-bold">News &amp; Events List</h5>
+                                    <a href="javascript:void(0);" href="javascript:void(0);" data-toggle="modal"
+                                       data-backdrop="static" data-target="#addupcommingevent"
+                                       class="btn btn-secondary mb-2 float-right adjust-margin-01">Add Event</a>
+                                    <h5 class="mb-4 font-weight-bold">News & Events List</h5>
                                     <div class="alert alert-warning mt-2 mb-3" role="alert">
-                                        * Please note, you can only add or delete an event. The event details entered here will can to used for filing the event gallery.
+                                        * Please note, you can only add or delete an event. The event details entered
+                                        here will can to used for filing the event gallery.
                                         Just select the Event Name there and add photos for gallery.
                                     </div>
                                 </div>
@@ -29,78 +32,55 @@
                         <div class="card-body">
                             <h5 class="mb-4 font-weight-bold">Events List</h5>
                             <div class="separator mb-5"></div>
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">?</button>
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @endif
+
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-12">
                                     <div class="table-responsive">
-                                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                            <div class="row view-filter">
-                                                <div class="col-sm-12">
-                                                    <div class="float-right">
-                                                        <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                            <label>
-                                                                Items Per Page
-                                                                <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                                    <option value="10">10</option>
-                                                                    <option value="25">25</option>
-                                                                    <option value="50">50</option>
-                                                                    <option value="100">100</option>
-                                                                </select>
-                                                            </label>
-                                                        </div>
+                                        <table class="data-table data-table-events-list">
+                                            <thead>
+                                            <tr>
+                                                <th>Event Name</th>
+                                                <th>Event End Date</th>
+                                                <th>Event Image</th>
+                                                <th class="text-center">Actions</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($result as $key)
+                                            <tr>
+                                                <td>{{$key->event_name}}</td>
+                                                <td>{{date('d M Y', strtotime($key->event_end_date))}}</td>
+                                                <td>
+                                                    <div class="img lightbox">
+                                                        <a href="{{asset('images/news-events/'.$key->event_featured_img)}}">
+                                                            <img src="{{asset('images/news-events/'.$key->event_featured_img)}}"/>
+                                                        </a>
                                                     </div>
-                                                    <div class="float-left">
-                                                        <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search..." aria-controls="DataTables_Table_0"></label></div>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                            <table class="data-table data-table-events-list dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                                <thead>
-                                                <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Event Date: activate to sort column descending" style="width: 203.736px;">Event Date</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Event Image: activate to sort column ascending" style="width: 229.056px;">Event Image</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Event Name: activate to sort column ascending" style="width: 348.222px;">Event Name</th>
-                                                    <th class="text-center sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 248.097px;">Actions</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr role="row" class="odd">
-                                                    <td class="sorting_1">2 September 2017</td>
-                                                    <td>
-                                                        <div class="img lightbox"><a href="img/category/mojito.jpg"><img src="img/category/mojito.jpg"></a></div>
-                                                    </td>
-                                                    <td>Vitafoods Singapore 2017</td>
-                                                    <td class="text-center"><a href="News.Events.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                        <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                    </td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">5 December 2017</td>
-                                                    <td>
-                                                        <div class="img lightbox"><a href="img/category/mojito.jpg"><img src="img/category/mojito.jpg"></a></div>
-                                                    </td>
-                                                    <td>Ayush Expo Ahmedabad 2016</td>
-                                                    <td class="text-center"><a href="News.Events.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
-                                                        <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="row view-pager">
-                                                <div class="col-sm-12">
-                                                    <div class="text-center">
-                                                        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div>
-                                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                            <ul class="pagination pagination-sm">
-                                                                <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>
-                                                                <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                                <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link next"><i class="simple-icon-arrow-right"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="News.Events.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
+                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +90,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-right" id="addupcommingevent" tabindex="-1" role="dialog" aria-labelledby="exampleModalRight" style="opacity: 1; display: none;" aria-hidden="true">
+    <div class="modal fade modal-right" id="addupcommingevent" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalRight" style="opacity: 1; display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -120,52 +101,53 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{route('admin-save-news-events')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label">
-                                <div class="bootstrap-tagsinput"><input type="text" placeholder=""></div><input class="form-control" data-role="tagsinput" placeholder="" value="" style="display: none;">
+                                <input class="form-control" name="event_name" data-role="tagsinput" placeholder="" value="{{old('event_name')}}">
                                 <span>Event Name</span>
                             </label>
                         </div>
                         <div class="form-group mb-0">
                             <label class="form-group has-float-label mb-1">
-                                <input class="form-control" type="file" accept=".jpg,.png"><span>Event Image Featured</span></label>
+                                <input class="form-control" name="event_image" type="file" accept=".jpg,.png"><span>Event Image Featured</span></label>
                             <label class="tooltip-text mb-4">(Only upload 1920x1080 size images.)</label>
                         </div>
                         <div class="form-group mb-4">
-                            <label>Recipes Description<br>(use Redactor or any WYSIWYG html editor)</label>
-                            <textarea class="form-control" rows="7" required=""></textarea>
-                        </div>
-                        <div class="form-group mb-4">
-                            <div class="alert alert-warning my-4" role="alert">* Adding video is optional, if you need to add it copy the video ID. If your video url is https://www.youtube.com/watch?v=IbOyBIS57C0 then copy &amp; paste 'IbOyBIS57C0'</div>
+                            <label>Event Description<br>(use Redactor or any WYSIWYG html editor)</label>
+                            <textarea class="form-control" rows="7" name="event_description" required>{{old('event_description')}}</textarea>
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label">
-                                <input class="form-control datepicker" placeholder="" value="">
+                                <input class="form-control datepicker" name="event_end_date" placeholder="" value="{{old('event_end_date')}}">
                                 <span>Event Date</span>
                             </label>
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <div class="bootstrap-tagsinput"><input type="text" placeholder=""></div><input data-role="tagsinput" type="text" value="" style="display: none;">
+                                <input data-role="tagsinput" type="url" name="event_youtube_url" value="{{old('event_youtube_url')}}">
                                 <span>Youtube Video (optional)</span>
                             </label>
+                            <div class="form-group mb-4">
+                                <div class="alert alert-warning my-4" role="alert">* Adding video is optional, if you need to add it copy the video ID. If your video url is https://www.youtube.com/watch?v=IbOyBIS57C0 then copy & paste 'IbOyBIS57C0'</div>
+                            </div>
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <div class="bootstrap-tagsinput"><input type="text" placeholder=""></div><input data-role="tagsinput" type="text" style="display: none;"> <span>Meta Page Title</span>
+                                <input data-role="tagsinput" name="event_meta_title" value="{{old('event_meta_title')}}" type="text"> <span>Meta Page Title</span>
                             </label>
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-4">
-                                <textarea class="form-control" rows="4" required=""></textarea>
+                                <textarea class="form-control" name="event_meta_description" rows="4" required>{{old('event_meta_description')}}</textarea>
                                 <span>Meta Page Description</span>
                             </label>
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <div class="bootstrap-tagsinput"><input type="text" placeholder=""></div><input data-role="tagsinput" type="text" value="" style="display: none;">
-                                <span>Page URL</span>
+                                <input data-role="tagsinput" name="event_page_slug" type="text" value="{{old('event_page_slug')}}">
+                                <span>Page Name</span>
                             </label>
                         </div>
 
