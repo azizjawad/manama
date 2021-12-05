@@ -84,6 +84,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::prefix('manage')->group(function () {
             Route::get('discount', 'App\Http\Controllers\Admin\ManageController@discount_page')->name('admin-discount-manager');
+            Route::post('save-coupon', 'App\Http\Controllers\Admin\ManageController@save_coupon')->name('admin-save-coupon');
             Route::get('shipping', 'App\Http\Controllers\Admin\ManageController@shipping_page')->name('admin-shipping-manager');
         });
 
@@ -95,8 +96,11 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::get('recipes', 'App\Http\Controllers\Admin\CMSController@recipes_page')->name('admin-recipes');
             Route::post('save-recipes', 'App\Http\Controllers\Admin\CMSController@save_recipes')->name('admin-save-recipes');
             Route::get('news-events', 'App\Http\Controllers\Admin\CMSController@news_events_page')->name('admin-news-events');
+            Route::get('edit-news-events/{id}', 'App\Http\Controllers\Admin\CMSController@news_events_edit_page')->name('admin-news-events-edit');
             Route::post('save-news-events', 'App\Http\Controllers\Admin\CMSController@save_news_events')->name('admin-save-news-events');
-            Route::get('news-events-gallery', 'App\Http\Controllers\Admin\CMSController@news_events_gallery_page')->name('admin-news-events-gallery');
+            Route::get('news-events-list', 'App\Http\Controllers\Admin\CMSController@news_events_list_page')->name('admin-news-events-list');
+            Route::get('news-events-gallery/{id}', 'App\Http\Controllers\Admin\CMSController@news_events_gallery_page')->name('admin-news-events-gallery');
+            Route::post('save-news-events-gallery', 'App\Http\Controllers\Admin\CMSController@save_news_events_gallery')->name('admin-save-news-events-gallery');
             Route::get('page-metas', 'App\Http\Controllers\Admin\CMSController@meta_page')->name('admin-meta');;
         });
 

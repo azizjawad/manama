@@ -16,3 +16,4 @@ storage/logs/
 .env.example
 composer.lock
 package-lock.json
+public/images/*

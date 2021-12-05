@@ -5,99 +5,144 @@
         <div class="col-12">
             <h1>eCommerce Management</h1>
             <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+
             </nav>
             <div class="separator mb-5"></div>
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#createcoupon" class="btn btn-secondary mb-2 float-right adjust-margin-01">Create Coupon</a>
+                        <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static"
+                           data-target="#createcoupon" class="btn btn-secondary mb-2 float-right adjust-margin-01">Create
+                            Coupon</a>
                         <h5 class="mb-4 font-weight-bold">Discount Manager</h5>
                         <div class="separator mb-5"></div>
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">?</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                        <div class="row view-filter">
-                                            <div class="col-sm-12">
-                                                <div class="float-right">
-                                                    <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                        <label>
-                                                            Items Per Page
-                                                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                                <option value="10">10</option>
-                                                                <option value="25">25</option>
-                                                                <option value="50">50</option>
-                                                                <option value="100">100</option>
-                                                            </select>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="float-left">
-                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search..." aria-controls="DataTables_Table_0"></label></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                        <table class="data-table data-table-disman-list dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                            <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Issued On: activate to sort column descending" style="width: 109.625px;">Issued On</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Valid Upto: activate to sort column ascending" style="width: 115.889px;">Valid Upto</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending" style="width: 99.1111px;">Type</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Usage: activate to sort column ascending" style="width: 75.6667px;">Usage</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Discount Code: activate to sort column ascending" style="width: 151.653px;">Discount Code</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Value: activate to sort column ascending" style="width: 70.0972px;">Value</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Count: activate to sort column ascending" style="width: 72.6528px;">Count</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 173.306px;">Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">20/04/2021</td>
-                                                <td>20/10/2021</td>
-                                                <td>Shipping Only</td>
-                                                <td>Single Use</td>
-                                                <td>MANAMANEW</td>
-                                                <td>20%</td>
-                                                <td>3</td>
-                                                <td class="text-center"><a href="Discount.Coupon.Details.html" class="las la-eye btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">20/04/2021</td>
-                                                <td>20/10/2021</td>
-                                                <td>All Products</td>
-                                                <td>Multi Use</td>
-                                                <td>MANAMAPRE</td>
-                                                <td>15%</td>
-                                                <td>23</td>
-                                                <td class="text-center"><a href="Discount.Coupon.Details.html" class="las la-eye btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="row view-pager">
-                                            <div class="col-sm-12">
-                                                <div class="text-center">
-                                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div>
-                                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                        <ul class="pagination pagination-sm">
-                                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>
-                                                            <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link next"><i class="simple-icon-arrow-right"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <table class="data-table data-table-disman-list">
+                                        <thead>
+                                        <tr>
+                                            <th>Issued On</th>
+                                            <th>Valid Upto</th>
+                                            <th>Type</th>
+                                            <th>Usage</th>
+                                            <th>Discount Code</th>
+                                            <th>Value</th>
+                                            <th>Count</th>
+                                            <th>Actions</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($coupons as $key)
+                                        <tr>
+                                            <td>{{date('Y M d', strtotime($key->created_at))}}</td>
+                                            <td>{{date('Y M d', strtotime($key->coupon_validity))}}</td>
+                                            <td>{{($key->product_type == 1) ? 'Product Only' : 'Shipping Only'}}</td>
+                                            <td>{{($key->coupon_use == 1) ? 'Single use' : 'Multi use'}}</td>
+                                            <td>{{$key->coupon_code}}</td>
+                                            <td>{{$key->coupon_value}}</td>
+                                            <td>-</td>
+                                            <td class="text-center">
+                                                <a href="Discount.Coupon.Details.html"
+                                                   class="las la-eye btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)"
+                                                   class="las la-trash-alt btn btn-secondary mx-1"></a></td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-right" id="createcoupon" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalRight" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold">Create Coupon</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('admin-save-coupon')}}" method="post">
+                        @csrf
+                        <div class="alert alert-warning mb-3" role="alert">* When creating coupon, please remember to
+                            set Validity Date, assign Product Range & Value For which is either for Shipping or
+                            Products.
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-group has-float-label mb-4">
+                                <select id="CategoryList" name="product_type" class="form-control select2-single" data-width="100%">
+                                    <option label="&nbsp;">Coupon Type</option>
+                                    <option value="1">Products Only</option>
+                                    <option value="2">Shipping Only</option>
+                                </select>
+                                <span>Coupon Type</span>
+                            </label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-group has-float-label mb-1">
+                                <input class="form-control text-uppercase" name="coupon_code" data-role="tagsinput" type="text">
+                                <span>Coupon Code</span>
+                            </label>
+                            <label class="tooltip-text mb-0">Coupon Code should not be longer then 10 characters.<br>Use
+                                Capital Letters</label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-group has-float-label mb-4">
+                                <select id="CategoryList" name="coupon_use" class="form-control select2-single" data-width="100%">
+                                    <option label="&nbsp;">Usage Type</option>
+                                    <option value="1">Single Use</option>
+                                    <option value="2">Multi Use</option>
+                                </select>
+                                <span>Coupon Type</span>
+                            </label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-group has-float-label mb-1">
+                                <input class="form-control text-uppercase" name="coupon_value" data-role="tagsinput" type="text">
+                                <span>Coupon Value</span>
+                            </label>
+                            <label class="tooltip-text mb-0">Use % if you want to give percentile discounts.<br>If you
+                                just use number it will deduct that amount.</label>
+                        </div>
+                        <label class="form-group has-float-label mb-1">
+                            <input type="text" name="coupon_validity" class="form-control datepicker" placeholder="">
+                            <span>Valid Upto</span>
+                        </label>
+                        <label class="tooltip-text mb-4">Issue Date will be the date you save the coupon entry. Validity
+                            expires at 11:59pm of the date selected.</label>
+
+
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-secondary">Create Coupon</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>

@@ -10,92 +10,145 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#createcoupon" class="btn btn-secondary mb-2 float-right adjust-margin-01">Create Rule</a>
+                        <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static"
+                           data-target="#createcoupon" class="btn btn-secondary mb-2 float-right adjust-margin-01">Create
+                            Rule</a>
                         <h5 class="mb-4 font-weight-bold">Shipping Manager</h5>
                         <div class="separator mb-5"></div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                        <div class="row view-filter">
-                                            <div class="col-sm-12">
-                                                <div class="float-right">
-                                                    <div class="dataTables_length" id="DataTables_Table_0_length">
-                                                        <label>
-                                                            Items Per Page
-                                                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control form-control-sm">
-                                                                <option value="10">10</option>
-                                                                <option value="25">25</option>
-                                                                <option value="50">50</option>
-                                                                <option value="100">100</option>
-                                                            </select>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="float-left">
-                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search..." aria-controls="DataTables_Table_0"></label></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-                                        <table class="data-table data-table-shipping-rate-list dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                                            <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 29.2778px;">#</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Created on: activate to sort column ascending" style="width: 119.167px;">Created on</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Rule Description: activate to sort column ascending" style="width: 195.486px;">Rule Description</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Shipping Rate: activate to sort column ascending" style="width: 147.667px;">Shipping Rate</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="No Shipping At: activate to sort column ascending" style="width: 158.819px;">No Shipping At</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 77.3194px;">Status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 173.042px;">Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">1</td>
-                                                <td>20/10/2021</td>
-                                                <td>Free Shipping above 700</td>
-                                                <td>75</td>
-                                                <td>700</td>
-                                                <td>Active</td>
-                                                <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#ruleactivationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">2</td>
-                                                <td>22/10/2021</td>
-                                                <td>Free Shipping above 800</td>
-                                                <td>125</td>
-                                                <td>800</td>
-                                                <td>Inactive</td>
-                                                <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#ruleactivationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="row view-pager">
-                                            <div class="col-sm-12">
-                                                <div class="text-center">
-                                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div>
-                                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                                        <ul class="pagination pagination-sm">
-                                                            <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link prev"><i class="simple-icon-arrow-left"></i></a></li>
-                                                            <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                            <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link next"><i class="simple-icon-arrow-right"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <table class="data-table data-table-shipping-rate-list">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Created on</th>
+                                            <th>Rule Description</th>
+                                            <th>Shipping Rate</th>
+                                            <th>No Shipping At</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>20/10/2021</td>
+                                            <td>Free Shipping above 700</td>
+                                            <td>75</td>
+                                            <td>700</td>
+                                            <td>Active</td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" data-toggle="modal"
+                                                   data-target="#ruleactivationmodal" title="Activate / Deactivate"
+                                                   class="las la-ban btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)"
+                                                   class="las la-trash-alt btn btn-secondary mx-1"></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>22/10/2021</td>
+                                            <td>Free Shipping above 800</td>
+                                            <td>125</td>
+                                            <td>800</td>
+                                            <td>Inactive</td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" data-toggle="modal"
+                                                   data-target="#ruleactivationmodal" title="Activate / Deactivate"
+                                                   class="las la-ban btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)"
+                                                   class="las la-trash-alt btn btn-secondary mx-1"></a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
+        <!-- Rule Actvation Toggle Modal -->
+
+        <div class="modal fade bd-example-modal-sm" id="ruleactivationmodal" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Toggle Shpping Rule</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="alert alert-warning mb-5" role="alert">* Please note, only 1 rule can be applied at
+                            a time. Activating a rule here will deactativate the old Rule
+                        </div>
+                        <p><b>Customer Name:</b> John Doe Smith</p>
+                        <label class="form-label font-weight-bold" id="switch8-label">Rule Active</label>
+                        <div class="custom-switch custom-switch-primary-inverse mb-2">
+                            <input class="custom-switch-input" id="switch8" type="checkbox" checked>
+                            <label class="custom-switch-btn" for="switch8"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Coupon -->
+
+        <div class="modal fade modal-right" id="createcoupon" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalRight" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold">Create Shipping Rule</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="alert alert-warning mb-4" role="alert">* Please follow the rule as set below.
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="form-group has-float-label mb-0">
+                                    <input data-role="tagsinput" type="text" class="text-uppercase"> <span>Shipping Rate (per bottle)</span>
+                                </label>
+                            </div>
+                            <div class="alert alert-warning mb-4" role="alert">* If 0 (zero) shipping rate is set, No
+                                Shipping Charges will be set
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-group has-float-label mb-1">
+                                    <input data-role="tagsinput" type="text" class="text-uppercase">
+                                    <span>Cart Value</span>
+                                </label>
+                            </div>
+                            <div class="alert alert-warning mb-4" role="alert">* If 0 (zero) cart value is set, Shipping
+                                rate per bottle will be applied
+                            </div>
+
+                            <label class="form-label font-weight-bold" id="switch9-label">Rule Deactivate</label>
+                            <div class="custom-switch custom-switch-primary-inverse mb-2">
+                                <input class="custom-switch-input" id="switch9" type="checkbox">
+                                <label class="custom-switch-btn" for="switch9"></label>
+                            </div>
+
+                            <div class="alert alert-warning mb-4" role="alert">* You can activate the rule now or later,
+                                please remember if you activate now the previous rule will be deactivated.
+                            </div>
+
+                            <div class="form-group text-right">
+                                <p><a href="javascript:void(0);" class="btn btn-secondary">Create Rule</a></p>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 @endsection

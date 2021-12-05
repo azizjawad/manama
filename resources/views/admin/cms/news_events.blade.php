@@ -74,7 +74,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="News.Events.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
+                                                    <a href="{{route('admin-news-events-edit', $key->id)}}" class="las la-edit btn btn-secondary mx-1"></a>
                                                     <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
                                                 </td>
                                             </tr>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <input data-role="tagsinput" type="url" name="event_youtube_url" value="{{old('event_youtube_url')}}">
+                                <input data-role="tagsinput" class="form-control" type="url" name="event_youtube_url" value="{{old('event_youtube_url')}}">
                                 <span>Youtube Video (optional)</span>
                             </label>
                             <div class="form-group mb-4">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <input data-role="tagsinput" name="event_meta_title" value="{{old('event_meta_title')}}" type="text"> <span>Meta Page Title</span>
+                                <input data-role="tagsinput" class="form-control" name="event_meta_title" value="{{old('event_meta_title')}}" type="text"> <span>Meta Page Title</span>
                             </label>
                         </div>
                         <div class="form-group mb-4">
@@ -146,7 +146,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <input data-role="tagsinput" name="event_page_slug" type="text" value="{{old('event_page_slug')}}">
+                                <input data-role="tagsinput" class="form-control" name="event_page_slug" type="text" value="{{old('event_page_slug')}}">
                                 <span>Page Name</span>
                             </label>
                         </div>

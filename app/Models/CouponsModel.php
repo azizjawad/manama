@@ -6,15 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class NewsEventModel extends Model
+class CouponsModel extends Model
 {
     protected $guarded = [];
 
-    public $table = "news_events";
+    public $table = "coupons";
 
     use SoftDeletes;
-
-    function attach_gallery(){
-        return $this->hasMany(NewsEventsGalleryModel::class, 'news_events_id', 'id');
-    }
 }

@@ -3021,39 +3021,39 @@ $.nzradmin = function (element, options) {
 //           lengthMenu: "Items Per Page _MENU_"
 //         },
 //       });
-//       $(".data-table-disman-list").DataTable({
-//         sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-//         pageLength: 10,
-//         "columns": [
-//           { "data": "issueno" },
-//           { "data": "validupto" },
-//           { "data": "validfor" },
-//           { "data": "dsctype" },
-//           { "data": "dsccode" },
-//           { "data": "dscval" },
-//           { "data": "customerusage" },
-//           { "data": "orderactions" }
-//         ],
-//         drawCallback: function () {
-//           $($(".dataTables_wrapper .pagination li:first-of-type"))
-//             .find("a")
-//             .addClass("prev");
-//           $($(".dataTables_wrapper .pagination li:last-of-type"))
-//             .find("a")
-//             .addClass("next");
-//
-//           $(".dataTables_wrapper .pagination").addClass("pagination-sm");
-//         },
-//         language: {
-//           paginate: {
-//             previous: "<i class='simple-icon-arrow-left'></i>",
-//             next: "<i class='simple-icon-arrow-right'></i>"
-//           },
-//           search: "_INPUT_",
-//           searchPlaceholder: "Search...",
-//           lengthMenu: "Items Per Page _MENU_"
-//         },
-//       });
+      $(".data-table-disman-list").DataTable({
+        sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        pageLength: 10,
+        "columns": [
+          { "data": "issueno" },
+          { "data": "validupto" },
+          { "data": "validfor" },
+          { "data": "dsctype" },
+          { "data": "dsccode" },
+          { "data": "dscval" },
+          { "data": "customerusage" },
+          { "data": "orderactions" }
+        ],
+        drawCallback: function () {
+          $($(".dataTables_wrapper .pagination li:first-of-type"))
+            .find("a")
+            .addClass("prev");
+          $($(".dataTables_wrapper .pagination li:last-of-type"))
+            .find("a")
+            .addClass("next");
+
+          $(".dataTables_wrapper .pagination").addClass("pagination-sm");
+        },
+        language: {
+          paginate: {
+            previous: "<i class='simple-icon-arrow-left'></i>",
+            next: "<i class='simple-icon-arrow-right'></i>"
+          },
+          search: "_INPUT_",
+          searchPlaceholder: "Search...",
+          lengthMenu: "Items Per Page _MENU_"
+        },
+      });
         $(".data-table-category").DataTable({
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             pageLength: 10,
@@ -3250,7 +3250,7 @@ $.nzradmin = function (element, options) {
             pageLength: 10,
             "columns": [
                 {"data": "srno"},
-                {"data": "eventimg"},
+                {"data": "eventCaption"},
                 {"data": "eventname"},
                 {"data": "uploaddate"},
                 {"data": "actions"}

@@ -330,7 +330,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{Route('admin-news-events-gallery')}}">
+                                <a href="{{Route('admin-news-events-list')}}">
                                     <i class="simple-icon-list"></i> <span class="d-inline-block">N & E Gallery</span>
                                 </a>
                             </li>
