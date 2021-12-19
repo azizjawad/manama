@@ -12,14 +12,13 @@
                         <ul class="pghd-breadcrumbs">
                             <li><a href="/">Home</a></li>
                             <li>Shop Products</li>
-                            <li>Mojitos</li>
+                            <li>{{$category->name}}</li>
                         </ul>
                     </div>
                     <div class="order-md-1 col-md-3">
                         <div class="cat-info">
-                            <h2>Mojitos</h2>
-                            <p>Sugar, Lime & Mint a perfect combination for a hot summer's day. 10
-                                Refreshing fruit infused flavours to make that perfect mocktail & cocktail.</p>
+                            <h2>{{ucwords($category->name)}}</h2>
+                            <p>{{$category->description}}</p>
                         </div>
                     </div>
                 </div>
@@ -135,57 +134,57 @@
 
                         <div class="shop-products">
                             <div class="row grid-space-30">
-
                                 <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/original-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/original-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
+                                @foreach($products as $key)
+                                    <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
+                                        <div class="mmtp-product">
+                                            <div class="product-inner">
+                                                <figure class="product-image has--bg">
+                                                    <div class="product-image--holder">
+                                                        <a href="{{route('category_product',[$category->page_slug,$key->product_slug])}}">
+                                                            <img src="{{asset("images/uploads/products/". $key->product_image)}}"
+                                                                 alt="Kiwi Mojito" class="primary-image">
                                                         </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
+                                                        <a href="{{route('category_product',[$category->page_slug,$key->product_slug])}}">
+                                                            <img src="{{asset("images/uploads/products/". $key->product_image)}}"
+                                                                 alt="Kiwi Mojito" class="secondary-image">
+                                                        </a>
+                                                    </div>
+                                                    <div class="mmtp-product-action">
+                                                        <div class="product-action">
+                                                            <a class="quickview-btn action-btn"
+                                                               href="{{route('category_product',[$category->page_slug,$key->product_slug])}}"
+                                                               data-bs-toggle="tooltip" data-bs-placement="left"
+                                                               title="View">
+                                                                <i class="dl-icon-view"></i>
+                                                            </a>
+                                                            <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
+                                                               data-bs-placement="left" title="Add to Cart">
                                                                         <span data-bs-toggle="modal" data-bs-target="#addtoCart">
                                                                         	<i class="dl-icon-cart29"></i>
                                                                         </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart4"></i>
-                                                        </a>
+                                                            </a>
+                                                            <a class="add_wishlist action-btn"
+                                                               href="wishlist.html" data-bs-toggle="tooltip"
+                                                               data-bs-placement="left" title="Add to Wishlist">
+                                                                <i class="dl-icon-heart4"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <span class="product-badge hot">Top</span>
-                                                <!-- Other Tag Codes
+                                                    <span class="product-badge hot">{{LABEL[$key->label]}}</span>
+                                                    <!-- Other Tag Codes
 
-                                                <span class="product-badge feature">Feat</span>
-                                                <span class="product-badge new">New</span>
+                                                    <span class="product-badge feature">Feat</span>
+                                                    <span class="product-badge new">New</span>
 
-                                                -->
+                                                    -->
 
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Original Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
+                                                </figure>
+                                                <div class="product-info">
+                                                    <h3 class="product-title">
+                                                        <a href="#">{{$key->product_name}}</a>
+                                                    </h3>
+                                                    <div class="product-rating">
                                                                 <span>
                                                                     <i class="dl-icon-star rated"></i>
                                                                     <i class="dl-icon-star rated"></i>
@@ -193,457 +192,38 @@
                                                                     <i class="dl-icon-star rated"></i>
                                                                     <i class="dl-icon-star"></i>
                                                                 </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>350.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
-                                                            </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">750ml PET Bottle</span>
-                                                             </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/lime-mint-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/lime-mint-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
-                                                        </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
-                                                                        	<i class="dl-icon-cart29"></i>
-                                                                        </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart4"></i>
-                                                        </a>
-                                                        <!-- To activate remove from wishlist --
-                                                        <a class="add_wishlist action-btn"
-                                                            href="wishlist.html" data-bs-toggle="tooltip"
-                                                            data-bs-placement="left" title="Remove from Wishlist">
-                                                            <i class="dl-icon-heart"></i>
-                                                        </a>
-
+                                                    </div>
+                                                    <span class="product-price-wrapper">
+                                                                <span class="money"><i class="fas fa-rupee-sign"></i>{{$key->cost_price}}</span>
+                                                        <!-- If discount price is there -->
+                                                        <!--
+                                                        <span class="product-price-old">
+                                                            <span class="money">$60.00</span>
+                                                        </span>
                                                         -->
-                                                    </div>
-                                                </div>
-                                                <span class="product-badge hot">Top</span>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Lime & Mint Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
-                                                                <span>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star"></i>
-                                                                </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>295.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
                                                             </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">750ml PET Bottle</span>
+                                                    <span class="product-weight-wrapper">
+                                                             <span class="weight">{{$key->packaging_weight .' '. $key->packaging_type}}</span>
                                                              </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/raspberry-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/raspberry-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
-                                                        </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
-                                                                        	<i class="dl-icon-cart29"></i>
-                                                                        </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- <span class="product-badge new">New</span> -->
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Raspberry Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
-                                                                <span>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star"></i>
-                                                                </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>215.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
-                                                            </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">500ml PET Bottle</span>
-                                                             </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/green-apple-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/green-apple-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
-                                                        </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
-                                                                        	<i class="dl-icon-cart29"></i>
-                                                                        </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart4"></i>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-                                                <!-- <span class="product-badge new">New</span> -->
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Green Apple Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
-                                                                <span>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star"></i>
-                                                                </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>215.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
-                                                            </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">500ml PET Bottle</span>
-                                                             </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/kiwi-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/kiwi-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
-                                                        </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
-                                                                        	<i class="dl-icon-cart29"></i>
-                                                                        </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-badge new">New</span>
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Kiwi Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
-                                                                <span>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star"></i>
-                                                                </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>215.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
-                                                            </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">500ml PET Bottle</span>
-                                                             </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/chilli-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/chilli-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
-                                                        </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
-                                                                        	<i class="dl-icon-cart29"></i>
-                                                                        </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart4"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- <span class="product-badge new">New</span> -->
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Chilli Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
-                                                                <span>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star"></i>
-                                                                </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>215.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
-                                                            </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">500ml PET Bottle</span>
-                                                             </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Each Product -->
-                                <div class="col-xl-4 col-md-6 mb--40 mb-md--30">
-                                    <div class="mmtp-product">
-                                        <div class="product-inner">
-                                            <figure class="product-image has--bg">
-                                                <div class="product-image--holder">
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/ginger-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="primary-image">
-                                                    </a>
-                                                    <a href="{{route("product")}}">
-                                                        <img src="{{asset("web/images/products/ginger-mojito.png")}}"
-                                                             alt="Kiwi Mojito" class="secondary-image">
-                                                    </a>
-                                                </div>
-                                                <div class="mmtp-product-action">
-                                                    <div class="product-action">
-                                                        <a class="quickview-btn action-btn"
-                                                           href="{{route("product")}}"
-                                                           data-bs-toggle="tooltip" data-bs-placement="left"
-                                                           title="View">
-                                                            <i class="dl-icon-view"></i>
-                                                        </a>
-                                                        <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
-                                                                        	<i class="dl-icon-cart29"></i>
-                                                                        </span>
-                                                        </a>
-                                                        <a class="add_wishlist action-btn"
-                                                           href="wishlist.html" data-bs-toggle="tooltip"
-                                                           data-bs-placement="left" title="Add to Wishlist">
-                                                            <i class="dl-icon-heart4"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!-- <span class="product-badge new">New</span> -->
-                                            </figure>
-                                            <div class="product-info">
-                                                <h3 class="product-title">
-                                                    <a href="{{route("product")}}">Ginger Mojito</a>
-                                                </h3>
-                                                <div class="product-rating">
-                                                                <span>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star rated"></i>
-                                                                    <i class="dl-icon-star"></i>
-                                                                </span>
-                                                </div>
-                                                <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>215.00</span>
-                                                    <!-- If discount price is there -->
-                                                    <!--
-                                                    <span class="product-price-old">
-                                                        <span class="money">$60.00</span>
-                                                    </span>
-                                                    -->
-                                                            </span>
-                                                <span class="product-weight-wrapper">
-                                                             <span class="weight">500ml PET Bottle</span>
-                                                             </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
 
 
-                        <nav class="pagination-wrap">
-                            <ul class="pagination">
-                                <li><a href="javascript:void(0);" class="prev page-number"><i class="fa fa-angle-double-left"></i></a>
-                                </li>
-                                <li><span class="current page-number">1</span></li>
-                                <li><a href="javascript:void(0);" class="page-number">2</a></li>
-                                <li><a href="javascript:void(0);" class="next page-number"><i
-                                            class="fa fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </nav>
+                        {{--                        <nav class="pagination-wrap">--}}
+                        {{--                            <ul class="pagination">--}}
+                        {{--                                <li><a href="javascript:void(0);" class="prev page-number"><i class="fa fa-angle-double-left"></i></a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li><span class="current page-number">1</span></li>--}}
+                        {{--                                <li><a href="javascript:void(0);" class="page-number">2</a></li>--}}
+                        {{--                                <li><a href="javascript:void(0);" class="next page-number"><i--}}
+                        {{--                                            class="fa fa-angle-double-right"></i></a></li>--}}
+                        {{--                            </ul>--}}
+                        {{--                        </nav>--}}
 
 
                     </div>
@@ -664,7 +244,7 @@
                         <div class="banner-box banner-type-10 banner-hover-3 ">
                             <div class="banner-inner">
                                 <div class="banner-image">
-                                    <img src="{{asset("web/images/banners/mmtp-recipe.png")}}" alt="Banner">
+                                    <img src="{{asset("web/images/banners/mmtp-recipe.jpg")}}" alt="Banner">
                                 </div>
                                 <div class="banner-info">
                                     <div class="banner-info--inner--down">
@@ -679,7 +259,7 @@
                         <div class="banner-box banner-type-10 banner-hover-3">
                             <div class="banner-inner">
                                 <div class="banner-image">
-                                    <img src="{{asset("web/images/banners/mmtp-tips.png")}}" alt="Banner">
+                                    <img src="{{asset("web/images/banners/mmtp-tips.jpg")}}" alt="Banner">
                                 </div>
                                 <div class="banner-info">
                                     <div class="banner-info--inner--down">
@@ -693,7 +273,7 @@
                         <div class="banner-box banner-type-10">
                             <div class="banner-inner">
                                 <div class="banner-image">
-                                    <img src="{{asset("web/images/banners/red-bg.png")}}" alt="Banner">
+                                    <img src="{{asset("web/images/banners/red-bg.jpg")}}" alt="Banner">
                                 </div>
                                 <div class="banner-info">
                                     <div class="banner-info--inner--center">

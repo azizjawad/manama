@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Manama Toppings - Always Something New</title>
+    <title>{{(isset($meta_title) && !empty($meta_title)) ? $meta_title : "Manama Toppings - Always Something New"}}</title>
     <!-- Basic metas -->
     <!-- =================================================================================================== -->
     <meta charset="utf-8" />
-    <meta name="description" content />
-    <meta name="keywords" content />
-    <meta name="author" content />
+    <meta name="title" content="{{(isset($meta_title) && !empty($meta_title)) ? $meta_title : "Manama Toppings - Always Something New"}}" />
+    <meta name="description" content="{{(isset($meta_description) && !empty($meta_description)) ? $meta_description : ""}}" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
     <!-- Mobile metas -->
     <!-- =================================================================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -112,19 +113,19 @@
                                             <li>
                                                 <ul>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product',['mojitos'])}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/original-mojito.png")}}" />
                                                             <span>Mojitos</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/mango-fruit-syrup.png")}}" />
                                                             <span>Fruit Twists</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/litchi-crush.png")}}" />
                                                             <span>Crushes</span>
                                                         </a>
@@ -134,19 +135,19 @@
                                             <li>
                                                 <ul>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/caramel-sauces.png")}}" />
                                                             <span>Sauces</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/peach-ice-tea.png")}}" />
                                                             <span>Iced Teas</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/raspberry-jam.png")}}" />
                                                             <span>Jams</span>
                                                         </a>
@@ -156,13 +157,13 @@
                                             <li>
                                                 <ul>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/lime-mint-sweet-chilli-dip-chutney.png")}}" />
                                                             <span>Sweet Chilli Chutneys</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}" class="menu-item-img">
+                                                        <a href="{{route('category_product')}}" class="menu-item-img">
                                                             <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}" />
                                                             <span>Fruit Fillings</span>
                                                         </a>
@@ -353,42 +354,42 @@
                                                 </a>
                                                 <ul class="dl-submenu">
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/original-mojito.png")}}" /> <span class="mm-text">Mojitos</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/mango-fruit-syrup.png")}}" /> <span class="mm-text">Fruit Twists</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/litchi-crush.png")}}" /> <span class="mm-text">Crushes</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/caramel-sauces.png")}}" /> <span class="mm-text">Sauces</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/peach-ice-tea.png")}}" /> <span class="mm-text">Iced Teas</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/raspberry-jam.png")}}" /> <span class="mm-text">Jams</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/lime-mint-sweet-chilli-dip-chutney.png")}}" /> <span class="mm-text">Sweet Chilli Chutneys</span>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{route('category')}}">
+                                                        <a href="{{route('category_product')}}">
                                                             <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}" /> <span class="mm-text">Fruit Fillings</span>
                                                         </a>
                                                     </li>

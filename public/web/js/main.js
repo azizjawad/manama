@@ -34,14 +34,14 @@
 
 	/**********************
 	*Mobile Menu Activatin
-	***********************/ 
+	***********************/
     $( '#dl-menu' ).dlmenu({
-        animationClasses : { 
+        animationClasses : {
 			classin: "dl-animate-in-2",
 			classout: "dl-animate-out-2"
         }
     });
-    
+
 
 	$('.menu-btn').on('click', function(e){
 		e.preventDefault();
@@ -49,8 +49,8 @@
 		$('.mobile-navigation').toggleClass('open-mobile-menu');
 		$('.dl-menu').toggleClass('dl-menuopen');
 	});
-    
- /*  
+
+ /*
    $(".main-navigation a").each(function() {
         if ($(this).attr("href") === pageUrl || $(this).attr("href") === '') {
             $(this).closest('li').addClass("active");
@@ -60,7 +60,7 @@
             $('.main-navigation a[href="index.html"]').parent('li').addClass('active');
         }
 	});
-	
+
 	*/
 	/**********************
 	* Background Color
@@ -72,7 +72,7 @@
 			$color = $this.data('bg-color');
 		$this.css('background-color', $color);
 	});
-	
+
 	/**********************
 	* Background Image
 	***********************/
@@ -90,13 +90,13 @@
 	/**********************
 	* Countdown Activation
 	***********************/
-	
+
 	$('[data-countdown]').each(function() {
 		var $this = $(this), finalDate = $(this).data('countdown');
 		$this.countdown(finalDate, function(event) {
 			$this.html(event.strftime('<div class="single-countdown"><span class="single-countdown__time">%D</span><span class="single-countdown__text">Days</span></div><div class="single-countdown"><span class="single-countdown__time">%H</span><span class="single-countdown__text">Hours</span></div><div class="single-countdown"><span class="single-countdown__time">%M</span><span class="single-countdown__text">Minutes</span></div><div class="single-countdown"><span class="single-countdown__time">%S</span><span class="single-countdown__text">Seconds</span></div>'));
 		});
-	}); 
+	});
 
 	/**********************
 	*Header Toolbar Sidenav Expand
@@ -120,7 +120,7 @@
 		});
 	}
 
-	
+
 
 	/**********************
 	*Click on Documnet
@@ -130,7 +130,7 @@
 		$body.on('click', function (e){
 		    var $target = e.target;
 		    var dom = $('.wrapper').children();
-		    
+
 		    if (!$($target).is('.toolbar-btn') && !$($target).is('.product-filter-btn') && !$($target).parents().is('.open')) {
 		        dom.removeClass('open');
 		        dom.find('.open').removeClass('open');
@@ -157,7 +157,7 @@
 	/**********************
 	* Overlay Menu
 	***********************/
-    
+
 	var $offcanvasNav = $('.offcanvas-menu'),
 		$offcanvasNavSubMenu = $offcanvasNav.find('.sub-menu');
 
@@ -189,7 +189,7 @@
 			$this.toggleClass('menu-open');
 		}
 	});
-	
+
 
 	/**********************
 	* Sticky Header
@@ -240,7 +240,7 @@
 			var className = stickyArg.selector.substr(1);
 
 			$(window).on('scroll', function(){
-				var windowTop = $(window).scrollTop(); 
+				var windowTop = $(window).scrollTop();
 				if(windowTop >= stickyPosition && windowTop <= containerHeight){
 					sticky.addClass('fixed').css({'left': leftPosition, 'top': topSpacing});
 				} else{
@@ -250,7 +250,7 @@
 
 			$(window).on({
 				load: function(){
-					
+
 					if(window_width < columnWidth){
 						sticky.removeClass(className).addClass('no-sticky');
 					}else{
@@ -288,11 +288,11 @@
 			$('.notice-text-wrapper').slideUp('500').addClass('notice-text-close');
 		});
 	}
-	
+
 
 	/**********************
 	*Adding Slide effect to dropdown
-	***********************/ 
+	***********************/
 
 	function dropdownAnimation(){
 		$('.dropdown').on('show.bs.dropdown', function(e){
@@ -301,13 +301,13 @@
 
 		$('.dropdown').on('hide.bs.dropdown', function(e){
 		  $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
-		});		
+		});
 	}
 
 
 	/**********************
 	*BootStrap Tab
-	***********************/ 
+	***********************/
 
 	$('.product-tab__link').on('click', function(){
 		var parent = $(this).parent('.product-tab__item');
@@ -337,7 +337,7 @@
 	            }
 	        }
 	        $button.parent().find("input").val(newVal);
-	    });		
+	    });
 	}
 
 
@@ -355,7 +355,7 @@
 	}
 
 	/**********************
-	*Expand new shipping info  
+	*Expand new shipping info
 	***********************/
 
 	function expandShippingInfo(){
@@ -395,7 +395,7 @@
 			e.stopPropagation();
 		});
 	}
-	
+
 	function productFilterExpand(){
 		$('.product-filter-btn').on('click', function(e){
 			e.preventDefault();
@@ -420,21 +420,21 @@
 					var template = $settings.template ? $settings.template : '',
 					accesstoken = $settings.accesstoken ? $settings.accesstoken : '',
 					limit = $settings.limit ? +$settings.limit : null;
-	 
+
 					var userFeed = new Instafeed({
 						accessToken: accesstoken,
 						template: template,
 						limit: limit,
-						success: function () {    
+						success: function () {
 							instaFeedCarousel();
 							instaFeedCarousel2();
 						}
 					});
 					userFeed.run();
 				}
-			});		
+			});
 		}
-	
+
 	}
 
 	/*=====================================
@@ -476,7 +476,7 @@
 				}
 			]
 			});
-		});		
+		});
 	}
 
 	function instaFeedCarousel2(){
@@ -514,8 +514,8 @@
 				}
 			]
 			});
-		});		
-	}	
+		});
+	}
 
 	$(window).on('load', function(){
 		airiInstaFeed();
@@ -524,7 +524,7 @@
 
 	/**********************
 	*Magnific Popup Activation
-	***********************/ 
+	***********************/
 
 	var imagePopup = $('.popup-btn');
 	var videoPopup = $('.video-popup');
@@ -550,7 +550,7 @@
 
 	/**********************
 	*Product Image Carousel
-	***********************/ 
+	***********************/
 	$('.product-gallery-image-carousel').slick({
 		slidesToShow: 1,
 		arrows: true,
@@ -561,25 +561,25 @@
 
 	/**********************
 	*Element Carousel
-	***********************/ 
+	***********************/
 
 	function elementCarousel(){
 		if($elementCarousel.elExists()){
 			var slickInstances = [];
-	
+
 			/*For RTL*/
 			if( $html.attr("dir") == "rtl" || $body.attr("dir") == "rtl" ){
 				$elementCarousel.attr("dir", "rtl");
 			}
-		
-	
+
+
 			$elementCarousel.each(function(index, element){
-				var $this = $(this);	
-	
+				var $this = $(this);
+
 				// Carousel Options
-				
-				var $options = typeof $this.data('slick-options') !== 'undefined' ? $this.data('slick-options') : ''; 
-	
+
+				var $options = typeof $this.data('slick-options') !== 'undefined' ? $this.data('slick-options') : '';
+
 				var $spaceBetween = $options.spaceBetween ? parseInt($options.spaceBetween, 10) : 0,
 					$spaceBetween_xl = $options.spaceBetween_xl ? parseInt($options.spaceBetween_xl, 10) : 0,
 					$spaceBetween_lg = $options.spaceBetween_lg ? parseInt($options.spaceBetween_lg, 10) : 0,
@@ -610,21 +610,21 @@
 					$rtl = $options.rtl || $html.attr('dir="rtl"') || $body.attr('dir="rtl"') ? true : false,
 					$slidesToShow = $options.slidesToShow ? parseInt($options.slidesToShow, 10) : 1,
 					$slidesToScroll = $options.slidesToScroll ? parseInt($options.slidesToScroll, 10) : 1;
-	
+
 				/*Responsive Variable, Array & Loops*/
 				var $responsiveSetting = typeof $this.data('slick-responsive') !== 'undefined' ? $this.data('slick-responsive') : '',
 					$responsiveSettingLength = $responsiveSetting.length,
 					$responsiveArray = [];
 					for (var i = 0; i < $responsiveSettingLength; i++) {
 						$responsiveArray[i] = $responsiveSetting[i];
-						
+
 					}
-	
+
 				// Adding Class to instances
-				$this.addClass('slick-carousel-'+index);		
-				$this.parent().find('.slick-dots').addClass('dots-'+index);		
+				$this.addClass('slick-carousel-'+index);
+				$this.parent().find('.slick-dots').addClass('dots-'+index);
 				$this.parent().find('.slick-btn').addClass('btn-'+index);
-	
+
 				if($spaceBetween != 0){
 					$this.addClass('slick-gutter-'+$spaceBetween);
 				}
@@ -640,12 +640,12 @@
 					$this.find('.slick-active').last().addClass('last-active');
 					$slideCount = slick.slideCount;
 					if($slideCount <= $slidesToShow){
-						$this.children('.slick-dots').hide();	
+						$this.children('.slick-dots').hide();
 					}
 					var $firstAnimatingElements = $('.slick-slide').find('[data-animation]');
-					doAnimations($firstAnimatingElements);  
+					doAnimations($firstAnimatingElements);
 				});
-	
+
 				$this.slick({
 					slidesToShow: $slidesToShow,
 					slidesToScroll: $slidesToScroll,
@@ -674,9 +674,9 @@
 					rtl: $rtl,
 					responsive: $responsiveArray,
 				});
-	
-				
-	
+
+
+
 				$this.on('beforeChange', function(e, slick, currentSlide, nextSlide) {
 					$this.find('.slick-active').first().removeClass('first-active');
 					$this.find('.slick-active').last().removeClass('last-active');
@@ -699,12 +699,12 @@
 						});
 					});
 				}
-	
+
 				$this.on('afterChange', function(e, slick){
 					$this.find('.slick-active').first().addClass('first-active');
 					$this.find('.slick-active').last().addClass('last-active');
 				});
-	
+
 				// Updating the sliders in tab
 				$('body').on('shown.bs.tab', 'a[data-bs-toggle="tab"], a[data-toggle="pill"]', function (e) {
 					$this.slick('setPosition');
@@ -721,6 +721,7 @@
     for (var i = 0; i < productThumb.length; i++) {
         images[i] = {"src": productThumb[i].src};
     }
+
     $('.btn-zoom-popup').on('click', function (e) {
         $(this).lightGallery({
             thumbnail: false,
@@ -734,7 +735,7 @@
             dynamicEl: images
         });
     });
-    
+
 	/**********************
 	*Star Rating
 	***********************/
@@ -789,9 +790,9 @@
 				percentPosition: true
 			});
 		});
-	}	
+	}
 
-	
+
 
 	/**********************
 	*Price Slider
@@ -868,8 +869,8 @@
         }
 
 
- // 
- 
+ //
+
  		/*================================
 		    Address Toggle
 		==================================*/
@@ -910,19 +911,19 @@
 				        $('.show-more-address').hide();
 				    }
 				});
-				
+
 				// MOBILE ISD CODE
 
 				$(".callnoinput").intlTelInput({
 				preferredCountries: ["in" ]
 				});
-				
+
 				// DATE PICKER
-				
+
 				$('[data-toggle="datepicker"]').datepicker({format: 'dd-mm-yyyy'});
 
 	/**********************
-	*Initialization 
+	*Initialization
 	***********************/
 
 	$(window).on('load', function(){

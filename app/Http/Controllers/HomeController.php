@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomepageBannersModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +12,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//    }
 
     /**
      * Show the application dashboard.
@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth');
+
         return view('home');
     }
+
+    public function homepage(){
+        $data['banners'] = HomepageBannersModel::orderBy('banner_location')->get();
+
+        return view('welcome', $data);
+    }
+
 }

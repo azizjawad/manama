@@ -61,6 +61,7 @@
     <link rel="stylesheet" href="{{asset('css/vendor/baguetteBox.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/intlTelInput.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css">
     <script src="{{asset('js/vendor/jquery-3.3.1.min.js')}}"></script>
 </head>
 
@@ -372,7 +373,7 @@
         </div>
     </div>
 </footer>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 <script src="{{asset('js/vendor/jquery.validate/jquery.validate.js')}}"></script>
 <script src="{{asset('js/vendor/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>

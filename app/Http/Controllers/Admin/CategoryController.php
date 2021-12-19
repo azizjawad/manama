@@ -34,7 +34,7 @@ class CategoryController extends Controller
         $validator = Validator::make($post, [
             'name'              => ['required','alpha_spaces'],
             'description'       => ['required'],
-            'meta_title'        => ['required','alpha_spaces'],
+            'meta_title'        => ['required'],
             'meta_description'  => ['required'],
             'page_slug'         => ['required'],
         ]);;

@@ -32,7 +32,7 @@
                             <label class="tooltip-text mb-4">(Only upload 600x600 size images.)</label>
                             <div class="form-group mb-4">
                                 <label>Long Description (use Redactor or any WYSIWYG html editor)</label>
-                                <textarea class="form-control" name="description" rows="7" required="">{{$product->description}}</textarea>
+                                <textarea class="form-control summernote" name="description"  required="">{{$product->description}}</textarea>
                             </div>
                             <label class="form-group has-float-label mb-4">
                                 <input type="text" name="meta_title" value="{{$product->meta_title}}" class="form-control" placeholder="">

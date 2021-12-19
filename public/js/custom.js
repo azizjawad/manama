@@ -316,4 +316,18 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
             });
         }
     });
+    $('.summernote').summernote({
+        placeholder: 'Please enter the description',
+        tabsize: 2,
+        height: 100,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
 })(jQuery);

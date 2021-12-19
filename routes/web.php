@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\HomeController@homepage')->name('home-page');
+
 
 Route::get('admin/logout', function () {
     auth()->logout();
@@ -127,5 +126,6 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index'])->name('home');
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('home');
 
-Route::get('category', 'App\Http\Controllers\ProductController@category_page')->name('category');
 Route::get('product', 'App\Http\Controllers\ProductController@index_page')->name('product');
+
+Route::get('{category_slug?}/{product_name?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');

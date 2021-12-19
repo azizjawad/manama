@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\CategoriesModel;
 use App\Models\ProductInfoModel;
 use App\Models\HomepageBannersModel;
+use App\Models\ProductsGalleryModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,7 +48,7 @@ class ProductsController extends Controller
     public function products_gallery_page(){
         $data['products'] = ProductsModel::select('id','name')->get();
 
-        $data['products_gallery'] = HomepageBannersModel::select('products_gallery.*','products.name as product_name')
+        $data['products_gallery'] = ProductsGalleryModel::select('products_gallery.*','products.name as product_name')
             ->join('products','products.id','products_gallery.product_id')
             ->get();
 
@@ -60,16 +61,16 @@ class ProductsController extends Controller
 
     public function save_product(Request $request){
 
-        $post = $request->post();
-
+        $post = $request->all();
         $validator = Validator::make($post, [
-            'name'              => ['required','alpha_spaces'],
-            'description'       => ['required'],
-            'meta_title'        => ['required','alpha_spaces'],
-            'meta_description'  => ['required'],
-            'page_slug'         => ['required'],
-            'image.*'             => 'image|mimes:jpeg,png,jpg|max:2048',
-        ]);;
+                'name' => ['required'],
+                'description' => ['required'],
+                'meta_title' => ['required'],
+                'meta_description' => ['required'],
+                'page_slug' => ['required'],
+                'image.*' => 'mimes:jpeg,jpg,png,svg',
+            ]
+        );
 
         if ($validator->fails()){
             return response(['status' => false, 'errors' => $validator->errors()], 400);
@@ -85,22 +86,24 @@ class ProductsController extends Controller
                 'page_slug' => strtolower(str_replace(' ', '-', $post['page_slug'])),
             );
 
-            if (isset($request->file('image')[0])) {
-                $imagePath = $request->file('image')[0];
-                $file = $imagePath->getClientOriginalName();
-                $imageName = pathinfo($file, PATHINFO_FILENAME) . '-' . time() . '.' . pathinfo($file, PATHINFO_EXTENSION);;
-                $path = public_path() . '/products';
-                File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
-                $imagePath->storeAs('uploads/products', $imageName, 'public');
-                $fields['image'] = $imageName;
+            if ($request->hasFile('image')) {
+                $image = $request->file('image')[0];
+                $display_file_name = time() . '_' . $image->getClientOriginalName();
+                $destinationPath = public_path('images/uploads/products');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+                $image->move($destinationPath, $display_file_name);
+                $fields['image'] = $display_file_name;
             }
+
 
             if (isset($post['product_id'])) {
                 $fields['modified_by'] = Auth::user()->id;
                 $status = ProductsModel::where('id', $post['product_id'])->update($fields);
             } else {
 
-                if(isset($fields['image']))
+                if(!isset($fields['image']))
                     return response(['status' => false, 'message' => 'Product image is mandatory'],400);
 
                 $fields['created_by'] = Auth::user()->id;
@@ -153,19 +156,21 @@ class ProductsController extends Controller
             );
 
             if(isset($post['product_info_id']) && !empty($post['product_info_id'])){
+                $fields['modified_by'] = Auth::user()->id;
                 ProductInfoModel::find($post['product_info_id'])->update($fields);
                 return response(['status' => true, 'message' => 'Product Info submitted successfully.']);
-            }
+            }else {
 
             $fields['product_id'] =  $post['product_id'];
-            $status = ProductInfoModel::where('product_id', $post['product_id'])->exists();
+//            $status = ProductInfoModel::where('product_id', $post['product_id'])->exists();
 
-            if ($status) {
-                $fields['modified_by'] = Auth::user()->id;
-                $status = ProductInfoModel::where('product_id', $post['product_id'])->update($fields);
-            } else {
+//            if ($status) {
+//                $fields['modified_by'] = Auth::user()->id;
+//                $status = ProductInfoModel::where('product_id', $post['product_id'])->update($fields);
+//            } else {
                 $fields['created_by'] = Auth::user()->id;
                 $status = ProductInfoModel::create($fields);
+//            }
             }
 
             if ($status)
@@ -220,7 +225,7 @@ class ProductsController extends Controller
                 'image_path'  => $imageName,
                 'created_by'  => Auth::user()->id
             );
-            $status = HomepageBannersModel::create($fields);
+            $status = ProductsGalleryModel::create($fields);
         }else return response(['status' => false, 'message' => 'Product image is mandatory'],400);
 
         if ($status)
