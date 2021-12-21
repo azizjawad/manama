@@ -9,6 +9,7 @@
     <meta name="description" content="{{(isset($meta_description) && !empty($meta_description)) ? $meta_description : ""}}" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Mobile metas -->
     <!-- =================================================================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -61,6 +62,8 @@
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="{{asset("web/js/vendor/jquery.min.js")}}"></script>
+
 </head>
 
 <body>
@@ -571,59 +574,8 @@
             <div class="mini-cart-inner">
                 <h2 class="mini-cart__heading mb--40 mb-lg--30">Shopping Cart</h2>
                 <div class="mini-cart__content">
-                    <ul class="mini-cart__list">
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="dl-icon-close"></i>
-                            </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{{asset("web/images/products/caramel-sauces.png")}}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-single.html">Caramel Sauces 1L</a>
-                                <span class="mini-cart__product__quantity">1 x <i class="fas fa-rupee-sign"></i>295.00</span>
-                            </div>
-                        </li>
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="dl-icon-close"></i>
-                            </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{{asset("web/images/products/litchi-crush.png")}}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-single.html">Litchi Crush 750ml</a>
-                                <span class="mini-cart__product__quantity">3 x <i class="fas fa-rupee-sign"></i>160.00</span>
-                            </div>
-                        </li>
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="dl-icon-close"></i>
-                            </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{{asset("web/images/products/lime-mint-mojito.png")}}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-single.html">Lime Mint Mojitos 750ml</a>
-                                <span class="mini-cart__product__quantity">1 x <i class="fas fa-rupee-sign"></i>295.000</span>
-                            </div>
-                        </li>
-                        <li class="mini-cart__product">
-                            <a href="#" class="remove-from-cart remove">
-                                <i class="dl-icon-close"></i>
-                            </a>
-                            <div class="mini-cart__product__image">
-                                <img src="{{asset("web/images/products/original-mojito.png")}}" alt="products">
-                            </div>
-                            <div class="mini-cart__product__content">
-                                <a class="mini-cart__product__title" href="product-single.html">Original Mojitos 750ml</a>
-                                <span class="mini-cart__product__quantity">2 x <i class="fas fa-rupee-sign"></i>350.00</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="mini-cart__total">
-                        <span>Subtotal</span>
-                        <span class="ammount"><i class="fas fa-rupee-sign"></i>1770.00</span>
+                    <div class="dynamic-cart-render">
+
                     </div>
                     <div class="mini-cart__buttons">
                         <a href="{{route('cart')}}" class="btn btn-fullwidth btn-style-1">View Cart</a>
@@ -712,10 +664,49 @@
 
 
 <!-- ************************* JS Files ************************* -->
+<script>
+    function load_cart(){
+        $.ajax({
+            url:"/api/fetch-cart-details",
+            success: function (res){
+                let cart_items = '';
+                let total = 0;
+                $.each(res.data, function (index, item){
+                    cart_items += `<li class="mini-cart__product">
+                                        <a href="#" class="remove-from-cart remove">
+                                            <i class="dl-icon-close"></i>
+                                        </a>
+                                        <div class="mini-cart__product__image">
+                                            <img src="/images/uploads/products/${item.image}" alt="products">
+                                        </div>
+                                        <div class="mini-cart__product__content">
+                                            <a class="mini-cart__product__title" href="">${item.product_name}</a>
+                                            <span class="mini-cart__product__quantity">${item.quantity} x <i class="fas fa-rupee-sign"></i>${item.cost_price}</span>
+                                        </div>
+                                    </li>`;
+                    total = total + parseInt(item.cost_price) * parseInt(item.quantity);
+                });
 
-<!-- jQuery JS -->
-<script src="{{asset("web/js/vendor/jquery.min.js")}}"></script>
 
+                if (cart_items !== '') {
+                    let static_html = `<ul class="mini-cart__list">
+                                    ${cart_items}
+                                    </ul>
+                                <div class="mini-cart__total">
+                                    <span>Subtotal</span>
+                                    <span class="ammount"><i class="fas fa-rupee-sign"></i>${total.toFixed(2)}</span>
+                                </div>`;
+
+                    $('.dynamic-cart-render').html(static_html);
+                }else{
+                    $('.dynamic-cart-render').html('<p>No Items in your cart</p>');
+                }
+                $('.mini-cart-count').html(res.data.length);
+            }
+        });
+    }
+    load_cart();
+</script>
 <!-- Bootstrap and Popper Bundle JS -->
 <script src="{{asset("web/js/bootstrap.bundle.min.js")}}"></script>
 
@@ -724,6 +715,7 @@
 
 <!-- Ajax Mail Js -->
 <script src="{{asset("web/js/ajax-mail.js")}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Main JS -->
 <script src="{{asset("web/js/main.js")}}"></script>

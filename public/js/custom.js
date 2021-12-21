@@ -89,7 +89,6 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
         width: '380px',
         height: '300px'
     });
-
 }
 (function ($) {
     $('#kt_categories_form').validate({
@@ -152,10 +151,14 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
 
     $('.edit_product_info').click(function (){
         $.each($(this).data(), function (key,data){
-            $(`input[name="${key}"]`).val(data);
-            $(`select[name="${key}"]`).val(data).trigger('change');
+            if (key === 'is_in_stock' || key === 'sell_as_single'){
+                $(`input[name="${key}"]`).attr('checked', (data === 1));
+            }else{
+                $(`input[name="${key}"]`).val(data);
+                $(`select[name="${key}"]`).val(data).trigger('change');
+            }
         });
-        $('#productList').attr('disabled',true);
+        // $('#productList').attr('disabled',true);
     });
 
     $('#addpriceentry').on('hide.bs.modal', function () {
@@ -330,4 +333,6 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
             ['view', ['fullscreen', 'codeview', 'help']]
         ]
     });
+
+
 })(jQuery);

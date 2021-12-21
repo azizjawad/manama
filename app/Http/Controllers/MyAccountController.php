@@ -39,10 +39,6 @@ class MyAccountController extends Controller
         return view('website/account/user-settings');
     }
 
-    public function cart(){
-        return view('website/account/cart');
-    }
-
     public function checkout(){
         return view('website/account/checkout');
     }

@@ -152,7 +152,8 @@ class ProductsController extends Controller
                 'barcode' => $post['barcode'],
                 'sku_code' => $post['sku_code'],
                 'hsn_code' => $post['hsn_code'],
-                'sell_as_single' => $post['sell_as_single'] ?? 0
+                'sell_as_single' => $post['sell_as_single'] ?? 0,
+                'is_in_stock' => $post['is_in_stock'] ?? 0
             );
 
             if(isset($post['product_info_id']) && !empty($post['product_info_id'])){

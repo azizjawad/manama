@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+    @php $total = 0 @endphp
     <div id="content" class="main-content-wrapper">
 
         <section class="page-headers">
@@ -21,7 +22,8 @@
                 </div>
             </div>
         </section>
-        <div class="page-content-inner enable-full-width pb--50">
+        @if(count($cart))
+            <div class="page-content-inner enable-full-width pb--50">
             <div class="container">
                 <div class="row pt--80 pb--80 justify-content-center">
                     <div class="col-md-8 col-12 ">
@@ -38,114 +40,40 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td class="product-remove text-start"><a href=""><i
-                                                            class="dl-icon-close"></i></a></td>
-                                                <td class="product-thumbnail text-start">
-                                                    <img src="{{asset("web/images/products/caramel-sauces.png")}}"
-                                                         alt="Product Thumnail">
-                                                </td>
-                                                <td class="product-name text-start wide-column">
-                                                    <h3>
-                                                        Caramel Sauces <small>PKG - 500ml<br>
-                                                            MRP - <i class="fas fa-rupee-sign"></i>185.00
-                                                        </small>
-                                                    </h3>
-                                                </td>
-                                                <td class="product-quantity">
-                                                    <div class="quantity">
-                                                        <input type="number" class="quantity-input" name="qty"
-                                                               id="qty-1" value="3" min="1">
-                                                    </div>
-                                                </td>
-                                                <td class="product-total-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money"><strong><i
-                                                                            class="fas fa-rupee-sign"></i>555.00</strong></span>
+                                            @foreach($cart as $item)
+                                                <tr>
+                                                    <td class="product-remove text-start">
+                                                        <a href="javascript:void(0)">
+                                                            <i class="dl-icon-close"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="product-thumbnail text-start">
+                                                        <img src="{{asset("images/uploads/products/$item->image")}}"
+                                                             alt="{{$item->product_name}}">
+                                                    </td>
+                                                    <td class="product-name text-start wide-column">
+                                                        <h3>
+                                                            {{$item->product_name}} <small>{{$item->packaging_type .' '. $item->packaging_weight}}
+                                                                <br>
+                                                                MRP - <i class="fas fa-rupee-sign"></i>{{number_format($item->cost_price)}}
+                                                            </small>
+                                                        </h3>
+                                                    </td>
+                                                    <td class="product-quantity">
+                                                        <div class="quantity">
+                                                            <input type="number" class="quantity-input" name="qty" id="qty-1" value="{{$item->quantity}}" min="1">
+                                                        </div>
+                                                    </td>
+                                                    <td class="product-total-price">
+                                                        <span class="product-price-wrapper">
+                                                            <span class="money">
+                                                                <strong><i class="fas fa-rupee-sign"></i>{{number_format($item->cost_price * $item->quantity,2)}}</strong>
                                                             </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-remove text-start"><a href=""><i
-                                                            class="dl-icon-close"></i></a></td>
-                                                <td class="product-thumbnail text-start">
-                                                    <img src="{{asset("web/images/products/raspberry-jam.png")}}"
-                                                         alt="Product Thumnail">
-                                                </td>
-                                                <td class="product-name text-start wide-column">
-                                                    <h3>
-                                                        Raspberry Jam <small>PKG - 500ml<br>
-                                                            MRP - <i class="fas fa-rupee-sign"></i>100.00
-                                                        </small>
-                                                    </h3>
-                                                </td>
-                                                <td class="product-quantity">
-                                                    <div class="quantity">
-                                                        <input type="number" class="quantity-input" name="qty"
-                                                               id="qty-2" value="1" min="1">
-                                                    </div>
-                                                </td>
-                                                <td class="product-total-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money"><strong><i
-                                                                            class="fas fa-rupee-sign"></i>100.00</strong></span>
-                                                            </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-remove text-start"><a href=""><i
-                                                            class="dl-icon-close"></i></a></td>
-                                                <td class="product-thumbnail text-start">
-                                                    <img src="{{asset("web/images/products/lime-mint-mojito.png")}}"
-                                                         alt="Product Thumnail">
-                                                </td>
-                                                <td class="product-name text-start wide-column">
-                                                    <h3>
-                                                        Lime Mint Mojito <small>PKG - 750gm<br>
-                                                            MRP - <i class="fas fa-rupee-sign"></i>295.00
-                                                        </small>
-                                                    </h3>
-                                                </td>
-                                                <td class="product-quantity">
-                                                    <div class="quantity">
-                                                        <input type="number" class="quantity-input" name="qty"
-                                                               id="qty-3" value="4" min="1">
-                                                    </div>
-                                                </td>
-                                                <td class="product-total-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money"><strong><i
-                                                                            class="fas fa-rupee-sign"></i>1180.00</strong></span>
-                                                            </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-remove text-start"><a href=""><i
-                                                            class="dl-icon-close"></i></a></td>
-                                                <td class="product-thumbnail text-start">
-                                                    <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}"
-                                                         alt="Product Thumnail">
-                                                </td>
-                                                <td class="product-name text-start wide-column">
-                                                    <h3>
-                                                        Cherry Fruit Fillings <small>PKG - 500gm<br>
-                                                            MRP - <i class="fas fa-rupee-sign"></i>290.00
-                                                        </small>
-                                                    </h3>
-                                                </td>
-                                                <td class="product-quantity">
-                                                    <div class="quantity">
-                                                        <input type="number" class="quantity-input" name="qty"
-                                                               id="qty-4" value="2" min="1">
-                                                    </div>
-                                                </td>
-                                                <td class="product-total-price">
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money"><strong><i
-                                                                            class="fas fa-rupee-sign"></i>580.00</strong></span>
-                                                            </span>
-                                                </td>
-                                            </tr>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                @php $total += $item->cost_price * $item->quantity @endphp
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -175,7 +103,7 @@
                                         <tbody>
                                         <tr>
                                             <th>Subtotal</th>
-                                            <td><i class="fas fa-rupee-sign"></i>2415.00</td>
+                                            <td><i class="fas fa-rupee-sign"></i>{{number_format($total,2)}}</td>
                                         </tr>
                                         <tr>
                                             <th>Discount</th>
@@ -189,7 +117,7 @@
                                             <th>Total</th>
                                             <td>
                                                         <span class="product-price-wrapper">
-                                                            <span class="money"><i class="fas fa-rupee-sign"></i>2315.00</span>
+                                                            <span class="money"><i class="fas fa-rupee-sign"></i>{{number_format($total,2)}}</span>
                                                         </span>
                                             </td>
                                         </tr>
@@ -205,6 +133,19 @@
                 </div>
             </div>
         </div>
+        @else
+            <div class="page-content-inner enable-full-width pb--50">
+                <div class="container">
+                    <div class="row pt--80 pb--80 justify-content-center">
+                        <div class="col-md-1">
+                            <p>Cart is Empty.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        @endif
         @include("website.account.component.banner-section")
     </div>
 @endsection

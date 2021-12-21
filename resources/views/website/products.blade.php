@@ -175,19 +175,22 @@
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{$product[0]->product_name}}</h3>
-                            <span class="product-stock in-stock float-right">
-								<i class="dl-icon-check-circle1"></i>in stock
+                            @if($product[0]->is_in_stock)
+                                <span class="product-stock in-stock float-right">
+                                    <i class="dl-icon-check-circle1"></i>in stock
                                 </span>
-                            <span class="product-stock out-of-stock float-right">
-								<i class="dl-icon-close"></i>out of stock
+                            @else
+                                <span class="product-stock out-of-stock float-right">
+                                    <i class="dl-icon-close"></i>out of stock
                                 </span>
+                            @endif
                             <div class="clearfix"></div>
                             <form action="#" class="form--action mb--30 mb-sm--20">
 
                                 <div class="product-price-area">
                                     @foreach($product as $key)
                                     <div class="ppa-each">
-                                        <input type="radio" id="price-tag{{$loop->index + 1}}" name="radio-group">
+                                        <input type="radio" {{$loop->index == 0 ? "checked" : ""}} value="{{$key->product_info_id}}" id="price-tag{{$loop->index + 1}}" name="product_info_id">
                                         <label for="price-tag{{$loop->index + 1}}">
                                             <i class="fas fa-rupee-sign"></i>
                                             {{$key->cost_price}}
@@ -204,11 +207,8 @@
 
                                 <div class="product-action flex-row align-items-center">
                                     <div class="quantity prd-page-qty">
-                                        <input type="number" class="quantity-input" name="qty" id="qty" value="1"
-                                               min="1" max="10"></div>
-                                    <button type="button" class="btn btn-style-2 btn-large add-to-cart"
-                                            onclick="location.href='{{route("cart")}}'">Add To Cart
-                                    </button>
+                                    <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1" max="10"></div>
+                                    <button type="button" {{(!$product[0]->is_in_stock) ? "disabled" : ''}} class="btn btn-style-2 btn-large add-to-cart">Add To Cart</button>
                                     <a class="add-to-wishlist" href="{{route("my-wishlist")}}">
                                         <i class="fas fa-heart"></i></a>
                                     <!-- Use <i class="far fa-heart"></i> if not in wishlist -->

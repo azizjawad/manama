@@ -141,11 +141,11 @@
                                             <div class="product-inner">
                                                 <figure class="product-image has--bg">
                                                     <div class="product-image--holder">
-                                                        <a href="{{route('category_product',[$category->page_slug,$key->product_slug])}}">
+                                                        <a href="{{route('category_product',[$category->page_slug,$key->product_slug,$key->product_info_id])}}">
                                                             <img src="{{asset("images/uploads/products/". $key->product_image)}}"
                                                                  alt="Kiwi Mojito" class="primary-image">
                                                         </a>
-                                                        <a href="{{route('category_product',[$category->page_slug,$key->product_slug])}}">
+                                                        <a href="{{route('category_product',[$category->page_slug,$key->product_slug,$key->product_info_id])}}">
                                                             <img src="{{asset("images/uploads/products/". $key->product_image)}}"
                                                                  alt="Kiwi Mojito" class="secondary-image">
                                                         </a>
@@ -153,14 +153,19 @@
                                                     <div class="mmtp-product-action">
                                                         <div class="product-action">
                                                             <a class="quickview-btn action-btn"
-                                                               href="{{route('category_product',[$category->page_slug,$key->product_slug])}}"
+                                                               href="{{route('category_product',[$category->page_slug,$key->product_slug,$key->product_info_id])}}"
                                                                data-bs-toggle="tooltip" data-bs-placement="left"
                                                                title="View">
                                                                 <i class="dl-icon-view"></i>
                                                             </a>
-                                                            <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                               data-bs-placement="left" title="Add to Cart">
-                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
+{{--                                                            <a class="add_to_cart_btn action-btn" data-product_info_id="{{$key->product_info_id}}" data-bs-toggle="tooltip"--}}
+{{--                                                               data-bs-placement="left" title="Add to Cart">--}}
+{{--                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">--}}
+{{--                                                                        	<i class="dl-icon-cart29"></i>--}}
+{{--                                                                        </span>--}}
+{{--                                                            </a>--}}
+                                                            <a class="add_to_cart_btn action-btn" data-product_info_id="{{$key->product_info_id}}" title="Add to Cart">
+                                                                        <span>
                                                                         	<i class="dl-icon-cart29"></i>
                                                                         </span>
                                                             </a>

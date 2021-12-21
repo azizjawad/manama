@@ -48,6 +48,7 @@
                                                    data-sku_code="{{$key->sku_code}}"
                                                    data-hsn_code="{{$key->hsn_code}}"
                                                    data-sell_as_single="{{$key->sell_as_single}}"
+                                                   data-is_in_stock="{{$key->is_in_stock}}"
                                                    data-toggle="modal"
                                                    data-target="#addpriceentry"
                                                    class="las la-edit btn btn-secondary mx-1 edit_product_info">
@@ -125,13 +126,13 @@
                             </label>
                         </div>
                         <div class="row mb-3">
-{{--                            <div class="col-md-6 col-12">--}}
-{{--                                <label class="form-label font-weight-bold" id="switch3-label">Product Online</label>--}}
-{{--                                <div class="custom-switch custom-switch-primary-inverse mb-2">--}}
-{{--                                    <input class="custom-switch-input" name="product_status" value="1" id="switch3" type="checkbox" checked>--}}
-{{--                                    <label class="custom-switch-btn" for="switch3"></label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="col-md-6 col-12">
+                                <label class="form-label font-weight-bold" id="switch3-label">In Stock</label>
+                                <div class="custom-switch custom-switch-primary-inverse mb-2">
+                                    <input class="custom-switch-input" name="is_in_stock" value="1" id="switch3" type="checkbox" checked>
+                                    <label class="custom-switch-btn" for="switch3"></label>
+                                </div>
+                            </div>
                             <div class="col-md-6 col-12">
                                 <label class="form-label font-weight-bold" id="switch7-label"><small>Sell as Single</small></label>
                                 <div class="custom-switch custom-switch-primary mb-2">

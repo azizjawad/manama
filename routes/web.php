@@ -115,7 +115,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::get('/order-history', 'App\Http\Controllers\MyAccountController@order_history')->name('order-history');
         Route::get('/manage-address', 'App\Http\Controllers\MyAccountController@manage_address')->name('manage-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
-        Route::get('/cart', 'App\Http\Controllers\MyAccountController@cart')->name('cart');
+        Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
         Route::get('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
     });
@@ -128,4 +128,9 @@ Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('
 
 Route::get('product', 'App\Http\Controllers\ProductController@index_page')->name('product');
 
-Route::get('{category_slug?}/{product_name?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');
+Route::prefix('api')->group(function () {
+    Route::post('/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
+    Route::get('/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
+});
+
+Route::get('{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');
