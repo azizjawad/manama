@@ -37,7 +37,7 @@
                         <article class="post post-listview">
                             <div class="post-media">
                                 <div class="image">
-                                    <img src="images/tipstechniques/summer-cocktails.jpg" alt="Tips & Techniques">
+                                    <img src="/web/images/tipstechniques/summer-cocktails.jpg" alt="Tips & Techniques">
                                     <a href="{{route('tips-techniques-single')}}" class="link-overlay">Tips & Techniques</a>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                         <article class="post post-listview">
                             <div class="post-media">
                                 <div class="image">
-                                    <img src="images/tipstechniques/simple-syrup.jpg" alt="Tips & Techniques">
+                                    <img src="/web/images/tipstechniques/simple-syrup.jpg" alt="Tips & Techniques">
                                     <a href="{{route('tips-techniques-single')}}" class="link-overlay">Tips & Techniques</a>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                         <article class="post post-listview">
                             <div class="post-media">
                                 <div class="image">
-                                    <img src="images/tipstechniques/herbal-cocktails.jpg" alt="Tips & Techniques">
+                                    <img src="/web/images/tipstechniques/herbal-cocktails.jpg" alt="Tips & Techniques">
                                     <a href="{{route('tips-techniques-single')}}" class="link-overlay">Tips & Techniques</a>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                         <article class="post post-listview">
                             <div class="post-media">
                                 <div class="image">
-                                    <img src="images/tipstechniques/perfectly-blended-cocktails.jpg" alt="Tips & Techniques">
+                                    <img src="/web/images/tipstechniques/perfectly-blended-cocktails.jpg" alt="Tips & Techniques">
                                     <a href="{{route('tips-techniques-single')}}" class="link-overlay">Tips & Techniques</a>
                                 </div>
                             </div>

@@ -30,7 +30,7 @@
             <div class="container thank-you-area failure  pt--80 pb--80">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <img src="images/manama-error.png" alt="Order Recieved"/>
+                        <img src="/web/images/manama-error.png" alt="Order Recieved"/>
 
                     </div>
                     <div class="col-md-6 col-12">

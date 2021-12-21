@@ -118,7 +118,7 @@
                                 <figure
                                     class="image-box image-box-w-video-btn btn-right max-w-sm-65 max-w-xs-100 has-shadow">
                                     <a href="https://www.youtube.com/watch?v=IvS27nnP2kY" class="video-popup">
-                                        <img src="images/about-bg3.jpg" alt="about">
+                                        <img src="/web/images/about-bg3.jpg" alt="about">
                                         <span class="video-btn video-btn--2"></span>
                                     </a>
                                 </figure>

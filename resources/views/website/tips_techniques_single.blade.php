@@ -42,7 +42,7 @@
 
                                     </div>
                                     <div class="entry-thumbnail">
-                                        <img src="images/tipstechniques/summer-cocktails.jpg" alt="Post Thumbnail">
+                                        <img src="/web/images/tipstechniques/summer-cocktails.jpg" alt="Post Thumbnail">
                                     </div>
                                     <div class="entry-content">
                                         <p>You will often hear the advice that fresh is best when it comes to mixing drinks and it is very true.
@@ -58,7 +58,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/strawberry-berryoska.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/strawberry-berryoska.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -70,7 +70,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/banana-daquiri.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/banana-daquiri.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -82,7 +82,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/lemon-lime-blue-caipirinha.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/lemon-lime-blue-caipirinha.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -94,7 +94,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/watermelon-cucumber.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/watermelon-cucumber.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -106,7 +106,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/crimson-crush-cocktail.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/crimson-crush-cocktail.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -118,7 +118,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/summertime-fruit-punch-lemonade.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/summertime-fruit-punch-lemonade.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -130,7 +130,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/white-peach-julep.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/white-peach-julep.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -142,7 +142,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/pineapple-mojito.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/pineapple-mojito.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -154,7 +154,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/blackberry-malt.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/blackberry-malt.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -166,7 +166,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="entry-thumbnail my-4">
-                                                    <img src="images/tipstechniques/sangria.jpg" alt="Post Thumbnail">
+                                                    <img src="/web/images/tipstechniques/sangria.jpg" alt="Post Thumbnail">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
