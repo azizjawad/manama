@@ -673,7 +673,7 @@
                 let total = 0;
                 $.each(res.data, function (index, item){
                     cart_items += `<li class="mini-cart__product">
-                                        <a href="#" class="remove-from-cart remove">
+                                        <a data-delete_url="/api/cart/delete" data-delete_id="${item.cart_id}" href="#" class="delete_item remove-from-cart remove">
                                             <i class="dl-icon-close"></i>
                                         </a>
                                         <div class="mini-cart__product__image">
@@ -689,6 +689,7 @@
 
 
                 if (cart_items !== '') {
+                    $('#miniCart,.ai-global-overlay').show();
                     let static_html = `<ul class="mini-cart__list">
                                     ${cart_items}
                                     </ul>
@@ -699,6 +700,7 @@
 
                     $('.dynamic-cart-render').html(static_html);
                 }else{
+                    $('#miniCart,.ai-global-overlay').hide();
                     $('.dynamic-cart-render').html('<p>No Items in your cart</p>');
                 }
                 $('.mini-cart-count').html(res.data.length);

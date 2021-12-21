@@ -1008,4 +1008,25 @@
             }
         });
     });
+
+    $('body').on('click','a.delete_item', function (){
+        let delete_id = $(this).data('delete_id');
+        let delete_url = $(this).data('delete_url');
+        if(!isNaN(delete_id) && delete_url !== '') {
+            $.ajax({
+                url: `${delete_url}/${delete_id}`,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: "delete",
+                success: (res) => {
+                    if (res.status === true) {
+                        if (res.page == 'cart') {
+                            load_cart();
+                        }
+                        // success_notification('Row has been deleted successfully.');
+                        // $(this).parents('tr').remove();
+                    }
+                }
+            });
+        }
+    })
 })(jQuery);
