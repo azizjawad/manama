@@ -75,7 +75,7 @@ class MyCartController extends Controller
         return response(['status' => (bool) $is_deleted, 'page' => 'cart']);
     }
 
-    private function get_cart_data($user_id){
+    public function get_cart_data($user_id){
             return CartModel::select(['cart.id as cart_id','products.image','cart.quantity','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
                 'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
             ->join('product_info','cart.product_info_id','product_info.id')

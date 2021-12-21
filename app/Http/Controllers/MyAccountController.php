@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsEventModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MyAccountController extends Controller
 {
@@ -40,7 +41,9 @@ class MyAccountController extends Controller
     }
 
     public function checkout(){
-        return view('website/account/checkout');
+        $user_id = Auth::id();
+        $data['cart'] = MyCartController::get_cart_data($user_id);
+        return view('website/account/checkout', $data);
     }
 
     public function thank_you(){
