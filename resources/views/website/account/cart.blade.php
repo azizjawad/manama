@@ -83,9 +83,8 @@
                             <div class="row g-0 border-top pt--20 mt--20">
                                 <div class="col-sm-6">
                                     <div class="coupon">
-                                        <input type="text" id="coupon" name="coupon" class="cart-form__input"
-                                               placeholder="Coupon Code">
-                                        <button type="button" class="cart-form__btn">Apply Coupon</button>
+                                        <input type="text" name="text_coupon" id="text_coupon" class="cart-form__input" placeholder="Coupon Code">
+                                        <button type="button" id="btn_apply_coupon" name="btn_apply_coupon" class="cart-form__btn">Apply Coupon</button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 text-sm-end">
@@ -106,20 +105,18 @@
                                             <th>Subtotal</th>
                                             <td><i class="fas fa-rupee-sign"></i>{{number_format($total,2)}}</td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <th>Discount</th>
                                             <td>
-                                                <span><small>(-)</small><i class="fas fa-rupee-sign"></i>100.00 <small
-                                                        class="manama-red">(MANAMANEW applied)</small></span>
-
+                                                <span><small>(-)</small><i class="fas fa-rupee-sign"></i>100.00 <small class="manama-red">(MANAMANEW applied)</small></span>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td>
-                                                        <span class="product-price-wrapper">
-                                                            <span class="money"><i class="fas fa-rupee-sign"></i>{{number_format($total,2)}}</span>
-                                                        </span>
+                                                <span class="product-price-wrapper">
+                                                    <span class="money"><i class="fas fa-rupee-sign"></i>{{number_format($total,2)}}</span>
+                                                </span>
                                             </td>
                                         </tr>
                                         </tbody>

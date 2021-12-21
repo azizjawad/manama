@@ -114,8 +114,12 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::get('/edit-profile', 'App\Http\Controllers\MyAccountController@edit_profile')->name('edit-profile');
         Route::get('/order-history', 'App\Http\Controllers\MyAccountController@order_history')->name('order-history');
         Route::get('/manage-address', 'App\Http\Controllers\MyAccountController@manage_address')->name('manage-address');
+        Route::post('/save-address', 'App\Http\Controllers\MyAccountController@save_address')->name('save-address');
+        Route::post('/delete-address', 'App\Http\Controllers\MyAccountController@delete_address')->name('delete-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
         Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
+        Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
+        Route::post('/place-order', 'App\Http\Controllers\MyCartController@place_order')->name('place-order');
         Route::get('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
     });

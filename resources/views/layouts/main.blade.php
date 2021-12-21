@@ -63,7 +63,7 @@
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="{{asset("web/js/vendor/jquery.min.js")}}"></script>
-
+    
 </head>
 
 <body>
@@ -135,28 +135,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}" class="menu-item-img">
-                                                            <img src="{{asset("web/images/products/caramel-sauces.png")}}" />
-                                                            <span>Sauces</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}" class="menu-item-img">
-                                                            <img src="{{asset("web/images/products/peach-ice-tea.png")}}" />
-                                                            <span>Iced Teas</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}" class="menu-item-img">
-                                                            <img src="{{asset("web/images/products/raspberry-jam.png")}}" />
-                                                            <span>Jams</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            
                                             <li>
                                                 <ul>
                                                     <li>
@@ -711,7 +690,8 @@
 </script>
 <!-- Bootstrap and Popper Bundle JS -->
 <script src="{{asset("web/js/bootstrap.bundle.min.js")}}"></script>
-
+<script src="{{asset('js/vendor/jquery.validate/jquery.validate.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- All Plugins Js -->
 <script src="{{asset("web/js/plugins.js")}}"></script>
 
@@ -721,6 +701,7 @@
 
 <!-- Main JS -->
 <script src="{{asset("web/js/main.js")}}"></script>
+<script src="{{asset("web/js/myaccount.js")}}"></script>
 
 
 <!-- REVOLUTION JS FILES -->

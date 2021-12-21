@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartModel;
+use App\Models\CouponsModel;
+use App\Models\OrderDetailsModel;
+use App\Models\OrdersModel;
 use App\Models\ProductInfoModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Unique;
 
 class MyCartController extends Controller
 {
@@ -75,7 +79,7 @@ class MyCartController extends Controller
         return response(['status' => (bool) $is_deleted, 'page' => 'cart']);
     }
 
-    private function get_cart_data($user_id){
+    private function get_cart_data($user_id) {
             return CartModel::select(['cart.id as cart_id','products.image','cart.quantity','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
                 'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
             ->join('product_info','cart.product_info_id','product_info.id')
@@ -106,6 +110,90 @@ class MyCartController extends Controller
             }
 
             return redirect('/account/cart');
+        }
+    }
+
+    public function apply_coupon(Request $request) {
+
+        $post = $request->post();
+        $validator = Validator::make($post, [
+            'coupon_code'  => ['required']
+        ]);;
+
+        if ($validator->fails()){
+            return response(['status' => false, 'errors' => $validator->errors()], 400);
+        }else {
+            $status = false;
+            $coupon = CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
+            if(!empty ($coupon) ) {
+                if(strpos($coupon['coupon_value'], '%') !== false ) {
+
+                } else {
+
+                }
+                $message = 'Coupon Applied';
+            } else {
+                $message = 'Invalid Coupon';
+            }
+            if ($status)
+                return response(['status' => true, 'message' => $message]);
+            else
+                return response(['status' => false, 'message' => $message], 500);
+        }
+    }
+
+    public function place_order(Request $request) {
+
+        $post = $request->post();
+        $validator = Validator::make($post, [
+            'billing_address'  => ['required']
+        ]);;
+
+        if ($validator->fails()){
+            return response(['status' => false, 'errors' => $validator->errors()], 400);
+        }else {
+            $user_id = Auth::id();
+            $cart_products = self::get_cart_data($user_id);
+            $order_no = time().random_int(10000, 99999);
+            $total_amt = 0;
+            $order_details = [];
+            foreach($cart_products as $cart_product) {
+                $total_amt += ($cart_product->quantity * $cart_product->cost_price);
+            }
+            $orders = [
+                'user_id'               => $user_id,
+                'order_no'              => $order_no,
+                'trasaction_type'       => $post['trasaction_type'],
+                'total_amount'          => $total_amt,
+                'trasaction_id'         => null,
+                'product_coupon'        => null,
+                'shipping_coupon'       => null,
+                'billing_address'       => $post['billing_address'],
+                'shipping_address'      => $post['shipping_address'],
+                'status'                => 1,
+                'gstn_no'               => $post['gstn_no'],
+                'created_by'            => $user_id
+            ];
+            $order_placed = OrdersModel::create($orders);
+            if(!empty ( $order_placed )) {
+                
+                foreach($cart_products as $cart_product) {
+                    $order_details[] = [
+                        'product_info_id'=> $cart_product->product_info_id,
+                        'order_id'      => $order_placed->id,
+                        'quantity'      => $cart_product->quantity,
+                        'product_cost'  => $cart_product->cost_price,
+                        'created_by'    => $user_id,
+                        'created_at'    => date('Y-m-d H:i:s')
+                    ];
+                }
+                $status = OrderDetailsModel::insert($order_details);
+                if ($status) {
+                    CartModel::where('user_id', $user_id)->delete();
+                    return response(['status' => true, 'message' => 'Order placed successfully']);
+                }
+            }
+            return response(['status' => false, 'message'], 500);
         }
     }
 }
