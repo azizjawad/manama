@@ -65,7 +65,7 @@ $( document ).ready(function() {
 
     $('#btn_place_order').on('click', function() {
         let button = $(this);
-        let billing_address = $('#billing_address').is(':checked');
+        let billing_address = $('input[name="billing_address"]').is(':checked');
         if(billing_address) {
             $.ajax({
                 url: 'place-order',
