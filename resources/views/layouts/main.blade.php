@@ -198,7 +198,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{route('contact-us')}}.html">
+                                                <a href="{{route('contact-us')}}">
                                                     <span class="mm-text">Contact Us</span>
                                                 </a>
                                             </li>
@@ -418,7 +418,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{route('contact-us')}}.html">
+                                                <a href="{{route('contact-us')}}">
                                                     Contact Us
                                                 </a>
                                             </li>

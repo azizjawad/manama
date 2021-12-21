@@ -206,26 +206,26 @@ input, select, textarea, .slick-slide, .slick-slide:focus, .slick-slide:active {
 }
 
 .manama-red{
-	color:#e31e23;
+	color:#e31e23!important;
 }
 
 .manama-blue{
-	color:#264697;
+	color:#264697!important;
 }
 
 .manama-red-bg{
-	background-color:#e31e23;
+	background-color:#e31e23!important;
 }
 
 .manama-blue-bg{
-	background-color:#264697;
+	background-color:#264697!important;
 }
 
 /*=== Scrollbar ===*/
 
 ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 6px;
+    height: 6px;
     background: #fff;
 }
 ::-webkit-scrollbar-thumb {
@@ -12418,8 +12418,8 @@ a, button, img, input, span, .main-navigation .mainmenu__item.menu-item-has-chil
   color: #282828;
   padding: 14px 40px; }
   .read-more-btn:hover {
-    border-color: #cf987e;
-    background: #cf987e;
+    border-color: #264697;
+    background: #264697;
     color: #ffffff; }
 
 /*****************************
@@ -14758,7 +14758,7 @@ a, button, img, input, span, .main-navigation .mainmenu__item.menu-item-has-chil
 
 /*-- 29.01 - Post --*/
 .post-media {
-  margin-bottom: 2rem; }
+  margin-bottom: 0.5rem; }
 
 .post-info {
   padding-left: 1.5rem;
@@ -14801,7 +14801,7 @@ a, button, img, input, span, .main-navigation .mainmenu__item.menu-item-has-chil
 
 .post-title {
   font-size: 2.4rem;
-  margin: 2rem 0 0; }
+  margin: 1rem 0 0; }
   .post-title a {
     color: #282828; }
     .post-title a:hover {
@@ -14944,11 +14944,23 @@ a, button, img, input, span, .main-navigation .mainmenu__item.menu-item-has-chil
     padding-right: 2rem; }
 
 .single-post-details .entry-thumbnail {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 4.5rem; }
+
+ .single-post-details .entry-thumbnail img{
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4.5rem; } 
 
 .single-post-details .entry-content p {
   color: #282828;
-  margin-bottom: 3rem; }
+  margin-bottom: 0rem; }
 
 .single-post-details .entry-content ul.list {
   padding-left: 16px; }
@@ -18458,6 +18470,11 @@ box-shadow: 0px 10px 4px -9px rgba(0,0,0,0.35);
     -ms-appearance: none;
     -o-appearance: none;
     appearance: none; }
+
+  .quantity{
+    border-color: #DEDEDE;
+  }
+
   .quantity .qtybutton {
     position: absolute;
     height: 2.8rem;
@@ -18469,7 +18486,8 @@ box-shadow: 0px 10px 4px -9px rgba(0,0,0,0.35);
     top: 0;
     bottom:0;
     margin:auto;
-    background-color: #e31e23;
+    background-color: #DEDEDE;
+    border: 1px solid #DEDEDE;
     color:#fff !important;
     font-weight: 600;
     text-align: center;
@@ -18479,9 +18497,14 @@ box-shadow: 0px 10px 4px -9px rgba(0,0,0,0.35);
     -o-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in; }
 
-  .quantity .qtybutton:hover {
-  	background-color: #264697;
-  }
+    .quantity:hover{
+      
+    }
+
+    .quantity .qtybutton:hover {
+      background-color: #666;
+      border-color: #666;
+    }
 
     .quantity .qtybutton.inc {
       right: -1px;
@@ -19662,40 +19685,6 @@ a:active, a:visited {
 
 /* Ninja Edits >.< */
 
-h1.big-title{
-	position: relative;
-	font-size:3.75rem;
-	font-family: 'DM Serif Display', serif;
-	line-height: 1;
-	font-style: italic;
-	margin:0;
-	padding: 1.25rem 0 2rem;
-}
-
-h3.text-with-icon{
-	position: relative;
-	font-size:2.15rem;
-	font-family: 'DM Serif Display', serif;
-	text-align: left;
-	line-height: 1;
-	margin:0;
-	padding: 1rem 0 0;
-}
-
-h3.text-with-icon i{
-	position: relative;
-	margin-top: -20px;
-    font-weight: 600;
-    color: #111;
-    float: left;
-    display: block;
-    font-size: 7.5rem;
-    background: linear-gradient(to top right, #e31e23 0%, #264697 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 0 .75rem 0.75rem;
-}
-
 .page-headers{
 	position: relative;
 	width:100%;
@@ -19721,12 +19710,52 @@ h3.text-with-icon i{
 	text-align: right;
 }
 
-
-
 .page-headers h1 span{
-	position: relative;
-	padding-bottom: 5px;
-	border-bottom: 2px solid #e31e24;
+  position: relative;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #e31e24;
+}
+
+
+.page-headers h1.big-title{
+  position: relative;
+  font-size:3.75rem;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.25;
+  font-weight: 300;
+  font-style: normal;
+  text-align: left;
+  margin:0;
+  letter-spacing: -2px;
+  padding: 1.25rem 0;
+  color:#264697;
+  background: linear-gradient(to top right, #264697 0%, #264697 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-headers h3.text-with-icon{
+  position: relative;
+  font-size:2.15rem;
+  font-family: 'DM Serif Display', serif;
+  text-align: left;
+  line-height: 1;
+  margin:0;
+  padding: 1rem 0 0;
+}
+
+.page-headers h3.text-with-icon i{
+  position: relative;
+  margin-top: -20px;
+    font-weight: 600;
+    color: #111;
+    float: left;
+    display: block;
+    font-size: 7.5rem;
+    background: linear-gradient(to top right, #e31e23 0%, #264697 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0 .75rem 0.75rem;
 }
 
 .page-headers .pghd-breadcrumbs{
@@ -19965,14 +19994,16 @@ h3.sub-title span{
     right:0;
 }
 
-.ct-container{
+.ct-container, .testimonial-tabs{
   position: relative;
   width:100%;
   padding:2.0rem;
   display: block;
 }
 
-.ct-container .ct-content{
+.ct-container .ct-content,
+.testimonial-tabs .tt-item
+{
   position: relative;
   max-width:600px;
   display: block;
@@ -19989,7 +20020,8 @@ h3.sub-title span{
     border-radius: 10px;
   }
 
-.ct-container .ct-content p{
+.ct-container .ct-content p,
+.testimonial-tabs .tt-item p{
     font-size: 1.125rem;
     letter-spacing: 0px;
     color:#fff;
@@ -19998,11 +20030,13 @@ h3.sub-title span{
     text-align: left;
   }
 
-.ct-container .ct-content span{
+.ct-container .ct-content span,
+.testimonial-tabs .tt-item span{
       line-height: 1.7;
 }
 
-.ct-container .ct-content span a{
+.ct-container .ct-content span a,
+.testimonial-tabs .tt-item span a{
     font-family: 'DM Serif Display', serif;
     font-size:1.5rem;
     line-height: 1.7;
@@ -20011,22 +20045,26 @@ h3.sub-title span{
     margin-right:15px;
   } 
 
-.ct-container .ct-content span a:hover{
+.ct-container .ct-content span a:hover,
+.testimonial-tabs .tt-item span a:hover{
   text-decoration: underline;
   } 
 
-.ct-container .ct-content .product-rating i {
+.ct-container .ct-content .product-rating i,
+.testimonial-tabs .tt-item .product-rating i{
     color: #efefef;
     color:rgba(255,255,255,0.25);
     line-height: 1.9;
 }
 
-.ct-container .ct-content .product-rating i.rated {
+.ct-container .ct-content .product-rating i.rated,
+.testimonial-tabs .tt-item .product-rating i.rated {
     color: #fff;
     color:rgba(255,255,255,1);
 }    
 
-.ct-container .ct-content:after {
+.ct-container .ct-content:after,
+.testimonial-tabs .tt-item:after {
       content:"";
       position: absolute;
       bottom:-25px;
@@ -20037,7 +20075,8 @@ h3.sub-title span{
       border-left: 25px solid transparent;
     }
 
-.ct-container .ct-content[data-content]:before {
+.ct-container .ct-content[data-content]:before,
+.testimonial-tabs .tt-item[data-content]:before {
   content: attr(data-content);
   position: absolute;
   bottom:-35px;
@@ -20049,7 +20088,8 @@ h3.sub-title span{
   /*font-style: italic;*/
 }
 
-.ct-container h5{
+.ct-container h5,
+.testimonial-tabs h5{
     position: relative;
     display: block;
     font-size: 1.25rem;
@@ -21151,6 +21191,572 @@ color:#333;
 	color:#e31e23;
 }
 
+/* Recipe News & Tips & Techniques*/
+
+.recipe-news-tips-corner{
+  padding:3.5rem 0 5.5rem;
+}
+
+.has-shadow{
+-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.white-bg{
+    color: #111;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.90);
+}
+
+.post-info h2.post-title{
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.75rem;
+  color:#111;
+  line-height: 1.3;
+  margin-bottom:1.5rem;
+}
+
+.post-info h3.post-title{
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.75rem;
+  color:#111;
+  line-height: 1.7;
+}
+
+.post:hover .post-info h2.post-title a,
+.post:hover .post-info h3.post-title a  {
+    color: #e31e24;
+}
+
+.post-info h2.post-title a:hover,
+.post-info h3.post-title a:hover {
+    color: #e31e24;
+}
+
+.link-overlay:hover:after {
+    background-color: rgba(255,255,255, 0.25);
+}
+
+.recipe-note, .single-post{
+  padding:0 0.5rem;
+}
+
+.single-post h2, .recipe-note h2{
+font-family: 'DM Serif Display', serif;
+line-height: 1.7;
+font-size: 2.0rem;
+}
+
+.single-post h2.entry-title, .recipe-note h2.entry-title{
+font-family: 'DM Serif Display', serif;
+line-height: 1.25;
+font-size: 3.5rem;
+}
+
+.single-post h2 span, .recipe-note h2 span{
+position: relative;
+border-bottom:1px solid #e31e24;
+line-height: 1.5;
+padding: 0 1.25rem 0.5rem 0;
+ } 
+
+.single-post .entry-header {
+padding:0.5rem 0 5rem;
+}
+
+.recipe-content{
+  position: relative;
+  padding:1.5rem 2.0rem;
+}
+
+.single-post h3, .recipe-content h3{
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.single-post ul, .recipe-content ul{
+position: relative;
+list-style: none;
+padding:1.0rem 2.0rem;
+}
+
+.single-post li:before, .recipe-content li:before{
+    position: absolute;
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    margin: -1px 5px 0 0;
+    color: #c32026;
+    display: block;
+    padding: 0 0 15px;
+    margin-left: -15px;
+}
+
+.single-post li, .recipe-content li{
+  position: relative;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.0;
+  padding-bottom: 15px;
+}
+
+.single-post p, .recipe-content p{
+  position: relative;
+  text-align: left;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding:0 1.0rem 15px ;
+  margin:0;
+  text-align: justify;
+}
+
+.inside-manama-content{
+  padding:7.5rem 0 10.5rem;
+}
+
+.inside-manama-content h1{
+  font-family: 'DM Serif Display', serif;
+  font-size: 4.25rem;
+  color:#111;
+  line-height: 1.2;
+  margin:0;
+  letter-spacing: -1px;
+  padding:0 0 1.5rem;
+}
+
+
+.inside-manama-content h2{
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.75rem;
+  color:#111;
+  line-height: 1.5;
+  margin:0;
+  padding:0 0 1.5rem;
+}
+
+.inside-manama-content h3{
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.00rem;
+  color:#111;
+  line-height: 1.5;
+  padding:0 0 1.5rem;
+}
+
+.inside-manama-content h4{
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.75rem;
+  font-weight: 200;
+  color:#111;
+  line-height: 1.5;
+  padding:0 0 1.5rem;
+}
+
+.inside-manama-content h4 span{
+  font-family: 'Poppins', sans-serif;
+  font-size:1.25rem;
+  display: block;
+  line-height: 1.5;
+  color:#333;
+   font-weight: 400;
+}
+
+.inside-manama-content h3.has-span{
+  line-height: 1.2;
+  padding:0 0 0.25rem;
+}
+
+.inside-manama-content h3.has-span span{
+  border-bottom: 1px solid #e31e24;
+  padding:0 1.5rem 0.25rem 0;
+}
+
+.inside-manama-content h3 a:hover {
+    color: #e31e24;
+}
+
+.inside-manama-content ul{
+position: relative;
+list-style: none;
+padding:0rem 3.0rem 2.25rem;
+}
+
+.inside-manama-content li:before{
+    position: absolute;
+    content: "\f111";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin: 3px 5px 0 0;
+    color: #c32026;
+    display: block;
+    padding: 0 0 15px;
+    margin-left: -15px;
+}
+
+.inside-manama-content li{
+  position: relative;
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.9;
+  padding-bottom: 15px;
+}
+
+.inside-manama-content p{
+  position: relative;
+  text-align: left;
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.9;
+  padding:0rem 0rem 2.25rem;
+  margin:0;
+  text-align: left;
+}
+
+blockquote:before {
+    position: absolute;
+/*    margin:0 -4.5rem 0 0;*/
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    content: "\f10d";
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #111;
+    background: linear-gradient(to right, #e31e23 0%, #264697 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    top: 0;
+    left: 0;
+}
+
+blockquote{
+  position: relative;
+  display: block;
+  padding:30px 60px 40px;
+  margin:0 1rem;
+  font-size: 1.75rem;
+  font-style: italic;
+
+}
+
+.distributor-tab, .faq-tab{
+  position: relative;
+  display: block;
+  padding:0 0.5rem;
+}
+
+.distributor-tab h2, .faq-tab h2{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.75rem;
+  padding: 0.5rem 1.5rem 0.5rem 0;
+  border-bottom:1px solid #ccc;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.faq-tab h2{
+    font-size: 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+  }
+
+.distributor-tab h2.active, .faq-tab h2.active{
+    color:#e31e24;
+    border-bottom:1px solid #fff;
+}
+
+.distributor-tab h2 span, .faq-tab h2 span{
+  position: relative;
+  display: block;
+  font-weight: 400;
+  font-size: 1.25rem; 
+  color:#666; 
+}
+
+.distributor-tab h2:before, .faq-tab h2:before {
+    position: absolute;
+    top: auto;
+/*    margin-top: 15px;*/
+    right: 10px;
+    content: "\f0fe";
+    font-family: "Font Awesome 5 Free";
+    margin: 10px auto 0;
+    color: #e31e24;
+    display: inline-block;
+}
+
+.faq-tab h2:before {
+    margin-top:0;
+  }
+
+.distributor-tab h2.active:before, .faq-tab h2.active:before {
+  content: "\f146";
+  color: #888;
+}
+
+.distributor-tab .zones, .faq-tab .faqAns{
+  padding:1rem 1.5rem;
+  border-bottom:1px solid #ccc;
+  display: none;
+}
+
+.single-distributor h4{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem; 
+  color:#666;
+  line-height: 1.25;
+  margin:0;
+  padding:0;
+}
+
+.single-distributor h3{
+  font-weight: 400;
+  font-size: 1.85rem; 
+  color:#264697;
+  line-height: 1.25;
+  margin:0;
+  padding:0 0 0.75rem;
+}
+
+.single-distributor p{
+  line-height: 1.9;
+}
+
+.single-distributor p a {
+  font-size: 1.05rem;
+  color:#333;
+}
+
+.content-img{
+  position: relative;
+  display: block;
+  margin:0 auto 1.5rem;
+}
+
+.content-img img {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin:auto;
+}
+
+.text-justify{
+  text-align: justify !important;
+}
+
+
+.image-box::before {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  content: '';
+  width: 50%;
+  height: 100%;
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.image-box:hover::before {
+  -webkit-animation: shine .75s;
+  animation: shine .75s;
+}
+@-webkit-keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+
+.parallax-pg {
+    position: relative;
+    display: block;
+    margin:5rem auto;
+    padding:5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 400px;
+/*    background: transparent;*/
+}
+
+.parallax-pg .white-bg{
+  padding:3rem;
+}
+
+.maps{
+  position: relative;
+  width:100%;
+  height:450px;
+  display: block;
+  margin:auto;
+}
+
+a.getDirection{
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.75rem;
+  font-weight:300;
+  line-height: 1.5;
+  color:#222;
+}
+
+a.getDirection i{
+  margin:0 5px;
+  color:#e31e24;
+}
+
+.contact-box{
+  position:relative;
+  border:1px solid #ccc;
+  padding:3rem;
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.9;
+  text-align: center;
+  color:#333;
+}
+
+.contact-box i{
+  position: relative;
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  color: #111;
+  background: linear-gradient(to top right, #e31e23 0%, #264697 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-box a{
+  color:#222;
+}
+
+.contact-box a:hover{
+  color:#264697;
+}
+
+a.download-image{
+  position: relative;
+  max-width: 320px;
+  margin:1rem auto;
+  display: block;
+  border:1px solid #ccc;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+a.download-image img {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin:auto;
+}
+
+
+a.download-image::before {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  content: '';
+  width: 50%;
+  height: 100%;
+  background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+  -webkit-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+a.download-image:hover::before {
+  -webkit-animation: shine .75s;
+  animation: shine .75s;
+}
+@-webkit-keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+a.support-tab{
+  position: relative;
+  display:block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.25rem;
+  color:#222;
+  text-align: center;
+  margin:5px 5px 10px;
+  border:1px solid #ccc;
+  padding:1.5rem;
+-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0);
+-moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0);
+box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.0);  
+}
+
+a.support-tab i{
+  position: relative;
+  display: block;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 0.15rem;
+  display: block;
+  color: #111;
+  background: linear-gradient(to top right, #e31e23 0%, #264697 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+a.support-tab span{
+  position: relative;
+  display: block;
+  font-size: 1.25rem;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.9;
+  color:#333;
+}
+
+a.support-tab span small{
+  position: relative;
+  display: block;
+  font-size: 1.05rem;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.9;
+  color:#444;
+}
+
+a.support-tab:hover{
+  background-color: #f0f0f0;
+-webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);  
+}
+
 @media (max-width: 767px){
 
 .searchform__popup p {
@@ -21263,6 +21869,10 @@ h3.text-with-icon i {
 .page-headers h1 span{
 	border-bottom: 1px solid #e31e24;
 }
+
+.page-headers h1.big-title{
+  text-align: center;
+  }
 
 .page-headers .pghd-breadcrumbs{
 	padding:5px 5px 10px;
@@ -21665,6 +22275,33 @@ h3.sub-title {
 .table-content i {
     margin: 0 15px 0 0;
     }    
+
+
+.post-info h3.post-title{
+  font-size: 1.05rem;
+}
+
+.distributor-tab {
+    padding: 1rem 0.5rem;
+}
+
+.distributor-tab h2:before {
+    margin-top: 0;
+}
+
+.inside-manama-content h1{
+  font-size: 2.75rem;
+}
+
+.parallax-pg {
+    margin:2.5rem auto;
+    padding:2.5rem;
+/*    background: transparent;*/
+}
+
+.parallax-pg .white-bg{
+  padding:2.5rem 1.5rem 0;
+}
 
 .footer-1 p.copyright-text {
     font-weight: 500;
