@@ -974,7 +974,6 @@
         if(typeof from_icon_btn !== "undefined" && from_icon_btn !== '' ){
             product_info_id = from_icon_btn;
             quantity = 1;
-            console.log(product_info_id, quantity);
         }else{
             product_info_id = $("[name='product_info_id']:checked").val();
             quantity = $('#qty').val();
@@ -1019,8 +1018,10 @@
                 type: "delete",
                 success: (res) => {
                     if (res.status === true) {
-                        if (res.page == 'cart') {
+                        if (res.page === 'cart') {
                             load_cart();
+                            if($(this).data('page') == 1)
+                                $(this).parents('tr').remove();
                         }
                         // success_notification('Row has been deleted successfully.');
                         // $(this).parents('tr').remove();

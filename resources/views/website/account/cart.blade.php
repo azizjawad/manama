@@ -27,7 +27,8 @@
             <div class="container">
                 <div class="row pt--80 pb--80 justify-content-center">
                     <div class="col-md-8 col-12 ">
-                        <form class="cart-form" action="#">
+                        <form class="cart-form" method="post" action="{{route('update_quantity')}}">
+                            @csrf
                             <div class="row g-0">
                                 <div class="col-12">
                                     <div class="table-content table-responsive">
@@ -43,7 +44,7 @@
                                             @foreach($cart as $item)
                                                 <tr>
                                                     <td class="product-remove text-start">
-                                                        <a href="javascript:void(0)">
+                                                        <a class="delete_item" data-delete_url="/api/cart/delete" data-page="1" data-delete_id="{{$item->cart_id}}" href="javascript:void(0)">
                                                             <i class="dl-icon-close"></i>
                                                         </a>
                                                     </td>
@@ -61,7 +62,7 @@
                                                     </td>
                                                     <td class="product-quantity">
                                                         <div class="quantity">
-                                                            <input type="number" class="quantity-input" name="qty" id="qty-1" value="{{$item->quantity}}" min="1">
+                                                            <input type="number" class="quantity-input" name="qty[{{$item->cart_id}}]" id="qty-1" value="{{$item->quantity}}" min="1">
                                                         </div>
                                                     </td>
                                                     <td class="product-total-price">
@@ -84,12 +85,12 @@
                                     <div class="coupon">
                                         <input type="text" id="coupon" name="coupon" class="cart-form__input"
                                                placeholder="Coupon Code">
-                                        <button type="submit" class="cart-form__btn">Apply Coupon</button>
+                                        <button type="button" class="cart-form__btn">Apply Coupon</button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 text-sm-end">
-                                    <button type="submit" class="cart-form__btn">Clear Cart</button>
-                                    <button type="submit" class="cart-form__btn">Update Cart</button>
+                                    <input type="submit" name="update_cart" value="Update Cart" class="cart-form__btn"/>
+                                    <input type="submit" name="clear_cart" class="cart-form__btn" value="Clear Cart" />
                                 </div>
                             </div>
                         </form>

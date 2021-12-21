@@ -85,4 +85,27 @@ class MyCartController extends Controller
             ->where('product_info.is_in_stock',1)
             ->get();
     }
+
+    public function update_quantity(Request $request){
+        $post = $request->all();
+        $rules = array(
+            'qty' => 'required',
+        );
+        // validator Rules
+        $validator = Validator::make($post, $rules);
+
+        // Check validation (fail or pass)
+        if (!$validator->fails()) {
+            $user_id = Auth::id();
+            if (isset($post['clear_cart'])){
+                CartModel::where('user_id', $user_id)->delete();
+            }else{
+                foreach ($post['qty'] as $key => $value){
+                    CartModel::where('user_id', $user_id)->where('id', $key)->update(['quantity' => $value]);
+                }
+            }
+
+            return redirect('/account/cart');
+        }
+    }
 }

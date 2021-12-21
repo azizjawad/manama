@@ -122,6 +122,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
     Route::prefix('api')->group(function () {
         Route::post('/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
         Route::get('/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
+        Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
         Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
     });
 });

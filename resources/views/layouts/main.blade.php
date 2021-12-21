@@ -673,7 +673,7 @@
                 let total = 0;
                 $.each(res.data, function (index, item){
                     cart_items += `<li class="mini-cart__product">
-                                        <a data-delete_url="/api/cart/delete" data-delete_id="${item.cart_id}" href="#" class="delete_item remove-from-cart remove">
+                                        <a data-page="0" data-delete_url="/api/cart/delete" data-delete_id="${item.cart_id}" href="javascript:" class="delete_item remove-from-cart remove">
                                             <i class="dl-icon-close"></i>
                                         </a>
                                         <div class="mini-cart__product__image">
