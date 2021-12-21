@@ -13,7 +13,7 @@
                                 </h3>
                             </div>
                         </div>
-                        <a class="banner-link banner-overlay" href="recipe-corner.html">
+                        <a class="banner-link banner-overlay" href="{{route('recipe-corner')}}">
                         </a>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                 </h3>
                             </div>
                         </div>
-                        <a class="banner-link banner-overlay" href="tips-techniques.html">
+                        <a class="banner-link banner-overlay" href="{{route('tips-techniques')}}">
                         </a></div>
                 </div>
             </div>

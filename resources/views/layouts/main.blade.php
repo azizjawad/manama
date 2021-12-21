@@ -63,7 +63,7 @@
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="{{asset("web/js/vendor/jquery.min.js")}}"></script>
-    
+
 </head>
 
 <body>
@@ -135,7 +135,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            
+
                                             <li>
                                                 <ul>
                                                     <li>
@@ -167,12 +167,12 @@
                                         </ul>
                                     </li>
                                     <li class="mainmenu__item">
-                                        <a href="recipe-corner.html" class="mainmenu__link">
+                                        <a href="{{route('recipe-corner')}}" class="mainmenu__link">
                                             <span class="mm-text">Recipe Corner</span>
                                         </a>
                                     </li>
                                     <li class="mainmenu__item">
-                                        <a href="tips-techniques.html" class="mainmenu__link">
+                                        <a href="{{route('tips-techniques')}}" class="mainmenu__link">
                                             <span class="mm-text">Tips & Techniques</span>
                                         </a>
 
@@ -183,12 +183,12 @@
                                         </a>
                                         <ul class="sub-menu">
                                             <li>
-                                                <a href="about-us.html">
+                                                <a href="{{route('about-us')}}">
                                                     <span class="mm-text">Who We Are</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="our-distributors.html">
+                                                <a href="{{route('our-distributors')}}">
                                                     <span class="mm-text">Our Distributors</span>
                                                 </a>
                                             </li>
@@ -198,7 +198,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="contact-us.html">
+                                                <a href="{{route('contact-us')}}.html">
                                                     <span class="mm-text">Contact Us</span>
                                                 </a>
                                             </li>
@@ -388,12 +388,12 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="recipe-corner.html">
+                                        <a href="{{route('recipe-corner')}}">
                                             Recipe Corner
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="tips-techniques.html">
+                                        <a href="{{route('tips-techniques')}}">
                                             Tips & Techniques
                                         </a>
                                     </li>
@@ -403,12 +403,12 @@
                                         </a>
                                         <ul class="dl-submenu">
                                             <li>
-                                                <a href="about-us.html">
+                                                <a href="{{route('about-us')}}">
                                                     Who We Are
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="our-distributors.html">
+                                                <a href="{{route('our-distributors')}}">
                                                     Our Distributors
                                                 </a>
                                             </li>
@@ -418,7 +418,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="contact-us.html">
+                                                <a href="{{route('contact-us')}}.html">
                                                     Contact Us
                                                 </a>
                                             </li>
@@ -447,10 +447,10 @@
                         <div class="footer-widget">
                             <h3 class="widget-title">Company</h3>
                             <ul class="widget-menu">
-                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="{{route('about-us')}}">About Us</a></li>
                                 <li><a href="distributors.html">Distributors</a></li>
                                 <li><a href="download-brochure.html">Download Brochure</a></li>
-                                <li><a href="contact-us.html">Contact us</a></li>
+                                <li><a href="{{route('contact-us')}}">Contact us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -468,8 +468,8 @@
                         <div class="footer-widget">
                             <h3 class="widget-title">RESOURCES</h3>
                             <ul class="widget-menu">
-                                <li><a href="recipe-corner.html">Recipe Corner</a></li>
-                                <li><a href="tips-techniques.html">Tips & Techniques</a></li>
+                                <li><a href="{{route('recipe-corner')}}">Recipe Corner</a></li>
+                                <li><a href="{{route('tips-techniques')}}">Tips & Techniques</a></li>
                                 <li><a href="press-releases.html">Press Releases</a></li>
                             </ul>
                         </div>
@@ -478,9 +478,9 @@
                         <div class="footer-widget">
                             <h3 class="widget-title">TERMS & POLICY</h3>
                             <ul class="widget-menu">
-                                <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+                                <li><a href="{{route('terms-and-conditions')}}">Terms & Conditions</a></li>
                                 <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                                <li><a href="{{route('shipping-policy')}}">Shipping Policy</a></li>
                                 <li><a href="return-refund-policy.html">Return & Refund Policy</a></li>
                             </ul>
                         </div>

@@ -767,7 +767,7 @@
                                     <div class="banner-info--inner--down">
                                         <h3 class="withbg three-qtr">Why Manama?<span>Manama today is synonym for flavored cordials and blends that are next to the real fruit. Our years of research, experience and our endeavour to innovate and bring incredible flavors and great tasting products to coffeehouses, restaurants, lounges and kitchens pan India is what makes us the most recognised brand in the business of flavored cordials and fruit crushes..</span></h3>
                                     </div></div>
-                                <a class="banner-link banner-overlay" href="about-us.html">
+                                <a class="banner-link banner-overlay" href="{{route('about-us')}}">
                                 </a></div></div></div>
                     <div class="order-lg-1 col-lg-4 d-md-flex d-lg-block">
                         <div class="row">
@@ -781,7 +781,7 @@
                                             <div class="banner-info--inner--down">
                                                 <h3 class="withbg bluebg">Looking for Recipes?<span>Visit our Recipe Corner for latest lip-smacking recipes..</span></h3>
                                             </div></div>
-                                        <a class="banner-link banner-overlay" href="recipe-corner.html">
+                                        <a class="banner-link banner-overlay" href="{{route('recipe-corner')}}">
                                         </a></div></div>
                             </div>
                             <div class="col-12 pt--20">
@@ -794,7 +794,7 @@
                                             <div class="banner-info--inner--down">
                                                 <h3 class="withbg bluebg">Mix it like a Pro!<span>Tips & Techniques to make that drink of yours more special..</span></h3>
                                             </div></div>
-                                        <a class="banner-link banner-overlay" href="tips-techniques.html">
+                                        <a class="banner-link banner-overlay" href="{{route('tips-techniques')}}">
                                         </a></div></div>
                             </div>
                         </div>

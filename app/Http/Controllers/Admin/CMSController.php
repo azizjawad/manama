@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WebsiteController;
 use App\Models\AdvertisementModel;
 use App\Models\HomepageBannersModel;
 use App\Models\NewsEventModel;

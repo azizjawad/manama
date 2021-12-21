@@ -255,7 +255,7 @@
                                     <div class="banner-info--inner--down">
                                         <h3 class="withbg bluebg">Looking for Recipes?<span>Visit our Recipe Corner for latest lip-smacking recipes..</span></h3>
                                     </div></div>
-                                <a class="banner-link banner-overlay" href="recipe-corner.html">
+                                <a class="banner-link banner-overlay" href="{{route('recipe-corner')}}">
                                 </a></div></div>
                     </div>
 
@@ -270,7 +270,7 @@
                                     <div class="banner-info--inner--down">
                                         <h3 class="withbg bluebg">Mix it like a Pro!<span>Tips & Techniques to make that drink of yours more special..</span></h3>
                                     </div></div>
-                                <a class="banner-link banner-overlay" href="tips-techniques.html">
+                                <a class="banner-link banner-overlay" href="{{route('tips-techniques')}}">
                                 </a></div></div>
                     </div>
 

@@ -57,7 +57,7 @@
                                     <div class="password-confirm col-auto">
                                         <input type="checkbox" value="confirmpass" name="confirmpass" id="confirmpass">
                                         <label class="newsletter-sub-label" for="confirmpass">
-                                            I confirm, all my info are accurate & I have read the <a href="terms-and-conditions.html">Terms and Conditions</a>.
+                                            I confirm, all my info are accurate & I have read the <a href="{{route('terms-and-conditions')}}">Terms and Conditions</a>.
                                         </label>
                                     </div>
 

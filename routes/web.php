@@ -13,7 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@homepage')->name('home-page');
+Route::get('/', 'App\Http\Controllers\WebsiteController@homepage')->name('home-page');
+Route::get('about-us', 'App\Http\Controllers\WebsiteController@about_us')->name('about-us');
+Route::get('contact-us', 'App\Http\Controllers\WebsiteController@contact_us')->name('contact-us');
+Route::get('customer-testimonials', 'App\Http\Controllers\WebsiteController@customer_testimonials')->name('customer-testimonials');
+Route::get('our-distributors', 'App\Http\Controllers\WebsiteController@our_distributors')->name('our-distributors');
+Route::get('tips-techniques', 'App\Http\Controllers\WebsiteController@tips_techniques')->name('tips-techniques');
+Route::get('tips-techniques-single', 'App\Http\Controllers\WebsiteController@tips_techniques_single')->name('tips-techniques-single');
+Route::get('recipe-corner', 'App\Http\Controllers\WebsiteController@recipe_corner')->name('recipe-corner');
+Route::get('payment-fail', 'App\Http\Controllers\WebsiteController@payment_fail')->name('payment-fail');
+Route::get('support-center', 'App\Http\Controllers\WebsiteController@support_center')->name('support-center');
+Route::get('shipping-policy', 'App\Http\Controllers\WebsiteController@shipping_policy')->name('shipping-policy');
+Route::get('terms-and-conditions', 'App\Http\Controllers\WebsiteController@terms_and_conditions')->name('terms-and-conditions');
 
 
 Route::get('admin/logout', function () {
@@ -125,12 +136,12 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
     });
     Route::prefix('api')->group(function () {
         Route::post('/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
-        Route::get('/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
         Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
         Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
     });
 });
 
+Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index'])->name('home');
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('home');
