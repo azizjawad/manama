@@ -7,6 +7,8 @@ use App\Models\OrdersModel;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Validator;
 use Auth;
+
+
 class MyAccountController extends Controller
 {
     protected $logged_in_id;
@@ -49,6 +51,7 @@ class MyAccountController extends Controller
 
     public function checkout() {
         $data['my_address_list'] = MyaccountModel::where('user_id', $this->logged_in_id->id)->get();
+        $data['cart'] = MyCartController::get_cart_data($this->logged_in_id->id);
         return view('website/account/checkout', $data);
     }
 

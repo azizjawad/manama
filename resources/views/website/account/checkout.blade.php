@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+    @php $total = 0 @endphp
     <div id="content" class="main-content-wrapper">
 
         <section class="page-headers">
@@ -141,41 +142,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th>Caramel Sauces - 500ml
-                                            <strong><span>x</span>3</strong>
-                                        </th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>555.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Raspberry Jam - 500gm
-                                            <strong><span>x</span>1</strong>
-                                        </th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Lime Mint Mojito - 750ml
-                                            <strong><span>x</span>4</strong>
-                                        </th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>1180.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Cherry Fruit Fillings - 500gm
-                                            <strong><span>x</span>2</strong>
-                                        </th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>580.00</td>
-                                    </tr>
+                                    @foreach($cart as $item)
+                                        <tr>
+                                            <th>{{$item->product_name}}
+                                                <strong><span>x</span>{{$item->quantity}}</strong>
+                                            </th>
+                                            <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($item->cost_price)}}</td>
+                                        </tr>
+                                        @php $total += $item->cost_price * $item->quantity @endphp
+                                    @endforeach
                                     </tbody>
                                     <tfoot>
 
                                     <tr class="cart-subtotal">
                                         <th>Subtotal</th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>2315.00</td>
+                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($total,2)}}</td>
                                     </tr>
-                                    <tr class="cart-subtotal">
-                                        <th>Discount <small>(-)</small></th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td>
-                                    </tr>
+{{--                                    <tr class="cart-subtotal">--}}
+{{--                                        <th>Discount <small>(-)</small></th>--}}
+{{--                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td>--}}
+{{--                                    </tr>--}}
                                     <tr class="shipping">
                                         <th>Shipping</th>
                                         <td class="text-end">
