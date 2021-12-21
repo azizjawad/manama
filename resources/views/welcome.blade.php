@@ -261,6 +261,144 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Product Item -->
+                                        <div class="col-lg-4 col-sm-6 mb--40 mb-md--30">
+                                            <div class="mmtp-product">
+                                                <div class="product-inner">
+                                                    <figure class="product-image has--bg">
+                                                        <div class="product-image--holder">
+                                                            <a href="product-single.html">
+                                                                <img src="{{asset("web/images/products/litchi-crush.png")}}"
+                                                                     alt="Litchi Crush" class="primary-image">
+                                                            </a>
+                                                            <a href="product-single.html">
+                                                                <img src="{{asset("web/images/products/litchi-crush.png")}}"
+                                                                     alt="Litchi Crush" class="secondary-image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="mmtp-product-action">
+                                                            <div class="product-action">
+                                                                <a class="quickview-btn action-btn"
+                                                                   href="product-single.html"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="left"
+                                                                   title="View">
+                                                                    <i class="dl-icon-view"></i>
+                                                                </a>
+                                                                <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
+                                                                   data-bs-placement="left" title="Add to Cart">
+                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
+                                                                        	<i class="dl-icon-cart29"></i>
+                                                                        </span>
+                                                                </a>
+                                                                <a class="add_wishlist action-btn"
+                                                                   href="wishlist.html" data-bs-toggle="tooltip"
+                                                                   data-bs-placement="left" title="Add to Wishlist">
+                                                                    <i class="dl-icon-heart4"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <span class="product-badge feature">Feat</span>
+                                                    </figure>
+                                                    <div class="product-info">
+                                                        <h3 class="product-title">
+                                                            <a href="product-single.html">Litchi Crush</a>
+                                                        </h3>
+                                                        <div class="product-rating">
+                                                                <span>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star"></i>
+                                                                </span>
+                                                        </div>
+                                                        <span class="product-price-wrapper">
+                                                                <span class="money"><i class="fas fa-rupee-sign"></i>160.00</span>
+                                                            <!-- If discount price is there -->
+                                                            <!--
+                                                            <span class="product-price-old">
+                                                                <span class="money">$60.00</span>
+                                                            </span>
+                                                            -->
+                                                            </span>
+                                                        <span class="product-weight-wrapper">
+                                                             <span class="weight">750ml PET Bottle</span>
+                                                             </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Product Item -->
+                                        <div class="col-lg-4 col-sm-6 mb--40 mb-md--30">
+                                            <div class="mmtp-product">
+                                                <div class="product-inner">
+                                                    <figure class="product-image has--bg">
+                                                        <div class="product-image--holder">
+                                                            <a href="product-single.html">
+                                                                <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}"
+                                                                     alt="Cherry Fruit Fillings" class="primary-image">
+                                                            </a>
+                                                            <a href="product-single.html">
+                                                                <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}"
+                                                                     alt="Cherry Fruit Fillings" class="secondary-image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="mmtp-product-action">
+                                                            <div class="product-action">
+                                                                <a class="quickview-btn action-btn"
+                                                                   href="product-single.html"
+                                                                   data-bs-toggle="tooltip" data-bs-placement="left"
+                                                                   title="View">
+                                                                    <i class="dl-icon-view"></i>
+                                                                </a>
+                                                                <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
+                                                                   data-bs-placement="left" title="Add to Cart">
+                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">
+                                                                        	<i class="dl-icon-cart29"></i>
+                                                                        </span>
+                                                                </a>
+                                                                <a class="add_wishlist action-btn"
+                                                                   href="wishlist.html" data-bs-toggle="tooltip"
+                                                                   data-bs-placement="left" title="Add to Wishlist">
+                                                                    <i class="dl-icon-heart4"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <span class="product-badge feature">Feat</span>
+                                                    </figure>
+                                                    <div class="product-info">
+                                                        <h3 class="product-title">
+                                                            <a href="product-single.html">Cherry Fruit Fillings</a>
+                                                        </h3>
+                                                        <div class="product-rating">
+                                                                <span>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star"></i>
+                                                                </span>
+                                                        </div>
+                                                        <span class="product-price-wrapper">
+                                                                <span class="money"><i class="fas fa-rupee-sign"></i>290.00</span>
+                                                            <!-- If discount price is there -->
+                                                            <!--
+                                                            <span class="product-price-old">
+                                                                <span class="money">$60.00</span>
+                                                            </span>
+                                                            -->
+                                                            </span>
+                                                        <span class="product-weight-wrapper">
+                                                             <span class="weight">500gm PET Jar</span>
+                                                             </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
 {{--                                <div class="tab-pane fade" id="nav-top-sales" role="tabpanel"--}}
