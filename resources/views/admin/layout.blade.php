@@ -118,7 +118,7 @@
             </button>
 
             <div class="dropdown-menu dropdown-menu-right mt-3">
-                <a class="dropdown-item" href="Admin.Account.html">Account</a>
+                <a class="dropdown-item" href="{{route('admin-account')}}">Account</a>
                 <a class="dropdown-item" href="{{ Route('admin-logout') }}">Sign out</a>
             </div>
         </div>

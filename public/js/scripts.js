@@ -230,13 +230,13 @@ $("#orderStatus").change(function(){
 
 /* Online & Offline Toggle */
 
-$("#switch3").click(function() {
-    if($(this).is(':checked')) {
-        $("#switch3-label").text("Product Online");
-    } else {
-        $("#switch3-label").text("Product Offline");
-    }
-});
+// $("#switch3").click(function() {
+//     if($(this).is(':checked')) {
+//         $("#switch3-label").text("In stock");
+//     } else {
+//         $("#switch3-label").text("Not in stock");
+//     }
+// });
 
 /* Customer Online Toggle */
 

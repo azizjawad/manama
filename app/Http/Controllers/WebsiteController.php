@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\HomepageBannersModel;
+use App\Models\ProductsModel;
 use App\Models\RecipeModel;
 use Illuminate\Http\Request;
+use DB;
 
 class WebsiteController extends Controller
 {
@@ -32,7 +34,24 @@ class WebsiteController extends Controller
     public function homepage(){
         $data['banners'] = HomepageBannersModel::orderBy('banner_location')->get();
 
+
+        $data['new_products'] = $this->get_label_wise_products(1);
+        $data['featured_products'] = $this->get_label_wise_products(2);
+//
         return view('welcome', $data);
+    }
+
+
+    private function get_label_wise_products($label){
+        return DB::table("products")->select(['products.*','categories.page_slug as category_slug','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
+            'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
+            ->join('product_info','products.id','product_info.product_id')
+            ->join('categories','categories.id','products.category_id')
+            ->where('products.status',1)
+            ->where('products.label',$label)
+            ->groupBy('products.id')
+            ->limit(3)
+            ->get();
     }
 
     public function recipe_corner(){

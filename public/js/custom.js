@@ -192,6 +192,7 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
                $(this).prop('disabled',false);
                if(res.status === true) {
                    $('td').find(`[data-product_id='${product_id}']`).attr('data-status',value);
+                   $(`.${product_id}_status_column`).text((value == 1) ? "Online" : "Offline");
                    success_notification(res.message);
                    $('#prdvisibilty').modal('hide');
                }else{

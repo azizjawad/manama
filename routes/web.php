@@ -48,6 +48,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     Route::prefix('admin')->group(function () {
 
         Route::get('orders', 'App\Http\Controllers\Admin\OrdersController@index_page')->name('admin-order');
+        Route::get('account', 'App\Http\Controllers\Admin\AdminController@my_account')->name('admin-account');
 
         Route::prefix('products')->group(function () {
 
@@ -135,12 +136,12 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
     });
     Route::prefix('api')->group(function () {
-        Route::post('/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
         Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
         Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
     });
 });
 
+Route::post('/api/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
 Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index'])->name('home');

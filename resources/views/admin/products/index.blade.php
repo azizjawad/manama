@@ -31,11 +31,11 @@
                                 <tr>
                                     <td>{{$loop->index + 1}}</td>
                                     <td>{{$product->name}}</td>
-                                    <td><img width="100" src="{{Storage::url('uploads/products/'. $product->image)}}" alt=""></td>
+                                    <td><img width="100" src="{{asset('images/uploads/products/'. $product->image)}}" alt=""></td>
                                     <td>{{$product->category_name}}</td>
                                     <td>{{date('d M Y', strtotime($product->updated_at))}}</td>
                                     <td>{{LABEL[$product->label]}}</td>
-                                    <td>{{['offline','online'][$product->status]}}</td>
+                                    <td class="{{$product->id}}_status_column">{{['offline','online'][$product->status]}}</td>
                                     <td class="text-center">
                                         <a href="{{route('admin-product-edit', $product->id)}}" class="las la-edit btn btn-secondary mx-1"></a>
                                         <a data-delete='{{$product->id}}' href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1 delete_item"></a>
