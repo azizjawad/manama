@@ -112,7 +112,40 @@
                                         <a href="javacript:void(0);" class="mainmenu__link">
                                             <span class="mm-text">Shop Products</span>
                                         </a>
-                                        <ul class="megamenu four-column">
+                                        @php
+                                            $categoryMenu = \Helpers::fetchProductMenu();
+                                        @endphp
+                                        @if (!empty($categoryMenu))
+                                            <ul class="megamenu four-column">
+                                                @foreach($categoryMenu->chunk(3) as $chunk)
+                                                    <li>
+                                                        <ul>
+                                                            @foreach ($chunk as $category)
+                                                                <li>
+                                                                    <a href="{{route('category_product',[$category->page_slug])}}" class="menu-item-img">
+                                                                        <img src="{{asset("web/images/products/$category->image")}}" />
+                                                                        <span>{{$category->name}}</span>
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @endforeach
+                                                <li class="d-none d-lg-block banner-holder">
+                                                    <div class="megamenu-banner">
+                                                        <div class="megamenu-banner-image"></div>
+                                                        <div class="megamenu-banner-info">
+                                                            <h3><span>build</span><br><span>flavour box</span></h3>
+                                                            <span>
+                                                                    <a href="flavour-box.html">start here</a>
+                                                                </span>
+                                                        </div>
+                                                        <a href="shop-sidebar.html" class="megamenu-banner-link"></a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        @endif
+                                        {{-- <ul class="megamenu four-column">
                                             <li>
                                                 <ul>
                                                     <li>
@@ -164,7 +197,7 @@
                                                     <a href="shop-sidebar.html" class="megamenu-banner-link"></a>
                                                 </div>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
                                     <li class="mainmenu__item">
                                         <a href="{{route('recipe-corner')}}" class="mainmenu__link">
