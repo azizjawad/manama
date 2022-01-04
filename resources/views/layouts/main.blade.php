@@ -113,7 +113,7 @@
                                             <span class="mm-text">Shop Products</span>
                                         </a>
                                         @php
-                                            $categoryMenu = \Helpers::fetchProductMenu();
+                                            $categoryMenu = Helpers::fetchProductMenu();
                                         @endphp
                                         @if (!empty($categoryMenu))
                                             <ul class="megamenu four-column">
@@ -123,7 +123,7 @@
                                                             @foreach ($chunk as $category)
                                                                 <li>
                                                                     <a href="{{route('category_product',[$category->page_slug])}}" class="menu-item-img">
-                                                                        <img src="{{asset("web/images/products/$category->image")}}" />
+                                                                        <img src="{{asset("web/images/products/$category->image")}}" alt="{{$category->name}}"/>
                                                                         <span>{{$category->name}}</span>
                                                                     </a>
                                                                 </li>

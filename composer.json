@@ -28,8 +28,8 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
-        "files": [
-            "app/Helpers.php"
+        "classmap": [
+            "app/Libraries"
         ]
     },
     "autoload-dev": {
