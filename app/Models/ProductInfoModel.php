@@ -12,4 +12,8 @@ class ProductInfoModel extends Model
     public $table = "product_info";
 
     use SoftDeletes;
+
+    function product(){
+        return $this->belongsTo(\App\Models\ProductsModel::class,  'product_id', 'id');
+    }
 }

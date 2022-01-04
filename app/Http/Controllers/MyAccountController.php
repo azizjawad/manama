@@ -34,7 +34,8 @@ class MyAccountController extends Controller
 
     public function my_wishlist()
     {
-        return view('website/account/my-wishlist');
+        $wishListData = \App\Models\WishListModel::with('product_info')->get();
+        return view('website/account/my-wishlist', compact('wishListData'));
     }
 
     public function edit_profile(){

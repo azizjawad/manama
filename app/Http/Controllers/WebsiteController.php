@@ -33,11 +33,8 @@ class WebsiteController extends Controller
 
     public function homepage(){
         $data['banners'] = HomepageBannersModel::orderBy('banner_location')->get();
-
-
         $data['new_products'] = $this->get_label_wise_products(1);
         $data['featured_products'] = $this->get_label_wise_products(2);
-//
         return view('welcome', $data);
     }
 
