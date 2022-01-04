@@ -318,6 +318,7 @@
     <script>
         const userExists = '{{ (\Auth::user()) ? true:false }}';
         let wishListProduct = '{{\Session::get("product_info_id")}}';
+        const refreshPage = 'reload';
     </script>
     <script src="{{asset('js/wishlist/add_wishlist.js')}}"></script>
 @endsection

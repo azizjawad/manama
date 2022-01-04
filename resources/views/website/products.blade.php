@@ -209,7 +209,8 @@
                                     <div class="quantity prd-page-qty">
                                     <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1" max="10"></div>
                                     <button type="button" {{(!$product[0]->is_in_stock) ? "disabled" : ''}} class="btn btn-style-2 btn-large add-to-cart">Add To Cart</button>
-                                    <a class="add-to-wishlist" href="{{route("my-wishlist")}}">
+                                    <a class="add-to-wishlist  add_to_wishlist_btn" href="javascript:void(0);"
+                                    data-product_info_id="{{$key->product_info_id}}" >
                                         <i class="fas fa-heart"></i></a>
                                     <!-- Use <i class="far fa-heart"></i> if not in wishlist -->
                                     <div class="product-extra">
@@ -420,8 +421,9 @@
                                                                         	<i class="dl-icon-cart29"></i>
                                                                         </span>
                                                             </a>
-                                                            <a class="add_wishlist action-btn"
-                                                               href="wishlist.html" data-bs-toggle="tooltip"
+                                                            <a class="add_wishlist action-btn add_to_wishlist_btn"
+                                                               href="javascript:void(0);" data-bs-toggle="tooltip"
+                                                               data-product_info_id="{{$key->product_info_id}}"
                                                                data-bs-placement="left" title="Add to Wishlist">
                                                                 <i class="dl-icon-heart4"></i>
                                                             </a>
@@ -542,4 +544,10 @@
 
 
     </div>
+    <script>
+        const userExists = '{{ (\Auth::user()) ? true:false }}';
+        let wishListProduct = '{{\Session::get("product_info_id")}}';
+        const refreshPage = 'wishlist';
+    </script>
+    <script src="{{asset('js/wishlist/add_wishlist.js')}}"></script>
 @endsection

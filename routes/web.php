@@ -154,7 +154,8 @@ Route::get('product', 'App\Http\Controllers\ProductController@index_page')->name
 Route::get('{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');
 // Wishlist
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('add-wishlist/{product_info_id}', 'App\Http\Controllers\WishlistController@add_to_wishlist')->name('add_to_wishlist');
+    Route::post('toggle-wishlist/{product_info_id}', 'App\Http\Controllers\WishlistController@toggle_wishlist')->name('toggle_wishlist');
+    Route::post('add-wishlist/{product_info_id}', 'App\Http\Controllers\WishlistController@add_wishlist')->name('add_wishlist');
 });
 // sessions 
 Route::post('create-cookie', 'App\Http\Controllers\CookieController@createCookie')->name('createCookie');

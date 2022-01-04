@@ -13,4 +13,8 @@ class WishListModel extends Model
     public $table = "wishlist";
 
     use SoftDeletes;
+
+    function product_info(){
+        return $this->belongsTo(\App\Models\ProductInfoModel::class,  'product_info_id', 'id');
+    }
 }
