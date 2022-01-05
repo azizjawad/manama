@@ -83,8 +83,8 @@
                                     <div class="address-body">
                                         <p>Address:
                                             <span class="block">
-                                                {{$address->fullname}}<br>
-                                                {{$address->address}}
+                                                {{ $address->fullname }}<br>
+                                                {{ $address->address }}
                                             </span>
                                         </p>
                                         <p><span>{{ $address->city_village }}</span> {{ $address->pincode }}</p>
@@ -99,22 +99,24 @@
 
                             <div class="show-more-address" id="show-more-address">
                                 <div class="address-box">
-                                    @foreach($my_address_list as $key => $address)
-                                    <h6 class="address-label">
-                                        <input shipping_address="{{$address->id}}" value="{{$address->id}}" class="address-selected" name="shipping_address" id="shipping_address" type="radio"><span>{{$address->label}}</span>
-                                    </h6>
-                                    <div class="address-body">
-                                        <p>Address:
-                                            <span class="block">
-                                                {{$address->fullname}}<br>
-                                                {{$address->address}}
-                                            </span>
-                                        </p>
-                                        <p><span>{{$address->city_village}}</span> {{$address->pincode}}</p>
-                                        <p>State: <span>{{$address->state}}</span></p>
-                                        <p>Mobile Number: <span>{{$address->mobile_no}}</span></p>
-                                    </div>
-                                @endforeach
+                                    @foreach ($my_address_list as $key => $address)
+                                        <h6 class="address-label">
+                                            <input shipping_address="{{ $address->id }}" value="{{ $address->id }}"
+                                                class="address-selected" name="shipping_address" id="shipping_address"
+                                                type="radio"><span>{{ $address->label }}</span>
+                                        </h6>
+                                        <div class="address-body">
+                                            <p>Address:
+                                                <span class="block">
+                                                    {{ $address->fullname }}<br>
+                                                    {{ $address->address }}
+                                                </span>
+                                            </p>
+                                            <p><span>{{ $address->city_village }}</span> {{ $address->pincode }}</p>
+                                            <p>State: <span>{{ $address->state }}</span></p>
+                                            <p>Mobile Number: <span>{{ $address->mobile_no }}</span></p>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -161,7 +163,8 @@
                                                     <strong><span>x</span>{{ $item->quantity }}</strong>
                                                 </th>
                                                 <td class="text-end"><i class="fas fa-rupee-sign"
-                                                        aria-hidden="true"></i>{{ number_format($item->cost_price) }}</td>
+                                                        aria-hidden="true"></i>{{ number_format($item->cost_price) }}
+                                                </td>
                                             </tr>
                                             @php $total += $item->cost_price * $item->quantity @endphp
                                         @endforeach
@@ -180,11 +183,19 @@
                                         <tr class="shipping">
                                             <th>Shipping</th>
                                             <td class="text-end">
-                                                <!-- Show when shipping is free --> <span>Free Shipping!</span>
+                                                @php
+                                                    if(isset($discountArray['product_type']) && $discountArray['product_type'] == 2 &&  isset($discountArray['discount']) && $discountArray['discount'] == 0 ){
+                                                        $shippingDetails['shippingCharges'] = 0;
+                                                    }
+                                                @endphp
+                                                @if ($shippingDetails['shippingCharges'] == 0)
+                                                    <!-- Show when shipping is free -->
+                                                    <span>Free Shipping!</span>
+                                                @else
                                                 <!-- Only show if the cart value is lower then free shipping rate
-                                                  <span><i class="fas fa-rupee-sign" aria-hidden="true"></i>75 per item <i class="fas fa-rupee-sign" aria-hidden="true"></i>150.00</span>
-
-                                                 -->
+                                                -->
+                                                <span><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{$shippingDetails['perBottleRate']}} per item <i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($shippingDetails['shippingCharges'])}}</span>
+                                                @endif
                                             </td>
                                         </tr>
                                         @if (isset($discountArray['discount']) && $discountArray['discount'] != '')
@@ -198,10 +209,18 @@
                                             </tr>
                                         @endif
                                         <tr class="order-total">
+                                            @php
+                                                if(isset($discountArray['discountedTotal']) && $discountArray['discountedTotal'] != ''){
+                                                    $total = $discountArray['discountedTotal'];
+                                                }
+                                                if($shippingDetails['shippingCharges'] > 0){
+                                                    $total = $total + $shippingDetails['shippingCharges'];
+                                                }
+                                            @endphp
                                             <th>Order Total</th>
                                             <td class="text-end"><span class="order-total-ammount"><i
                                                         class="fas fa-rupee-sign" aria-hidden="true"></i>
-                                                    {{ isset($discountArray['discountedTotal']) && $discountArray['discountedTotal'] != '' ? number_format($discountArray['discountedTotal'], 2) : number_format($total, 2) }}
+                                                    {{ number_format($total, 2) }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -210,6 +229,12 @@
                             </div>
                             <div class="checkout-payment">
                                 <form action="#" class="payment-form">
+                                    <input type="hidden" name="cart_details" 
+                                    data-coupon_code="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? $discountArray['coupon_code'] : '' }}" 
+                                    data-discount="{{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : 0 }}" 
+                                    data-coupon_type="{{ isset($discountArray['product_type']) && $discountArray['product_type'] != '' ? $discountArray['product_type'] : 0 }}" 
+                                    data-shipping_charges="{{ $shippingDetails['shippingCharges'] }}" 
+                                    data-total="{{$total}}"> 
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
                                             <input type="radio" value="online" name="payment-method" id="payu">
