@@ -176,6 +176,7 @@ class MyCartController extends Controller
             foreach($cart_products as $cart_product) {
                 $total_amt += ($cart_product->quantity * $cart_product->cost_price);
             }
+
             $orders = [
                 'user_id'               => $user_id,
                 'order_no'              => $order_no,
@@ -192,7 +193,7 @@ class MyCartController extends Controller
             ];
             $order_placed = OrdersModel::create($orders);
             if(!empty ( $order_placed )) {
-                
+
                 foreach($cart_products as $cart_product) {
                     $order_details[] = [
                         'product_info_id'=> $cart_product->product_info_id,

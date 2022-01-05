@@ -83,8 +83,8 @@
                                     <div class="address-body">
                                         <p>Address:
                                             <span class="block">
-                                                {{ $address->fullname }}<br>
-                                                {{ $address->address }}
+                                                {{$address->fullname}}<br>
+                                                {{$address->address}}
                                             </span>
                                         </p>
                                         <p><span>{{ $address->city_village }}</span> {{ $address->pincode }}</p>
@@ -99,24 +99,22 @@
 
                             <div class="show-more-address" id="show-more-address">
                                 <div class="address-box">
-                                    @foreach ($my_address_list as $key => $address)
-                                        <h6 class="address-label">
-                                            <input shipping_address="{{ $address->id }}" value="{{ $address->id }}"
-                                                class="address-selected" name="shipping_address" id="shipping_address"
-                                                type="radio"><span>{{ $address->label }}</span>
-                                        </h6>
-                                        <div class="address-body">
-                                            <p>Address:
-                                                <span class="block">
-                                                    {{ $address->fullname }}<br>
-                                                    {{ $address->address }}
-                                                </span>
-                                            </p>
-                                            <p><span>{{ $address->city_village }}</span> {{ $address->pincode }}</p>
-                                            <p>State: <span>{{ $address->state }}</span></p>
-                                            <p>Mobile Number: <span>{{ $address->mobile_no }}</span></p>
-                                        </div>
-                                    @endforeach
+                                    @foreach($my_address_list as $key => $address)
+                                    <h6 class="address-label">
+                                        <input shipping_address="{{$address->id}}" value="{{$address->id}}" class="address-selected" name="shipping_address" id="shipping_address" type="radio"><span>{{$address->label}}</span>
+                                    </h6>
+                                    <div class="address-body">
+                                        <p>Address:
+                                            <span class="block">
+                                                {{$address->fullname}}<br>
+                                                {{$address->address}}
+                                            </span>
+                                        </p>
+                                        <p><span>{{$address->city_village}}</span> {{$address->pincode}}</p>
+                                        <p>State: <span>{{$address->state}}</span></p>
+                                        <p>Mobile Number: <span>{{$address->mobile_no}}</span></p>
+                                    </div>
+                                @endforeach
                                 </div>
                             </div>
 
@@ -214,7 +212,7 @@
                                 <form action="#" class="payment-form">
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
-                                            <input type="radio" value="payu" name="payment-method" id="payu">
+                                            <input type="radio" value="online" name="payment-method" id="payu">
                                             <label class="payment-label" for="payu">Pay via PayU</label>
                                         </div>
                                         <div class="payment-info payu hide-in-default" data-method="payu">
@@ -223,7 +221,7 @@
                                     </div>
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
-                                            <input type="radio" value="cash" name="payment-method" id="cash">
+                                            <input type="radio" value="COD" name="payment-method" id="cash">
                                             <label class="payment-label" for="cash">
                                                 CASH ON DELIVERY
                                             </label>

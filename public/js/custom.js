@@ -290,36 +290,7 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
         multipart_ajax(form, data, button);
     }
 
-    $('a.delete_item').click(function (){
-        let delete_id = $(this).data('delete');
-        let slug = window.location.href.split('/').reverse()[0];
 
-        if(!isNaN(delete_id) && slug !== '') {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: `You want to delete ${slug.replace('-',' ')}.`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: window.location.pathname+`/delete/${delete_id}`,
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        type: "delete",
-                        success: (res) => {
-                            if (res.status === true) {
-                                success_notification('Row has been deleted successfully.');
-                                $(this).parents('tr').remove();
-                            }
-                        }
-                    });
-                }
-            });
-        }
-    });
     $('.summernote').summernote({
         placeholder: 'Please enter the description',
         tabsize: 2,
@@ -335,5 +306,35 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
         ]
     });
 
-
+    $(document).ready(function (){
+        $('body').on('click','a.delete_item', function (){
+            let delete_id = $(this).data('delete');
+            let slug = window.location.href.split('/').reverse()[0];
+            if(!isNaN(delete_id) && slug !== '') {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: `You want to delete ${slug.replace('-',' ')}.`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: window.location.pathname+`/delete/${delete_id}`,
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            type: "delete",
+                            success: (res) => {
+                                if (res.status === true) {
+                                    success_notification('Row has been deleted successfully.');
+                                    $(this).parents('tr').remove();
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    })
 })(jQuery);
