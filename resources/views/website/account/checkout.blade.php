@@ -32,7 +32,7 @@
                         <div class="message-box coupon-added mb--30 mb-sm--20">
                             <p>
                                 <i class="fa fa-check-circle"></i> Coupon Code MANAMANEW Applied! You got a <i class="fas fa-rupee-sign" aria-hidden="true"></i>
-                                100 discount on order. 
+                                100 discount on order.
                                 <a class="expand-btn" href="javascript:void(0);">Click Here To Remove It.</a>
                             </p>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="user-actions user-actions__coupon">
                             <div class="message-box mb--30 mb-sm--20">
                                 <p>
-                                    <i class="fa fa-exclamation-circle"></i> Have A Coupon? 
+                                    <i class="fa fa-exclamation-circle"></i> Have A Coupon?
                                     <a class="expand-btn" href="#coupon_info">Click Here To Enter Your Code.</a>
                                 </p>
                             </div>
@@ -70,9 +70,9 @@
                                         <input addressid="{{$address->id}}" value="{{$address->id}}" class="address-selected" name="billing_address" id="billing_address" type="radio"><span>{{$address->label}}</span>
                                     </h6>
                                     <div class="address-body">
-                                        <p>Address: 
+                                        <p>Address:
                                             <span class="block">
-                                                {{$address->fullname}}<br> 
+                                                {{$address->fullname}}<br>
                                                 {{$address->address}}
                                             </span>
                                         </p>
@@ -93,9 +93,9 @@
                                         <input shipping_address="{{$address->id}}" value="{{$address->id}}" class="address-selected" name="shipping_address" id="shipping_address" type="radio"><span>{{$address->label}}</span>
                                     </h6>
                                     <div class="address-body">
-                                        <p>Address: 
+                                        <p>Address:
                                             <span class="block">
-                                                {{$address->fullname}}<br> 
+                                                {{$address->fullname}}<br>
                                                 {{$address->address}}
                                             </span>
                                         </p>
@@ -184,7 +184,7 @@
                                 <form action="#" class="payment-form">
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
-                                            <input type="radio" value="payu" name="payment-method" id="payu">
+                                            <input type="radio" value="online" name="payment-method" id="payu">
                                             <label class="payment-label" for="payu">Pay via PayU</label>
                                         </div>
                                         <div class="payment-info payu hide-in-default" data-method="payu">
@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
-                                            <input type="radio" value="cash" name="payment-method" id="cash">
+                                            <input type="radio" value="COD" name="payment-method" id="cash">
                                             <label class="payment-label" for="cash">
                                                 CASH ON DELIVERY
                                             </label>

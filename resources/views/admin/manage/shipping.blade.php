@@ -32,34 +32,24 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>20/10/2021</td>
-                                            <td>Free Shipping above 700</td>
-                                            <td>75</td>
-                                            <td>700</td>
-                                            <td>Active</td>
-                                            <td class="text-center">
-                                                <a href="javascript:void(0)" data-toggle="modal"
-                                                   data-target="#ruleactivationmodal" title="Activate / Deactivate"
-                                                   class="las la-ban btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)"
-                                                   class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>22/10/2021</td>
-                                            <td>Free Shipping above 800</td>
-                                            <td>125</td>
-                                            <td>800</td>
-                                            <td>Inactive</td>
-                                            <td class="text-center">
-                                                <a href="javascript:void(0)" data-toggle="modal"
-                                                   data-target="#ruleactivationmodal" title="Activate / Deactivate"
-                                                   class="las la-ban btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)"
-                                                   class="las la-trash-alt btn btn-secondary mx-1"></a></td>
-                                        </tr>
+                                        @foreach($shipping as $rule)
+                                            <tr>
+                                                <td>{{$loop->index}}</td>
+                                                <td>{{date('d M Y', strtotime($rule->created_at))}}</td>
+                                                <td>Free Shipping above {{$rule->free_shipping_above}}</td>
+                                                <td>{{$rule->shipping_rate}}</td>
+                                                <td>{{$rule->free_shipping_above}}</td>
+                                                <td>{{$rule->status == 1 ? 'Active' : 'De-active'}}</td>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0)" data-toggle="modal"
+                                                       data-target="#ruleactivationmodal" title="Activate / Deactivate"
+                                                       class="las la-ban btn btn-secondary mx-1"></a>
+
+                                                    <a data-delete="{{$rule->id}}" href="javascript:void(0)"
+                                                       class="delete_item las la-trash-alt btn btn-secondary mx-1"></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -111,12 +101,13 @@
                     </div>
                     <div class="modal-body">
 
-                        <form>
+                        <form method="post" action="{{route('admin-shipping-form')}}">
+                            @csrf
                             <div class="alert alert-warning mb-4" role="alert">* Please follow the rule as set below.
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-group has-float-label mb-0">
-                                    <input data-role="tagsinput" type="text" class="text-uppercase"> <span>Shipping Rate (per bottle)</span>
+                                    <input required data-role="tagsinput" name="shipping_rate" type="text" class="form-control text-uppercase"> <span>Shipping Rate (per bottle)</span>
                                 </label>
                             </div>
                             <div class="alert alert-warning mb-4" role="alert">* If 0 (zero) shipping rate is set, No
@@ -124,7 +115,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label class="form-group has-float-label mb-1">
-                                    <input data-role="tagsinput" type="text" class="text-uppercase">
+                                    <input required data-role="tagsinput" name="free_shipping_above" type="text" class="form-control text-uppercase">
                                     <span>Cart Value</span>
                                 </label>
                             </div>
@@ -134,7 +125,7 @@
 
                             <label class="form-label font-weight-bold" id="switch9-label">Rule Deactivate</label>
                             <div class="custom-switch custom-switch-primary-inverse mb-2">
-                                <input class="custom-switch-input" id="switch9" type="checkbox">
+                                <input name="status" value="1" class="custom-switch-input" id="switch9" type="checkbox">
                                 <label class="custom-switch-btn" for="switch9"></label>
                             </div>
 
@@ -143,7 +134,7 @@
                             </div>
 
                             <div class="form-group text-right">
-                                <p><a href="javascript:void(0);" class="btn btn-secondary">Create Rule</a></p>
+                                <p><button type="submit" class="btn btn-secondary">Create Rule</button></p>
                             </div>
                         </form>
                     </div>

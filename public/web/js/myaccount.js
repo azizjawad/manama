@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    
+
     $('#form_my_address').validate({
         rules: {
             txt_label: {
@@ -57,7 +57,7 @@ $( document ).ready(function() {
                     button.attr('disabled', false).text('Apply Coupon');
                     error_notification()
                 }
-            });  
+            });
         } else {
             error_notification('Please enter coupon code');
         }
@@ -66,6 +66,7 @@ $( document ).ready(function() {
     $('#btn_place_order').on('click', function() {
         let button = $(this);
         let billing_address = $('input[name="billing_address"]').is(':checked');
+        let payment_method = $('input[name="payment-method"]').is(':checked');
         if(billing_address) {
             $.ajax({
                 url: 'place-order',
@@ -73,7 +74,7 @@ $( document ).ready(function() {
                     'billing_address' : $('#billing_address').val(),
                     'shipping_address' : $('#shipping_address').val(),
                     'gstn_no' : $('#gstn_no').val(),
-                    'trasaction_type' : 'COD'
+                    'transaction_type' : payment_method
                 },
                 type:"post",
                 headers: {
@@ -93,7 +94,7 @@ $( document ).ready(function() {
                     button.attr('disabled', false).text('Place Order');
                     error_notification()
                 }
-            });  
+            });
         } else {
             error_notification('Please select shipping address');
         }
@@ -133,7 +134,7 @@ $( document ).ready(function() {
                         button.attr('disabled', false).text('Delete');
                         error_notification()
                     }
-                });     
+                });
             }
         });
     });

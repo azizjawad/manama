@@ -25,6 +25,7 @@ Route::get('payment-fail', 'App\Http\Controllers\WebsiteController@payment_fail'
 Route::get('support-center', 'App\Http\Controllers\WebsiteController@support_center')->name('support-center');
 Route::get('shipping-policy', 'App\Http\Controllers\WebsiteController@shipping_policy')->name('shipping-policy');
 Route::get('terms-and-conditions', 'App\Http\Controllers\WebsiteController@terms_and_conditions')->name('terms-and-conditions');
+Route::get('payu_payments', 'App\Http\Controllers\WebsiteController@payu_payments')->name('payu_payments');
 
 
 Route::get('admin/logout', function () {
@@ -97,6 +98,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::get('discount', 'App\Http\Controllers\Admin\ManageController@discount_page')->name('admin-discount-manager');
             Route::post('save-coupon', 'App\Http\Controllers\Admin\ManageController@save_coupon')->name('admin-save-coupon');
             Route::get('shipping', 'App\Http\Controllers\Admin\ManageController@shipping_page')->name('admin-shipping-manager');
+            Route::delete('shipping/delete/{shipping_id}', 'App\Http\Controllers\Admin\ManageController@shipping_delete');
+            Route::post('shipping-form', 'App\Http\Controllers\Admin\ManageController@shipping_form')->name('admin-shipping-form');
         });
 
         Route::prefix('cms')->group(function () {
@@ -157,5 +160,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('toggle-wishlist/{product_info_id}', 'App\Http\Controllers\WishlistController@toggle_wishlist')->name('toggle_wishlist');
     Route::post('add-wishlist/{product_info_id}', 'App\Http\Controllers\WishlistController@add_wishlist')->name('add_wishlist');
 });
-// sessions 
+// sessions
 Route::post('create-cookie', 'App\Http\Controllers\CookieController@createCookie')->name('createCookie');
