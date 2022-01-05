@@ -6,6 +6,7 @@ use App\Models\CartModel;
 use App\Models\CouponsModel;
 use App\Models\OrderDetailsModel;
 use App\Models\OrdersModel;
+use App\Models\OrderHistory;
 use App\Models\ProductInfoModel;
 use App\Models\ProductsModel;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Unique;
+use Log;
 
 class MyCartController extends Controller
 {
@@ -125,18 +127,33 @@ class MyCartController extends Controller
         }else {
             $status = false;
             $coupon = CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
+            Log::info("coupon");
+            Log::info( $coupon );
             if(!empty ($coupon) ) {
-                if(strpos($coupon['coupon_value'], '%') !== false ) {
-
+                $cartDetails = self::getCartTotal(Auth::id());
+                Log::info("cartDetails");
+                Log::info( $cartDetails );
+                $totalAmt = $cartDetails->cart_total;
+                if(strpos($coupon->coupon_value, '%') !== false ) {
+                    Log::info("percentage discount >>");
+                    $couponValue  = str_replace('%','',$coupon->coupon_value);
+                    $discount = $totalAmt - ($totalAmt * ($couponValue / 100));
+                    Log::info("couponValue");
+                    Log::info( $couponValue );
+                    Log::info("discount");
+                    Log::info( $discount );
                 } else {
-
+                    Log::info("normal discount >> ");
+                    $discount = $totalAmt - $coupon->coupon_value;
+                    Log::info("discount");
+                    Log::info( $discount );
                 }
                 $message = 'Coupon Applied';
             } else {
                 $message = 'Invalid Coupon';
             }
             if ($status)
-                return response(['status' => true, 'message' => $message]);
+                return response(['status' => true, 'message' => $message, 'discount' => $discount]);
             else
                 return response(['status' => false, 'message' => $message], 500);
         }
@@ -145,6 +162,8 @@ class MyCartController extends Controller
     public function place_order(Request $request) {
 
         $post = $request->post();
+        \Log::info("transaction_type");
+        \Log::info($post['transaction_type']);
         $validator = Validator::make($post, [
             'billing_address'  => ['required']
         ]);;
@@ -155,20 +174,22 @@ class MyCartController extends Controller
             $user_id = Auth::id();
             $cart_products = self::get_cart_data($user_id);
             $order_no = time().random_int(10000, 99999);
-            $total_amt = 0;
+            $sub_total = 0;
             $order_details = [];
             foreach($cart_products as $cart_product) {
-                $total_amt += ($cart_product->quantity * $cart_product->cost_price);
+                $sub_total += ($cart_product->quantity * $cart_product->cost_price);
             }
-
             $orders = [
                 'user_id'               => $user_id,
                 'order_no'              => $order_no,
-                'trasaction_type'       => $post['trasaction_type'],
-                'total_amount'          => $total_amt,
+                'transaction_type'       => $post['transaction_type'],
+                'total_amount'          => $post['total'],
                 'trasaction_id'         => null,
-                'product_coupon'        => null,
-                'shipping_coupon'       => null,
+                'sub_total'             => $sub_total,
+                'discount'              => $post['discount'],
+                'shipping_charges'      => $post['shipping_charges'],
+                'coupon_type'           => $post['coupon_type'],
+                'coupon_code'           => $post['coupon_code'],
                 'billing_address'       => $post['billing_address'],
                 'shipping_address'      => $post['shipping_address'],
                 'status'                => 1,
@@ -176,6 +197,11 @@ class MyCartController extends Controller
                 'created_by'            => $user_id
             ];
             $order_placed = OrdersModel::create($orders);
+            OrderHistory::create([
+                'order_id'          => $order_placed->id,
+                'status'            => 1,
+                'created_by'        => $user_id
+            ]);
             if(!empty ( $order_placed )) {
 
                 foreach($cart_products as $cart_product) {
@@ -196,5 +222,15 @@ class MyCartController extends Controller
             }
             return response(['status' => false, 'message'], 500);
         }
+    }
+
+    public function getCartTotal($user_id){
+        return CartModel::select([\DB::raw('SUM(product_info.cost_price * cart.quantity) as cart_total')])
+        ->join('product_info','cart.product_info_id','product_info.id')
+        ->join('products','product_info.product_id','products.id')
+        ->where('cart.user_id', $user_id)
+        ->where('products.status',1)
+        ->where('product_info.is_in_stock',1)
+        ->first();
     }
 }

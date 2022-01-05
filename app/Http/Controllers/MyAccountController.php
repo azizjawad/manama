@@ -7,7 +7,8 @@ use App\Models\OrdersModel;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Validator;
 use Auth;
-
+use Log;
+use App\Models\ShippingModel;
 
 class MyAccountController extends Controller
 {
@@ -50,9 +51,17 @@ class MyAccountController extends Controller
         return view('website/account/user-settings');
     }
 
-    public function checkout() {
+    public function checkout(Request $request) {
         $data['my_address_list'] = MyaccountModel::where('user_id', $this->logged_in_id->id)->get();
         $data['cart'] = MyCartController::get_cart_data($this->logged_in_id->id);
+        // get shipping rules
+        $data['shippingDetails'] = self::getShippingCharges($this->logged_in_id->id);
+        $data['discountArray'] = array();
+        if($request->post('coupon_code') != ''){
+            $data['discountArray']= self::apply_coupon($request,  $data['shippingDetails']);
+        }
+        \Log::info("discountArray");
+        \Log::info( $data['discountArray'] );
         return view('website/account/checkout', $data);
     }
 
@@ -130,5 +139,107 @@ class MyAccountController extends Controller
             else
                 return response(['status' => false], 500);
         }
+    }
+    public static function apply_coupon($request, $shippingDetails = array()) {
+
+        $post = $request->post();
+        $validator = Validator::make($post, [
+            'coupon_code'  => ['required']
+        ]);;
+
+        if ($validator->fails()){
+            return response(['status' => false, 'errors' => $validator->errors()], 400);
+        }else {
+            $status = false;
+            $coupon = \App\Models\CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
+            Log::info("coupon");
+            Log::info( $coupon );
+            if(!empty ($coupon) ) {
+                $cartDetails = self::getCartTotal(Auth::id());
+                Log::info("cartDetails");
+                Log::info( $cartDetails );
+                $totalAmt = $cartDetails->cart_total;
+                if( $coupon->product_type == 2){
+                    $totalAmt = $shippingDetails['shippingCharges'];
+                }
+                if(strpos($coupon->coupon_value, '%') !== false ) {
+                    Log::info("percentage discount >>");
+                    $couponValue  = str_replace('%','',$coupon->coupon_value);
+                    $discount = $totalAmt * ($couponValue / 100);
+                    Log::info("couponValue");
+                    Log::info( $couponValue );
+                    Log::info("discount");
+                    Log::info( $discount );
+                } else {
+                    Log::info("normal discount >> ");
+                    $discount = $coupon->coupon_value;
+                    Log::info("discount");
+                    Log::info( $discount );
+                }
+                $discountedTotal = $cartDetails->cart_total - $discount;
+                $message = 'Coupon Applied';
+            } else {
+                $message = 'Invalid Coupon';
+            }
+            $discountArray = array(
+                'coupon_code' => $post['coupon_code'],
+                'discount' => $discount,
+                'discountedTotal' => $discountedTotal,
+                'message' => $message,
+                'product_type' => $coupon->product_type,
+            );
+            return $discountArray;
+            // if ($status)
+            //     return response(['status' => true, 'message' => $message, 'discount' => $discount]);
+            // else
+            //     return response(['status' => false, 'message' => $message], 500);
+        }
+    }
+
+    public static function getCartTotal($user_id){
+        return \App\Models\CartModel::select([\DB::raw('SUM(product_info.cost_price * cart.quantity) as cart_total'), \DB::raw( 'COUNT(product_info.id) as product_count')])
+        ->join('product_info','cart.product_info_id','product_info.id')
+        ->join('products','product_info.product_id','products.id')
+        ->where('cart.user_id', $user_id)
+        ->where('products.status',1)
+        ->where('product_info.is_in_stock',1)
+        ->first();
+    }
+    public static function getShippingCharges($user_id){
+        $productDetails =  self::getCartTotal($user_id);
+        Log::info('productDetails ');
+        Log::info(json_encode($productDetails));
+        $shippingDetails = ShippingModel::where('status', 1)->orderBy('id','DESC')->get();
+        $resetShippingValue = false;
+        $perBottleRate = 0;
+        Log::info('shipping details');
+        Log::info(json_encode($shippingDetails));
+        $shippingDetails->map(function($shippingRule) use(&$resetShippingValue, $productDetails, &$perBottleRate){
+            if($shippingRule->free_shipping_above == 0){
+                Log::info('free_shipping_above == 0');
+                $resetShippingValue = true;
+                Log::info('resetShippingValue : '.$resetShippingValue);
+            }
+            if($productDetails->cart_total >= $shippingRule->free_shipping_above){
+                Log::info('cart_total > free_shipping_above');
+                $resetShippingValue = true;
+                Log::info('resetShippingValue : '.$resetShippingValue);
+            }else if($productDetails->cart_total < $shippingRule->free_shipping_above){
+                Log::info('cart_total < free_shipping_above');
+                $perBottleRate = $shippingRule->shipping_rate;
+                Log::info('perBottleRate : '.$perBottleRate);
+            }
+        });
+        $shippingCharges = 0;
+        Log::info('resetShippingValue : '.$resetShippingValue);
+        if(!$resetShippingValue){
+            $shippingCharges = $productDetails->product_count * $perBottleRate;
+        }
+        Log::info('product_count : '.$productDetails->product_count);
+        Log::info('shippingCharges : '.$shippingCharges);
+        return [
+            'shippingCharges' => $shippingCharges,
+            'perBottleRate' => $perBottleRate,
+        ];
     }
 }

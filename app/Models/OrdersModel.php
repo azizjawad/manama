@@ -13,4 +13,12 @@ class OrdersModel extends Model
     public $table = "orders";
 
     use SoftDeletes;
+
+    function order_history(){
+        return $this->hasMany(\App\Models\OrderHistory::class,  'order_id','id');
+    }
+
+    function product_info(){
+        return $this->hasMany(\App\Models\ProductInfoModel::class,  'id', 'product_info_id');
+    }
 }

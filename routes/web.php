@@ -136,6 +136,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
         Route::post('/place-order', 'App\Http\Controllers\MyCartController@place_order')->name('place-order');
         Route::get('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
+        Route::post('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
     });
     Route::prefix('api')->group(function () {

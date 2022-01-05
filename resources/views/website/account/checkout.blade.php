@@ -11,12 +11,13 @@
                         <h1>Checkout</h1>
                         <ul class="pghd-breadcrumbs">
                             <li><a href="/">Home</a></li>
-                            <li><a href="{{route('my-account')}}">My Accoount</a></li>
-                            <li><a href="{{route('checkout')}}">Checkout</a></li>
+                            <li><a href="{{ route('my-account') }}">My Accoount</a></li>
+                            <li><a href="{{ route('checkout') }}">Checkout</a></li>
                         </ul>
                     </div>
                     <div class="order-md-1 col-md-3">
-                        <h3 class="text-with-icon"><i class="fas fa-shopping-bag"></i>Confirm your address & continue to pay.</h3>
+                        <h3 class="text-with-icon"><i class="fas fa-shopping-bag"></i>Confirm your address & continue to pay.
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -29,28 +30,36 @@
                 <div class="row pt--80 pt-md--60 pt-sm--40">
                     <div class="col-12">
 
-                        <div class="message-box coupon-added mb--30 mb-sm--20">
+                        <div class="message-box coupon-added mb--30 mb-sm--20 "
+                            style="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? '' : 'display:none' }}">
                             <p>
-                                <i class="fa fa-check-circle"></i> Coupon Code MANAMANEW Applied! You got a <i class="fas fa-rupee-sign" aria-hidden="true"></i>
-                                100 discount on order.
-                                <a class="expand-btn" href="javascript:void(0);">Click Here To Remove It.</a>
+                                <i class="fa fa-check-circle"></i> Coupon Code
+                                {{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? $discountArray['coupon_code'] : '' }}
+                                Applied! You got a <i class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                {{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : '' }}
+                                discount on order.
+                                <a class="expand-btn" href="javascript:void(0);"
+                                    onclick="window.location.href = window.location.origin+'/account/checkout'">Click Here
+                                    To Remove It.</a>
                             </p>
                         </div>
 
                         <!-- Add Coupon - incase if coupon was not added at Cart -->
-                        <div class="user-actions user-actions__coupon">
+                        <div class="user-actions user-actions__coupon"
+                            style="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? 'display:none' : '' }}">
                             <div class="message-box mb--30 mb-sm--20">
                                 <p>
                                     <i class="fa fa-exclamation-circle"></i> Have A Coupon?
                                     <a class="expand-btn" href="#coupon_info">Click Here To Enter Your Code.</a>
                                 </p>
                             </div>
-                            <div id="coupon_info" class="user-actions__form hide-in-default">
-                                <form action="#" class="form">
+                            <div id="coupon_info" class="user-actions__form hide-in-default ">
+                                <form action="/account/checkout" class="form" type="POST">
                                     <p>If you have a coupon code, please apply it below.</p>
                                     <div class="form__group d-sm-flex">
-                                        <input type="text" name="coupon" id="coupon" class="form__input form__input--2 mr--20 mr-xs--0" placeholder="Coupon Code">
-                                        <button type="submit" class="btn btn-medium btn-style-1">Apply Coupon</button>
+                                        <input type="text" name="coupon_code" id="coupon_code"
+                                            class="form__input form__input--2 mr--20 mr-xs--0 " placeholder="Coupon Code">
+                                        <button type="submit" class="btn btn-medium btn-style-1 ">Apply Coupon</button>
                                     </div>
                                 </form>
                             </div>
@@ -63,22 +72,24 @@
                         <h3 class="sub-title"><span>Billing Details</span></h3>
                         <!-- Addreess Selection-->
                         <div class="address-section">
-                            <div class="address-box"  id="all-addresses">
+                            <div class="address-box" id="all-addresses">
                                 <!-- Each Address -->
-                                @foreach($my_address_list as $key => $address)
+                                @foreach ($my_address_list as $key => $address)
                                     <h6 class="address-label">
-                                        <input addressid="{{$address->id}}" value="{{$address->id}}" class="address-selected" name="billing_address" id="billing_address" type="radio"><span>{{$address->label}}</span>
+                                        <input addressid="{{ $address->id }}" value="{{ $address->id }}"
+                                            class="address-selected" name="billing_address" id="billing_address"
+                                            type="radio"><span>{{ $address->label }}</span>
                                     </h6>
                                     <div class="address-body">
                                         <p>Address:
                                             <span class="block">
-                                                {{$address->fullname}}<br>
-                                                {{$address->address}}
+                                                {{ $address->fullname }}<br>
+                                                {{ $address->address }}
                                             </span>
                                         </p>
-                                        <p><span>{{$address->city_village}}</span> {{$address->pincode}}</p>
-                                        <p>State: <span>{{$address->state}}</span></p>
-                                        <p>Mobile Number: <span>{{$address->mobile_no}}</span></p>
+                                        <p><span>{{ $address->city_village }}</span> {{ $address->pincode }}</p>
+                                        <p>State: <span>{{ $address->state }}</span></p>
+                                        <p>Mobile Number: <span>{{ $address->mobile_no }}</span></p>
                                     </div>
                                 @endforeach
                             </div>
@@ -88,27 +99,30 @@
 
                             <div class="show-more-address" id="show-more-address">
                                 <div class="address-box">
-                                    @foreach($my_address_list as $key => $address)
-                                    <h6 class="address-label">
-                                        <input shipping_address="{{$address->id}}" value="{{$address->id}}" class="address-selected" name="shipping_address" id="shipping_address" type="radio"><span>{{$address->label}}</span>
-                                    </h6>
-                                    <div class="address-body">
-                                        <p>Address:
-                                            <span class="block">
-                                                {{$address->fullname}}<br>
-                                                {{$address->address}}
-                                            </span>
-                                        </p>
-                                        <p><span>{{$address->city_village}}</span> {{$address->pincode}}</p>
-                                        <p>State: <span>{{$address->state}}</span></p>
-                                        <p>Mobile Number: <span>{{$address->mobile_no}}</span></p>
-                                    </div>
-                                @endforeach
+                                    @foreach ($my_address_list as $key => $address)
+                                        <h6 class="address-label">
+                                            <input shipping_address="{{ $address->id }}" value="{{ $address->id }}"
+                                                class="address-selected" name="shipping_address" id="shipping_address"
+                                                type="radio"><span>{{ $address->label }}</span>
+                                        </h6>
+                                        <div class="address-body">
+                                            <p>Address:
+                                                <span class="block">
+                                                    {{ $address->fullname }}<br>
+                                                    {{ $address->address }}
+                                                </span>
+                                            </p>
+                                            <p><span>{{ $address->city_village }}</span> {{ $address->pincode }}</p>
+                                            <p>State: <span>{{ $address->state }}</span></p>
+                                            <p>Mobile Number: <span>{{ $address->mobile_no }}</span></p>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
 
                             <!-- Add Address Buttone -->
-                            <button type="button" class="btn btn-style-3" data-bs-toggle="modal" data-bs-target="#addwindow">Add Address</button>
+                            <button type="button" class="btn btn-style-3" data-bs-toggle="modal"
+                                data-bs-target="#addwindow">Add Address</button>
                         </div>
 
                         <h3 class="sub-title"><span>Quote your GSTN (optional)</span></h3>
@@ -117,7 +131,8 @@
                             <div class="col-md-8 col-12">
                                 <form class="form gstn-tab" action="post" id="gst-form">
                                     <div class="form__group">
-                                        <input type="text" id="gstn_no" name="gstn_no" class="form__input form__input--2" placeholder="Your GSTN">
+                                        <input type="text" id="gstn_no" name="gstn_no" class="form__input form__input--2"
+                                            placeholder="Your GSTN">
                                     </div>
                                     <div class="form__group has-button">
                                         <button type="button" class="btn btn-style-3">Apply</button>
@@ -136,52 +151,90 @@
                             <div class="table-content table-responsive mb--30">
                                 <table class="table order-table order-table-2">
                                     <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th class="text-end">Total</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th class="text-end">Total</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($cart as $item)
-                                        <tr>
-                                            <th>{{$item->product_name}}
-                                                <strong><span>x</span>{{$item->quantity}}</strong>
-                                            </th>
-                                            <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($item->cost_price)}}</td>
-                                        </tr>
-                                        @php $total += $item->cost_price * $item->quantity @endphp
-                                    @endforeach
+                                        @foreach ($cart as $item)
+                                            <tr>
+                                                <th>{{ $item->product_name }}
+                                                    <strong><span>x</span>{{ $item->quantity }}</strong>
+                                                </th>
+                                                <td class="text-end"><i class="fas fa-rupee-sign"
+                                                        aria-hidden="true"></i>{{ number_format($item->cost_price) }}
+                                                </td>
+                                            </tr>
+                                            @php $total += $item->cost_price * $item->quantity @endphp
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
 
-                                    <tr class="cart-subtotal">
-                                        <th>Subtotal</th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($total,2)}}</td>
-                                    </tr>
-{{--                                    <tr class="cart-subtotal">--}}
-{{--                                        <th>Discount <small>(-)</small></th>--}}
-{{--                                        <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td>--}}
-{{--                                    </tr>--}}
-                                    <tr class="shipping">
-                                        <th>Shipping</th>
-                                        <td class="text-end">
-                                            <!-- Show when shipping is free --> <span>Free Shipping!</span>
-                                            <!-- Only show if the cart value is lower then free shipping rate
-                                              <span><i class="fas fa-rupee-sign" aria-hidden="true"></i>75 per item <i class="fas fa-rupee-sign" aria-hidden="true"></i>150.00</span>
-
-                                             -->
-                                        </td>
-                                    </tr>
-                                    <tr class="order-total">
-                                        <th>Order Total</th>
-                                        <td class="text-end"><span class="order-total-ammount"><i class="fas fa-rupee-sign" aria-hidden="true"></i>2315.00</span>
-                                        </td>
-                                    </tr>
+                                        <tr class="cart-subtotal">
+                                            <th>Subtotal</th>
+                                            <td class="text-end"><i class="fas fa-rupee-sign"
+                                                    aria-hidden="true"></i>{{ number_format($total, 2) }}</td>
+                                        </tr>
+                                        {{-- <tr class="cart-subtotal"> --}}
+                                        {{-- <th>Discount <small>(-)</small></th> --}}
+                                        {{-- <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td> --}}
+                                        {{-- </tr> --}}
+                                        <tr class="shipping">
+                                            <th>Shipping</th>
+                                            <td class="text-end">
+                                                @php
+                                                    if(isset($discountArray['product_type']) && $discountArray['product_type'] == 2 &&  isset($discountArray['discount']) && $discountArray['discount'] == 0 ){
+                                                        $shippingDetails['shippingCharges'] = 0;
+                                                    }
+                                                @endphp
+                                                @if ($shippingDetails['shippingCharges'] == 0)
+                                                    <!-- Show when shipping is free -->
+                                                    <span>Free Shipping!</span>
+                                                @else
+                                                <!-- Only show if the cart value is lower then free shipping rate
+                                                -->
+                                                <span><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{$shippingDetails['perBottleRate']}} per item <i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($shippingDetails['shippingCharges'])}}</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @if (isset($discountArray['discount']) && $discountArray['discount'] != '')
+                                            <tr class="order-discount">
+                                                <th>Discount</th>
+                                                <td class="text-end"><span class="order-total-ammount"><i
+                                                            class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                                        {{ number_format($discountArray['discount'], 2) }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        <tr class="order-total">
+                                            @php
+                                                if(isset($discountArray['discountedTotal']) && $discountArray['discountedTotal'] != ''){
+                                                    $total = $discountArray['discountedTotal'];
+                                                }
+                                                if($shippingDetails['shippingCharges'] > 0){
+                                                    $total = $total + $shippingDetails['shippingCharges'];
+                                                }
+                                            @endphp
+                                            <th>Order Total</th>
+                                            <td class="text-end"><span class="order-total-ammount"><i
+                                                        class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                                    {{ number_format($total, 2) }}
+                                                </span>
+                                            </td>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <div class="checkout-payment">
                                 <form action="#" class="payment-form">
+                                    <input type="hidden" name="cart_details" 
+                                    data-coupon_code="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? $discountArray['coupon_code'] : '' }}" 
+                                    data-discount="{{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : 0 }}" 
+                                    data-coupon_type="{{ isset($discountArray['product_type']) && $discountArray['product_type'] != '' ? $discountArray['product_type'] : 0 }}" 
+                                    data-shipping_charges="{{ $shippingDetails['shippingCharges'] }}" 
+                                    data-total="{{$total}}"> 
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
                                             <input type="radio" value="online" name="payment-method" id="payu">
@@ -204,7 +257,8 @@
                                     </div>
                                     <div class="payment-group mt--20">
                                         <p class="mb--15 text-end small">The above bill is inclusive of GST.</p>
-                                        <button type="button" class="btn btn-fullwidth btn-style-1" id='btn_place_order'>Place Order</button>
+                                        <button type="button" class="btn btn-fullwidth btn-style-1"
+                                            id='btn_place_order'>Place Order</button>
                                     </div>
                                 </form>
                             </div>
@@ -215,9 +269,10 @@
             </div>
 
         </div>
-         <!-- Address Modal Start -->
+        <!-- Address Modal Start -->
 
-        <div class="modal fade product-modal" id="addwindow" aria-hidden="true" aria-labelledby="addwindowLabel" tabindex="-1">
+        <div class="modal fade product-modal" id="addwindow" aria-hidden="true" aria-labelledby="addwindowLabel"
+            tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                 <div class="modal-content">
 
@@ -231,21 +286,28 @@
                     <div class="modal-body">
                         <div class="container-fluid pb--40">
                             <div class="row">
-                                <form class="form" action="{{route('save-address')}}" method="post" id="form_my_address" name="form_my_address">
+                                <form class="form" action="{{ route('save-address') }}" method="post"
+                                    id="form_my_address" name="form_my_address">
                                     <div class="form__group mb--20">
-                                        <input type="text" maxlength="80" id="txt_label" name="txt_label" class="form__input form__input--2" placeholder="Address Label">
+                                        <input type="text" maxlength="80" id="txt_label" name="txt_label"
+                                            class="form__input form__input--2" placeholder="Address Label">
                                     </div>
                                     <div class="form__group mb--20">
-                                        <input type="text" maxlength="80" id="txt_fullname" name="txt_fullname" class="form__input form__input--2" placeholder="Full Name">
+                                        <input type="text" maxlength="80" id="txt_fullname" name="txt_fullname"
+                                            class="form__input form__input--2" placeholder="Full Name">
                                     </div>
                                     <div class="form__group mb--20">
-                                        <input type="number" maxlength="11" minlength="10" id="txt_mobile_no" name="txt_mobile_no" class="form__input form__input--2 callnoinput" placeholder="Alt. Mobile No.">
+                                        <input type="number" maxlength="11" minlength="10" id="txt_mobile_no"
+                                            name="txt_mobile_no" class="form__input form__input--2 callnoinput"
+                                            placeholder="Alt. Mobile No.">
                                     </div>
                                     <div class="form__group mb--20">
-                                        <textarea maxlength="250" class="form__input form__input--textarea" id="txt_address" name="txt_address" placeholder="Full Address*"></textarea>
+                                        <textarea maxlength="250" class="form__input form__input--textarea"
+                                            id="txt_address" name="txt_address" placeholder="Full Address*"></textarea>
                                     </div>
                                     <div class="form__group mb--20">
-                                        <select id="state" class="form__input form__input--2" name="state" placeholder="Select State">
+                                        <select id="state" class="form__input form__input--2" name="state"
+                                            placeholder="Select State">
                                             <option>Select State</option>
                                             <option value="Andhra Pradesh">Andhra Pradesh</option>
                                             <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -286,13 +348,16 @@
                                         </select>
                                     </div>
                                     <div class="form__group mb--20">
-                                        <input type="text" maxlength="50" id="txt_city_village" name="txt_city_village" class="form__input form__input--2" placeholder="City/Town/Village">
+                                        <input type="text" maxlength="50" id="txt_city_village" name="txt_city_village"
+                                            class="form__input form__input--2" placeholder="City/Town/Village">
                                     </div>
                                     <div class="form__group mb--20">
-                                        <input type="number" maxlength="6" id="txt_pincode" name="txt_pincode" class="form__input form__input--2" placeholder="Pincode">
+                                        <input type="number" maxlength="6" id="txt_pincode" name="txt_pincode"
+                                            class="form__input form__input--2" placeholder="Pincode">
                                     </div>
                                     <div class="form__group">
-                                        <button type="submit" id="btn_submit" name="btn_submit" class="btn btn-fullwidth btn-style-1">Save Address</button>
+                                        <button type="submit" id="btn_submit" name="btn_submit"
+                                            class="btn btn-fullwidth btn-style-1">Save Address</button>
                                     </div>
                                     <div class="form__output"></div>
                                 </form>
@@ -308,4 +373,3 @@
         @include("website.account.component.banner-section")
     </div>
 @endsection
-

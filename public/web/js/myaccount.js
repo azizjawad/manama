@@ -67,6 +67,11 @@ $( document ).ready(function() {
         let button = $(this);
         let billing_address = $('input[name="billing_address"]').is(':checked');
         let payment_method = $('input[name="payment-method"]').is(':checked');
+        const coupon_code = $('input[name="cart_details"]').attr('data-coupon_code');
+        const discount = $('input[name="cart_details"]').attr('data-discount');
+        const shipping_charges = $('input[name="cart_details"]').attr('data-shipping_charges');
+        const coupon_type = $('input[name="cart_details"]').attr('data-coupon_type');
+        const total = $('input[name="cart_details"]').attr('data-total');
         if(billing_address) {
             $.ajax({
                 url: 'place-order',
@@ -74,7 +79,12 @@ $( document ).ready(function() {
                     'billing_address' : $('#billing_address').val(),
                     'shipping_address' : $('#shipping_address').val(),
                     'gstn_no' : $('#gstn_no').val(),
-                    'transaction_type' : payment_method
+                    'transaction_type' : payment_method,
+                    'coupon_code' : coupon_code,
+                    'discount' : discount,
+                    'shipping_charges' : shipping_charges,
+                    'coupon_type' : coupon_type,
+                    'total' : total,
                 },
                 type:"post",
                 headers: {
