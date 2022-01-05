@@ -17,7 +17,7 @@ class ModifyOrdersTable extends Migration
             // $table->renameColumn('trasaction_type','transaction_type');
             // $table->dropColumn('product_coupon');
             // $table->dropColumn('shipping_coupon');
-            $table->string('sub_total')->after('transaction_type');
+            $table->string('sub_total')->after('trasaction_type');
             $table->string('discount')->after('sub_total')->nullable();
             $table->boolean('coupon_type')->after('sub_total')->nullable();
             $table->string('coupon_code')->after('coupon_type')->nullable();
