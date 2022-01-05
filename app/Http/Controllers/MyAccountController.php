@@ -7,7 +7,7 @@ use App\Models\OrdersModel;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Validator;
 use Auth;
-
+use Log;
 
 class MyAccountController extends Controller
 {
@@ -50,7 +50,13 @@ class MyAccountController extends Controller
         return view('website/account/user-settings');
     }
 
-    public function checkout() {
+    public function checkout(Request $request) {
+        $data['discountArray'] = array();
+        if($request->post('coupon_code') != ''){
+            $data['discountArray']= self::apply_coupon($request);
+        }
+        \Log::info("discountArray");
+        \Log::info( $data['discountArray'] );
         $data['my_address_list'] = MyaccountModel::where('user_id', $this->logged_in_id->id)->get();
         $data['cart'] = MyCartController::get_cart_data($this->logged_in_id->id);
         return view('website/account/checkout', $data);
@@ -130,5 +136,66 @@ class MyAccountController extends Controller
             else
                 return response(['status' => false], 500);
         }
+    }
+    public static function apply_coupon($request) {
+
+        $post = $request->post();
+        $validator = Validator::make($post, [
+            'coupon_code'  => ['required']
+        ]);;
+
+        if ($validator->fails()){
+            return response(['status' => false, 'errors' => $validator->errors()], 400);
+        }else {
+            $status = false;
+            $coupon = \App\Models\CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
+            Log::info("coupon");
+            Log::info( $coupon );
+            if(!empty ($coupon) ) {
+                $cartDetails = self::getCartTotal(Auth::id());
+                Log::info("cartDetails");
+                Log::info( $cartDetails );
+                $totalAmt = $cartDetails->cart_total;
+                if(strpos($coupon->coupon_value, '%') !== false ) {
+                    Log::info("percentage discount >>");
+                    $couponValue  = str_replace('%','',$coupon->coupon_value);
+                    $discount = $totalAmt * ($couponValue / 100);
+                    Log::info("couponValue");
+                    Log::info( $couponValue );
+                    Log::info("discount");
+                    Log::info( $discount );
+                } else {
+                    Log::info("normal discount >> ");
+                    $discount = $coupon->coupon_value;
+                    Log::info("discount");
+                    Log::info( $discount );
+                }
+                $discountedTotal = $totalAmt - $discount;
+                $message = 'Coupon Applied';
+            } else {
+                $message = 'Invalid Coupon';
+            }
+            $discountArray = array(
+                'coupon_code' => $post['coupon_code'],
+                'discount' => $discount,
+                'discountedTotal' => $discountedTotal,
+                'message' => $message,
+            );
+            return $discountArray;
+            // if ($status)
+            //     return response(['status' => true, 'message' => $message, 'discount' => $discount]);
+            // else
+            //     return response(['status' => false, 'message' => $message], 500);
+        }
+    }
+
+    public function getCartTotal($user_id){
+        return \App\Models\CartModel::select([\DB::raw('SUM(product_info.cost_price * cart.quantity) as cart_total')])
+        ->join('product_info','cart.product_info_id','product_info.id')
+        ->join('products','product_info.product_id','products.id')
+        ->where('cart.user_id', $user_id)
+        ->where('products.status',1)
+        ->where('product_info.is_in_stock',1)
+        ->first();
     }
 }

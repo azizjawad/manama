@@ -13,7 +13,7 @@ $(document).on('click', '.add_to_wishlist_btn', function () {
 
 function toggleWishList(product_info_id) {
     if (!userExists) {
-        // user is not logged in then create sesion and redirect to login
+        // user is not logged in then create cookie and redirect to login
         const cookieData = {
             cookie_name: 'link_referral',
             cookie_value: {

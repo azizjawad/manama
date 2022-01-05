@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Unique;
+use Log;
 
 class MyCartController extends Controller
 {
@@ -125,18 +126,33 @@ class MyCartController extends Controller
         }else {
             $status = false;
             $coupon = CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
+            Log::info("coupon");
+            Log::info( $coupon );
             if(!empty ($coupon) ) {
-                if(strpos($coupon['coupon_value'], '%') !== false ) {
-
+                $cartDetails = self::getCartTotal(Auth::id());
+                Log::info("cartDetails");
+                Log::info( $cartDetails );
+                $totalAmt = $cartDetails->cart_total;
+                if(strpos($coupon->coupon_value, '%') !== false ) {
+                    Log::info("percentage discount >>");
+                    $couponValue  = str_replace('%','',$coupon->coupon_value);
+                    $discount = $totalAmt - ($totalAmt * ($couponValue / 100));
+                    Log::info("couponValue");
+                    Log::info( $couponValue );
+                    Log::info("discount");
+                    Log::info( $discount );
                 } else {
-
+                    Log::info("normal discount >> ");
+                    $discount = $totalAmt - $coupon->coupon_value;
+                    Log::info("discount");
+                    Log::info( $discount );
                 }
                 $message = 'Coupon Applied';
             } else {
                 $message = 'Invalid Coupon';
             }
             if ($status)
-                return response(['status' => true, 'message' => $message]);
+                return response(['status' => true, 'message' => $message, 'discount' => $discount]);
             else
                 return response(['status' => false, 'message' => $message], 500);
         }
@@ -195,5 +211,15 @@ class MyCartController extends Controller
             }
             return response(['status' => false, 'message'], 500);
         }
+    }
+
+    public function getCartTotal($user_id){
+        return CartModel::select([\DB::raw('SUM(product_info.cost_price * cart.quantity) as cart_total')])
+        ->join('product_info','cart.product_info_id','product_info.id')
+        ->join('products','product_info.product_id','products.id')
+        ->where('cart.user_id', $user_id)
+        ->where('products.status',1)
+        ->where('product_info.is_in_stock',1)
+        ->first();
     }
 }
