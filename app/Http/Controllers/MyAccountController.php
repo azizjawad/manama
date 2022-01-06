@@ -60,6 +60,17 @@ class MyAccountController extends Controller
         $data['discountArray'] = array();
         if($request->post('coupon_code') != ''){
             $data['discountArray']= self::apply_coupon($request,  $data['shippingDetails']);
+        }else if( $request->post('coupon_code') == NULL ){
+            Log::info("coupon is null");
+            $data['discountArray'] = array(
+                'coupon_code' => '',
+                'discount' => '',
+                'discountedTotal' => '',
+                'message' => '',
+                'product_type' => '',
+                'errorMessage' => '',
+                'invalidCoupon' => false,
+            );
         }
         \Log::info("discountArray");
         \Log::info( $data['discountArray'] );
@@ -149,7 +160,15 @@ class MyAccountController extends Controller
         ]);;
 
         if ($validator->fails()){
-            return response(['status' => false, 'errors' => $validator->errors()], 400);
+            return array(
+                'coupon_code' => '',
+                'discount' => '',
+                'discountedTotal' => '',
+                'message' => '',
+                'product_type' => '',
+                'errorMessage' => 'Coupon Code is required',
+                'invalidCoupon' => false,
+            );
         }else {
             $status = false;
             $coupon = \App\Models\CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
@@ -181,6 +200,15 @@ class MyAccountController extends Controller
                 $message = 'Coupon Applied';
             } else {
                 $message = 'Invalid Coupon';
+                return array(
+                    'coupon_code' => '',
+                    'discount' => '',
+                    'discountedTotal' => '',
+                    'message' => '',
+                    'product_type' => '',
+                    'errorMessage' => 'Coupon Code is required',
+                    'invalidCoupon' => true,
+                );
             }
             $discountArray = array(
                 'coupon_code' => $post['coupon_code'],
@@ -188,6 +216,8 @@ class MyAccountController extends Controller
                 'discountedTotal' => $discountedTotal,
                 'message' => $message,
                 'product_type' => $coupon->product_type,
+                'errorMessage' => '',
+                'invalidCoupon' => false,
             );
             return $discountArray;
             // if ($status)
