@@ -392,14 +392,5 @@
             }
             $('#coupon_info_form').submit();
         }
-        // $( "#btn_coupon_code" ).submit(function( event ) {
-        //     console.log('btn_coupon_code');
-        //     event.preventDefault();
-        //     if($('#coupon_code').val() == ''){
-        //         $('.coupon_code_error').show();
-        //         return false;
-        //     }
-        //     $('#btn_coupon_code').submit();
-        // });
     </script>
 @endsection
