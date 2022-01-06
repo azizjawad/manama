@@ -29,12 +29,17 @@
             <div class="container">
                 <div class="row pt--80 pt-md--60 pt-sm--40">
                     <div class="col-12">
-
+                        @php
+                            $couponValidFlag = false;
+                            if( isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' && (isset($discountArray['invalidCoupon']) && !$discountArray['invalidCoupon']) ){
+                                $couponValidFlag = true;
+                            }
+                        @endphp
                         <div class="message-box coupon-added mb--30 mb-sm--20 "
-                            style="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? '' : 'display:none' }}">
+                            style="{{ $couponValidFlag ? '' : 'display:none' }}">
                             <p>
                                 <i class="fa fa-check-circle"></i> Coupon Code
-                                {{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? $discountArray['coupon_code'] : '' }}
+                                {{ $couponValidFlag ? $discountArray['coupon_code'] : '' }}
                                 Applied! You got a <i class="fas fa-rupee-sign" aria-hidden="true"></i>
                                 {{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : '' }}
                                 discount on order.
@@ -46,21 +51,27 @@
 
                         <!-- Add Coupon - incase if coupon was not added at Cart -->
                         <div class="user-actions user-actions__coupon"
-                            style="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? 'display:none' : '' }}">
+                            style="{{ $couponValidFlag != '' ? 'display:none' : '' }}">
                             <div class="message-box mb--30 mb-sm--20">
                                 <p>
                                     <i class="fa fa-exclamation-circle"></i> Have A Coupon?
                                     <a class="expand-btn" href="#coupon_info">Click Here To Enter Your Code.</a>
                                 </p>
                             </div>
-                            <div id="coupon_info" class="user-actions__form hide-in-default ">
-                                <form action="/account/checkout" class="form" type="POST">
+                            <div id="coupon_info" class="user-actions__form {{ ( isset($discountArray['errorMessage']) && $discountArray['errorMessage'] != '' ) ? '':'hide-in-default' }} ">
+                                <form action="/account/checkout" class="form" type="POST" id="coupon_info_form">
                                     <p>If you have a coupon code, please apply it below.</p>
                                     <div class="form__group d-sm-flex">
                                         <input type="text" name="coupon_code" id="coupon_code"
-                                            class="form__input form__input--2 mr--20 mr-xs--0 " placeholder="Coupon Code">
-                                        <button type="submit" class="btn btn-medium btn-style-1 ">Apply Coupon</button>
+                                            class="form__input form__input--2 mr--20 mr-xs--0 " placeholder="Coupon Code" >
+                                       
+                                        <button type="button" onClick="validateCouponCode()" class="btn btn-medium btn-style-1 btn_coupon_code">Apply Coupon</button>
                                     </div>
+                                    <span class="coupon_code_error"  style="display:none; color: red">Coupon Code is required</span>
+                                     @if ( isset($discountArray['invalidCoupon']) && $discountArray['invalidCoupon']  )
+                                        <span class="coupon_code_valid"  style=" color: red">Coupon Code is inValid</span>
+                                      @endif
+
                                 </form>
                             </div>
                         </div>
@@ -372,4 +383,23 @@
         <!-- Address  Modal End -->
         @include("website.account.component.banner-section")
     </div>
+    <script>
+        function validateCouponCode(){
+                $('.coupon_code_error').hide();
+            if($('#coupon_code').val() == ''){
+                $('.coupon_code_error').show();
+                return false;
+            }
+            $('#coupon_info_form').submit();
+        }
+        // $( "#btn_coupon_code" ).submit(function( event ) {
+        //     console.log('btn_coupon_code');
+        //     event.preventDefault();
+        //     if($('#coupon_code').val() == ''){
+        //         $('.coupon_code_error').show();
+        //         return false;
+        //     }
+        //     $('#btn_coupon_code').submit();
+        // });
+    </script>
 @endsection
