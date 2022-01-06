@@ -13,12 +13,12 @@
                     <div class="col-md-6 col-12">
                         <div class="dashboard-tab">
                             <h3 class="sub-title"><span>Latest Order</span></h3>
-                            
-                            @if(isset($orders) && !empty($orders)) 
+
+                            @if(isset($orders[0]) && !empty($orders))
 
                                 <p class="order-date"><sup>Order Date</sup> {{date('d M, Y, h:m', strtotime($orders[0]->created_at))}}</p>
                                 <h1><sup>Order No.</sup> {{$orders[0]->order_no}}</h1>
-                                @php    
+                                @php
                                     $productCount = $orders[0]->product_info->count() -1 ;
                                     $productCountSubText = '';
                                     if($productCount == 1){
@@ -50,7 +50,7 @@
                                                             @break
                                                         @default
                                                         Processing
-                                                    @endswitch    
+                                                    @endswitch
                                                 </td>
                                                 <td>{{$history->description}}</td>
                                             </tr>
@@ -59,7 +59,7 @@
                                     </table>
                                 </div>
                             @endif
-                            
+
                         </div>
                     </div>
                 </div>

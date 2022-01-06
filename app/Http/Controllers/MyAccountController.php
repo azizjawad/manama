@@ -25,6 +25,7 @@ class MyAccountController extends Controller
     {
         $data['orders'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
         ->where('user_id', $this->logged_in_id->id)->orderBy('orders.id', 'desc')->get();
+
         return view('website/account/my-account', $data);
     }
 
@@ -101,7 +102,7 @@ class MyAccountController extends Controller
         if ($validator->fails()){
             return response(['status' => false, 'errors' => $validator->errors()], 400);
         }else {
-            
+
             $fields = [
                 'label'         => $post['txt_label'],
                 'fullname'      => $post['txt_fullname'],
@@ -112,7 +113,7 @@ class MyAccountController extends Controller
                 'pincode'       => $post['txt_pincode'],
                 'user_id'       => $this->logged_in_id->id,
             ];
-            
+
             if (isset($post['my_address_id'])) {
                 $fields['modified_by'] = $this->logged_in_id->id;
                 $message = 'Address details updated successfully.';
@@ -143,7 +144,7 @@ class MyAccountController extends Controller
             $fields['modified_by'] = $this->logged_in_id->id;
             $fields['deleted_at'] = date('Y-m-d H:i:s');
             $status = MyaccountModel::where('id', $post['row_id'])->update($fields);
-        
+
 
             if ($status)
                 return response(['status' => true, 'message' => 'Address deleted successfully']);

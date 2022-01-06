@@ -17,7 +17,7 @@ class IsDefault
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user()->role == 'default')
+        if ($request->user() && $request->user()->role == 'default' || $request->user()->role == 'admin')
         {
             return $next($request);
         }
