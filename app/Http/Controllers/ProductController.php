@@ -6,7 +6,10 @@ use App\Models\CategoriesModel;
 use App\Models\NewsEventModel;
 use App\Models\ProductsGalleryModel;
 use App\Models\ProductsModel;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Log;
 
 class ProductController extends Controller
 {
@@ -30,6 +33,7 @@ class ProductController extends Controller
                 if (isset($data['product'][0]->meta_title)) {
                     $data['meta_title'] = $data['product'][0]->meta_title;
                     $data['meta_description'] = $data['product'][0]->meta_description;
+                    $data['reviews'] = Reviews::get();
                     return view('website/products', $data);
                 }
             }
@@ -80,4 +84,29 @@ class ProductController extends Controller
         return ['product' => $products, 'gallery' => $gallery, 'related_products' => $related_products];
     }
 
+    public function saveReview(Request $request){
+        try {
+            $post = $request->all();
+            $rules = array(
+                'rating' => 'required|numeric',
+                'comment' => 'required',
+            );
+            // validator Rules
+            $validator = Validator::make($post, $rules);
+            if ($validator->fails()){
+                return response()->json(['status' => false, 'errors' => $validator->errors()], 200);
+            }
+
+            Reviews::create([
+                'user_id' => \Auth::id(),
+                'product_id' => $post['product_id'],
+                'rating' => $post['rating'],
+                'comment' => $post['comment'],
+            ]);
+            return response()->json(['status' => true, 'errors' => false, 'message' => 'Review Submitted Successfully'], 200);
+        } catch (\Exception $e) {
+            Log::critical("Oops!! some error occured while saving review");
+            Log::critical($e);
+        }
+    }
 }

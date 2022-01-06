@@ -163,3 +163,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 // sessions
 Route::post('create-cookie', 'App\Http\Controllers\CookieController@createCookie')->name('createCookie');
+Route::post('save-review', 'App\Http\Controllers\ProductController@saveReview')->name('saveReview');

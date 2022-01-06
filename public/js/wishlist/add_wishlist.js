@@ -1,7 +1,7 @@
 const baseUrl = window.location.origin;
 $(document).ready(function () {
     setTimeout(() => {
-        if (wishListProduct) {
+        if (wishListProduct && reference_type == 'wishlist') {
             toggleWishList(wishListProduct);
         }
     }, 1000);
@@ -18,7 +18,8 @@ function toggleWishList(product_info_id) {
             cookie_name: 'link_referral',
             cookie_value: {
                 redirectTo: window.location.href,
-                product_info_id: product_info_id
+                product_info_id: product_info_id,
+                reference_type: 'wishlist'
             }
         }
         $.ajax({
