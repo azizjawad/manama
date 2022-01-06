@@ -1050,5 +1050,31 @@
             });
         }
     })
+    
 })(jQuery);
 
+function loginValidityForReview(reference_type){
+    const cookieData = {
+        cookie_name: 'link_referral',
+        cookie_value: {
+            redirectTo: window.location.href,
+            product_info_id: false,
+            reference_type:reference_type
+        }
+    }
+    $.ajax({
+        type: 'POST',
+        url: window.location.origin + '/create-cookie',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: cookieData,
+        cache: false,
+        success: function (response) {
+            window.location.href = '/login';
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
