@@ -13,4 +13,8 @@ class OrderDetailsModel extends Model
     public $table = "order_details";
 
     use SoftDeletes;
+
+    function product_info(){
+        return $this->hasMany(\App\Models\ProductInfoModel::class,  'id', 'product_info_id');
+    }
 }

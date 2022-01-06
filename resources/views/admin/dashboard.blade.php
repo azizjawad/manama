@@ -1,489 +1,330 @@
 @extends('admin.layout')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <h1>Dashboard Ecommerce</h1>
-        <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
-        </nav>
-        <div class="separator mb-5"></div>
-    </div>
-    <div class="col-lg-12 col-xl-12">
+    <div class="row">
+        <div class="col-12">
+            <h1>Dashboard Ecommerce</h1>
+            <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+            </nav>
+            <div class="separator mb-5"></div>
+        </div>
+        <div class="col-lg-12 col-xl-12">
 
-        <div class="row">
-            <div class="col-12 col-md-6 mb-5 order-md-2">
-                <div class="card">
-                    <div class="position-absolute card-top-buttons">
-                        <button class="btn btn-header-light icon-button">
-                            <i class="simple-icon-refresh"></i></button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Recent Orders</h5>
-                        <div class="scroll dashboard-list-with-thumbs">
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-2 font-weight-bold">MFF5000<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">New</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 855.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-2 font-weight-bold">MFF4999<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Packed</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 780.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-2 font-weight-bold">MFF4998<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Shipped</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 975.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-2 font-weight-bold">MFF4997<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF4996<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF4995<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF4995<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF49964<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF4993<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF4992<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-                            <div class="row mb-2 py-md-3 align-items-center border-style-01">
-                                <div class="col-md-auto col-3">
-                                    <div class="card colorBox cal-card">
-                                        <p class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">09<small class="text-small d-block">June</small><small class="text-small d-block">2021</small></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-9">
-                                    <a href="#">
-                                        <p class="list-item-heading mb-0 font-weight-bold">MFF4991<span class="badge badge-pill top-pos badge-theme-1 text-uppercase">Delivered</span></p>
-                                        <p class="mb-1 text-small font-weight-bolder">Lime and Mint Mojito 750ml and more</p>
-                                        <p class="list-item-heading mb-0 font-weight-bold"><i class="las la-rupee-sign"></i> 700.00</p>
-                                        <div class="pr-4 d-block">
-                                            <p class="text-extra-small mb-0 line-height-2">Orderd by - John Smith</p>
-                                            <p class="text-extra-small mb-0 line-height-2">Txn ID - 5e57984b0cf79d47aa6d</p>
-                                        </div>
-
-                                    </a>
-                                </div>
-                                <div class="col-md-auto col-12 text-right">
-                                    <a href="Dashboard.Orders.Details.html" class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                    <a href="Pages.Misc.Invoice.Standalone.html" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
-                                </div>
-                            </div>
-
-
-                        </div></div>
-                </div></div>
-
-            <div class="col-12 col-md-6 mb-2 order-md-1">
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="py-2 px-3">
-                            <h4 class="mb-0 font-weight-bold">Sales Summary</h4>
+            <div class="row">
+                <div class="col-12 col-md-6 mb-5 order-md-2">
+                    <div class="card">
+                        <div class="position-absolute card-top-buttons">
+                            <button class="btn btn-header-light icon-button" onclick="window.location.reload()">
+                                <i class="simple-icon-refresh"></i></button>
                         </div>
-                    </div>
-                </div>
-                <div class="row sortable">
-                    <div class="col-6 col-md-4 mb-5">
-                        <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Orders</h5>
+                            <div class="scroll dashboard-list-with-thumbs">
+                                @foreach ($data['recent_orders'] as $order)
+                                    <div class="row mb-2 py-md-3 align-items-center border-style-01">
+                                        <div class="col-md-auto col-3">
+                                            <div class="card colorBox cal-card">
+                                                <p
+                                                    class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">
+                                                    {{ date('d') }}<small
+                                                        class="text-small d-block">{{ date('M') }}</small><small
+                                                        class="text-small d-block">{{ date('Y') }}</small></p>
 
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">New Orders</p>
-                                <h3 class="lead color-theme-1 mb-1 value">9</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-9">
+                                            <a href="#">
+                                                <p class="list-item-heading mb-2 font-weight-bold">
+                                                    {{ $order->order_no }}<span
+                                                        class="badge badge-pill top-pos badge-theme-1 text-uppercase">
+                                                        @switch($order->status)
+                                                            @case(1)
+                                                                Processing
+                                                            @break
+                                                            @default
+                                                                Processing
+                                                        @endswitch
+                                                    </span></p>
+                                                <p class="mb-1 text-small font-weight-bolder">
+                                                    @php
+                                                        $orderDetails = $order->order_details->first();
+                                                        $productCount = $orderDetails->count() - 1;
+                                                        $productCountSubText = '';
+                                                        if ($productCount == 1) {
+                                                            $productCountSubText = ' and ' . $productCount . ' item';
+                                                        } elseif ($productCount > 1) {
+                                                            $productCountSubText = ' and ' . $productCount . ' items';
+                                                        }
+                                                        $productVariant = $orderDetails->product_info->first();
+                                                        
+                                                        echo $productVariantText = 'Your order for ' . $productVariant->listing_name . ' ' . $productCountSubText;
+                                                    @endphp
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 mb-5">
-                        <div class="card">
+                                                </p>
+                                                <p class="list-item-heading mb-0 font-weight-bold"><i
+                                                        class="las la-rupee-sign"></i>
+                                                    {{ number_format($order->total_amount) }}</p>
+                                                <div class="pr-4 d-block">
+                                                    <p class="text-extra-small mb-0 line-height-2">Orderd by -
+                                                        {{ $order->order_by->name }}</p>
+                                                    <p class="text-extra-small mb-0 line-height-2">Txn ID -
+                                                        {{ $order->trasaction_id }}</p>
+                                                </div>
 
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Pending Orders</p>
-                                <h3 class="lead color-theme-1 mb-1 value">19</h3>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-auto col-12 text-right">
+                                            <a href="Dashboard.Orders.Details.html"
+                                                class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
+                                            <a href="Pages.Misc.Invoice.Standalone.html" target="_blank"
+                                                class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
+                                        </div>
+                                    </div>
+                                @endforeach
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 mb-5">
-                        <div class="card">
-
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Completed Orders</p>
-                                <h3 class="lead color-theme-1 mb-1 value">219</h3>
 
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="py-2 px-3">
-                            <h4 class="mb-0 font-weight-bold">Revenue Summary</h4>
+
+                <div class="col-12 col-md-6 mb-2 order-md-1">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="py-2 px-3">
+                                <h4 class="mb-0 font-weight-bold">Sales Summary</h4>
+                            </div>
                         </div>
+                    </div>
+                    <div class="row sortable">
+                        <div class="col-6 col-md-4 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">New Orders</p>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['new_sales'] }}</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Pending Orders</p>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['pending_orders'] }}</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Completed Orders</p>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['completed_orders'] }}</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="py-2 px-3">
+                                <h4 class="mb-0 font-weight-bold">Revenue Summary</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row sortable">
+                        <div class="col-6 col-md-6 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Daily Sales</p>
+                                    <h3 class="lead color-theme-1 mb-1 value"><i
+                                            class="las la-rupee-sign"></i>{{ number_format($data['daily_sales']) }}</h3>
+                                    <p class="mb-0 font-weight-bold"><small class="d-block">* Resets daily.</small>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Monthly Sales</p>
+                                    <h3 class="lead color-theme-1 mb-1 value"><i
+                                            class="las la-rupee-sign"></i>{{ number_format($data['monthly_sales']) }}</h3>
+                                    <p class="mb-0 font-weight-bold"><small class="d-block">For the Month of
+                                            {{ date('M Y') }}</small></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Total Sales Value</p>
+                                    <h3 class="lead color-theme-1 mb-1 value"><i
+                                            class="las la-rupee-sign"></i>{{ number_format($data['total_sales']) }}</h3>
+                                    <p class="mb-0 font-weight-bold"><small class="d-block">Aggretated Value of all
+                                            Pending & Completed Orders</small></p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
-                <div class="row sortable">
-                    <div class="col-6 col-md-6 mb-5">
-                        <div class="card">
 
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Daily Sales</p>
-                                <h3 class="lead color-theme-1 mb-1 value"><i class="las la-rupee-sign"></i>1,610</h3>
-                                <p class="mb-0 font-weight-bold"><small class="d-block">* Resets daily.</small></p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6 mb-5">
-                        <div class="card">
-
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Monthly Sales</p>
-                                <h3 class="lead color-theme-1 mb-1 value"><i class="las la-rupee-sign"></i>31,610</h3>
-                                <p class="mb-0 font-weight-bold"><small class="d-block">For the Month of June 2020</small></p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-5">
-                        <div class="card">
-
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Total Sales Value</p>
-                                <h3 class="lead color-theme-1 mb-1 value"><i class="las la-rupee-sign"></i>12,31,610</h3>
-                                <p class="mb-0 font-weight-bold"><small class="d-block">Aggretated Value of all Pending & Completed Orders</small></p>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
             </div>
 
-        </div>
+            <div class="row">
 
-        <div class="row">
+                <div class="col-12 col-md-9 mb-5">
+                    <div class="card">
 
-            <div class="col-12 col-md-9 mb-5">
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">New Registration</h5>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Contact</th>
-                                    <th scope="col">View Details</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">Sriram V</th>
-                                    <td>vsriram803@gmail.com</td>
-                                    <td>9790847467</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rishab Sharma</th>
-                                    <td>rishab@rishabsharma.in</td>
-                                    <td>9999020548</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Akhil</th>
-                                    <td>akhilnayak93@gmail.com</td>
-                                    <td>9480723193</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sriram V</th>
-                                    <td>vsriram803@gmail.com</td>
-                                    <td>9790847467</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rishab Sharma</th>
-                                    <td>rishab@rishabsharma.in</td>
-                                    <td>9999020548</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Akhil</th>
-                                    <td>akhilnayak93@gmail.com</td>
-                                    <td>9480723193</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sriram V</th>
-                                    <td>vsriram803@gmail.com</td>
-                                    <td>9790847467</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rishab Sharma</th>
-                                    <td>rishab@rishabsharma.in</td>
-                                    <td>9999020548</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Akhil</th>
-                                    <td>akhilnayak93@gmail.com</td>
-                                    <td>9480723193</td>
-                                    <td><a href="javascript:void(0)" data-toggle="modal" data-target="#customerDetails" class="las la-eye btn btn-secondary mx-1"></a></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div></div>
-            <div class="col-12 col-md-3 mb-5">
-
-                <div class="row sortable">
-                    <div class="col-12 mb-5">
-                        <div class="card">
-
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Daily New Registration</p>
-                                <h3 class="lead color-theme-1 mb-1 value">12</h3>
-
+                        <div class="card-body">
+                            <h5 class="card-title">New Registration</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Contact</th>
+                                            <th scope="col">View Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data['new_registrations'] as $user)
+                                            <tr>
+                                                <th scope="row">{{$user->name}}</th>
+                                                <td>{{$user->email}}</td>
+                                                <td>{{$user->mobile}}</td>
+                                                <td> <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 mb-5">
-                        <div class="card">
+                </div>
+                <div class="col-12 col-md-3 mb-5">
 
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Monthly New Users</p>
-                                <h3 class="lead color-theme-1 mb-1 value">81</h3>
+                    <div class="row sortable">
+                        <div class="col-12 mb-5">
+                            <div class="card">
 
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Daily New Registration</p>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['daily_new_registration'] }}</h3>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 mb-5">
-                        <div class="card">
+                        <div class="col-12 mb-5">
+                            <div class="card">
 
-                            <div class="card-body justify-content-between align-items-center">
-                                <p class="mb-1 font-weight-bold">Total Users</p>
-                                <h3 class="lead color-theme-1 mb-1 value">2796</h3>
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Monthly New Users</p>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['monthly_new_registration'] }}</h3>
 
+                                </div>
                             </div>
                         </div>
+                        <div class="col-12 mb-5">
+                            <div class="card">
+
+                                <div class="card-body justify-content-between align-items-center">
+                                    <p class="mb-1 font-weight-bold">Total Users</p>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['total_users'] }}</h3>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
+        </div>
 
+        <div class="modal fade bd-example-modal-lg" id="customerDetails" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Customer Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 text-left">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+    
+                                        <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">Customer Name</td>
+                                            <td>John Doe Smith</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Customer Status</td>
+                                            <td>Active</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Wishlist Products</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Total Orders</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Mobile No.</td>
+                                            <td>+91-9876543210</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">E-mail</td>
+                                            <td>john.dsmith@gmail.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Delivery Address 1</td>
+                                            <td>
+                                                <b>Home Address</b><br>
+                                                Jason Smith<br>
+                                                Jewel World, 175, Kalbadevi Road,
+                                                Marine Lines East, Panjarpole,
+                                                Bhuleshwar, Mumbai, Maharashtra 400018<br>
+                                                Alternate Mobile Number : +91-9877895411
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Delivery Address 2</td>
+                                            <td>
+                                                <b>Office Address</b><br>
+                                                Jason Smith<br>
+                                                Jewel World, 175, Kalbadevi Road,
+                                                Marine Lines East, Panjarpole,
+                                                Bhuleshwar, Mumbai, Maharashtra 400018<br>
+                                                Alternate Mobile Number : +91-7877895411</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-</div>
 @endsection

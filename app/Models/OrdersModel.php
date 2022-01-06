@@ -18,7 +18,15 @@ class OrdersModel extends Model
         return $this->hasMany(\App\Models\OrderHistory::class,  'order_id','id');
     }
 
+    function order_details(){
+        return $this->hasMany(\App\Models\OrderDetailsModel::class,  'order_id','id');
+    }
+
     function product_info(){
         return $this->hasMany(\App\Models\ProductInfoModel::class,  'id', 'product_info_id');
+    }
+
+    function order_by(){
+        return $this->belongsTo(\App\Models\User::class,  'created_by', 'id');
     }
 }
