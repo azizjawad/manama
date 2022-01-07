@@ -149,8 +149,4 @@ class WebsiteController extends Controller
         curl_close($req);
         echo $resp;
     }
-
-    public function online_payments(Request $request){
-        return $request->all();
-    }
 }
