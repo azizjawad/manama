@@ -218,7 +218,7 @@
                                         <b>1L</b>, <b>5L</b> is not available for purchase at our estore and can only be
                                         bought from our retail store or
                                         with our distributors and retailers. In case you have any questions,
-                                        <a href="support-centre.html">contact us </a>
+                                        <a href="{{route('support-center')}}">contact us </a>
                                     </div>
                                 </div>
                             </form>
@@ -547,7 +547,7 @@
                                         </h3>
                                     </div>
                                 </div>
-                                <a class="banner-link banner-overlay" href="support-centre.html">
+                                <a class="banner-link banner-overlay" href="{{route('support-center')}}">
                                 </a>
                             </div>
                         </div>
@@ -562,7 +562,7 @@
 
     </div>
     <script>
-      
+
         const userExists = '{{ \Auth::user() ? true : false }}';
         let wishListProduct = '{{ \Session::get('product_info_id') }}';
         const refreshPage = 'wishlist';

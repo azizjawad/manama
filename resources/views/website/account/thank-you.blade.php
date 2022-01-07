@@ -37,11 +37,11 @@
                             <h4 class="sub-title"><span>What's Next?</span></h4>
                         </div>
                         <ul class="thank-you-links row justify-content-center g-2">
-                            <li class="col-4"><a href="order-details.html"><i class="fas fa-dolly-flatbed"></i>
+                            <li class="col-4"><a href="{{route('order-history')}}"><i class="fas fa-dolly-flatbed"></i>
                                     Track Order<small>Track your Current &amp; Past Orders</small></a></li>
                             <li class="col-4"><a href="{{route('my-account')}}"><i class="fas fa-desktop"></i>
                                     My Account<small>Manage your Account with us</small></a></li>
-                            <li class="col-4"><a href="support-centre.html"><i class="far fa-life-ring"></i>
+                            <li class="col-4"><a href="{{route('support-center')}}"><i class="far fa-life-ring"></i>
                                     Support Centre<small>Looking for help?</small></a></li>
                         </ul>
                     </div>

@@ -182,9 +182,9 @@ class MyCartController extends Controller
             $orders = [
                 'user_id'               => $user_id,
                 'order_no'              => $order_no,
-                'transaction_type'       => $post['transaction_type'],
+                'trasaction_type'       => $post['transaction_type'],
                 'total_amount'          => $post['total'],
-                'trasaction_id'         => null,
+                'trasaction_id'         => $post['transaction_id'] ?? null,
                 'sub_total'             => $sub_total,
                 'discount'              => $post['discount'],
                 'shipping_charges'      => $post['shipping_charges'],

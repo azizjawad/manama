@@ -63,52 +63,7 @@ $( document ).ready(function() {
         }
     });
 
-    $('#btn_place_order').on('click', function() {
-        let button = $(this);
-        let billing_address = $('input[name="billing_address"]').is(':checked');
-        let payment_method = $('input[name="payment-method"]').is(':checked');
-        const coupon_code = $('input[name="cart_details"]').attr('data-coupon_code');
-        const discount = $('input[name="cart_details"]').attr('data-discount');
-        const shipping_charges = $('input[name="cart_details"]').attr('data-shipping_charges');
-        const coupon_type = $('input[name="cart_details"]').attr('data-coupon_type');
-        const total = $('input[name="cart_details"]').attr('data-total');
-        if(billing_address) {
-            $.ajax({
-                url: 'place-order',
-                data: {
-                    'billing_address' : $('#billing_address').val(),
-                    'shipping_address' : $('#shipping_address').val(),
-                    'gstn_no' : $('#gstn_no').val(),
-                    'transaction_type' : payment_method,
-                    'coupon_code' : coupon_code,
-                    'discount' : discount,
-                    'shipping_charges' : shipping_charges,
-                    'coupon_type' : coupon_type,
-                    'total' : total,
-                },
-                type:"post",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                beforeSend: () => {
-                    button.attr('disabled',true).text('Please wait..');
-                },
-                success: (res) => {
-                    button.attr('disabled', false).text('Place Order');
-                    if(res.status === true) {
-                        window.location.href = 'thank-you';
-                        success_notification(res.message);
-                    }
-                },
-                error: (res) => {
-                    button.attr('disabled', false).text('Place Order');
-                    error_notification()
-                }
-            });
-        } else {
-            error_notification('Please select shipping address');
-        }
-    });
+
 
     $('.deleteAddress').on('click', function() {
         let button = $(this);

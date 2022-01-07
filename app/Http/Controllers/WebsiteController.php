@@ -85,7 +85,7 @@ class WebsiteController extends Controller
     }
 
     public function support_center(){
-        return view('website.support_center');
+        return view('website.account.support-center');
     }
 
     public function shipping_policy(){
@@ -148,5 +148,9 @@ class WebsiteController extends Controller
         $resp = curl_exec($req);
         curl_close($req);
         echo $resp;
+    }
+
+    public function online_payments(Request $request){
+        return $request->all();
     }
 }

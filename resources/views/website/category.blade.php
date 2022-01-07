@@ -302,7 +302,7 @@
                                                 <b>Support Centre</b> for F.A.Qs and other support options.</span></h3>
                                     </div>
                                 </div>
-                                <a class="banner-link banner-overlay" href="support-centre.html">
+                                <a class="banner-link banner-overlay" href="{{route('support-center')}}">
                                 </a>
                             </div>
                         </div>

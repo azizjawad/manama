@@ -44,7 +44,7 @@
                                     Track Order<small>Track your Current &amp; Past Orders</small></a></li>
                             <li class="col-4"><a href="my-account.html"><i class="fas fa-desktop"></i>
                                     My Account<small>Manage your Account with us</small></a></li>
-                            <li class="col-4"><a href="support-centre.html"><i class="far fa-life-ring"></i>
+                            <li class="col-4"><a href="{{route('support-center')}}"><i class="far fa-life-ring"></i>
                                     Support Centre<small>Looking for help?</small></a></li>
                         </ul>
                     </div>

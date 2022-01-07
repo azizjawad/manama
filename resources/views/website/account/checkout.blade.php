@@ -36,7 +36,7 @@
                             }
                         @endphp
                         <div class="message-box coupon-added mb--30 mb-sm--20 "
-                            style="{{ $couponValidFlag ? '' : 'display:none' }}">
+                             style="{{ $couponValidFlag ? '' : 'display:none' }}">
                             <p>
                                 <i class="fa fa-check-circle"></i> Coupon Code
                                 {{ $couponValidFlag ? $discountArray['coupon_code'] : '' }}
@@ -44,14 +44,14 @@
                                 {{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : '' }}
                                 discount on order.
                                 <a class="expand-btn" href="javascript:void(0);"
-                                    onclick="window.location.href = window.location.origin+'/account/checkout'">Click Here
+                                   onclick="window.location.href = window.location.origin+'/account/checkout'">Click Here
                                     To Remove It.</a>
                             </p>
                         </div>
 
                         <!-- Add Coupon - incase if coupon was not added at Cart -->
                         <div class="user-actions user-actions__coupon"
-                            style="{{ $couponValidFlag != '' ? 'display:none' : '' }}">
+                             style="{{ $couponValidFlag != '' ? 'display:none' : '' }}">
                             <div class="message-box mb--30 mb-sm--20">
                                 <p>
                                     <i class="fa fa-exclamation-circle"></i> Have A Coupon?
@@ -63,14 +63,14 @@
                                     <p>If you have a coupon code, please apply it below.</p>
                                     <div class="form__group d-sm-flex">
                                         <input type="text" name="coupon_code" id="coupon_code"
-                                            class="form__input form__input--2 mr--20 mr-xs--0 " placeholder="Coupon Code" >
-                                       
+                                               class="form__input form__input--2 mr--20 mr-xs--0 " placeholder="Coupon Code" >
+
                                         <button type="button" onClick="validateCouponCode()" class="btn btn-medium btn-style-1 btn_coupon_code">Apply Coupon</button>
                                     </div>
                                     <span class="coupon_code_error"  style="display:none; color: red">Coupon Code is required</span>
-                                     @if ( isset($discountArray['invalidCoupon']) && $discountArray['invalidCoupon']  )
+                                    @if ( isset($discountArray['invalidCoupon']) && $discountArray['invalidCoupon']  )
                                         <span class="coupon_code_valid"  style=" color: red">Coupon Code is inValid</span>
-                                      @endif
+                                    @endif
 
                                 </form>
                             </div>
@@ -88,8 +88,8 @@
                                 @foreach ($my_address_list as $key => $address)
                                     <h6 class="address-label">
                                         <input addressid="{{ $address->id }}" value="{{ $address->id }}"
-                                            class="address-selected" name="billing_address" id="billing_address"
-                                            type="radio"><span>{{ $address->label }}</span>
+                                               class="address-selected" name="billing_address" id="billing_address"
+                                               type="radio"><span>{{ $address->label }}</span>
                                     </h6>
                                     <div class="address-body">
                                         <p>Address:
@@ -113,8 +113,8 @@
                                     @foreach ($my_address_list as $key => $address)
                                         <h6 class="address-label">
                                             <input shipping_address="{{ $address->id }}" value="{{ $address->id }}"
-                                                class="address-selected" name="shipping_address" id="shipping_address"
-                                                type="radio"><span>{{ $address->label }}</span>
+                                                   class="address-selected" name="shipping_address" id="shipping_address"
+                                                   type="radio"><span>{{ $address->label }}</span>
                                         </h6>
                                         <div class="address-body">
                                             <p>Address:
@@ -133,7 +133,7 @@
 
                             <!-- Add Address Buttone -->
                             <button type="button" class="btn btn-style-3" data-bs-toggle="modal"
-                                data-bs-target="#addwindow">Add Address</button>
+                                    data-bs-target="#addwindow">Add Address</button>
                         </div>
 
                         <h3 class="sub-title"><span>Quote your GSTN (optional)</span></h3>
@@ -143,7 +143,7 @@
                                 <form class="form gstn-tab" action="post" id="gst-form">
                                     <div class="form__group">
                                         <input type="text" id="gstn_no" name="gstn_no" class="form__input form__input--2"
-                                            placeholder="Your GSTN">
+                                               placeholder="Your GSTN">
                                     </div>
                                     <div class="form__group has-button">
                                         <button type="button" class="btn btn-style-3">Apply</button>
@@ -162,98 +162,105 @@
                             <div class="table-content table-responsive mb--30">
                                 <table class="table order-table order-table-2">
                                     <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th class="text-end">Total</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th class="text-end">Total</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($cart as $item)
-                                            <tr>
-                                                <th>{{ $item->product_name }}
-                                                    <strong><span>x</span>{{ $item->quantity }}</strong>
-                                                </th>
-                                                <td class="text-end"><i class="fas fa-rupee-sign"
-                                                        aria-hidden="true"></i>{{ number_format($item->cost_price) }}
-                                                </td>
-                                            </tr>
-                                            @php $total += $item->cost_price * $item->quantity @endphp
-                                        @endforeach
+                                    @foreach ($cart as $item)
+                                        <tr>
+                                            <th>{{ $item->product_name }}
+                                                <strong><span>x</span>{{ $item->quantity }}</strong>
+                                            </th>
+                                            <td class="text-end"><i class="fas fa-rupee-sign"
+                                                                    aria-hidden="true"></i>{{ number_format($item->cost_price) }}
+                                            </td>
+                                        </tr>
+                                        @php $total += $item->cost_price * $item->quantity @endphp
+                                    @endforeach
                                     </tbody>
                                     <tfoot>
 
-                                        <tr class="cart-subtotal">
-                                            <th>Subtotal</th>
-                                            <td class="text-end"><i class="fas fa-rupee-sign"
-                                                    aria-hidden="true"></i>{{ number_format($total, 2) }}</td>
-                                        </tr>
-                                        {{-- <tr class="cart-subtotal"> --}}
-                                        {{-- <th>Discount <small>(-)</small></th> --}}
-                                        {{-- <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td> --}}
-                                        {{-- </tr> --}}
-                                        <tr class="shipping">
-                                            <th>Shipping</th>
-                                            <td class="text-end">
-                                                @php
-                                                    if(isset($discountArray['product_type']) && $discountArray['product_type'] == 2 &&  isset($discountArray['discount']) && $discountArray['discount'] == 0 ){
-                                                        $shippingDetails['shippingCharges'] = 0;
-                                                    }
-                                                @endphp
-                                                @if ($shippingDetails['shippingCharges'] == 0)
-                                                    <!-- Show when shipping is free -->
-                                                    <span>Free Shipping!</span>
-                                                @else
-                                                <!-- Only show if the cart value is lower then free shipping rate
+                                    <tr class="cart-subtotal">
+                                        <th>Subtotal</th>
+                                        <td class="text-end"><i class="fas fa-rupee-sign"
+                                                                aria-hidden="true"></i>{{ number_format($total, 2) }}</td>
+                                    </tr>
+                                    {{-- <tr class="cart-subtotal"> --}}
+                                    {{-- <th>Discount <small>(-)</small></th> --}}
+                                    {{-- <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td> --}}
+                                    {{-- </tr> --}}
+                                    <tr class="shipping">
+                                        <th>Shipping</th>
+                                        <td class="text-end">
+                                        @php
+                                            if(isset($discountArray['product_type']) && $discountArray['product_type'] == 2 &&  isset($discountArray['discount']) && $discountArray['discount'] == 0 ){
+                                                $shippingDetails['shippingCharges'] = 0;
+                                            }
+                                        @endphp
+                                        @if ($shippingDetails['shippingCharges'] == 0)
+                                            <!-- Show when shipping is free -->
+                                                <span>Free Shipping!</span>
+                                        @else
+                                            <!-- Only show if the cart value is lower then free shipping rate
                                                 -->
                                                 <span><i class="fas fa-rupee-sign" aria-hidden="true"></i>{{$shippingDetails['perBottleRate']}} per item <i class="fas fa-rupee-sign" aria-hidden="true"></i>{{number_format($shippingDetails['shippingCharges'])}}</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        @if (isset($discountArray['discount']) && $discountArray['discount'] != '')
-                                            <tr class="order-discount">
-                                                <th>Discount</th>
-                                                <td class="text-end"><span class="order-total-ammount"><i
-                                                            class="fas fa-rupee-sign" aria-hidden="true"></i>
-                                                        {{ number_format($discountArray['discount'], 2) }}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                        <tr class="order-total">
-                                            @php
-                                                if(isset($discountArray['discountedTotal']) && $discountArray['discountedTotal'] != ''){
-                                                    $total = $discountArray['discountedTotal'];
-                                                }
-                                                if($shippingDetails['shippingCharges'] > 0){
-                                                    $total = $total + $shippingDetails['shippingCharges'];
-                                                }
-                                            @endphp
-                                            <th>Order Total</th>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @if (isset($discountArray['discount']) && $discountArray['discount'] != '')
+                                        <tr class="order-discount">
+                                            <th>Discount</th>
                                             <td class="text-end"><span class="order-total-ammount"><i
                                                         class="fas fa-rupee-sign" aria-hidden="true"></i>
-                                                    {{ number_format($total, 2) }}
-                                                </span>
+                                                        {{ number_format($discountArray['discount'], 2) }}
+                                                    </span>
                                             </td>
                                         </tr>
+                                    @endif
+                                    <tr class="order-total">
+                                        @php
+                                            if(isset($discountArray['discountedTotal']) && $discountArray['discountedTotal'] != ''){
+                                                $total = $discountArray['discountedTotal'];
+                                            }
+                                            if($shippingDetails['shippingCharges'] > 0){
+                                                $total = $total + $shippingDetails['shippingCharges'];
+                                            }
+                                        @endphp
+                                        <th>Order Total</th>
+                                        <td class="text-end"><span class="order-total-ammount"><i
+                                                    class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                                    {{ number_format($total, 2) }}
+                                                </span>
+                                        </td>
+                                    </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <div class="checkout-payment">
                                 <form action="#" class="payment-form">
-                                    <input type="hidden" name="cart_details" 
-                                    data-coupon_code="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? $discountArray['coupon_code'] : '' }}" 
-                                    data-discount="{{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : 0 }}" 
-                                    data-coupon_type="{{ isset($discountArray['product_type']) && $discountArray['product_type'] != '' ? $discountArray['product_type'] : 0 }}" 
-                                    data-shipping_charges="{{ $shippingDetails['shippingCharges'] }}" 
-                                    data-total="{{$total}}"> 
+                                    <input type="hidden" name="cart_details"
+                                           data-coupon_code="{{ isset($discountArray['coupon_code']) && $discountArray['coupon_code'] != '' ? $discountArray['coupon_code'] : '' }}"
+                                           data-discount="{{ isset($discountArray['discount']) && $discountArray['discount'] != '' ? $discountArray['discount'] : 0 }}"
+                                           data-coupon_type="{{ isset($discountArray['product_type']) && $discountArray['product_type'] != '' ? $discountArray['product_type'] : 0 }}"
+                                           data-shipping_charges="{{ $shippingDetails['shippingCharges'] }}"
+                                           data-total="{{$total}}">
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
-                                            <input type="radio" value="online" name="payment-method" id="payu">
-                                            <label class="payment-label" for="payu">Pay via PayU</label>
+                                            <input type="radio" value="online" name="payment-method" id="razorpay">
+                                            <label class="payment-label" for="razorpay">Pay via Razorpay</label>
                                         </div>
-                                        <div class="payment-info payu hide-in-default" data-method="payu">
-                                            <p>Make Payment via <b>PayU</b></p>
+                                        <div class="payment-info razorpay hide-in-default" data-method="online">
+                                            <p>Make Payment via <b>Razorpay</b></p>
                                         </div>
+{{--                                        <div class="payment-radio">--}}
+{{--                                            <input type="radio" value="payu" name="payment-method" id="payu">--}}
+{{--                                            <label class="payment-label" for="payu">Pay via PayU</label>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="payment-info payu hide-in-default" data-method="payu">--}}
+{{--                                            <p>Make Payment via <b>Payu</b></p>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
@@ -269,7 +276,7 @@
                                     <div class="payment-group mt--20">
                                         <p class="mb--15 text-end small">The above bill is inclusive of GST.</p>
                                         <button type="button" class="btn btn-fullwidth btn-style-1"
-                                            id='btn_place_order'>Place Order</button>
+                                                id='btn_place_order'>Place Order</button>
                                     </div>
                                 </form>
                             </div>
@@ -283,7 +290,7 @@
         <!-- Address Modal Start -->
 
         <div class="modal fade product-modal" id="addwindow" aria-hidden="true" aria-labelledby="addwindowLabel"
-            tabindex="-1">
+             tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                 <div class="modal-content">
 
@@ -298,27 +305,27 @@
                         <div class="container-fluid pb--40">
                             <div class="row">
                                 <form class="form" action="{{ route('save-address') }}" method="post"
-                                    id="form_my_address" name="form_my_address">
+                                      id="form_my_address" name="form_my_address">
                                     <div class="form__group mb--20">
                                         <input type="text" maxlength="80" id="txt_label" name="txt_label"
-                                            class="form__input form__input--2" placeholder="Address Label">
+                                               class="form__input form__input--2" placeholder="Address Label">
                                     </div>
                                     <div class="form__group mb--20">
                                         <input type="text" maxlength="80" id="txt_fullname" name="txt_fullname"
-                                            class="form__input form__input--2" placeholder="Full Name">
+                                               class="form__input form__input--2" placeholder="Full Name">
                                     </div>
                                     <div class="form__group mb--20">
                                         <input type="number" maxlength="11" minlength="10" id="txt_mobile_no"
-                                            name="txt_mobile_no" class="form__input form__input--2 callnoinput"
-                                            placeholder="Alt. Mobile No.">
+                                               name="txt_mobile_no" class="form__input form__input--2 callnoinput"
+                                               placeholder="Alt. Mobile No.">
                                     </div>
                                     <div class="form__group mb--20">
                                         <textarea maxlength="250" class="form__input form__input--textarea"
-                                            id="txt_address" name="txt_address" placeholder="Full Address*"></textarea>
+                                                  id="txt_address" name="txt_address" placeholder="Full Address*"></textarea>
                                     </div>
                                     <div class="form__group mb--20">
                                         <select id="state" class="form__input form__input--2" name="state"
-                                            placeholder="Select State">
+                                                placeholder="Select State">
                                             <option>Select State</option>
                                             <option value="Andhra Pradesh">Andhra Pradesh</option>
                                             <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -360,15 +367,15 @@
                                     </div>
                                     <div class="form__group mb--20">
                                         <input type="text" maxlength="50" id="txt_city_village" name="txt_city_village"
-                                            class="form__input form__input--2" placeholder="City/Town/Village">
+                                               class="form__input form__input--2" placeholder="City/Town/Village">
                                     </div>
                                     <div class="form__group mb--20">
                                         <input type="number" maxlength="6" id="txt_pincode" name="txt_pincode"
-                                            class="form__input form__input--2" placeholder="Pincode">
+                                               class="form__input form__input--2" placeholder="Pincode">
                                     </div>
                                     <div class="form__group">
                                         <button type="submit" id="btn_submit" name="btn_submit"
-                                            class="btn btn-fullwidth btn-style-1">Save Address</button>
+                                                class="btn btn-fullwidth btn-style-1">Save Address</button>
                                     </div>
                                     <div class="form__output"></div>
                                 </form>
@@ -383,14 +390,97 @@
         <!-- Address  Modal End -->
         @include("website.account.component.banner-section")
     </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        var options = {
+            "key": "{{env('RAZORPAY_KEY')}}", // Enter the Key ID generated from the Dashboard
+            "amount": '{{$total * 100}}', // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Manama",
+            "description": "Manama Sales",
+            "handler": function (response){
+                console.log(response);
+                if (typeof response.razorpay_payment_id != 'undefined') {
+                    place_order(response.razorpay_payment_id);
+                }
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "theme": {
+                "color": "#264698"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        document.getElementById('btn_place_order').onclick = function(e){
+            let billing_address = $('input[name="billing_address"]').is(':checked');
+            if(billing_address) {
+                if ($('input[name="payment-method"]:checked').val() === 'online') {
+                    let button = $('#btn_place_order');
+                    button.attr('disabled',true).text('Please wait..');
+                    rzp1.open();
+                    e.preventDefault();
+                }else{
+                    place_order();
+                }
+            } else {
+                error_notification('Please select shipping address');
+            }
+        }
+
         function validateCouponCode(){
-                $('.coupon_code_error').hide();
+            $('.coupon_code_error').hide();
             if($('#coupon_code').val() == ''){
                 $('.coupon_code_error').show();
                 return false;
             }
             $('#coupon_info_form').submit();
+        }
+
+        function place_order(transaction_id){
+            let button = $('#btn_place_order');
+            let payment_method = $('input[name="payment-method"]:checked').val();
+            const coupon_code = $('input[name="cart_details"]').attr('data-coupon_code');
+            const discount = $('input[name="cart_details"]').attr('data-discount');
+            const shipping_charges = $('input[name="cart_details"]').attr('data-shipping_charges');
+            const coupon_type = $('input[name="cart_details"]').attr('data-coupon_type');
+            const total = $('input[name="cart_details"]').attr('data-total');
+            $.ajax({
+                url: '{{route('place-order')}}',
+                data: {
+                    'billing_address' : $('#billing_address').val(),
+                    'shipping_address' : $('#shipping_address').val(),
+                    'gstn_no' : $('#gstn_no').val(),
+                    'transaction_type' : payment_method,
+                    'coupon_code' : coupon_code,
+                    'discount' : discount,
+                    'shipping_charges' : shipping_charges,
+                    'coupon_type' : coupon_type,
+                    'total' : total,
+                    "transaction_id": transaction_id
+                },
+                type:"post",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: () => {
+                    button.attr('disabled',true).text('Please wait..');
+                },
+                success: (res) => {
+                    button.attr('disabled', false).text('Place Order');
+                    if(res.status === true) {
+                        window.location.href = 'thank-you';
+                        success_notification(res.message);
+                    }
+                },
+                error: (res) => {
+                    button.attr('disabled', false).text('Place Order');
+                    error_notification()
+                }
+            });
         }
     </script>
 @endsection

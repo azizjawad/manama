@@ -493,7 +493,7 @@
                             <ul class="widget-menu">
                                 <li><a href="{{route("register")}}">Register Account</a></li>
                                 <li><a href="{{route("my-account")}}">My Account</a></li>
-                                <li><a href="support-centre.html">Support Centre</a></li>
+                                <li><a href="{{route('support-center')}}">Support Centre</a></li>
                             </ul>
                         </div>
                     </div>
