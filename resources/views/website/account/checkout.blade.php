@@ -393,6 +393,7 @@
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        @php $user = Auth::user() @endphp
         var options = {
             "key": "{{env('RAZORPAY_KEY')}}", // Enter the Key ID generated from the Dashboard
             "amount": '{{$total * 100}}', // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -406,9 +407,9 @@
                 }
             },
             "prefill": {
-                "name": "Gaurav Kumar",
-                "email": "gaurav.kumar@example.com",
-                "contact": "9999999999"
+                "name": "{{$user->name}}",
+                "email": "{{$user->email}}",
+                "contact": "{{$user->mobile}}"
             },
             "theme": {
                 "color": "#264698"
