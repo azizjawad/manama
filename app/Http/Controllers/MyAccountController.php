@@ -54,7 +54,7 @@ class MyAccountController extends Controller
 
     public function checkout(Request $request) {
         $data['my_address_list'] = MyaccountModel::where('user_id', $this->logged_in_id->id)->get();
-        $data['cart'] = MyCartController::get_cart_data($this->logged_in_id->id);
+        $data['cart'] = (new MyCartController)->get_cart_data($this->logged_in_id->id);
         // get shipping rules
         $data['shippingDetails'] = self::getShippingCharges($this->logged_in_id->id);
         $data['discountArray'] = array();
