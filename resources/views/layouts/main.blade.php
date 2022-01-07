@@ -123,7 +123,7 @@
                                                             @foreach ($chunk as $category)
                                                                 <li>
                                                                     <a href="{{route('category_product',[$category->page_slug])}}" class="menu-item-img">
-                                                                        <img src="{{asset("images/uploads/products/$category->image")}}" alt="{{$category->name}}"/>
+                                                                        <img src="{{asset("images/uploads/products/$category->product_image")}}" alt="{{$category->name}}"/>
                                                                         <span>{{$category->name}}</span>
                                                                     </a>
                                                                 </li>

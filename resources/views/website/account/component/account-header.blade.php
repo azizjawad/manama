@@ -10,7 +10,7 @@
                 </ul>
             </div>
             <div class="order-md-1 col-md-3">
-                <h3 class="text-with-icon">Welcome, <span class="manama-red">Jone Doe</span></h3>
+                <h3 class="text-with-icon">Welcome, <span class="manama-red">{{ucwords(Auth::user()->name)}}</span></h3>
                 <ul class="pghd-breadcrumbs no-icon">
                     <li><a href="{{route("change-password")}}">Change Password</a></li>
                     <li><a href="{{route("edit-profile")}}">Edit Profile</a></li>
