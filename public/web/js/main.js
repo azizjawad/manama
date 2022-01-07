@@ -1018,10 +1018,13 @@
                 }
             },
             error: (res) => {
+                console.log('add to cart res : ', res);
                 let error = JSON.parse(res.responseText);
-                error_notification(error.message);
                 if (res.status === 401){
-                    window.location = '/login';
+                    // window.location = '/login';
+                    loginValidityForReview('login');
+                }else{
+                    error_notification(error.message);
                 }
                 button.attr('disabled', false).text('Add to Cart');
             }

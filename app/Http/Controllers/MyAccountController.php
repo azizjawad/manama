@@ -171,10 +171,27 @@ class MyAccountController extends Controller
             );
         }else {
             $status = false;
-            $coupon = \App\Models\CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
+            $coupon =  \App\Models\CouponsModel::where('coupons.coupon_code', $post['coupon_code'])->where('coupons.coupon_validity', '>=', date('Y-m-d'))
+            ->first();
             Log::info("coupon");
             Log::info( $coupon );
             if(!empty ($coupon) ) {
+                 // check if coupon is single use 
+                 if($coupon->coupon_use == 1 ){
+                    // order count
+                    $orderExists = OrdersModel::where('orders.coupon_code', $post['coupon_code'])->where('orders.user_id', \Auth::id())->exists();
+                    if( $orderExists ){
+                        return array(
+                            'coupon_code' => '',
+                            'discount' => '',
+                            'discountedTotal' => '',
+                            'message' => '',
+                            'product_type' => '',
+                            'errorMessage' => 'Coupon Code is inValid/Expired',
+                            'invalidCoupon' => true,
+                        );
+                    }
+                }
                 $cartDetails = self::getCartTotal(Auth::id());
                 Log::info("cartDetails");
                 Log::info( $cartDetails );
