@@ -55,10 +55,10 @@ class MyCartController extends Controller
                     }
                     return response(['status' => false], 500);
                 }else{
-                    return response(['status' => false,'messages' => 'User is not logged in', 401]);
+                    return response(['status' => false,'messages' => 'User is not logged in'], 401);
                 }
             }
-            return response(['status' => false,'messages' => 'Product is out of stock', 403]);
+            return response(['status' => false,'messages' => 'Product is out of stock'], 403);
         }
 
        return response(['status' => false,'messages' => $validator->errors()], 400);
@@ -115,49 +115,58 @@ class MyCartController extends Controller
         }
     }
 
-    public function apply_coupon(Request $request) {
+    // public function apply_coupon(Request $request) {
 
-        $post = $request->post();
-        $validator = Validator::make($post, [
-            'coupon_code'  => ['required']
-        ]);;
+    //     $post = $request->post();
+    //     $validator = Validator::make($post, [
+    //         'coupon_code'  => ['required']
+    //     ]);;
 
-        if ($validator->fails()){
-            return response(['status' => false, 'errors' => $validator->errors()], 400);
-        }else {
-            $status = false;
-            $coupon = CouponsModel::where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))->first();
-            Log::info("coupon");
-            Log::info( $coupon );
-            if(!empty ($coupon) ) {
-                $cartDetails = self::getCartTotal(Auth::id());
-                Log::info("cartDetails");
-                Log::info( $cartDetails );
-                $totalAmt = $cartDetails->cart_total;
-                if(strpos($coupon->coupon_value, '%') !== false ) {
-                    Log::info("percentage discount >>");
-                    $couponValue  = str_replace('%','',$coupon->coupon_value);
-                    $discount = $totalAmt - ($totalAmt * ($couponValue / 100));
-                    Log::info("couponValue");
-                    Log::info( $couponValue );
-                    Log::info("discount");
-                    Log::info( $discount );
-                } else {
-                    Log::info("normal discount >> ");
-                    $discount = $totalAmt - $coupon->coupon_value;
-                    Log::info("discount");
-                    Log::info( $discount );
-                }
-                $message = 'Coupon Applied';
-            } else {
-                $message = 'Invalid Coupon';
-            }
-            if ($status)
-                return response(['status' => true, 'message' => $message, 'discount' => $discount]);
-            else
-                return response(['status' => false, 'message' => $message], 500);
-        }
-    }
+    //     if ($validator->fails()){
+    //         return response(['status' => false, 'errors' => $validator->errors()], 400);
+    //     }else {
+    //         $status = false;
+    //         $coupon = CouponsModel::select('coupons.*',\DB::raw('COUNT(orders.id) as order_count'))->where('coupon_code', $post['coupon_code'])->where('coupon_validity', '>=', date('Y-m-d'))
+    //         ->leftjoin('orders', function ($join) {
+    //             $join->on('orders.user_id', '=', Auth::id())
+    //             ->where('orders.coupon_code', 'coupons.coupon_code');
+    //         })
+    //         ->first();
+    //         Log::info("coupon");
+    //         Log::info( $coupon );
+    //         if(!empty ($coupon) ) {
+    //             // check if coupon is single use 
+    //             if($coupon->coupon_use == 1 && $coupon->order_count > 0){
+
+    //             }
+    //             $cartDetails = self::getCartTotal(Auth::id());
+    //             Log::info("cartDetails");
+    //             Log::info( $cartDetails );
+    //             $totalAmt = $cartDetails->cart_total;
+    //             if(strpos($coupon->coupon_value, '%') !== false ) {
+    //                 Log::info("percentage discount >>");
+    //                 $couponValue  = str_replace('%','',$coupon->coupon_value);
+    //                 $discount = $totalAmt - ($totalAmt * ($couponValue / 100));
+    //                 Log::info("couponValue");
+    //                 Log::info( $couponValue );
+    //                 Log::info("discount");
+    //                 Log::info( $discount );
+    //             } else {
+    //                 Log::info("normal discount >> ");
+    //                 $discount = $totalAmt - $coupon->coupon_value;
+    //                 Log::info("discount");
+    //                 Log::info( $discount );
+    //             }
+    //             $message = 'Coupon Applied';
+    //         } else {
+    //             $message = 'Invalid Coupon';
+    //         }
+    //         if ($status)
+    //             return response(['status' => true, 'message' => $message, 'discount' => $discount]);
+    //         else
+    //             return response(['status' => false, 'message' => $message], 500);
+    //     }
+    // }
 
     public function place_order(Request $request) {
 
@@ -182,7 +191,7 @@ class MyCartController extends Controller
             $orders = [
                 'user_id'               => $user_id,
                 'order_no'              => $order_no,
-                'trasaction_type'       => $post['transaction_type'],
+                'transaction_type'      => $post['transaction_type'],
                 'total_amount'          => $post['total'],
                 'trasaction_id'         => $post['transaction_id'] ?? null,
                 'sub_total'             => $sub_total,

@@ -436,6 +436,7 @@
             $('.coupon_code_error').hide();
             if($('#coupon_code').val() == ''){
                 $('.coupon_code_error').show();
+                $('.coupon_code_valid').hide();
                 return false;
             }
             $('#coupon_info_form').submit();

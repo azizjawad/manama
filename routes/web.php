@@ -133,7 +133,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('/delete-address', 'App\Http\Controllers\MyAccountController@delete_address')->name('delete-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
         Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
-        Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
+        // Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
         Route::post('/place-order', 'App\Http\Controllers\MyCartController@place_order')->name('place-order');
         Route::get('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
         Route::post('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');

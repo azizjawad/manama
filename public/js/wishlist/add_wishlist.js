@@ -1,5 +1,8 @@
 const baseUrl = window.location.origin;
 $(document).ready(function () {
+    if(typeof(reference_type) == 'undefined'){
+        let reference_type = '';
+    }
     setTimeout(() => {
         if (wishListProduct && reference_type == 'wishlist') {
             toggleWishList(wishListProduct);
