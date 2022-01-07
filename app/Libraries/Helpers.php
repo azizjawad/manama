@@ -1,7 +1,7 @@
 <?php
 class Helpers
 {
-    public function fetchProductMenu(){
+    public static function fetchProductMenu(){
        return \App\Models\CategoriesModel::limit(9)->get();
     }
 }
