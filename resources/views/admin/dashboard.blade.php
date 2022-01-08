@@ -29,38 +29,15 @@
                                                     {{ date('d') }}<small
                                                         class="text-small d-block">{{ date('M') }}</small><small
                                                         class="text-small d-block">{{ date('Y') }}</small></p>
-
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-9">
                                             <a href="#">
-                                                <p class="list-item-heading mb-2 font-weight-bold">
-                                                    {{ $order->order_no }}<span
-                                                        class="badge badge-pill top-pos badge-theme-1 text-uppercase">
-                                                        @switch($order->status)
-                                                            @case(1)
-                                                                Processing
-                                                            @break
-                                                            @default
-                                                                Processing
-                                                        @endswitch
-                                                    </span></p>
-                                                <p class="mb-1 text-small font-weight-bolder">
-                                                    @php
-                                                        $orderDetails = $order->order_details->first();
-                                                        $productCount = $orderDetails->count() - 1;
-                                                        $productCountSubText = '';
-                                                        if ($productCount == 1) {
-                                                            $productCountSubText = ' and ' . $productCount . ' item';
-                                                        } elseif ($productCount > 1) {
-                                                            $productCountSubText = ' and ' . $productCount . ' items';
-                                                        }
-                                                        $productVariant = $orderDetails->product_info->first();
-                                                        
-                                                        echo $productVariantText = 'Your order for ' . $productVariant->listing_name . ' ' . $productCountSubText;
-                                                    @endphp
-
+                                                <p class="list-item-heading mb-2 font-weight-bold">{{ $order->order_no }}
+                                                    <span class="badge badge-pill top-pos badge-theme-1 text-uppercase">
+                                                        {{ Helpers::getOrderStatusText($order->status) }}</span>
                                                 </p>
+                                                <p>{{\Helpers::getProductVariantText($order)}} </p>
                                                 <p class="list-item-heading mb-0 font-weight-bold"><i
                                                         class="las la-rupee-sign"></i>
                                                     {{ number_format($order->total_amount) }}</p>
@@ -74,9 +51,7 @@
                                             </a>
                                         </div>
                                         <div class="col-md-auto col-12 text-right">
-                                            <a href="Dashboard.Orders.Details.html"
-                                                class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                            <a href="Pages.Misc.Invoice.Standalone.html" target="_blank"
+                                            <a  href="{{ route('generatePDF',[$order->order_no])}}" target="_blank" 
                                                 class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
                                         </div>
                                     </div>
@@ -155,7 +130,8 @@
                                 <div class="card-body justify-content-between align-items-center">
                                     <p class="mb-1 font-weight-bold">Monthly Sales</p>
                                     <h3 class="lead color-theme-1 mb-1 value"><i
-                                            class="las la-rupee-sign"></i>{{ number_format($data['monthly_sales']) }}</h3>
+                                            class="las la-rupee-sign"></i>{{ number_format($data['monthly_sales']) }}
+                                    </h3>
                                     <p class="mb-0 font-weight-bold"><small class="d-block">For the Month of
                                             {{ date('M Y') }}</small></p>
 
@@ -202,10 +178,12 @@
                                     <tbody>
                                         @foreach ($data['new_registrations'] as $user)
                                             <tr>
-                                                <th scope="row">{{$user->name}}</th>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->mobile}}</td>
-                                                <td> <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
+                                                <th scope="row">{{ $user->name }}</th>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->mobile }}</td>
+                                                <td> <a href="javascript:void(0)" data-id="{{ $user->id }}"
+                                                        data-toggle="modal" data-target="#customerDetails" title="View KYC"
+                                                        class="las la-eye btn btn-secondary mx-1"></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -233,7 +211,8 @@
 
                                 <div class="card-body justify-content-between align-items-center">
                                     <p class="mb-1 font-weight-bold">Monthly New Users</p>
-                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['monthly_new_registration'] }}</h3>
+                                    <h3 class="lead color-theme-1 mb-1 value">{{ $data['monthly_new_registration'] }}
+                                    </h3>
 
                                 </div>
                             </div>
@@ -270,53 +249,54 @@
                             <div class="col-12 text-left">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
-    
+
                                         <tbody>
-                                        <tr>
-                                            <td class="font-weight-bold">Customer Name</td>
-                                            <td>John Doe Smith</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Customer Status</td>
-                                            <td>Active</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Wishlist Products</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Total Orders</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Mobile No.</td>
-                                            <td>+91-9876543210</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">E-mail</td>
-                                            <td>john.dsmith@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Delivery Address 1</td>
-                                            <td>
-                                                <b>Home Address</b><br>
-                                                Jason Smith<br>
-                                                Jewel World, 175, Kalbadevi Road,
-                                                Marine Lines East, Panjarpole,
-                                                Bhuleshwar, Mumbai, Maharashtra 400018<br>
-                                                Alternate Mobile Number : +91-9877895411
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Delivery Address 2</td>
-                                            <td>
-                                                <b>Office Address</b><br>
-                                                Jason Smith<br>
-                                                Jewel World, 175, Kalbadevi Road,
-                                                Marine Lines East, Panjarpole,
-                                                Bhuleshwar, Mumbai, Maharashtra 400018<br>
-                                                Alternate Mobile Number : +91-7877895411</td>
-                                        </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Customer Name</td>
+                                                <td>John Doe Smith</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Customer Status</td>
+                                                <td>Active</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Wishlist Products</td>
+                                                <td>5</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Total Orders</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Mobile No.</td>
+                                                <td>+91-9876543210</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">E-mail</td>
+                                                <td>john.dsmith@gmail.com</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Delivery Address 1</td>
+                                                <td>
+                                                    <b>Home Address</b><br>
+                                                    Jason Smith<br>
+                                                    Jewel World, 175, Kalbadevi Road,
+                                                    Marine Lines East, Panjarpole,
+                                                    Bhuleshwar, Mumbai, Maharashtra 400018<br>
+                                                    Alternate Mobile Number : +91-9877895411
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Delivery Address 2</td>
+                                                <td>
+                                                    <b>Office Address</b><br>
+                                                    Jason Smith<br>
+                                                    Jewel World, 175, Kalbadevi Road,
+                                                    Marine Lines East, Panjarpole,
+                                                    Bhuleshwar, Mumbai, Maharashtra 400018<br>
+                                                    Alternate Mobile Number : +91-7877895411
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
