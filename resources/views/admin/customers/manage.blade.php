@@ -33,7 +33,7 @@
                                             <td>{{$user->mobile ?? 'N/A'}}</td>
                                             <td>{{$user->email}}</td>
                                             <td class="text-center">
-                                                <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal" data-target="#customerDetails" title="View KYC" class="las la-eye btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)" data-id="{{$user->id}}" class="las get-user-details la-eye btn btn-secondary mx-1"></a>
                                                 <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal"  data-target="#activationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
                                                 {{--                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#customerpwdrt" title="Reset Password" class="las la-key btn btn-secondary mx-1"></a>--}}
                                             </td>
@@ -88,52 +88,8 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered">
 
-                                    <tbody>
-                                    <tr>
-                                        <td class="font-weight-bold">Customer Name</td>
-                                        <td>John Doe Smith</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Customer Status</td>
-                                        <td>Active</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Wishlist Products</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Total Orders</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Mobile No.</td>
-                                        <td>+91-9876543210</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">E-mail</td>
-                                        <td>john.dsmith@gmail.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Delivery Address 1</td>
-                                        <td>
-                                            <b>Home Address</b><br>
-                                            Jason Smith<br>
-                                            Jewel World, 175, Kalbadevi Road,
-                                            Marine Lines East, Panjarpole,
-                                            Bhuleshwar, Mumbai, Maharashtra 400018<br>
-                                            Alternate Mobile Number : +91-9877895411
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-bold">Delivery Address 2</td>
-                                        <td>
-                                            <b>Office Address</b><br>
-                                            Jason Smith<br>
-                                            Jewel World, 175, Kalbadevi Road,
-                                            Marine Lines East, Panjarpole,
-                                            Bhuleshwar, Mumbai, Maharashtra 400018<br>
-                                            Alternate Mobile Number : +91-7877895411</td>
-                                    </tr>
+                                    <tbody class="user_table_data">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -175,4 +131,19 @@
     {{--            </div>--}}
     {{--        </div>--}}
     {{--    </div>--}}
+
+    <script>
+        $('body').on('click','.get-user-details',function (){
+            let user_id = $(this).data('id');
+            $.ajax({
+                url: "{{route('get-user-details')}}/" + user_id,
+                success: function (res){
+                    if (res.status === true) {
+                        $('.user_table_data').html(res.html);
+                        $('#customerDetails').modal('show');
+                    }
+                }
+            })
+        })
+    </script>
 @endsection

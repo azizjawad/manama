@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomepageBannersModel;
 use App\Models\OrdersModel;
 use App\Models\User;
+use App\Models\WishListModel;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -67,5 +68,50 @@ class AdminController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function get_user_details($user_id){
+        $user = User::find($user_id);
+        if ($user_id) {
+            $user_address = DB::table('my_address')->select(DB::raw('CONCAT(address,", ",city_village,", ",state,", ",pincode) as address'))->where('user_id', $user->id)->get();
+             $total_wishlist = WishListModel::where('created_by', $user_id)->count();
+             $total_orders = OrdersModel::where('user_id', $user_id)->count();
+            $user_html = '<tr>
+                                <td class="font-weight-bold">Customer Name</td>
+                                <td>'.$user->name.'</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Customer Status</td>
+                                <td>'. (($user->status == 1) ? "active" : "de-active") .'</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Wishlist Products</td>
+                                <td>'.$total_wishlist.'</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Total Orders</td>
+                                <td>'.$total_orders.'</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Mobile No.</td>
+                                <td>'.$user->mobile.'</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">E-mail</td>
+                                <td>'.$user->email.'</td>
+                            </tr>';
+            $x = 1;
+            foreach ($user_address as $address){
+                $count = $x++;
+                $user_html .= "<tr>
+                                    <td class='font-weight-bold'>Delivery Address $count</td>
+                                    <td>$address->address</td>
+                               </tr>";
+            }
+
+            return response(['status' => true, 'html' => $user_html]);
+        }
+
+        return response(['status' => false, 'html' => '']);
     }
 }
