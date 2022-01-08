@@ -64,7 +64,7 @@ class MyCartController extends Controller
        return response(['status' => false,'messages' => $validator->errors()], 400);
     }
 
-    public function cart_page(){
+    public static function cart_page(){
         $user_id = Auth::id();
         $data['cart'] = self::get_cart_data($user_id);
         return view('website/account/cart', $data);
@@ -201,14 +201,14 @@ class MyCartController extends Controller
                 'coupon_code'           => $post['coupon_code'],
                 'billing_address'       => $post['billing_address'],
                 'shipping_address'      => $post['shipping_address'],
-                'status'                => 1,
+                'status'                => ORDER_STATUSES['PROCESSING']['id'],
                 'gstn_no'               => $post['gstn_no'],
                 'created_by'            => $user_id
             ];
             $order_placed = OrdersModel::create($orders);
             OrderHistory::create([
                 'order_id'          => $order_placed->id,
-                'status'            => 1,
+                'status'            => ORDER_STATUSES['PROCESSING']['id'],
                 'created_by'        => $user_id
             ]);
             if(!empty ( $order_placed )) {

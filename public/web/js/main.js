@@ -1081,3 +1081,21 @@ function loginValidityForReview(reference_type){
         }
     });
 }
+
+function fetchOrderDetailModal(order_no){
+    $.ajax({
+        type: 'GET',
+        url: window.location.origin + '/account/order-details/'+ order_no,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        cache: false,
+        success: function (response) {
+            console.log(' fetchOrderDetailModal : ', response);
+            $('.orderDetailsModalBody').html(response);
+            $('#orderDetailsModal').modal('show');
+
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
