@@ -35,12 +35,12 @@
                                     <div class="post-media has-shadow">
                                         <div class="image">
                                             <img src="{{asset('/images/recipe/display-img/'.$recipe->rcp_display_img)}}" alt="Beach Bottom Punch">
-                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#recipenote" class="link-overlay">{{$recipe->rcp_name}}</a>
+                                            <a href="javascript:void(0);" data-recipe-id="{{$recipe->id}}" class="link-overlay show_recipe_image">{{$recipe->rcp_name}}</a>
                                         </div>
                                     </div>
                                     <div class="post-info">
                                         <h3 class="post-title">
-                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#recipenote" >{{$recipe->rcp_name}}</a>
+                                            <a href="javascript:void(0);" data-recipe-id="{{$recipe->id}}" class="show_recipe_image">{{$recipe->rcp_name}}</a>
                                         </h3>
                                     </div>
                                 </article>
@@ -105,5 +105,10 @@
             </div>
         </div>
     </div>
+    <script>
+        $('.show_recipe_image').click(function (){
+            console.log($(this).data('recipe-id'))
+        });
+    </script>
 
 @endsection

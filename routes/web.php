@@ -92,6 +92,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::prefix('reviews')->group(function () {
             Route::get('new', 'App\Http\Controllers\Admin\ReviewsController@new_reviews_page')->name('admin-new-reviews');
+            Route::get('get-review/{review_id?}', 'App\Http\Controllers\Admin\ReviewsController@get_review')->name('get-reviews-product');
+            Route::post('update_review', 'App\Http\Controllers\Admin\ReviewsController@update_review')->name('update_review');
             Route::get('moderated', 'App\Http\Controllers\Admin\ReviewsController@moderated_reviews_page')->name('admin-moderated-reviews');
         });
 
