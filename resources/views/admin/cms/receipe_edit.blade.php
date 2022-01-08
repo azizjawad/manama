@@ -7,7 +7,7 @@
                 <h1>CMS Management</h1>
                 <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
                     <ol class="breadcrumb pt-0">
-                        <li class="breadcrumb-item"><a href="CMS.Recipes.List.html">Back to List</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin-recipes')}}">Back to List</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Edit Recipe</li>
                     </ol>
                 </nav>
@@ -118,9 +118,9 @@
                             <div class="card-body">
                                 <h5 class="mb-4 font-weight-bold">Recipes Homepage Image</h5>
                                 <div class="img fullwidth lightbox"><a
-                                        href="{{ asset('/images/recipe/display-img/' . $recipe->homepage_file_name) }}"
+                                        href="{{ asset('/images/recipe/homepage/' . $recipe->rcp_homepage_img) }}"
                                         target="_blank"><img
-                                            src="{{ asset('/images/recipe/display-img/' . $recipe->homepage_file_name) }}" /></a>
+                                            src="{{ asset('/images/recipe/homepage/' . $recipe->rcp_homepage_img) }}" /></a>
                                 </div>
                             </div>
                         </div>

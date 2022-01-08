@@ -356,10 +356,10 @@ class CMSController extends Controller
                 'created_by' => auth()->id(),
             ];
             if(isset($display_file_name) && $display_file_name != ''){
-                $fields['display_file_name'] = $display_file_name;
+                $fields['rcp_display_img'] = $display_file_name;
             }
             if(isset($homepage_file_name) && $homepage_file_name != ''){
-                $fields['homepage_file_name'] = $homepage_file_name;
+                $fields['rcp_homepage_img'] = $homepage_file_name;
             }
 
             if (RecipeModel::where('id', $post['receipe_id'])->update($fields))
