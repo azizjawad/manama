@@ -17,6 +17,8 @@ Route::get('/', 'App\Http\Controllers\WebsiteController@homepage')->name('home-p
 Route::get('about-us', 'App\Http\Controllers\WebsiteController@about_us')->name('about-us');
 Route::get('contact-us', 'App\Http\Controllers\WebsiteController@contact_us')->name('contact-us');
 Route::get('customer-testimonials', 'App\Http\Controllers\WebsiteController@customer_testimonials')->name('customer-testimonials');
+Route::get('return-refund-policy', 'App\Http\Controllers\WebsiteController@return_refund_policy')->name('return_refund_policy');
+Route::get('privacy-policy', 'App\Http\Controllers\WebsiteController@privacy_policy')->name('privacy-policy');
 Route::get('our-distributors', 'App\Http\Controllers\WebsiteController@our_distributors')->name('our-distributors');
 Route::get('tips-techniques', 'App\Http\Controllers\WebsiteController@tips_techniques')->name('tips-techniques');
 Route::get('tips-techniques-single', 'App\Http\Controllers\WebsiteController@tips_techniques_single')->name('tips-techniques-single');
@@ -25,6 +27,7 @@ Route::get('payment-fail', 'App\Http\Controllers\WebsiteController@payment_fail'
 Route::get('support-center', 'App\Http\Controllers\WebsiteController@support_center')->name('support-center');
 Route::get('shipping-policy', 'App\Http\Controllers\WebsiteController@shipping_policy')->name('shipping-policy');
 Route::get('terms-and-conditions', 'App\Http\Controllers\WebsiteController@terms_and_conditions')->name('terms-and-conditions');
+Route::get('download-brochure', 'App\Http\Controllers\WebsiteController@download_brochure')->name('download-brochure');
 //Route::get('payu_payments', 'App\Http\Controllers\WebsiteController@payu_payments')->name('payu_payments');
 
 
@@ -94,6 +97,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::prefix('reviews')->group(function () {
             Route::get('new', 'App\Http\Controllers\Admin\ReviewsController@new_reviews_page')->name('admin-new-reviews');
+            Route::get('get-review/{review_id?}', 'App\Http\Controllers\Admin\ReviewsController@get_review')->name('get-reviews-product');
+            Route::post('update_review', 'App\Http\Controllers\Admin\ReviewsController@update_review')->name('update_review');
             Route::get('moderated', 'App\Http\Controllers\Admin\ReviewsController@moderated_reviews_page')->name('admin-moderated-reviews');
         });
 
@@ -136,6 +141,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('/save-address', 'App\Http\Controllers\MyAccountController@save_address')->name('save-address');
         Route::post('/delete-address', 'App\Http\Controllers\MyAccountController@delete_address')->name('delete-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
+        Route::post('/save-user-setting', 'App\Http\Controllers\MyAccountController@save_user_setting')->name('save-user-setting');
 
         Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
         // Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
@@ -153,6 +159,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
     });
 });
 Route::get('/api/get-product-details/{product_info_id?}', 'App\Http\Controllers\ProductController@get_product_details')->name('get-product-details');
+Route::get('/api/get-recipe/{recipe_id?}', 'App\Http\Controllers\WebsiteController@get_recipe')->name('get_recipe');
 
 Route::post('/api/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
 Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');

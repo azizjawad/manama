@@ -33,7 +33,7 @@
                                                             data-product_info_id="{{ $product->product_info_id }}"><i
                                                                 class="dl-icon-close"></i></a></td>
                                                     <td class="product-thumbnail text-start">
-                                                        <img src="{{ asset('web/images/products/'.$product->product_info->product->image) }}"
+                                                        <img src="{{ asset('images/uploads/products/'.$product->product_info->product->image) }}"
                                                             alt="Product Thumnail">
                                                     </td>
                                                     <td class="product-name text-start wide-column">

@@ -56,6 +56,10 @@ class WebsiteController extends Controller
         return view('website.recipe_corner', $data);
     }
 
+    public function get_recipe($recipe_id){
+        return response(['status' => true, 'data' => RecipeModel::find($recipe_id)]);
+    }
+
     public function about_us(){
         return view('website.about_us');
     }
@@ -94,6 +98,20 @@ class WebsiteController extends Controller
 
     public function terms_and_conditions(){
         return view('website.terms-and-conditions');
+    }
+
+    public function download_brochure(){
+        return view('website.download-brochure');
+    }
+
+    public function privacy_policy(){
+        return view('website.privacy-policy');
+
+    }
+
+    public function return_refund_policy(){
+        return view('website.return_refund_policy');
+
     }
 
     public function payu_payments(){

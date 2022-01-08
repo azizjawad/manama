@@ -88,12 +88,12 @@
                             @csrf
                             <div class="form-group mb-4">
                                 <label class="form-group has-float-label mb-1">
-                                    <input data-role="tagsinput" value="{{old('rcp_name')}}" name="rcp_name" type="text"> <span>Recipes Name</span>
+                                    <input data-role="tagsinput" value="{{old('rcp_name')}}" class="form-control" name="rcp_name" type="text"> <span>Recipes Name</span>
                                 </label>
                             </div>
                             <div class="form-group mb-4">
                                 <label>Recipes Description<br>(use Redactor or any WYSIWYG html editor)</label>
-                                <textarea class="form-control" name="rcp_description" rows="7" required>{{old('rcp_description')}}</textarea>
+                                <textarea class="form-control summernote" name="rcp_description" rows="7" required>{{old('rcp_description')}}</textarea>
                             </div>
                             <div class="form-group mb-4">
                                 <div class="alert alert-warning my-4" role="alert">* Adding video is optional, if you
@@ -103,7 +103,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label class="form-group has-float-label mb-1">
-                                    <input data-role="tagsinput" value="{{old('youtube_url')}}" name="youtube_url" type="url" >
+                                    <input data-role="tagsinput" class="form-control" value="{{old('youtube_url')}}" name="youtube_url" type="url" >
                                     <span>Youtube Video (optional)</span>
                                 </label>
                             </div>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label class="form-group has-float-label mb-1">
-                                    <input data-role="tagsinput" value="{{old('rcp_meta_title')}}" name="rcp_meta_title" type="text"> <span>Meta Page Title</span>
+                                    <input data-role="tagsinput" value="{{old('rcp_meta_title')}}" class="form-control" name="rcp_meta_title" type="text"> <span>Meta Page Title</span>
                                 </label>
                             </div>
                             <div class="form-group mb-4">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label class="form-group has-float-label mb-1">
-                                    <input data-role="tagsinput" name="rcp_page_slug" type="text" value="{{old('rcp_page_slug')}}">
+                                    <input data-role="tagsinput" class="form-control" name="rcp_page_slug" type="text" value="{{old('rcp_page_slug')}}">
                                     <span>Page Name</span>
                                 </label>
                             </div>

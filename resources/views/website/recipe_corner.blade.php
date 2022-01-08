@@ -35,12 +35,12 @@
                                     <div class="post-media has-shadow">
                                         <div class="image">
                                             <img src="{{asset('/images/recipe/display-img/'.$recipe->rcp_display_img)}}" alt="Beach Bottom Punch">
-                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#recipenote" class="link-overlay">{{$recipe->rcp_name}}</a>
+                                            <a href="javascript:void(0);" data-recipe-id="{{$recipe->id}}" class="link-overlay show_recipe_image">{{$recipe->rcp_name}}</a>
                                         </div>
                                     </div>
                                     <div class="post-info">
                                         <h3 class="post-title">
-                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#recipenote" >{{$recipe->rcp_name}}</a>
+                                            <a href="javascript:void(0);" data-recipe-id="{{$recipe->id}}" class="show_recipe_image">{{$recipe->rcp_name}}</a>
                                         </h3>
                                     </div>
                                 </article>
@@ -53,43 +53,37 @@
                     <div class="modal fade product-modal" id="recipenote" aria-hidden="true" aria-labelledby="recipenoteLabel" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                             <div class="modal-content">
-
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="recipenoteLabel">Recipe Note</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true"><i class="dl-icon-close"></i></span>
                                     </button>
                                 </div>
-
                                 <div class="modal-body">
                                     <div class="container-fluid pb--40">
                                         <div class="row recipe-note">
                                             <div class="col-12">
-                                                <h2><span>Beach Bottom Punch</span></h2>
-                                                <div class="recipe-content">
-                                                    <h3>Ingredients.</h3>
-                                                    <ul>
-                                                        <li>30ml Blue Curacao Fruit Twist</li>
-                                                        <li>100ml Lemon Barley Fruit Twist</li>
-                                                        <li>100ml Sprite / 7up</li>
-                                                        <li>Ice</li>
-                                                        <li>Garnish: Cherries, Lime</li>
-                                                    </ul>
-                                                    <h3>Instructions.</h3>
-                                                    <p>Fill serving glass with ice. Add remaining ingredients. Stir gently and garnish.
-                                                    </p>
+                                                <div id="recipe_viewer">
+{{--                                                    <h2><span>Beach Bottom Punch</span></h2>--}}
+{{--                                                    <div class="recipe-content">--}}
+{{--                                                        <h3>Ingredients.</h3>--}}
+{{--                                                        <ul>--}}
+{{--                                                            <li>30ml Blue Curacao Fruit Twist</li>--}}
+{{--                                                            <li>100ml Lemon Barley Fruit Twist</li>--}}
+{{--                                                            <li>100ml Sprite / 7up</li>--}}
+{{--                                                            <li>Ice</li>--}}
+{{--                                                            <li>Garnish: Cherries, Lime</li>--}}
+{{--                                                        </ul>--}}
+{{--                                                        <h3>Instructions.</h3>--}}
+{{--                                                        <p>Fill serving glass with ice. Add remaining ingredients. Stir gently and garnish.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
-
-
-
                             </div>
-
                         </div>
                     </div>
 
@@ -105,5 +99,24 @@
             </div>
         </div>
     </div>
+    <script>
+        $('.show_recipe_image').click(function (){
+            let recipe_id = $(this).data('recipe-id');
+
+            $.ajax({
+                url: "{{route('get_recipe')}}/"+recipe_id,
+                success: function (res) {
+                    if (res.status === true) {
+                       let recipe_html = `<h2><span>${res.data.rcp_name}</span></h2>
+                            <div class="recipe-content">
+                                ${res.data.rcp_description}
+                            </div>`;
+                        $('#recipe_viewer').html(recipe_html);
+                        $('#recipenote').modal('show')
+                    }
+                }
+            });
+        });
+    </script>
 
 @endsection

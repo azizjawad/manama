@@ -357,4 +357,13 @@ class MyAccountController extends Controller
             return view('website/order-details-modal-admin', compact('order'));
         }
     }
+
+    public function save_user_setting(Request $request){
+        $post = $request->all();
+        if (isset($post['newsletter'])){
+            User::where('id', auth()->id())->update(["is_newsletter_subscribed" => $post['newsletter']]);
+        }
+
+        return redirect()->back();
+    }
 }
