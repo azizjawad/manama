@@ -119,7 +119,7 @@ class CMSController extends Controller
             'rcp_description' => 'required',
             'rcp_meta_description' => 'required',
             'rcp_page_slug' => 'required',
-            'youtube_url' => 'url',
+            // 'youtube_url' => 'url',
             'rcp_meta_title' => 'required',
             'rcp_display_img' => 'required',
             'rcp_homepage_img' => 'required',

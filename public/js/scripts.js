@@ -206,8 +206,8 @@ function loadStyle(href, callback) {
 
 /* Shipping & Custom Messahe Drop Down */
 
-$("#orderStatus").change(function(){
-   if($(this).val()=="4")
+$("#order_status").change(function(){
+   if($(this).val()== 3)
    {
        $("div#hasShipped").show();
    }
