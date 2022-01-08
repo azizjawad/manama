@@ -107,7 +107,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-6 text-md-start text-center mb-sm--20">
                                         <div class="shop-toolbar__left">
-                                            <p class="product-pages">Showing 1-9 of 18 results</p>
+                                            <p class="product-pages">Showing {{count($products)}} results</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

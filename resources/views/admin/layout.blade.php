@@ -113,8 +113,13 @@
         <div class="user d-inline-block">
             <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                <span class="name">Administrator</span>
-                <span><img alt="Profile Picture" src="{{asset('img/profiles/l-1.jpg')}}" /></span>
+                @php $user = auth()->user(); @endphp
+                <span class="name">{{$user->name}}</span>
+                @if(!empty($user->image))
+                    <span><img alt="Profile Picture" src="{{asset('/images/my-account/'. $user->image)}}" /></span>
+                @else
+                    <span><img alt="Profile Picture" src="{{asset('img/profiles/l-1.jpg')}}" /></span>
+                @endif
             </button>
 
             <div class="dropdown-menu dropdown-menu-right mt-3">

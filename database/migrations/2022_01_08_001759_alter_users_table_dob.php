@@ -15,6 +15,7 @@ class AlterUsersTableDob extends Migration
     {
         Schema::table('users', function (Blueprint $table){
            $table->date('dob')->after('email')->nullable();
+           $table->string('image')->after('dob')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AlterUsersTableDob extends Migration
     {
         Schema::table('users', function (Blueprint $table){
             $table->dropColumn('dob');
+            $table->dropColumn('image');
         });
     }
 }

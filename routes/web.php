@@ -50,6 +50,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::get('orders', 'App\Http\Controllers\Admin\OrdersController@index_page')->name('admin-order');
         Route::get('account', 'App\Http\Controllers\Admin\AdminController@my_account')->name('admin-account');
+        Route::post('save-admin-profile', 'App\Http\Controllers\Admin\AdminController@save_admin_profile')->name('save-admin-profile');
 
         Route::prefix('products')->group(function () {
 
@@ -149,6 +150,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
     });
 });
+Route::get('/api/get-product-details/{product_info_id?}', 'App\Http\Controllers\ProductController@get_product_details')->name('get-product-details');
 
 Route::post('/api/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
 Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
@@ -158,9 +160,6 @@ Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('
 
 Route::get('product', 'App\Http\Controllers\ProductController@index_page')->name('product');
 
-
-
-Route::get('{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');
 // Wishlist
 Route::group(['middleware' => 'auth'], function () {
     Route::post('toggle-wishlist/{product_info_id}', 'App\Http\Controllers\WishlistController@toggle_wishlist')->name('toggle_wishlist');
@@ -169,3 +168,5 @@ Route::group(['middleware' => 'auth'], function () {
 // sessions
 Route::post('create-cookie', 'App\Http\Controllers\CookieController@createCookie')->name('createCookie');
 Route::post('save-review', 'App\Http\Controllers\ProductController@saveReview')->name('saveReview');
+
+Route::get('{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');

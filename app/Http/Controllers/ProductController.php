@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoriesModel;
 use App\Models\NewsEventModel;
+use App\Models\ProductInfoModel;
 use App\Models\ProductsGalleryModel;
 use App\Models\ProductsModel;
 use App\Models\Reviews;
@@ -120,4 +121,13 @@ class ProductController extends Controller
             Log::critical($e);
         }
     }
+
+    public function get_product_details($product_info_id){
+        $product = ProductInfoModel::find($product_info_id);
+        if ($product->id){
+            return response(["status" => true, "data" => $product]);
+        }
+        return response(["status" => false, "data" => []]);
+    }
+
 }

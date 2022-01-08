@@ -12,12 +12,17 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="mb-4 font-weight-bold">Admin Details</h5>
-                    <form>
+                    <form method="post" action="{{route('save-admin-profile')}}">
+                        @csrf
+                        @php $user = auth()->user(); @endphp
+
                         <label class="form-group has-float-label mb-4">
-                            <input data-role="tagsinput" type="text" value="Administrator"> <span>Account Name</span>
+                            <input data-role="tagsinput" required class="form-control" type="text" name="name" value="{{$user->name}}"> <span>Account Name</span>
                         </label>
                         <label class="form-group has-float-label mb-1">
-                            <input class="form-control" type="file" accept=".jpg,.png"><span>Change Display Image</span></label>
+                            <input name="image" class="form-control" type="file" accept=".jpg,.png">
+                            <span>Change Display Image</span>
+                        </label>
                         <label class="tooltip-text mb-4">(Only upload 600x600 size images.)</label>
                         <div  class="form-group text-right">
                             <button class="btn btn-secondary" type="submit">Save Details</button>

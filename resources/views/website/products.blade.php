@@ -171,15 +171,17 @@
                             </div>
                             <div class="clearfix"></div>
                             <h3 class="product-title">{{ $product[0]->product_name }}</h3>
-                            @if ($product[0]->is_in_stock)
+                            <div id="product_in_stock">
+                                @if ($product[0]->is_in_stock)
                                 <span class="product-stock in-stock float-right">
                                     <i class="dl-icon-check-circle1"></i>in stock
                                 </span>
-                            @else
+                                @else
                                 <span class="product-stock out-of-stock float-right">
                                     <i class="dl-icon-close"></i>out of stock
                                 </span>
-                            @endif
+                                @endif
+                            </div>
                             <div class="clearfix"></div>
                             <form action="#" class="form--action mb--30 mb-sm--20">
 
@@ -567,6 +569,35 @@
         let wishListProduct = '{{ \Session::get('product_info_id') }}';
         const refreshPage = 'wishlist';
         const reference_type = '{{ \Session::get('reference_type') }}';
+
+        $('input[name="product_info_id"]').click(function (){
+            let product_info = $('input[name="product_info_id"]:checked').val();
+            $.ajax({
+                url: '{{route('get-product-details')}}/'+product_info,
+                method: 'get',
+                success: function (res){
+                  if (res.status == true){
+                      if (res.data.is_in_stock == 1){
+                      }
+                      $('.product-title').text(res.data.listing_name);
+                      $('.add-to-cart').attr('disabled', (res.data.is_in_stock == 0));
+                      let span_html = '';
+                      if(res.data.is_in_stock == 0) {
+                          span_html = `<span class="product-stock out-of-stock float-right">
+                                <i class="dl-icon-close"></i>out of stock
+                            </span>`;
+                      }else{
+                          span_html =  `<span class="product-stock in-stock float-right">
+                                <i class="dl-icon-check-circle1"></i> in stock
+                           <span>`;
+                      }
+
+                      $('.product-stock').attr('disabled', (res.data.is_in_stock == 0))
+                      $('#product_in_stock').html(span_html);
+                  }
+                }
+            })
+        });
     </script>
     <script src="{{ asset('js/wishlist/add_wishlist.js') }}"></script>
     <script src="{{ asset('js/review.js') }}"></script>
