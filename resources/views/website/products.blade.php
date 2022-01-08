@@ -156,11 +156,12 @@
                     <div class="col-md-6 product-main-details mt--40 mt-md--10 mt-sm--30">
                         <div class="product-summary">
                             <div class="product-rating float-left"><span>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
-                                <i class="dl-icon-star rated"></i>
+                                @php
+                                    $reviewAvg = $reviews->avg('rating');
+                                @endphp
+                                 @for ($i = 1; $i <= $reviewAvg; $i++)
+                                    <i class="dl-icon-star rated"></i>
+                                @endfor
                             </span>
                                 <a href="" class="review-link">({{count($reviews)}} customer review)</a>
                             </div>

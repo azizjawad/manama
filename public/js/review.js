@@ -46,9 +46,10 @@ $('.review_submit').click(function () {
                     timer: 2500,
                     width: '380px',
                     height: '300px'
-                }).then(function () {
-                    window.location.href = window.location.href + '#nav-reviews';
                 });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 200);
             }
         },
         error: function (err) {
