@@ -113,6 +113,7 @@ class WebsiteController extends Controller
         return view('website.return_refund_policy');
 
     }
+
     public function payu_payments(){
 
         // Merchant key here as provided by Payu

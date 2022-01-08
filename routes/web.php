@@ -139,6 +139,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('/save-address', 'App\Http\Controllers\MyAccountController@save_address')->name('save-address');
         Route::post('/delete-address', 'App\Http\Controllers\MyAccountController@delete_address')->name('delete-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
+        Route::post('/save-user-setting', 'App\Http\Controllers\MyAccountController@save_user_setting')->name('save-user-setting');
 
         Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
         // Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');

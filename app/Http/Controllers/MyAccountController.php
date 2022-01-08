@@ -352,4 +352,13 @@ class MyAccountController extends Controller
             ->where('order_no', $order_no)->orderBy('orders.id', 'desc')->first();
         return view('website/order-details-modal', compact('order'));
     }
+
+    public function save_user_setting(Request $request){
+        $post = $request->all();
+        if (isset($post['newsletter'])){
+            User::where('id', auth()->id())->update(["is_newsletter_subscribed" => $post['newsletter']]);
+        }
+
+        return redirect()->back();
+    }
 }
