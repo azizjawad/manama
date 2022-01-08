@@ -37,21 +37,7 @@
                                                     <span class="badge badge-pill top-pos badge-theme-1 text-uppercase">
                                                         {{ Helpers::getOrderStatusText($order->status) }}</span>
                                                 </p>
-                                                <p class="mb-1 text-small font-weight-bolder">
-                                                    @php
-                                                        $orderDetails = $order->order_details->first();
-                                                        $productCount = $orderDetails->count() - 1;
-                                                        $productCountSubText = '';
-                                                        if ($productCount == 1) {
-                                                            $productCountSubText = ' and ' . $productCount . ' item';
-                                                        } elseif ($productCount > 1) {
-                                                            $productCountSubText = ' and ' . $productCount . ' items';
-                                                        }
-                                                        $productVariant = $orderDetails->product_info->first();
-                                                        
-                                                        echo $productVariantText = 'Your order for ' . $productVariant->listing_name . ' ' . $productCountSubText;
-                                                    @endphp
-                                                </p>
+                                                <p>{{\Helpers::getProductVariantText($order)}} </p>
                                                 <p class="list-item-heading mb-0 font-weight-bold"><i
                                                         class="las la-rupee-sign"></i>
                                                     {{ number_format($order->total_amount) }}</p>
@@ -65,9 +51,7 @@
                                             </a>
                                         </div>
                                         <div class="col-md-auto col-12 text-right">
-                                            <a href="Dashboard.Orders.Details.html"
-                                                class="las la-pen btn btn-secondary mx-1 my-3" title="Manage Order"></a>
-                                            <a href="Pages.Misc.Invoice.Standalone.html" target="_blank"
+                                            <a  href="{{ route('generatePDF',[$order->order_no])}}" target="_blank" 
                                                 class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
                                         </div>
                                     </div>

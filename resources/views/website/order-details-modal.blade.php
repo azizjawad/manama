@@ -3,10 +3,7 @@
         <div class="pd-modal-content">
             <p class="order-date"><sup>Order Date</sup> {{date('d M, Y', strtotime($order->created_at))}}</p>
             <h1><sup>Order No.</sup> {{$order->order_no}}</h1>
-            @php
-                $productVariantText = \Helpers::getProductVariantText($order)
-            @endphp
-            <p>{{$productVariantText}} </p>
+            <p>{{\Helpers::getProductVariantText($order)}} </p>
             <p class="order-detail">Order Amount : <i class="fas fa-rupee-sign"></i> {{number_format($order->total_amount)}}
             </p>
             <p class="order-detail">Order Status : {{Helpers::getOrderStatusText($order->status)}}</p>

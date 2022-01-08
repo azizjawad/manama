@@ -21,7 +21,7 @@ class AdminController extends Controller
         $data['daily_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as daily_sales'))->where('created_at', date('Y-m-d'))->first()->daily_sales;
         $data['monthly_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as monthly_sales'))->where('created_at', date('Y-m'))->first()->monthly_sales;
         $data['total_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as monthly_sales'))->first()->monthly_sales;
-        $data['recent_orders'] = OrdersModel::where('status', 1)->get();
+        $data['recent_orders'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->where('status', 1)->get();
         $data['daily_new_registration'] = User::where('created_at', date('Y-m-d'))->count();
         $data['monthly_new_registration'] = User::where('created_at', date('Y-m'))->count();
         $data['total_users'] = User::count();
