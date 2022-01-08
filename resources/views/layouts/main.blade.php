@@ -137,10 +137,10 @@
                                                         <div class="megamenu-banner-info">
                                                             <h3><span>build</span><br><span>flavour box</span></h3>
                                                             <span>
-                                                                    <a href="flavour-box.html">start here</a>
+                                                                    <a href="#">start here</a>
                                                                 </span>
                                                         </div>
-                                                        <a href="shop-sidebar.html" class="megamenu-banner-link"></a>
+                                                        <a href="#" class="megamenu-banner-link"></a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -355,9 +355,9 @@
                             <div class="mobile-navigation dl-menuwrapper" id="dl-menu">
                                 <button class="dl-trigger">Open Menu</button>
                                 <ul class="dl-menu">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="/">Home</a></li>
                                     <li>
-                                        <a href="shop-sidebar.html">
+                                        <a href="#">
                                             Shop Products
                                         </a>
                                         <ul class="dl-submenu">
@@ -409,7 +409,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="make-flavour-pack.html">
+                                                <a href="#">
                                                     Build Flavour Box
                                                 </a>
 
@@ -429,7 +429,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="blog.html">
+                                        <a href="#"> {{-- blog.html --}}
                                             Inside Manama
                                         </a>
                                         <ul class="dl-submenu">

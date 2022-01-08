@@ -8,19 +8,20 @@ use App\Models\OrdersModel;
 use Illuminate\Support\Facades\Validator;
 use App\Models\OrderHistory;
 use Log;
+use Helpers;
 
 class OrdersController extends Controller
 {
 
     public function index_page()
     {
-        $orders = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->orderBy('orders.id', 'desc')->groupBy('order_no')->get();
+        $orders = Helpers::fetchOrderDetails('', '' , 'get');
         return view('admin.orders', compact('orders'));
     }
 
     public function manage_order($order_no)
     {
-        $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->where('orders.order_no', $order_no)->groupBy('order_no')->first();
+        $order = Helpers::fetchOrderDetails('orders.order_no', $order_no , 'first');
         return view('admin.manage_order', compact('order'));
     }
 
@@ -58,7 +59,7 @@ class OrdersController extends Controller
                     $message = $status['description'];
                     if ($status['id'] == ORDER_STATUSES['SHIPPED']['id'] && $post['order_status'] == ORDER_STATUSES['SHIPPED']['id']) {
                         $deliveryCompany = \Helpers::getDeliveryCompany($post['delivery_company']);
-                        
+
                         $message = str_replace('DELIVERY_COMPANY', $deliveryCompany, $message);
                         $message = str_replace('TRACKING_NUMBER', $post['tracking_number'], $message);
                     }

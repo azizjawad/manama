@@ -1,4 +1,5 @@
 <?php
+use App\Models\OrdersModel;
 class Helpers
 {
     public static function fetchProductMenu()
@@ -47,6 +48,20 @@ class Helpers
 
         }
         return $status_text;
+    }
+
+    public static function fetchOrderDetails($column_name, $value, $return_type = 'first'){
+        $orders = OrdersModel::select('orders.*','order_details.product_info_id','quantity','product_cost')->join('order_details', 'order_details.order_id', 'orders.id');
+        if($column_name != '' && $value != '' ){
+            $orders = $orders->where( $column_name , $value);
+        }
+        $orders = $orders->orderBy('orders.id', 'desc');
+        if($return_type == 'first' ){
+            $orders = $orders->first();
+        }else {
+            $orders = $orders->get();
+        }
+        return $orders;
     }
 
 }

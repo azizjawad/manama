@@ -58,8 +58,10 @@
                                         <p
                                             style="color:#8f8f8f; font-size: 12px; padding: 0; line-height: 1.6; margin:0; ">
                                             Payment Method :
-                                            {{ $order->transaction_type == 'true' ? 'Cash On Delivery' : 'Online Payment' }}<br>
-                                            Transaction ID : {{ $order->transaction_id }}<br>
+                                            {{ empty($order->transaction_id) ? 'Cash On Delivery' : 'Online Payment' }}<br>
+                                            @if(!empty($order->transaction_id))
+                                                Transaction ID : {{ $order->transaction_id }}<br>
+                                            @endif
                                             {{-- Invoice #: 4020<br> --}}
                                             {{ date('d M, Y', strtotime($order->created_at)) }}
                                         </p>
@@ -190,7 +192,7 @@
                 </td>
             </tr>
             @if ($order->discount > 0)
-                
+
             <tr>
                 <td style="width: 100%">
                     <p href="#"
