@@ -135,7 +135,7 @@ class MyCartController extends Controller
     //         Log::info("coupon");
     //         Log::info( $coupon );
     //         if(!empty ($coupon) ) {
-    //             // check if coupon is single use 
+    //             // check if coupon is single use
     //             if($coupon->coupon_use == 1 && $coupon->order_count > 0){
 
     //             }
