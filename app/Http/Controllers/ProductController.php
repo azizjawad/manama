@@ -36,7 +36,7 @@ class ProductController extends Controller
                 if (isset($data['product'][0]->meta_title)) {
                     $data['meta_title'] = $data['product'][0]->meta_title;
                     $data['meta_description'] = $data['product'][0]->meta_description;
-                    $data['reviews'] = Reviews::where('status',1)->get();
+                    $data['reviews'] = Reviews::where('product_id', $data['product'][0]->id)->where('status',1)->get();
                     return view('website/products', $data);
                 }
             }
