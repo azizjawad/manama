@@ -118,6 +118,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::post('save-advertisement', 'App\Http\Controllers\Admin\CMSController@save_advertisement')->name('admin-save-advertisement');
             Route::get('recipes', 'App\Http\Controllers\Admin\CMSController@recipes_page')->name('admin-recipes');
             Route::post('save-recipes', 'App\Http\Controllers\Admin\CMSController@save_recipes')->name('admin-save-recipes');
+            Route::get('edit-recipe/{receipe_id}', 'App\Http\Controllers\Admin\CMSController@fetch_recipes')->name('admin-edit-recipes');
+            Route::post('update-recipes', 'App\Http\Controllers\Admin\CMSController@update_recipes')->name('admin-update-recipes');
             Route::get('news-events', 'App\Http\Controllers\Admin\CMSController@news_events_page')->name('admin-news-events');
             Route::get('edit-news-events/{id}', 'App\Http\Controllers\Admin\CMSController@news_events_edit_page')->name('admin-news-events-edit');
             Route::post('save-news-events', 'App\Http\Controllers\Admin\CMSController@save_news_events')->name('admin-save-news-events');

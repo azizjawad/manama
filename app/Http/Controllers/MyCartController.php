@@ -209,6 +209,7 @@ class MyCartController extends Controller
             OrderHistory::create([
                 'order_id'          => $order_placed->id,
                 'status'            => ORDER_STATUSES['PROCESSING']['id'],
+                'description'       => ORDER_STATUSES['PROCESSING']['text'],
                 'created_by'        => $user_id
             ]);
             if(!empty ( $order_placed )) {

@@ -12,6 +12,7 @@ use \Illuminate\Support\Facades\Validator;
 use Auth;
 use Log;
 use App\Models\ShippingModel;
+use Helpers;
 
 class MyAccountController extends Controller
 {
@@ -26,8 +27,7 @@ class MyAccountController extends Controller
 
     public function index()
     {
-        $data['orders'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
-            ->where('user_id', $this->logged_in_id->id)->orderBy('orders.id', 'desc')->get();
+        $data['orders'] = Helpers::fetchOrderDetails('user_id', $this->logged_in_id->id, 'get');
         return view('website/account/my-account', $data);
     }
 
@@ -50,8 +50,7 @@ class MyAccountController extends Controller
 
     public function order_history()
     {
-        $data['orders'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
-            ->where('user_id', $this->logged_in_id->id)->orderBy('orders.id', 'desc')->get();
+        $data['orders'] = Helpers::fetchOrderDetails('user_id', $this->logged_in_id->id, 'get');
         return view('website.account.order-history', compact('data'));
     }
 
@@ -339,9 +338,7 @@ class MyAccountController extends Controller
 
     public function generatePDF($order_no)
     {
-         $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
-            ->where('order_no', $order_no)->orderBy('orders.id', 'desc')->first();
-            // return $order;
+        $order = Helpers::fetchOrderDetails('order_no', $order_no);
         return PDF::loadHTML(view('website.invoice', compact('order')))->stream('download.pdf');
 
     }
@@ -349,10 +346,7 @@ class MyAccountController extends Controller
     public static function order_details(Request $request, $order_no)
     {
         $adminFlag =$request->get('adminFlag');
-        $order = OrdersModel::select('orders.*','order_details.product_info_id','quantity','product_cost')->join('order_details', 'order_details.order_id', 'orders.id')
-            ->where('order_no', $order_no)
-            ->orderBy('orders.id', 'desc')->first();
-
+        $order = Helpers::fetchOrderDetails('order_no', $order_no);
         if(!$adminFlag){
             return view('website/order-details-modal', compact('order'));
         }else{
