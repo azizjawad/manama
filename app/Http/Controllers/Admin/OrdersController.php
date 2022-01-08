@@ -14,7 +14,7 @@ class OrdersController extends Controller
 
     public function index_page()
     {
-        $orders = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->orderBy('orders.id', 'desc')->get();
+        $orders = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->orderBy('orders.id', 'desc')->groupBy('order_no')->get();
         return view('admin.orders', compact('orders'));
     }
 
@@ -58,7 +58,7 @@ class OrdersController extends Controller
                     $message = $status['description'];
                     if ($status['id'] == ORDER_STATUSES['SHIPPED']['id'] && $post['order_status'] == ORDER_STATUSES['SHIPPED']['id']) {
                         $deliveryCompany = \Helpers::getDeliveryCompany($post['delivery_company']);
-                        
+
                         $message = str_replace('DELIVERY_COMPANY', $deliveryCompany, $message);
                         $message = str_replace('TRACKING_NUMBER', $post['tracking_number'], $message);
                     }
