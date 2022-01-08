@@ -57,12 +57,8 @@ class OrdersController extends Controller
                 if ($status['id'] == $post['order_status']) {
                     $message = $status['description'];
                     if ($status['id'] == ORDER_STATUSES['SHIPPED']['id'] && $post['order_status'] == ORDER_STATUSES['SHIPPED']['id']) {
-                        $deliveryCompany = $post['delivery_company'];
-                        foreach (array_values(DELIVERY_COMPANY)  as $company) {
-                            if ($company['id'] == $post['delivery_company']) {
-                                 $deliveryCompany = $company['text'];
-                            }
-                        }
+                        $deliveryCompany = \Helpers::getDeliveryCompany($post['delivery_company']);
+                        
                         $message = str_replace('DELIVERY_COMPANY', $deliveryCompany, $message);
                         $message = str_replace('TRACKING_NUMBER', $post['tracking_number'], $message);
                     }

@@ -13,6 +13,12 @@
                 @if ( $order->transaction_id)
                  <p class="order-detail">Transaction ID : {{ $order->transaction_id }}</p>
                @endif
+               @if ( $order->delivery_company)
+               <p class="order-detail">Delivery Company : {{\Helpers::getDeliveryCompany( $order->delivery_company) }}</p>
+             @endif
+             @if ( $order->tracking_number)
+             <p class="order-detail">Tracking Number : {{ $order->tracking_number }}</p>
+           @endif
             <!--			
                             <p class="order-detail">Shipping Method : Standard Shipping</p>  -->
             <div class="table-responsive order-meta-table">

@@ -18,7 +18,7 @@ class Helpers
             if ($status_id == $status['id']) {
                 $status_text = $status['text'];
             }
-            
+
         }
         return $status_text;
     }
@@ -35,4 +35,18 @@ class Helpers
         $productVariant = $orders->product_info->first();
         return 'Your order for ' . $productVariant->listing_name . ' ' . $productCountSubText;
     }
+
+    public static function getDeliveryCompany($company_id)
+    {
+        $order_status = array_values(DELIVERY_COMPANY);
+        $status_text = '';
+        foreach ($order_status as $status) {
+            if ($company_id == $status['id']) {
+                $status_text = $status['text'];
+            }
+
+        }
+        return $status_text;
+    }
+
 }
