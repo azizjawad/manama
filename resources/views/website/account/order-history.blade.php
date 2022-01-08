@@ -36,7 +36,7 @@
                                                         data-bs-toggle="modal" data-bs-target="#odmwindow"
                                                         class="table-link"><i
                                                             class="fas fa-external-link-alt"></i>Details</a><a
-                                                        href="bill-sample.pdf" target="_blank" class="table-link"><i
+                                                        href="{{ route('generatePDF',[$order->order_no])}}" target="_blank" class="table-link"><i
                                                             class="fas fa-print"></i>Print</a></td>
                                             </tr>
                                         @endforeach

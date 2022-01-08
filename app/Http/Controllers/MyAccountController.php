@@ -337,20 +337,19 @@ class MyAccountController extends Controller
         ];
     }
 
-    public function generatePDF()
+    public function generatePDF($order_no)
     {
-        $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
-            'date' => date('m/d/Y')
-        ];
-        $pdf = PDF::loadView('website.invoice', $data);
-        return $pdf->download('itsolutionstuff.pdf');
+         $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
+            ->where('order_no', $order_no)->orderBy('orders.id', 'desc')->first();
+            // return $order;
+        return PDF::loadHTML(view('website.invoice', compact('order')))->stream('download.pdf');
+
     }
 
     public static function order_details($order_no)
     {
-        $data['order'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
+        $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
             ->where('order_no', $order_no)->orderBy('orders.id', 'desc')->first();
-        return view('website/order-details-modal', compact('data'));
+        return view('website/order-details-modal', compact('order'));
     }
 }

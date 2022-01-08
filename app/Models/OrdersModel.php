@@ -29,4 +29,16 @@ class OrdersModel extends Model
     function order_by(){
         return $this->belongsTo(\App\Models\User::class,  'created_by', 'id');
     }
+
+    function seller(){
+        return $this->belongsTo(\App\Models\User::class,  'user_id', 'id');
+    }
+    
+    function shipping_address_detail(){
+        return $this->belongsTo(\App\Models\MyaccountModel::class,  'shipping_address', 'id');
+    }
+    
+    function billing_address_detail(){
+        return $this->belongsTo(\App\Models\MyaccountModel::class,  'billing_address', 'id');
+    }
 }
