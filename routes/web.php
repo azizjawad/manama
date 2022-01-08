@@ -134,7 +134,6 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('/save-address', 'App\Http\Controllers\MyAccountController@save_address')->name('save-address');
         Route::post('/delete-address', 'App\Http\Controllers\MyAccountController@delete_address')->name('delete-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
-        Route::get('generate-pdf', 'App\Http\Controllers\MyAccountController@generatePDF');
 
         Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
         // Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
@@ -143,6 +142,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
         Route::post('online-order-payments', 'App\Http\Controllers\WebsiteController@online_payments')->name('online-order-payments');
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
+        Route::get('/order-details/{order_no}', 'App\Http\Controllers\MyAccountController@order_details')->name('order_details');
+        Route::get('generate-pdf/{order_no}', 'App\Http\Controllers\MyAccountController@generatePDF')->name('generatePDF');
     });
     Route::prefix('api')->group(function () {
         Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
