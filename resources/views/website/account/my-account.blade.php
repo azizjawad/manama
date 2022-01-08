@@ -58,8 +58,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            @endif
 
+                            @else
+                                <p>No New Order</p>
+                            @endif
                         </div>
                     </div>
                 </div>
