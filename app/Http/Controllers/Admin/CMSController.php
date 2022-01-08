@@ -306,4 +306,66 @@ class CMSController extends Controller
     {
         return view('admin.cms.metas');
     }
+
+    public function fetch_recipes($receipe_id){
+        $recipe = RecipeModel::find($receipe_id);
+        return view('admin.cms.receipe_edit', compact('recipe'));
+    }
+
+    public function update_recipes(Request $request)
+    {
+        $post = $request->all();
+        $rules = array(
+            'rcp_name' => 'required|max:250',
+            'rcp_description' => 'required',
+            'rcp_meta_description' => 'required',
+            'rcp_page_slug' => 'required',
+            // 'youtube_url' => 'url',
+            'rcp_meta_title' => 'required',
+        );
+        // validator Rules
+        $validator = Validator::make($post, $rules);
+
+        // Check validation (fail or pass)
+        if (!$validator->fails()) {
+            if ($request->hasFile('rcp_display_img')) {
+                $image = $request->file('rcp_display_img');
+                $display_file_name = time() . '_' . $image->getClientOriginalName();
+                $destinationPath = public_path('/images/recipe/display-img');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+                $image->move($destinationPath, $display_file_name);
+            }
+            if ($request->hasFile('rcp_homepage_img')) {
+                $image = $request->file('rcp_homepage_img');
+                $homepage_file_name = time() . '_' . $image->getClientOriginalName();
+                $destinationPath = public_path('/images/recipe/homepage');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+                $image->move($destinationPath, $homepage_file_name);
+            }
+            $fields = [
+                'rcp_name' => $post['rcp_name'],
+                'rcp_description' => $post['rcp_description'],
+                'rcp_meta_description' => $post['rcp_meta_description'],
+                'rcp_page_slug' => $post['rcp_page_slug'],
+                'youtube_url' => $post['youtube_url'],
+                'rcp_meta_title' => $post['rcp_meta_title'],
+                'created_by' => auth()->id(),
+            ];
+            if(isset($display_file_name) && $display_file_name != ''){
+                $fields['display_file_name'] = $display_file_name;
+            }
+            if(isset($homepage_file_name) && $homepage_file_name != ''){
+                $fields['homepage_file_name'] = $homepage_file_name;
+            }
+
+            if (RecipeModel::where('id', $post['receipe_id'])->update($fields))
+                return back()->with('success', 'Recipe updated Successfully!!');
+
+        }
+        return back()->withErrors($validator)->withInput();
+    }
 }

@@ -14,13 +14,13 @@ class OrdersController extends Controller
 
     public function index_page()
     {
-        $orders = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->orderBy('orders.id', 'desc')->get();
+        $orders = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->orderBy('orders.id', 'desc')->groupBy('order_no')->get();
         return view('admin.orders', compact('orders'));
     }
 
     public function manage_order($order_no)
     {
-        $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->where('orders.order_no', $order_no)->first();
+        $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->where('orders.order_no', $order_no)->groupBy('order_no')->first();
         return view('admin.manage_order', compact('order'));
     }
 

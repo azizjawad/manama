@@ -46,9 +46,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $srNo = 1;
+                                        @endphp
                                     @foreach($recipes as $recipe)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{$srNo++}}</td>
                                         <td>{{$recipe->rcp_name}}</td>
                                         <td>
                                             <div class="img prd lightbox">
@@ -59,7 +62,7 @@
                                         </td>
                                         <td>{{$recipe->created_at}}</td>
                                         <td class="text-center">
-                                            <a href="CMS.Recipes.Edit.Single.html" class="las la-edit btn btn-secondary mx-1"></a>
+                                            <a href="{{route('admin-edit-recipes',[$recipe->id])}}" target="_blank" class="las la-edit btn btn-secondary mx-1"></a>
                                             <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
                                         </td>
                                     </tr>
@@ -141,6 +144,23 @@
                                 <button class="btn btn-secondary" type="submit">Add Recipe</button>
                             </div>
                         </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal-right" id="editReceipe" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalRight" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold">Edit Recipe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body fetchReceipeModal">
+                        
                     </div>
 
                 </div>
