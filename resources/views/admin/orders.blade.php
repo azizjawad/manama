@@ -71,7 +71,7 @@
                         </button>
                     </div>
                     <div class="modal-body orderDetailsModalBody">
-                       
+
                     </div>
                 </div>
             </div>
@@ -92,7 +92,6 @@
                     console.log(' fetchOrderDetailModal : ', response);
                     $('.orderDetailsModalBody').html(response);
                     $('#orderDetailsModal').modal('show');
-
                 },
                 error: function(err) {
                     console.log(err);

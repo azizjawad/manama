@@ -349,8 +349,10 @@ class MyAccountController extends Controller
     public static function order_details(Request $request, $order_no)
     {
         $adminFlag =$request->get('adminFlag');
-        $order = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')
-            ->where('order_no', $order_no)->orderBy('orders.id', 'desc')->first();
+        $order = OrdersModel::select('orders.*','order_details.product_info_id','quantity','product_cost')->join('order_details', 'order_details.order_id', 'orders.id')
+            ->where('order_no', $order_no)
+            ->orderBy('orders.id', 'desc')->first();
+
         if(!$adminFlag){
             return view('website/order-details-modal', compact('order'));
         }else{
