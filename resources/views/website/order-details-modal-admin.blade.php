@@ -9,7 +9,7 @@
                @endif
                 {{-- <p class="text-small text-white mb-2">Shipping Method: Standard Shipping Free</p> --}}
                 <p class="text-small text-white mb-2"><b>Order Status:</b> {{ Helpers::getOrderStatusText($order->status) }}</p>
-                <a href="Dashboard.Orders.Details.html" class="btn btn-primary mb-1 mt-1 float-right">Manage Order</a>
+                <a href="{{route('manage_order',[$order->order_no])}}" target="_blank" class="btn btn-primary mb-1 mt-1 float-right">Manage Order</a>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
                         </tfoot>
                     </table>
                 </div>
-                <a href="Dashboard.Orders.Details.html" class="btn btn-secondary mb-1 mt-1 float-right">Manage Order</a>
+                <a href="{{route('manage_order',[$order->order_no])}}" target="_blank" class="btn btn-secondary mb-1 mt-1 float-right">Manage Order</a>
             </div>
         </div>
     </div>

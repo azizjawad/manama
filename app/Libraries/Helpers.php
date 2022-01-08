@@ -18,6 +18,7 @@ class Helpers
             if ($status_id == $status['id']) {
                 $status_text = $status['text'];
             }
+            
         }
         return $status_text;
     }
