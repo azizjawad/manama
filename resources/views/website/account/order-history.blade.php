@@ -32,18 +32,7 @@
                                         <td>Shipped</td>
                                         <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#odmwindow" class="table-link"><i class="fas fa-external-link-alt"></i>Details</a><a href="bill-sample.pdf" target="_blank" class="table-link"><i class="fas fa-print"></i>Print</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>21/08/2021</td>
-                                        <td>MFF0002</td>
-                                        <td>Delivered</td>
-                                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#odmwindow" class="table-link"><i class="fas fa-external-link-alt"></i>Details</a><a href="bill-sample.pdf" target="_blank" class="table-link"><i class="fas fa-print"></i>Print</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>15/07/2021</td>
-                                        <td>MFF0001</td>
-                                        <td>Delivered</td>
-                                        <td><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#odmwindow" class="table-link"><i class="fas fa-external-link-alt"></i>Details</a><a href="bill-sample.pdf" target="_blank" class="table-link"><i class="fas fa-print"></i>Print</a></td>
-                                    </tr>
+
                                     </tbody>
                                 </table></div>
                         </div>

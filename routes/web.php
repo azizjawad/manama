@@ -25,7 +25,7 @@ Route::get('payment-fail', 'App\Http\Controllers\WebsiteController@payment_fail'
 Route::get('support-center', 'App\Http\Controllers\WebsiteController@support_center')->name('support-center');
 Route::get('shipping-policy', 'App\Http\Controllers\WebsiteController@shipping_policy')->name('shipping-policy');
 Route::get('terms-and-conditions', 'App\Http\Controllers\WebsiteController@terms_and_conditions')->name('terms-and-conditions');
-Route::get('payu_payments', 'App\Http\Controllers\WebsiteController@payu_payments')->name('payu_payments');
+//Route::get('payu_payments', 'App\Http\Controllers\WebsiteController@payu_payments')->name('payu_payments');
 
 
 Route::get('admin/logout', function () {
@@ -127,11 +127,14 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::get('/my-wishlist', 'App\Http\Controllers\MyAccountController@my_wishlist')->name('my-wishlist');
         Route::get('/change-password', 'App\Http\Controllers\MyAccountController@change_password')->name('change-password');
         Route::get('/edit-profile', 'App\Http\Controllers\MyAccountController@edit_profile')->name('edit-profile');
+        Route::post('/save-profile', 'App\Http\Controllers\MyAccountController@save_profile')->name('edit-user-profile');
         Route::get('/order-history', 'App\Http\Controllers\MyAccountController@order_history')->name('order-history');
         Route::get('/manage-address', 'App\Http\Controllers\MyAccountController@manage_address')->name('manage-address');
         Route::post('/save-address', 'App\Http\Controllers\MyAccountController@save_address')->name('save-address');
         Route::post('/delete-address', 'App\Http\Controllers\MyAccountController@delete_address')->name('delete-address');
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
+        Route::get('generate-pdf', 'App\Http\Controllers\MyAccountController@generatePDF');
+
         Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
         // Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
         Route::post('/place-order', 'App\Http\Controllers\MyCartController@place_order')->name('place-order');

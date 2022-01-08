@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\MyaccountModel;
 use App\Models\OrdersModel;
+use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use \Illuminate\Support\Facades\Validator;
 use Auth;
 use Log;
@@ -41,15 +44,16 @@ class MyAccountController extends Controller
     }
 
     public function edit_profile(){
-        return view('website/account/edit-profile');
+        $user = Auth::user();
+        return view('website.account.edit-profile', compact('user'));
     }
 
     public function order_history(){
-        return view('website/account/order-history');
+        return view('website.account.order-history');
     }
 
     public function user_settings(){
-        return view('website/account/user-settings');
+        return view('website.account.user-settings');
     }
 
     public function checkout(Request $request) {
@@ -84,6 +88,35 @@ class MyAccountController extends Controller
     public function manage_address() {
         $data['my_address_list'] = MyaccountModel::where('user_id', $this->logged_in_id->id)->get();
         return view('website/account/manage-address', $data);
+    }
+
+    public function save_profile(Request $request){
+        $post = $request->post();
+
+        $validator = Validator::make($post, [
+            'name'         => ['required'],
+        ]);
+
+        if (!$validator->fails()){
+            $name = explode(' ', $post['name']);
+
+            $fields = [
+                "name" => $post['name'],
+                'first_name' => $name[0],
+                'last_name' => $name[1] ?? "",
+            ];
+
+            if (isset($post['dob']) && !empty($post['dob'])){
+               $fields['dob'] = date('Y-m-d', strtotime($post['dob']));
+            }
+
+            if (isset($post['phone_no']) && !empty($post['phone_no'])){
+                $fields['mobile'] = $post['phone_no'];
+            }
+
+            User::where('id', auth()->id())->update($fields);
+        }
+        return redirect()->back();
     }
 
     public function save_address(Request $request) {
@@ -176,7 +209,7 @@ class MyAccountController extends Controller
             Log::info("coupon");
             Log::info( $coupon );
             if(!empty ($coupon) ) {
-                 // check if coupon is single use 
+                 // check if coupon is single use
                  if($coupon->coupon_use == 1 ){
                     // order count
                     $orderExists = OrdersModel::where('orders.coupon_code', $post['coupon_code'])->where('orders.user_id', \Auth::id())->exists();
@@ -289,5 +322,16 @@ class MyAccountController extends Controller
             'shippingCharges' => $shippingCharges,
             'perBottleRate' => $perBottleRate,
         ];
+    }
+
+    public function generatePDF()
+    {
+        $data = [
+            'title' => 'Welcome to ItSolutionStuff.com',
+            'date' => date('m/d/Y')
+        ];
+        $pdf = PDF::loadView('website.invoice', $data);
+
+        return $pdf->download('itsolutionstuff.pdf');
     }
 }

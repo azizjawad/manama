@@ -17,9 +17,12 @@ class IsDefault
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && $request->user()->role == 'default' || $request->user()->role == 'admin')
+
+        if ($request->user())
         {
-            return $next($request);
+            if ($request->user()->role == 'default' || $request->user()->role == 'admin') {
+                return $next($request);
+            }
         }
 
         return redirect('/');
