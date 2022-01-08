@@ -93,7 +93,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label>Recipes Description<br>(use Redactor or any WYSIWYG html editor)</label>
-                                <textarea class="form-control" name="rcp_description" rows="7" required>{{old('rcp_description')}}</textarea>
+                                <textarea class="form-control summernote" name="rcp_description" rows="7" required>{{old('rcp_description')}}</textarea>
                             </div>
                             <div class="form-group mb-4">
                                 <div class="alert alert-warning my-4" role="alert">* Adding video is optional, if you

@@ -56,6 +56,10 @@ class WebsiteController extends Controller
         return view('website.recipe_corner', $data);
     }
 
+    public function get_recipe($recipe_id){
+        return response(['status' => true, 'data' => RecipeModel::find($recipe_id)]);
+    }
+
     public function about_us(){
         return view('website.about_us');
     }

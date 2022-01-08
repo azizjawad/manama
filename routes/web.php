@@ -153,6 +153,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
     });
 });
 Route::get('/api/get-product-details/{product_info_id?}', 'App\Http\Controllers\ProductController@get_product_details')->name('get-product-details');
+Route::get('/api/get-recipe/{recipe_id?}', 'App\Http\Controllers\WebsiteController@get_recipe')->name('get_recipe');
 
 Route::post('/api/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
 Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
