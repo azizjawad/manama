@@ -10,7 +10,7 @@
                     <div class="order-2 col-md-4 ms-auto">
                         <h1>Support Centre</h1>
                         <ul class="pghd-breadcrumbs">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li>Support Centre</li>
                         </ul>
                     </div>
