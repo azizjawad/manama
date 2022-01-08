@@ -59,7 +59,7 @@
                                             style="color:#8f8f8f; font-size: 12px; padding: 0; line-height: 1.6; margin:0; ">
                                             Payment Method :
                                             {{ $order->transaction_type == 'true' ? 'Cash On Delivery' : 'Online Payment' }}<br>
-                                            Transaction ID : {{ $order->trasaction_id }}<br>
+                                            Transaction ID : {{ $order->transaction_id }}<br>
                                             {{-- Invoice #: 4020<br> --}}
                                             {{ date('d M, Y', strtotime($order->created_at)) }}
                                         </p>

@@ -45,7 +45,7 @@
                                                     <p class="text-extra-small mb-0 line-height-2">Orderd by -
                                                         {{ $order->order_by->name }}</p>
                                                     <p class="text-extra-small mb-0 line-height-2">Txn ID -
-                                                        {{ $order->trasaction_id }}</p>
+                                                        {{ $order->transaction_id }}</p>
                                                 </div>
 
                                             </a>

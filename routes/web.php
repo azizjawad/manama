@@ -52,6 +52,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
     Route::prefix('admin')->group(function () {
 
         Route::get('orders', 'App\Http\Controllers\Admin\OrdersController@index_page')->name('admin-order');
+        Route::get('manage-orders/{order_id}', 'App\Http\Controllers\Admin\OrdersController@manage_order')->name('manage_order');
+        Route::post('update-order/{order_id}', 'App\Http\Controllers\Admin\OrdersController@update_order_status')->name('update_order_status');
         Route::get('account', 'App\Http\Controllers\Admin\AdminController@my_account')->name('admin-account');
         Route::post('save-admin-profile', 'App\Http\Controllers\Admin\AdminController@save_admin_profile')->name('save-admin-profile');
         Route::get('get-user-details/{user_id?}', 'App\Http\Controllers\Admin\AdminController@get_user_details')->name('get-user-details');

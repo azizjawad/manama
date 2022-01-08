@@ -32,13 +32,13 @@
                                             @foreach ($orders as $order)
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1"><a href="javascript:void(0);"
-                                                        onClick="fetchOrderDetailModal({{ $order->order_no }})"
+                                                            onClick="fetchOrderDetailModal({{ $order->order_no }})"
                                                             data-toggle="modal" data-target="#orderDetails"
                                                             title="Manage Order">{{ $order->order_no }}</a></td>
                                                     <td>{{ date('d M, Y', strtotime($order->created_at)) }}</td>
                                                     <td>{{ $order->seller->name }}</td>
                                                     <td><i class="las la-rupee-sign"></i>{{ $order->total_amount }}</td>
-                                                    <td>{{ $order->trasaction_id }}</td>
+                                                    <td>{{ $order->transaction_id }}</td>
                                                     <td>{{ Helpers::getOrderStatusText($order->status) }}</td>
                                                     <td><a href="javascript:void(0);"
                                                             onClick="fetchOrderDetailModal({{ $order->order_no }})"
@@ -61,27 +61,29 @@
             </div>
         </div>
         <!-- Order Details Modal Start -->
-        <div class="modal fade product-modal" id="orderDetailsModal" aria-hidden="true" aria-labelledby="odmwindowLabel"
-            tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal fade bd-example-modal-lg" id="orderDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="odmwindowLabel">Order Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="dl-icon-close"></i></span>
+                        <h5 class="modal-title">Order Summary</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body orderDetailsModalBody"></div>
+                    <div class="modal-body orderDetailsModalBody">
+                       
+                    </div>
                 </div>
             </div>
         </div>
+
         <!-- Order Details Modal End -->
     </div>
     <script>
         function fetchOrderDetailModal(order_no) {
             $.ajax({
                 type: 'GET',
-                url: window.location.origin + '/account/order-details/' + order_no,
+                url: window.location.origin + '/account/order-details/' + order_no+'?adminFlag=true',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
