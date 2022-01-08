@@ -55,7 +55,7 @@ class Helpers
         if($column_name != '' && $value != '' ){
             $orders = $orders->where( $column_name , $value);
         }
-        $orders = $orders->orderBy('orders.id', 'desc');
+        $orders = $orders->groupBy('order_no')->orderBy('orders.id', 'desc');
         if($return_type == 'first' ){
             $orders = $orders->first();
         }else {
