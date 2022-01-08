@@ -17,6 +17,8 @@ Route::get('/', 'App\Http\Controllers\WebsiteController@homepage')->name('home-p
 Route::get('about-us', 'App\Http\Controllers\WebsiteController@about_us')->name('about-us');
 Route::get('contact-us', 'App\Http\Controllers\WebsiteController@contact_us')->name('contact-us');
 Route::get('customer-testimonials', 'App\Http\Controllers\WebsiteController@customer_testimonials')->name('customer-testimonials');
+Route::get('return-refund-policy', 'App\Http\Controllers\WebsiteController@return_refund_policy')->name('return_refund_policy');
+Route::get('privacy-policy', 'App\Http\Controllers\WebsiteController@privacy_policy')->name('privacy-policy');
 Route::get('our-distributors', 'App\Http\Controllers\WebsiteController@our_distributors')->name('our-distributors');
 Route::get('tips-techniques', 'App\Http\Controllers\WebsiteController@tips_techniques')->name('tips-techniques');
 Route::get('tips-techniques-single', 'App\Http\Controllers\WebsiteController@tips_techniques_single')->name('tips-techniques-single');
@@ -25,6 +27,7 @@ Route::get('payment-fail', 'App\Http\Controllers\WebsiteController@payment_fail'
 Route::get('support-center', 'App\Http\Controllers\WebsiteController@support_center')->name('support-center');
 Route::get('shipping-policy', 'App\Http\Controllers\WebsiteController@shipping_policy')->name('shipping-policy');
 Route::get('terms-and-conditions', 'App\Http\Controllers\WebsiteController@terms_and_conditions')->name('terms-and-conditions');
+Route::get('download-brochure', 'App\Http\Controllers\WebsiteController@download_brochure')->name('download-brochure');
 //Route::get('payu_payments', 'App\Http\Controllers\WebsiteController@payu_payments')->name('payu_payments');
 
 

@@ -226,9 +226,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="press-releases.html">
-                                                    <span class="mm-text">Press Releases</span>
-                                                </a>
+                                                <a href="{{route('customer-testimonials')}}"><span class="mm-text">Customer Testimonials</span></a>
                                             </li>
                                             <li>
                                                 <a href="{{route('contact-us')}}">
@@ -445,9 +443,10 @@
                                                     Our Distributors
                                                 </a>
                                             </li>
+
                                             <li>
-                                                <a href="press-releases.html">
-                                                    Press Releases
+                                                <a href="{{route('customer-testimonials')}}">
+                                                    Customer Testimonials
                                                 </a>
                                             </li>
                                             <li>
@@ -481,8 +480,8 @@
                             <h3 class="widget-title">Company</h3>
                             <ul class="widget-menu">
                                 <li><a href="{{route('about-us')}}">About Us</a></li>
-                                <li><a href="distributors.html">Distributors</a></li>
-                                <li><a href="download-brochure.html">Download Brochure</a></li>
+{{--                                <li><a href="distributors.html">Distributors</a></li>--}}
+                                <li><a href="{{route('download-brochure')}}">Download Brochure</a></li>
                                 <li><a href="{{route('contact-us')}}">Contact us</a></li>
                             </ul>
                         </div>
@@ -503,7 +502,10 @@
                             <ul class="widget-menu">
                                 <li><a href="{{route('recipe-corner')}}">Recipe Corner</a></li>
                                 <li><a href="{{route('tips-techniques')}}">Tips & Techniques</a></li>
-                                <li><a href="press-releases.html">Press Releases</a></li>
+{{--                                <li><a href="{{route('')}}">Press Releases</a></li>--}}
+                                <li>
+                                    <a href="{{route('customer-testimonials')}}"><span class="mm-text">Customer Testimonials</span></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -512,9 +514,9 @@
                             <h3 class="widget-title">TERMS & POLICY</h3>
                             <ul class="widget-menu">
                                 <li><a href="{{route('terms-and-conditions')}}">Terms & Conditions</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                <li><a href="{{route('privacy-policy')}}">Privacy Policy</a></li>
                                 <li><a href="{{route('shipping-policy')}}">Shipping Policy</a></li>
-                                <li><a href="return-refund-policy.html">Return & Refund Policy</a></li>
+                                <li><a href="{{route('return_refund_policy')}}">Return & Refund Policy</a></li>
                             </ul>
                         </div>
                     </div>

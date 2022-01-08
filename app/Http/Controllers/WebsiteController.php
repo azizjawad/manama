@@ -100,6 +100,19 @@ class WebsiteController extends Controller
         return view('website.terms-and-conditions');
     }
 
+    public function download_brochure(){
+        return view('website.download-brochure');
+    }
+
+    public function privacy_policy(){
+        return view('website.privacy-policy');
+
+    }
+
+    public function return_refund_policy(){
+        return view('website.return_refund_policy');
+
+    }
     public function payu_payments(){
 
         // Merchant key here as provided by Payu
