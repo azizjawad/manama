@@ -115,14 +115,14 @@
                                             <div class="product-ordering">
                                                 <a href="javascript:void(0);"
                                                     class="product-ordering__btn shop-toolbar__btn">
-                                                    <span>Short By</span>
+                                                    <span>Sort By</span>
                                                     <i></i>
                                                 </a>
                                                 <ul class="product-ordering__list">
-                                                    <li class="active"><a href="#">Sort by popularity</a></li>
-                                                    <li><a href="#">Sort by newness</a></li>
-                                                    <li><a href="#">Sort by price: low to high</a></li>
-                                                    <li><a href="#">Sort by price: high to low</a></li>
+                                                    <li class=""><a href="#">Sort by popularity</a></li>
+                                                    <li><a href="{{route('category_product',[$category->page_slug]).'?sort_by=newness'}}" class="{{ (isset($sortBy) && $sortBy == 'newness') ? 'active':''}}">Sort by newness</a></li>
+                                                    <li><a href="{{route('category_product',[$category->page_slug]).'?sort_by=low_to_high'}}" class="{{ (isset($sortBy) && $sortBy == 'low_to_high') ? 'active':''}}">Sort by price: low to high</a></li>
+                                                    <li><a href="{{route('category_product',[$category->page_slug]).'?sort_by=high_to_low'}}" class="{{ (isset($sortBy) && $sortBy == 'high_to_low') ? 'active':''}}">Sort by price: high to low</a></li>
                                                 </ul>
                                             </div>
                                         </div>

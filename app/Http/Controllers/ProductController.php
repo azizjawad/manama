@@ -19,14 +19,16 @@ class ProductController extends Controller
         return view('website/products');
     }
 
-    public function category_product($category_slug, $product_slug = "", $product_info_id = "")
+    public function category_product(Request $request, $category_slug, $product_slug = "", $product_info_id = "")
     {
         $data['category'] = CategoriesModel::where('page_slug','like',"$category_slug")->first();
         if (isset($data['category']->id)) {
             if (empty($product_slug)) {
                 $data['meta_title'] = $data['category']->meta_title;
                 $data['meta_description'] = $data['category']->meta_description;
-                $data['products'] = self::get_category_products($data['category']->id);
+                $sortyBy = $request->get('sort_by');
+                $data['products'] = self::get_category_products($data['category']->id,'' ,'', $sortyBy);
+                $data['sortBy'] = $sortyBy;
                 return view('website/category', $data);
             } else {
                 $data = array_merge($data, self::get_product($data['category']->id, $product_slug, $product_info_id));
@@ -41,7 +43,7 @@ class ProductController extends Controller
         return view('errors.404');
     }
 
-    private function get_category_products($category_id, $limit = '', $exclude_id = ''){
+    private function get_category_products($category_id, $limit = '', $exclude_id = '', $sortyBy = ''){
 
         $query = ProductsModel::select(['products.image as product_image','products.page_slug as product_slug',
             'products.label','product_info.listing_name as product_name','product_info.packaging_weight','product_info.id as product_info_id','is_in_stock',
@@ -49,14 +51,23 @@ class ProductController extends Controller
             ->join('product_info','product_info.product_id','products.id')
             ->where('products.category_id',$category_id)
             ->where('products.status',1);
-
+        
         if (!empty($exclude_id)){
             $query->where('products.id','!=', $exclude_id);
         }
         if (!empty($limit)) {
             $query->limit($limit);
-        } else {
+        } else if($sortyBy == '') {
             $query->orderBy('product_info.id', 'desc');
+        }
+        if($sortyBy != '' ){
+            if($sortyBy == 'low_to_high'){
+                $query->orderBy('product_info.cost_price','ASC');
+            }elseif($sortyBy == 'high_to_low'){
+                $query->orderBy('product_info.cost_price','DESC');
+            }elseif($sortyBy == 'newness'){
+                $query->orderBy('product_info.created_at','DESC');
+            }
         }
         return $query->get();
     }
