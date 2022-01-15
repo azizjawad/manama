@@ -612,38 +612,10 @@
                         <span aria-hidden="true"><i class="dl-icon-close"></i></span>
                     </button>
                 </div>
-                <div class="modal-body px-5 pb-5">
+                <div class="modal-body px-5 pb-5 update_product_html">
                     <!-- Each Product -->
-                    <div class="row each-item-row justify-content-center">
-                        <div class="col-md-7">
-                            <h4>Original Mojto - 750ml - <i class="fas fa-rupee-sign"></i>295.000</h4>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="product-action d-flex flex-row align-items-center justify-content-center">
-                                <div class="quantity">
-                                    <input type="number" class="quantity-input" name="qty" id="quick-qty" value="1" min="1" max="5">
-                                    <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                <button type="button" class="btn btn-style-1 add-to-cart">
-                                    <i class="dl-icon-cart13"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row each-item-row justify-content-center">
-                        <div class="col-md-7">
-                            <h4>Original Mojto - 1L - <i class="fas fa-rupee-sign"></i>295.000</h4>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="product-action d-flex flex-row align-items-center justify-content-center">
-                                <div class="quantity">
-                                    <input type="number" class="quantity-input" name="qty" id="quick-qty" value="1" min="1" max="5">
-                                    <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
-                                <button type="button" class="btn btn-style-1 add-to-cart">
-                                    <i class="dl-icon-cart13"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
 
             </div>

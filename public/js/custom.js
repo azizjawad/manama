@@ -220,6 +220,10 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
                 required: true,
                 digits: true
             },
+            gst_rate:{
+                required: true,
+                digits: true
+            },
             barcode: {
                 required: true
             },

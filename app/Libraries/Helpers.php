@@ -51,7 +51,9 @@ class Helpers
     }
 
     public static function fetchOrderDetails($column_name, $value, $return_type = 'first'){
-        $orders = OrdersModel::select('orders.*','order_details.product_info_id','quantity','product_cost')->join('order_details', 'order_details.order_id', 'orders.id');
+        $orders = OrdersModel::select('orders.*','order_details.product_info_id','quantity','product_cost','my_address.state')
+            ->join('order_details', 'order_details.order_id', 'orders.id')
+            ->join('my_address','my_address.id','orders.billing_address');
         if($column_name != '' && $value != '' ){
             $orders = $orders->where( $column_name , $value);
         }

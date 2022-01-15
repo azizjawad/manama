@@ -75,6 +75,15 @@ class MyCartController extends Controller
         return response(['status' => true, 'data' => self::get_cart_data($user_id)]);
     }
 
+    public function get_product_by_info_id($product_info_id){
+        $product = ProductInfoModel::select('product_id')->where('id', $product_info_id)->first();
+        if (isset($product->product_id)){
+            $data = ProductInfoModel::select(['id','listing_name','cost_price'])->where('product_id', $product->product_id)->where('is_in_stock', 1)->get();
+            return response(['status' => true, 'data' => $data]);
+        }
+        return response(['status' => false, 'data' => []]);
+    }
+
     public function delete_cart($cart_id){
         $user_id = Auth::id();
         $is_deleted = CartModel::where('user_id', $user_id)->where('id', $cart_id)->delete();
@@ -83,7 +92,7 @@ class MyCartController extends Controller
 
     public static function get_cart_data($user_id){
             return CartModel::select(['cart.id as cart_id','products.image','cart.quantity','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
-                'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
+                'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.gst_rate','product_info.barcode','is_in_stock'])
             ->join('product_info','cart.product_info_id','product_info.id')
             ->join('products','product_info.product_id','products.id')
             ->where('cart.user_id', $user_id)

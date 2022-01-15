@@ -44,6 +44,7 @@
                                                    data-packaging_weight="{{$key->packaging_weight}}"
                                                    data-packaging_type="{{$key->packaging_type}}"
                                                    data-cost_price="{{$key->cost_price}}"
+                                                   data-gst_rate="{{$key->gst_rate}}"
                                                    data-barcode="{{$key->barcode}}"
                                                    data-sku_code="{{$key->sku_code}}"
                                                    data-hsn_code="{{$key->hsn_code}}"
@@ -108,6 +109,11 @@
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
                                 <input data-role="tagsinput" name="cost_price" class="form-control" type="text"> <span>Item Cost</span>
+                            </label>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-group has-float-label mb-1">
+                                <input data-role="tagsinput" required name="gst_rate" min="0" class="form-control" type="number"> <span>GST Rate</span>
                             </label>
                         </div>
                         <div class="form-group mb-4">

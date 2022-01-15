@@ -27,7 +27,7 @@ class MyAccountController extends Controller
 
     public function index()
     {
-        $data['orders'] = Helpers::fetchOrderDetails('user_id', $this->logged_in_id->id, 'get');
+        $data['orders'] = Helpers::fetchOrderDetails('orders.user_id', $this->logged_in_id->id, 'get');
         return view('website/account/my-account', $data);
     }
 
@@ -50,7 +50,7 @@ class MyAccountController extends Controller
 
     public function order_history()
     {
-        $data['orders'] = Helpers::fetchOrderDetails('user_id', $this->logged_in_id->id, 'get');
+        $data['orders'] = Helpers::fetchOrderDetails('orders.user_id', $this->logged_in_id->id, 'get');
         return view('website.account.order-history', compact('data'));
     }
 
@@ -82,7 +82,7 @@ class MyAccountController extends Controller
         }
         \Log::info("discountArray");
         \Log::info($data['discountArray']);
-        return view('website/account/checkout', $data);
+        return view('website.account.checkout', $data);
     }
 
     public function thank_you()

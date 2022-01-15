@@ -46,16 +46,17 @@ class ProductController extends Controller
 
     private function get_category_products($category_id, $limit = '', $exclude_id = '', $sortyBy = ''){
 
-        $query = ProductsModel::select(['products.image as product_image','products.page_slug as product_slug',
-            'products.label','product_info.listing_name as product_name','product_info.packaging_weight','product_info.id as product_info_id','is_in_stock',
+        $query = ProductsModel::select(['products.id','products.image as product_image','products.page_slug as product_slug',
+            'products.label','products.name as product_name','product_info.packaging_weight','product_info.id as product_info_id','is_in_stock',
             'product_info.packaging_type','product_info.cost_price'])
             ->join('product_info','product_info.product_id','products.id')
             ->where('products.category_id',$category_id)
             ->where('products.status',1);
-        
+
         if (!empty($exclude_id)){
             $query->where('products.id','!=', $exclude_id);
         }
+        $query->groupBy('products.id');
         if (!empty($limit)) {
             $query->limit($limit);
         } else if($sortyBy == '') {
@@ -70,7 +71,7 @@ class ProductController extends Controller
                 $query->orderBy('product_info.created_at','DESC');
             }
         }
-        return $query->get();
+        return $query->paginate(9);
     }
 
     private function get_product($category_id, $product_slug, $product_info_id): array

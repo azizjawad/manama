@@ -107,7 +107,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-6 text-md-start text-center mb-sm--20">
                                         <div class="shop-toolbar__left">
-                                            <p class="product-pages">Showing {{count($products)}} results</p>
+                                            <p class="product-pages">Showing {{$products->count()}} of {{$products->total()}} results</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -143,12 +143,12 @@
                                                 <figure class="product-image has--bg">
                                                     <div class="product-image--holder">
                                                         <a
-                                                            href="{{ route('category_product', [$category->page_slug, $key->product_slug, $key->product_info_id]) }}">
+                                                            href="{{ route('category_product', [$category->page_slug, $key->product_slug]) }}">
                                                             <img src="{{ asset('images/uploads/products/' . $key->product_image) }}"
                                                                 alt="{{ $category->name }}" class="primary-image">
                                                         </a>
                                                         <a
-                                                            href="{{ route('category_product', [$category->page_slug, $key->product_slug, $key->product_info_id]) }}">
+                                                            href="{{ route('category_product', [$category->page_slug, $key->product_slug]) }}">
                                                             <img src="{{ asset('images/uploads/products/' . $key->product_image) }}"
                                                                 alt="{{ $category->name }}" class="secondary-image">
                                                         </a>
@@ -156,7 +156,7 @@
                                                     <div class="mmtp-product-action">
                                                         <div class="product-action">
                                                             <a class="quickview-btn action-btn"
-                                                                href="{{ route('category_product', [$category->page_slug, $key->product_slug, $key->product_info_id]) }}"
+                                                                href="{{ route('category_product', [$category->page_slug, $key->product_slug]) }}"
                                                                 data-bs-toggle="tooltip" data-bs-placement="left"
                                                                 title="View">
                                                                 <i class="dl-icon-view"></i>
@@ -167,7 +167,7 @@
                                                             {{-- <i class="dl-icon-cart29"></i> --}}
                                                             {{-- </span> --}}
                                                             {{-- </a> --}}
-                                                            <a class="add_to_cart_btn action-btn"
+                                                            <a href="javascript:void(0)" class="add_to_cart_btn action-btn"
                                                                 data-product_info_id="{{ $key->product_info_id }}"
                                                                 title="Add to Cart">
                                                                 <span>
@@ -225,20 +225,27 @@
                                 @endforeach
                             </div>
                         </div>
-
-
-                        {{-- <nav class="pagination-wrap"> --}}
-                        {{-- <ul class="pagination"> --}}
-                        {{-- <li><a href="javascript:void(0);" class="prev page-number"><i class="fa fa-angle-double-left"></i></a> --}}
-                        {{-- </li> --}}
-                        {{-- <li><span class="current page-number">1</span></li> --}}
-                        {{-- <li><a href="javascript:void(0);" class="page-number">2</a></li> --}}
-                        {{-- <li><a href="javascript:void(0);" class="next page-number"><i --}}
-                        {{-- class="fa fa-angle-double-right"></i></a></li> --}}
-                        {{-- </ul> --}}
-                        {{-- </nav> --}}
-
-
+                        <nav class="pagination-wrap">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="{{$products->previousPageUrl()}}" class="prev page-number">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                                @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                    <li>
+                                        <a href="{{ $products->url($i) }}">
+                                            <span class="{{ ($products->currentPage() == $i) ? ' current' : '' }} page-number">{{ $i }}</span>
+                                        </a>
+                                    </li>
+                                @endfor
+                                <li>
+                                    <a href="{{$products->nextPageUrl()}}" class="next page-number">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -212,8 +212,8 @@
                                         <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1"
                                                max="10">
                                     </div>
-                                    <button type="button" {{ !$product[0]->is_in_stock ? 'disabled' : '' }}
-                                    class="btn btn-style-2 btn-large add-to-cart">Add To Cart</button>
+                                    <button type="button" data-product_info_id="{{ $key->product_info_id }}" {{ !$product[0]->is_in_stock ? 'disabled' : '' }}
+                                    class="btn btn-style-2 btn-large add_from_mini_cart">Add To Cart</button>
                                     <a class="add-to-wishlist  add_to_wishlist_btn" href="javascript:void(0);"
                                        data-product_info_id="{{ $key->product_info_id }}">
                                         <i class="fas fa-heart"></i></a>

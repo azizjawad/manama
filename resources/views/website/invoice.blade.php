@@ -10,6 +10,12 @@
             font-family: DejaVu Sans, sans-serif;
         }
 
+
+        @page{ margin: 0;}
+
+
+
+
     </style>
 </head>
 
@@ -81,6 +87,21 @@
                                     <th style="font-size: 10px; color:#8f8f8f; padding-bottom: 15px">
                                         QTY
                                     </th>
+                                    <th style="font-size: 10px; color:#8f8f8f; padding-bottom: 15px">
+                                        GST
+                                    </th>
+                                    @if($order->state == 'Maharashtra')
+                                        <th style="font-size: 10px; color:#8f8f8f; padding-bottom: 15px">
+                                            CGST
+                                        </th>
+                                        <th style="font-size: 10px; color:#8f8f8f; padding-bottom: 15px">
+                                            SGST
+                                        </th>
+                                    @else
+                                        <th style="font-size: 10px; color:#8f8f8f; padding-bottom: 15px">
+                                            IGST
+                                        </th>
+                                    @endif
                                     {{-- <th style="font-size: 10px; color:#8f8f8f; padding-bottom: 15px">
                                         GST
                                     </th>
@@ -117,6 +138,30 @@
                                                 {{$item->quantity}}
                                                 pcs</p>
                                         </td>
+                                        <td align="center">
+                                            <p href="#"
+                                               style="font-size: 11px; text-decoration: none; line-height: 1; color:#909090; margin-top:0px; margin-bottom:0;">
+                                                {{$productDetails->gst_rate}}%
+                                            </p>
+                                        </td>
+                                        @if($order->state == 'Maharashtra')
+                                            <td style="padding-top:0px; padding-bottom:0; text-align: right;">
+                                                <p
+                                                    style="font-size: 11px; line-height: 1; color:#303030; margin-bottom:0; margin-top:0; vertical-align:top; white-space:nowrap;">
+                                                    &#8377; {{number_format(($item->product_cost * $item->quantity) * ($productDetails->gst_rate / 2) / 100 )}}</p>
+                                            </td>
+                                            <td style="padding-top:0px; padding-bottom:0; text-align: right;">
+                                                <p
+                                                    style="font-size: 11px; line-height: 1; color:#303030; margin-bottom:0; margin-top:0; vertical-align:top; white-space:nowrap;">
+                                                    &#8377; {{number_format(($item->product_cost * $item->quantity) * ($productDetails->gst_rate / 2) / 100 )}}</p>
+                                            </td>
+                                        @else
+                                            <td style="padding-top:0px; padding-bottom:0; text-align: right;">
+                                                <p
+                                                    style="font-size: 11px; line-height: 1; color:#303030; margin-bottom:0; margin-top:0; vertical-align:top; white-space:nowrap;">
+                                                    &#8377; {{number_format(($item->product_cost * $item->quantity) * $productDetails->gst_rate / 100 )}}</p>
+                                            </td>
+                                        @endif
                                         {{-- <td align="center">
                                             <p href="#"
                                                 style="font-size: 11px; text-decoration: none; line-height: 1; color:#909090; margin-top:0px; margin-bottom:0;">

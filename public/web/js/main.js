@@ -322,7 +322,7 @@
     function customQantity(){
         $(".quantity").append('<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>');
 
-        $(".qtybutton").on("click", function () {
+        $("body").on("click", '.qtybutton, .quantity-input', function () {
             var $button = $(this);
             var oldValue = $button.parent().find("input").val();
             var newVal;
@@ -986,49 +986,82 @@
             height: '300px'
         });
     }
-    $('.add-to-cart, .add_to_cart_btn').click(function () {
+    $('body').on('click','.add-to-cart, .add_to_cart_btn, .add_from_mini_cart',function () {
         // success_notification();
+
         let from_icon_btn = $(this).data('product_info_id');
-        let product_info_id = 0;
-        let quantity = 0;
-        if(typeof from_icon_btn !== "undefined" && from_icon_btn !== '' ){
+        if (!$(this).hasClass('add_from_mini_cart'))  {
+            $.ajax({
+                url: '/pull/products-in-cart/' + from_icon_btn,
+                success: function (res) {
+                    if (res.status === true){
+                        let html = '';
+                        $.each(res.data, function (index, item){
+                            html += `<div class="row each-item-row justify-content-center">
+                                <div class="col-md-7">
+                                    <h4>${item.listing_name} - <i class="fas fa-rupee-sign"></i>${item.cost_price}</h4>
+                                </div>
+                                <div class="col-md-auto">
+                                    <div class="product-action d-flex flex-row align-items-center justify-content-center">
+                                        <div class="quantity">
+                                            <input type="number" class="quantity-input" name="qty-${item.id}" id="qty-${item.id}" value="1" min="1" max="5">
+                                            <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
+                                            <button data-product_info_id="${item.id}" type="button" class="btn btn-style-1 add_from_mini_cart">
+                                                <i class="dl-icon-cart13"></i>
+                                            </button>
+                                    </div>
+                                </div>
+                            </div>`;
+                            $('.update_product_html').html(html);
+                            $('#addtoCart').modal('show');
+                        });
+                    }
+                }
+            })
+        }else {
+            let product_info_id = 0;
+            let quantity = 0;
             product_info_id = from_icon_btn;
-            quantity = 1;
-        }else{
-            product_info_id = $("[name='product_info_id']:checked").val();
-            quantity = $('#qty').val();
-        }
-        if (quantity === 0) return true;
-        let button = $('.add-to-cart');
-        $.ajax({
-            url: '/api/add-to-cart',
-            method: "post",
-            data: {product_info_id, quantity},
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: () => {
-                button.attr('disabled',true).text('Please wait..');
-            },
-            success: (res) => {
-                button.attr('disabled', false).text('Add to Cart');
-                if(res.status === true){
-                    success_notification(res.message);
-                    load_cart();
-                }
-            },
-            error: (res) => {
-                console.log('add to cart res : ', res);
-                let error = JSON.parse(res.responseText);
-                if (res.status === 401){
-                    // window.location = '/login';
-                    loginValidityForReview('login');
-                }else{
-                    error_notification(error.message);
-                }
-                button.attr('disabled', false).text('Add to Cart');
+            quantity = $('#qty-'+product_info_id).val();
+            if (typeof quantity == "undefined") {
+                product_info_id = $("[name='product_info_id']:checked").val();
+                quantity = $('#qty').val();
             }
-        });
+            if (quantity === 0) return true;
+            let button = $('.add-to-cart');
+
+            $.ajax({
+                url: '/api/add-to-cart',
+                method: "post",
+                data: {product_info_id, quantity},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: () => {
+                    button.attr('disabled', true).text('Please wait..');
+                },
+                success: (res) => {
+                    button.attr('disabled', false).text('Add to Cart');
+                    if (res.status === true) {
+                        // $('#addtoCart').modal('hide');
+                        // $('.mini-cart-btn').trigger('click');
+                        success_notification(res.message);
+                        load_cart();
+                    }
+                },
+                error: (res) => {
+                    console.log('add to cart res : ', res);
+                    let error = JSON.parse(res.responseText);
+                    if (res.status === 401) {
+                        // window.location = '/login';
+                        loginValidityForReview('login');
+                    } else {
+                        error_notification(error.message);
+                    }
+                    button.attr('disabled', false).text('Add to Cart');
+                }
+            });
+        }
     });
 
     $('body').on('click','a.delete_item', function (){
@@ -1053,7 +1086,7 @@
             });
         }
     })
-    
+
 })(jQuery);
 
 function loginValidityForReview(reference_type){

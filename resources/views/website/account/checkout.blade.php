@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    @php $total = 0 @endphp
+    @php $total = 0; $gst_total = 0; @endphp
     <div id="content" class="main-content-wrapper">
 
         <section class="page-headers">
@@ -173,19 +173,32 @@
                                             <th>{{ $item->product_name }}
                                                 <strong><span>x</span>{{ $item->quantity }}</strong>
                                             </th>
-                                            <td class="text-end"><i class="fas fa-rupee-sign"
-                                                                    aria-hidden="true"></i>{{ number_format($item->cost_price) }}
+                                            <td class="text-end">
+                                                <i class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                                {{ number_format($item->cost_price) }}
                                             </td>
                                         </tr>
-                                        @php $total += $item->cost_price * $item->quantity @endphp
+                                        @php
+                                            $total += $item->cost_price * $item->quantity;
+                                            $gst_total += (($item->cost_price * $item->quantity) * $item->gst_rate / 100)
+                                        @endphp
                                     @endforeach
                                     </tbody>
                                     <tfoot>
 
                                     <tr class="cart-subtotal">
                                         <th>Subtotal</th>
-                                        <td class="text-end"><i class="fas fa-rupee-sign"
-                                                                aria-hidden="true"></i>{{ number_format($total, 2) }}</td>
+                                        <td class="text-end">
+                                            <i class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                            {{ number_format($total - $gst_total, 2) }}
+                                        </td>
+                                    </tr>
+                                    <tr class="cart-subtotal">
+                                        <th>GST Taxes</th>
+                                        <td class="text-end">
+                                            <i class="fas fa-rupee-sign" aria-hidden="true"></i>
+                                            {{ number_format($gst_total, 2) }}
+                                        </td>
                                     </tr>
                                     {{-- <tr class="cart-subtotal"> --}}
                                     {{-- <th>Discount <small>(-)</small></th> --}}
@@ -450,11 +463,15 @@
             const shipping_charges = $('input[name="cart_details"]').attr('data-shipping_charges');
             const coupon_type = $('input[name="cart_details"]').attr('data-coupon_type');
             const total = $('input[name="cart_details"]').attr('data-total');
+            let shipping = $('input[name="billing_address"]:checked').val();
+            if($('#showaddress:checked').length > 0){
+                shipping = $('#shipping_address:checked').val();
+            }
             $.ajax({
                 url: '{{route('place-order')}}',
                 data: {
-                    'billing_address' : $('#billing_address').val(),
-                    'shipping_address' : $('#shipping_address').val(),
+                    'billing_address' : $('input[name="billing_address"]:checked').val(),
+                    'shipping_address' : shipping,
                     'gstn_no' : $('#gstn_no').val(),
                     'transaction_type' : payment_method,
                     'coupon_code' : coupon_code,
