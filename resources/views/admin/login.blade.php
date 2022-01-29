@@ -12,6 +12,7 @@
     <!-- =================================================================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="mobile-web-app-capable" content="yes" />
+    <base href="/">
     <!-- Favicons -->
     <!-- =================================================================================================== -->
     <link rel="shortcut icon" href="img/favicons/favicon.png" />
@@ -96,6 +97,7 @@
                                 @enderror
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
+                                <input type="hidden" name="login_from" value="admin-login">
                                 <button class="btn btn-secondary btn-lg btn-shadow" type="submit">LOGIN</button>
                             </div>
                         </form>

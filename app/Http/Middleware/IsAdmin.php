@@ -22,6 +22,6 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect('/admin');
+        return redirect('/cms/admin');
     }
 }

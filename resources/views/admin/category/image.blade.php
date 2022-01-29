@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5 class="mb-4 font-weight-bold">Home Category Image</h5>
+                        <h5 class="mb-4 font-weight-bold">Category Background Image</h5>
                         <div class="alert alert-warning mb-5 mr-md-5" role="alert">* Please note, If you upload a new image for the category, the old image will be deleted. Please make sure you upload a 770x788 pixel image to maintain the website design.</div>
                         <div class="row mb-3">
                             <div class="col-md-6 col-12">

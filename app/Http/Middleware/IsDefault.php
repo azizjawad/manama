@@ -20,7 +20,7 @@ class IsDefault
 
         if ($request->user())
         {
-            if ($request->user()->role == 'default' || $request->user()->role == 'admin') {
+            if ($request->user()->role == 'default') {
                 return $next($request);
             }
         }

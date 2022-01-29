@@ -4,7 +4,7 @@
     <div id="content" class="main-content-wrapper">
 
         <!-- Page Headers -->
-        <section class="page-headers">
+        <section style="background-image: url({{'/storage/uploads/categories/'.$category->image}})" class="page-headers">
             <div class="container-fluid">
                 <div class="row">
                     <div class="order-md-2 col-md-4 ms-auto">

@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Auth;
-
+use DB;
 class ProductsController extends Controller
 {
 
@@ -36,7 +36,25 @@ class ProductsController extends Controller
     }
 
     public function products_bestseller_page(){
-        return view('admin.products.bestsellers');
+        $categories = CategoriesModel::select('id','name')->get();
+        $data = [];
+        foreach ($categories as $category){
+              $product =  ProductsModel::select(['pi.listing_name',DB::raw('SUM(od.quantity) as total')])
+                    ->join('product_info as pi','pi.product_id','products.id')
+                    ->join('order_details as od','od.product_info_id','pi.id')
+                    ->where('category_id', $category->id)
+                    ->groupBy('od.product_info_id')
+                    ->orderBy('total','desc')
+                    ->limit(3)
+                    ->get();
+              if(isset($product[0]->listing_name)){
+                  $data[] = [
+                    "category_name" => $category->name,
+                    "products" => $product
+                  ];
+              }
+        }
+        return view('admin.products.bestsellers',["categories" => $data]);
     }
 
     public function products_price_page(){

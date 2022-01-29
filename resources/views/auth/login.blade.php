@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="form__group mb--20">
-                                    <input id="password" type="password" placeholder="Set a Strong Password" class="form__input form__input--2 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="password" type="password" placeholder="password" class="form__input form__input--2 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -48,6 +48,7 @@
 
                                 <div class="form__group row align-items-center">
                                     <div class="col-auto">
+                                        <input type="hidden" name="login_from" value="default-login">
                                         <button type="submit" class="btn btn-style-3">Login</button>
                                     </div>
                                     <div class="col-auto">

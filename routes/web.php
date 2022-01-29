@@ -34,7 +34,7 @@ Route::get('download-brochure', 'App\Http\Controllers\WebsiteController@download
 Route::get('admin/logout', function () {
     auth()->logout();
     Session()->flush();
-    return Redirect::to('/admin');
+    return Redirect::to('/cms/admin');
 })->name('admin-logout');
 
 Route::get('logout', function () {
@@ -57,6 +57,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
         Route::get('account', 'App\Http\Controllers\Admin\AdminController@my_account')->name('admin-account');
         Route::post('save-admin-profile', 'App\Http\Controllers\Admin\AdminController@save_admin_profile')->name('save-admin-profile');
         Route::get('get-user-details/{user_id?}', 'App\Http\Controllers\Admin\AdminController@get_user_details')->name('get-user-details');
+        Route::get('get-user-status/{user_id?}', 'App\Http\Controllers\Admin\AdminController@get_user_status')->name('get-user-status');
+        Route::post('update-user-status', 'App\Http\Controllers\Admin\AdminController@update_user_status')->name('update-user-status');
 
         Route::prefix('products')->group(function () {
 
@@ -169,7 +171,7 @@ Route::get('/pull/products-in-cart/{product_info_id}', 'App\Http\Controllers\MyC
 Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index'])->name('home');
-Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('home');
+Route::get('/cms/admin', 'App\Http\Controllers\Admin\AdminController@login')->name('home');
 
 Route::get('product', 'App\Http\Controllers\ProductController@index_page')->name('product');
 

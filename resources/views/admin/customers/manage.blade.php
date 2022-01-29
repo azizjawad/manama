@@ -34,7 +34,7 @@
                                             <td>{{$user->email}}</td>
                                             <td class="text-center">
                                                 <a href="javascript:void(0)" data-id="{{$user->id}}" class="las get-user-details la-eye btn btn-secondary mx-1"></a>
-                                                <a href="javascript:void(0)" data-id="{{$user->id}}" data-toggle="modal"  data-target="#activationmodal" title="Activate / Deactivate" class="las la-ban btn btn-secondary mx-1"></a>
+                                                <a href="javascript:void(0)" data-id="{{$user->id}}"  title="Activate / Deactivate" class="get-user-status las la-ban btn btn-secondary mx-1"></a>
                                                 {{--                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#customerpwdrt" title="Reset Password" class="las la-key btn btn-secondary mx-1"></a>--}}
                                             </td>
                                         </tr>
@@ -60,11 +60,8 @@
                 </div>
                 <div class="modal-body text-center">
                     <div class="alert alert-warning mb-5" role="alert">* Please note, This will only manage customer access to his account. If you wish to delete the customer, delete from the list.</div>
-                    <p><b>Customer Name:</b> John Doe Smith</p>
-                    <label class="form-label font-weight-bold" id="switch4-label">Customer Active</label>
-                    <div class="custom-switch custom-switch-primary-inverse mb-2">
-                        <input class="custom-switch-input" id="switch4" type="checkbox" checked>
-                        <label class="custom-switch-btn" for="switch4"></label>
+                    <div class="dynamic_data">
+
                     </div>
                 </div>
             </div>
@@ -142,6 +139,41 @@
                         $('.user_table_data').html(res.html);
                         $('#customerDetails').modal('show');
                     }
+                }
+            })
+        })
+        $('body').on('click','.get-user-status',function (){
+            let user_id = $(this).data('id');
+            $.ajax({
+                url: "{{route('get-user-status')}}/" + user_id,
+                success: function (res){
+                    if (res.status === true) {
+                        let html =  `<p><b>Customer Name:</b> ${res.user.name}</p>
+                            <label class="form-label font-weight-bold" id="switch4-label">Customer ${res.user.status == 1 ? 'Active' : 'De-active'}</label>
+                            <div class="custom-switch custom-switch-primary-inverse mb-2">
+                                <input type="hidden" value="${user_id}" id="toggle_user_id" name="user_id">
+                                <input class="custom-switch-input" id="user_toggle" type="checkbox" ${res.user.status == 1 ? 'checked' : ''}>
+                                <label class="custom-switch-btn" for="user_toggle"></label>
+                            </div>`;
+                        $('.dynamic_data').html(html);
+                        $('#activationmodal').modal('show');
+                    }
+                }
+            })
+        });
+        $('body').on('click','#user_toggle', function (){
+            let status = $('#user_toggle:checked').length;
+            let user_id = $('#toggle_user_id').val();
+            $.ajax({
+                url:`{{route('update-user-status')}}`,
+                type: "POST",
+                data: {user_id,status},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (res){
+                    if (res.status  === true)
+                        success_notification();
                 }
             })
         })

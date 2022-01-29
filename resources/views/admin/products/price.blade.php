@@ -118,7 +118,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label class="form-group has-float-label mb-1">
-                                <input data-role="tagsinput" name="barcode" class="form-control" type="text"> <span>Barcode (GTIN)</span>
+                                <input data-role="tagsinput" name="barcode" class="form-control" maxlength="43" type="text"> <span>Barcode (GTIN)</span>
                             </label>
                         </div>
                         <div class="form-group mb-4">

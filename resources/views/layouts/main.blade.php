@@ -366,46 +366,54 @@
                                                     Choose your Flavour
                                                 </a>
                                                 <ul class="dl-submenu">
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/original-mojito.png")}}" /> <span class="mm-text">Mojitos</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/mango-fruit-syrup.png")}}" /> <span class="mm-text">Fruit Twists</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/litchi-crush.png")}}" /> <span class="mm-text">Crushes</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/caramel-sauces.png")}}" /> <span class="mm-text">Sauces</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/peach-ice-tea.png")}}" /> <span class="mm-text">Iced Teas</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/raspberry-jam.png")}}" /> <span class="mm-text">Jams</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/lime-mint-sweet-chilli-dip-chutney.png")}}" /> <span class="mm-text">Sweet Chilli Chutneys</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{route('category_product')}}">
-                                                            <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}" /> <span class="mm-text">Fruit Fillings</span>
-                                                        </a>
-                                                    </li>
+                                                    @foreach ($chunk as $category)
+                                                        <li>
+                                                            <a href="{{route('category_product',[$category->page_slug])}}">
+                                                                <img src="{{asset("images/uploads/products/$category->product_image")}}" alt="{{$category->name}}"/>
+                                                                <span class="mm-text">{{$category->name}}</span>
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/original-mojito.png")}}" /> <span class="mm-text">Mojitos</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/mango-fruit-syrup.png")}}" /> <span class="mm-text">Fruit Twists</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/litchi-crush.png")}}" /> <span class="mm-text">Crushes</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/caramel-sauces.png")}}" /> <span class="mm-text">Sauces</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/peach-ice-tea.png")}}" /> <span class="mm-text">Iced Teas</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/raspberry-jam.png")}}" /> <span class="mm-text">Jams</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/lime-mint-sweet-chilli-dip-chutney.png")}}" /> <span class="mm-text">Sweet Chilli Chutneys</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li>--}}
+{{--                                                        <a href="{{route('category_product')}}">--}}
+{{--                                                            <img src="{{asset("web/images/products/cherry-fruit-fillings.png")}}" /> <span class="mm-text">Fruit Fillings</span>--}}
+{{--                                                        </a>--}}
+{{--                                                    </li>--}}
                                                 </ul>
                                             </li>
                                             <li>

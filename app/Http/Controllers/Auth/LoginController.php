@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,19 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function credentials(Request $request)
+    {
+        $role = User::where('email', $request->email)->pluck('role')->first();
+        if (isset($request->login_from) && $request->login_from == 'default-login' && $role == 'admin'){
+            return [];
+        }else {
+            return [
+                'email' => $request->email,
+                'password' => $request->password,
+                'status' => 1,
+            ];
+        }
     }
 }

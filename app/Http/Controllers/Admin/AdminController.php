@@ -29,7 +29,7 @@ class AdminController extends Controller
         $data['daily_new_registration'] = User::where('created_at', date('Y-m-d'))->count();
         $data['monthly_new_registration'] = User::where('created_at', date('Y-m'))->count();
         $data['total_users'] = User::count();
-        $data['new_registrations'] = User::get();
+        $data['new_registrations'] = User::limit(10)->get();
         return view('admin.dashboard', compact('data'));
     }
 
@@ -70,12 +70,36 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function get_user_status($user_id){
+        $user = User::select('status','name')->where('id',$user_id)->first();
+        if (isset($user->name)){
+            return response(['status' => true, 'user' => $user]);
+        }
+        return response(['status' => false, 'user' => []]);
+    }
+
+    public function update_user_status(Request $request){
+        $post = $request->all();
+
+        $validator = Validator::make($post, [
+            'user_id'         => ['required'],
+            'status'         => ['required'],
+        ]);
+
+        if (!$validator->fails()) {
+            User::where('id', $post['user_id'])->update(['status' => $post['status']]);
+            return response(['status' => true]);
+        }
+
+        return response(['status' => false]);
+    }
+
     public function get_user_details($user_id){
         $user = User::find($user_id);
         if ($user_id) {
             $user_address = DB::table('my_address')->select(DB::raw('CONCAT(address,", ",city_village,", ",state,", ",pincode) as address'))->where('user_id', $user->id)->get();
-             $total_wishlist = WishListModel::where('created_by', $user_id)->count();
-             $total_orders = OrdersModel::where('user_id', $user_id)->count();
+            $total_wishlist = WishListModel::where('created_by', $user_id)->count();
+            $total_orders = OrdersModel::where('user_id', $user_id)->count();
             $user_html = '<tr>
                                 <td class="font-weight-bold">Customer Name</td>
                                 <td>'.$user->name.'</td>
