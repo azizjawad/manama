@@ -156,13 +156,14 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::post('online-order-payments', 'App\Http\Controllers\WebsiteController@online_payments')->name('online-order-payments');
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
         Route::get('/order-details/{order_no}', 'App\Http\Controllers\MyAccountController@order_details')->name('order_details');
-        Route::get('generate-pdf/{order_no}', 'App\Http\Controllers\MyAccountController@generatePDF')->name('generatePDF');
     });
     Route::prefix('api')->group(function () {
         Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
         Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
     });
 });
+Route::get('generate-pdf/{order_no}', 'App\Http\Controllers\MyAccountController@generatePDF')->name('generatePDF');
+
 Route::get('/api/get-product-details/{product_info_id?}', 'App\Http\Controllers\ProductController@get_product_details')->name('get-product-details');
 Route::get('/api/get-recipe/{recipe_id?}', 'App\Http\Controllers\WebsiteController@get_recipe')->name('get_recipe');
 
