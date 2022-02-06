@@ -1,5 +1,6 @@
 <?php
-const LABEL = array('No label', 'New', 'Featured');
+const LABEL = array('No label', 'New', 'FEAT');
+const LABEL_CLASS = array('', 'new', 'feature');
 
 return [
 

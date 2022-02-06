@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\HomepageBannersModel;
 use App\Models\ProductsModel;
 use App\Models\RecipeModel;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
 use DB;
 
@@ -35,14 +36,30 @@ class WebsiteController extends Controller
         $data['banners'] = HomepageBannersModel::orderBy('banner_location')->get();
         $data['new_products'] = $this->get_label_wise_products(1);
         $data['featured_products'] = $this->get_label_wise_products(2);
+        $data['best_selling'] = ProductsModel::select(['products.*','categories.page_slug as category_slug','products.name as product_name',DB::raw('SUM(od.quantity) as total')])
+            ->join('categories','categories.id','products.category_id')
+            ->join('product_info as pi','pi.product_id','products.id')
+            ->join('order_details as od','od.product_info_id','pi.id')
+            ->groupBy('od.product_info_id')
+            ->orderBy('total','desc')
+            ->limit(3)
+            ->get();
+
+        $data['customer_reviews'] = Reviews::select(['reviews.*','products.name as product_name', 'users.name'])
+            ->join('products','products.id','reviews.product_id')
+            ->join('users','reviews.user_id','users.id')
+            ->where('reviews.status', 1)
+            ->where('reviews.rating', '>', 2)
+            ->limit(3)
+            ->get();
+
         return view('welcome', $data);
     }
 
 
     private function get_label_wise_products($label){
-        return DB::table("products")->select(['products.*','categories.page_slug as category_slug','product_info.id as product_info_id','products.name as product_name','product_info.packaging_weight',
-            'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
-            ->join('product_info','products.id','product_info.product_id')
+        return DB::table("products")->select(['products.*','categories.page_slug as category_slug','products.name as product_name'])
+//            ->join('product_info','products.id','product_info.product_id')
             ->join('categories','categories.id','products.category_id')
             ->where('products.status',1)
             ->where('products.label',$label)
@@ -69,7 +86,16 @@ class WebsiteController extends Controller
     }
 
     public function customer_testimonials(){
-        return view('website.customer_testimonials');
+        $data['customer_reviews'] = Reviews::select(['reviews.*','products.name as product_name', 'users.name'])
+        ->join('products','products.id','reviews.product_id')
+        ->join('users','reviews.user_id','users.id')
+        ->where('reviews.status', 1)
+        ->where('reviews.rating', '>', 2)
+        ->orderBy('created_at','desc')
+        ->limit(6)
+        ->get();
+
+        return view('website.customer_testimonials', $data);
     }
 
     public function our_distributors(){

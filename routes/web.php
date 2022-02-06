@@ -168,7 +168,7 @@ Route::get('/api/get-product-details/{product_info_id?}', 'App\Http\Controllers\
 Route::get('/api/get-recipe/{recipe_id?}', 'App\Http\Controllers\WebsiteController@get_recipe')->name('get_recipe');
 
 Route::post('/api/add-to-cart', 'App\Http\Controllers\MyCartController@index')->name('my-cart');
-Route::get('/pull/products-in-cart/{product_info_id}', 'App\Http\Controllers\MyCartController@get_product_by_info_id')->name('get_product_by_info_id');
+Route::get('/pull/products-in-cart/{product_info_id}/{product_id?}', 'App\Http\Controllers\MyCartController@get_product_by_info_id')->name('get_product_by_info_id');
 Route::get('/api/fetch-cart-details', 'App\Http\Controllers\MyCartController@fetch_cart_details');
 
 Route::get('/home', [App\Http\Controllers\LoginController::class, 'index'])->name('home');

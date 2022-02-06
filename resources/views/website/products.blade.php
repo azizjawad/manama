@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="product-badge hot">{{ LABEL[$product[0]['label']] }}</span>
+                            <span class="product-badge {{LABEL_CLASS[$product[0]['label']]}}">{{ LABEL[$product[0]['label']] }}</span>
 
                             <!-- Other Tag Codes
 
@@ -430,9 +430,10 @@
                                                                title="View">
                                                                 <i class="dl-icon-view"></i>
                                                             </a>
-                                                            <a class="add_to_cart_btn action-btn" data-bs-toggle="tooltip"
-                                                               data-bs-placement="left" title="Add to Cart">
-                                                                <span data-bs-toggle="modal" data-bs-target="#addtoCart">
+                                                            <a href="javascript:void(0)" class="add_to_cart_btn action-btn"
+                                                               data-product_id="{{ $key->id }}"
+                                                               title="Add to Cart">
+                                                                <span>
                                                                     <i class="dl-icon-cart29"></i>
                                                                 </span>
                                                             </a>
@@ -445,7 +446,7 @@
                                                         </div>
                                                     </div>
                                                     <span
-                                                        class="product-badge hot">{{ $key->label == 1 ? 'New' : 'TOP' }}</span>
+                                                        class="product-badge {{LABEL_CLASS[$key->label]}}">{{ LABEL[$key->label] }}</span>
                                                     <!-- Other Tag Codes
 
                                                             <span class="product-badge feature">Feat</span>
@@ -467,20 +468,20 @@
                                                             <i class="dl-icon-star"></i>
                                                         </span>
                                                     </div>
-                                                    <span class="product-price-wrapper">
-                                                        <span class="money"><i
-                                                                class="fas fa-rupee-sign"></i>{{ $key->cost_price }}</span>
-                                                        <!-- If discount price is there -->
-                                                        <!--
-                                                                <span class="product-price-old">
-                                                                    <span class="money">$60.00</span>
-                                                                </span>
-                                                                -->
-                                                    </span>
-                                                    <span class="product-weight-wrapper">
-                                                        <span
-                                                            class="weight">{{ $key->packaging_weight . ' ' . $key->packaging_type }}</span>
-                                                    </span>
+{{--                                                    <span class="product-price-wrapper">--}}
+{{--                                                        <span class="money"><i--}}
+{{--                                                                class="fas fa-rupee-sign"></i>{{ $key->cost_price }}</span>--}}
+{{--                                                        <!-- If discount price is there -->--}}
+{{--                                                        <!----}}
+{{--                                                                <span class="product-price-old">--}}
+{{--                                                                    <span class="money">$60.00</span>--}}
+{{--                                                                </span>--}}
+{{--                                                                -->--}}
+{{--                                                    </span>--}}
+{{--                                                    <span class="product-weight-wrapper">--}}
+{{--                                                        <span--}}
+{{--                                                            class="weight">{{ $key->packaging_weight . ' ' . $key->packaging_type }}</span>--}}
+{{--                                                    </span>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -584,7 +585,7 @@
                     if (res.status == true){
                         if (res.data.is_in_stock == 1){
                         }
-                        $('.product-title').text(res.data.listing_name);
+                        // $('.product-title').text(res.data.listing_name);
                         $('.add-to-cart').attr('disabled', (res.data.is_in_stock == 0));
                         let span_html = '';
                         if(res.data.is_in_stock == 0) {

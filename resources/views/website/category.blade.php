@@ -168,7 +168,7 @@
                                                             {{-- </span> --}}
                                                             {{-- </a> --}}
                                                             <a href="javascript:void(0)" class="add_to_cart_btn action-btn"
-                                                                data-product_info_id="{{ $key->product_info_id }}"
+                                                                data-product_id="{{ $key->id }}"
                                                                 title="Add to Cart">
                                                                 <span>
                                                                     <i class="dl-icon-cart29"></i>
@@ -182,7 +182,7 @@
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    <span class="product-badge hot">{{ LABEL[$key->label] }}</span>
+                                                    <span class="product-badge {{LABEL_CLASS[$key->label]}}">{{ LABEL[$key->label] }}</span>
                                                     <!-- Other Tag Codes
 
                                                         <span class="product-badge feature">Feat</span>
@@ -204,20 +204,20 @@
                                                             <i class="dl-icon-star"></i>
                                                         </span>
                                                     </div>
-                                                    <span class="product-price-wrapper">
-                                                        <span class="money"><i
-                                                                class="fas fa-rupee-sign"></i>{{ $key->cost_price }}</span>
-                                                        <!-- If discount price is there -->
-                                                        <!--
-                                                            <span class="product-price-old">
-                                                                <span class="money">$60.00</span>
-                                                            </span>
-                                                            -->
-                                                    </span>
-                                                    <span class="product-weight-wrapper">
-                                                        <span
-                                                            class="weight">{{ $key->packaging_weight . ' ' . $key->packaging_type }}</span>
-                                                    </span>
+{{--                                                    <span class="product-price-wrapper">--}}
+{{--                                                        <span class="money"><i--}}
+{{--                                                                class="fas fa-rupee-sign"></i>{{ $key->cost_price }}</span>--}}
+{{--                                                        <!-- If discount price is there -->--}}
+{{--                                                        <!----}}
+{{--                                                            <span class="product-price-old">--}}
+{{--                                                                <span class="money">$60.00</span>--}}
+{{--                                                            </span>--}}
+{{--                                                            -->--}}
+{{--                                                    </span>--}}
+{{--                                                    <span class="product-weight-wrapper">--}}
+{{--                                                        <span--}}
+{{--                                                            class="weight">{{ $key->packaging_weight . ' ' . $key->packaging_type }}</span>--}}
+{{--                                                    </span>--}}
                                                 </div>
                                             </div>
                                         </div>

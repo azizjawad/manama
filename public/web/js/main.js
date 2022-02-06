@@ -990,9 +990,10 @@
         // success_notification();
 
         let from_icon_btn = $(this).data('product_info_id');
+        let product_id = $(this).data('product_id');
         if (!$(this).hasClass('add_from_mini_cart'))  {
             $.ajax({
-                url: '/pull/products-in-cart/' + from_icon_btn,
+                url: `/pull/products-in-cart/${from_icon_btn}/${product_id}`,
                 success: function (res) {
                     if (res.status === true){
                         let html = '';

@@ -167,12 +167,19 @@
                                     <span>New Arrivals</span>
                                 </button>
                                 @endif
+                                @if(isset($best_selling) && sizeof($best_selling))
+                                    <button type="button" class="product-tab__link nav-link" id="nav-top-sale-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-top-sale" role="tab" aria-selected="true">
+                                        <span>Top Selling</span>
+                                    </button>
+                                @endif
                                 @if(isset($featured_products) && sizeof($featured_products))
                                 <button type="button" class="product-tab__link nav-link" id="nav-sale-featured-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-sale-featured" role="tab" aria-selected="true">
                                     <span>Featured</span>
                                 </button>
                                 @endif
+
                             </div>
                             <div class="tab-content product-tab__content" id="product-tabContent">
 
@@ -186,11 +193,11 @@
                                                     <div class="product-inner">
                                                         <figure class="product-image has--bg">
                                                             <div class="product-image--holder">
-                                                                <a href="{{route('category_product',[$key->category_slug,$key->page_slug,$key->product_info_id])}}">
+                                                                <a href="{{route('category_product',[$key->category_slug, $key->page_slug])}}">
                                                                     <img src="{{asset("images/uploads/products/". $key->image)}}"
                                                                          alt="Kiwi Mojito" class="primary-image">
                                                                 </a>
-                                                                <a href="{{route('category_product',[$key->category_slug,$key->page_slug,$key->product_info_id])}}">
+                                                                <a href="{{route('category_product',[$key->category_slug, $key->page_slug])}}">
                                                                     <img src="{{asset("images/uploads/products/". $key->image)}}"
                                                                          alt="Kiwi Mojito" class="secondary-image">
                                                                 </a>
@@ -198,7 +205,7 @@
                                                             <div class="mmtp-product-action">
                                                                 <div class="product-action">
                                                                     <a class="quickview-btn action-btn"
-                                                                       href="{{route('category_product',[$key->category_slug,$key->page_slug,$key->product_info_id])}}"
+                                                                       href="{{route('category_product',[$key->category_slug, $key->page_slug])}}"
                                                                        data-bs-toggle="tooltip" data-bs-placement="left"
                                                                        title="View">
                                                                         <i class="dl-icon-view"></i>
@@ -209,7 +216,7 @@
                                                                     {{--                                                                        	<i class="dl-icon-cart29"></i>--}}
                                                                     {{--                                                                        </span>--}}
                                                                     {{--                                                            </a>--}}
-                                                                    <a class="add_to_cart_btn action-btn" data-product_info_id="{{$key->product_info_id}}" title="Add to Cart">
+                                                                    <a class="add_to_cart_btn action-btn" data-product_id="{{$key->id}}" title="Add to Cart">
                                                                         <span>
                                                                         	<i class="dl-icon-cart29"></i>
                                                                         </span>
@@ -221,7 +228,7 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                            <span class="product-badge hot">{{LABEL[$key->label]}}</span>
+                                                            <span class="product-badge new">{{LABEL[$key->label]}}</span>
                                                             <!-- Other Tag Codes
 
                                                             <span class="product-badge feature">Feat</span>
@@ -243,18 +250,18 @@
                                                                     <i class="dl-icon-star"></i>
                                                                 </span>
                                                             </div>
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>{{$key->cost_price}}</span>
-                                                                <!-- If discount price is there -->
-                                                                <!--
-                                                                <span class="product-price-old">
-                                                                    <span class="money">$60.00</span>
-                                                                </span>
-                                                                -->
-                                                            </span>
-                                                            <span class="product-weight-wrapper">
-                                                             <span class="weight">{{$key->packaging_weight .' '. $key->packaging_type}}</span>
-                                                             </span>
+{{--                                                            <span class="product-price-wrapper">--}}
+{{--                                                                <span class="money"><i class="fas fa-rupee-sign"></i>{{$key->cost_price}}</span>--}}
+{{--                                                                <!-- If discount price is there -->--}}
+{{--                                                                <!----}}
+{{--                                                                <span class="product-price-old">--}}
+{{--                                                                    <span class="money">$60.00</span>--}}
+{{--                                                                </span>--}}
+{{--                                                                -->--}}
+{{--                                                            </span>--}}
+{{--                                                            <span class="product-weight-wrapper">--}}
+{{--                                                             <span class="weight">{{$key->packaging_weight .' '. $key->packaging_type}}</span>--}}
+{{--                                                             </span>--}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -345,21 +352,21 @@
 
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="nav-sale-featured" role="tabpanel"
+                                <div class="tab-pane fade" id="nav-top-sale" role="tabpanel"
                                      aria-labelledby="nav-sale-featured-tab">
                                     <div class="row">
 
-                                        @foreach($featured_products as $key)
+                                        @foreach($best_selling as $key)
                                             <div class="col-lg-4 col-sm-6 mb--40 mb-md--30">
                                                 <div class="mmtp-product">
                                                     <div class="product-inner">
                                                         <figure class="product-image has--bg">
                                                             <div class="product-image--holder">
-                                                                <a href="{{route('category_product',[$key->category_slug,$key->page_slug,$key->product_info_id])}}">
+                                                                <a href="{{route('category_product',[$key->category_slug, $key->page_slug])}}">
                                                                     <img src="{{asset("images/uploads/products/". $key->image)}}"
                                                                          alt="Kiwi Mojito" class="primary-image">
                                                                 </a>
-                                                                <a href="{{route('category_product',[$key->category_slug,$key->page_slug,$key->product_info_id])}}">
+                                                                <a href="{{route('category_product',[$key->category_slug, $key->page_slug])}}">
                                                                     <img src="{{asset("images/uploads/products/". $key->image)}}"
                                                                          alt="Kiwi Mojito" class="secondary-image">
                                                                 </a>
@@ -367,7 +374,7 @@
                                                             <div class="mmtp-product-action">
                                                                 <div class="product-action">
                                                                     <a class="quickview-btn action-btn"
-                                                                       href="{{route('category_product',[$key->category_slug,$key->page_slug,$key->product_info_id])}}"
+                                                                       href="{{route('category_product',[$key->category_slug, $key->page_slug])}}"
                                                                        data-bs-toggle="tooltip" data-bs-placement="left"
                                                                        title="View">
                                                                         <i class="dl-icon-view"></i>
@@ -378,7 +385,7 @@
                                                                     {{--                                                                        	<i class="dl-icon-cart29"></i>--}}
                                                                     {{--                                                                        </span>--}}
                                                                     {{--                                                            </a>--}}
-                                                                    <a class="add_to_cart_btn action-btn" data-product_info_id="{{$key->product_info_id}}" title="Add to Cart">
+                                                                    <a class="add_to_cart_btn action-btn" data-product_id="{{$key->id}}" title="Add to Cart">
                                                                         <span>
                                                                         	<i class="dl-icon-cart29"></i>
                                                                         </span>
@@ -390,7 +397,7 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                            <span class="product-badge hot">{{LABEL[$key->label]}}</span>
+                                                            <span class="product-badge hot">TOP</span>
                                                             <!-- Other Tag Codes
 
                                                             <span class="product-badge feature">Feat</span>
@@ -412,18 +419,106 @@
                                                                     <i class="dl-icon-star"></i>
                                                                 </span>
                                                             </div>
-                                                            <span class="product-price-wrapper">
-                                                                <span class="money"><i class="fas fa-rupee-sign"></i>{{$key->cost_price}}</span>
-                                                                <!-- If discount price is there -->
-                                                                <!--
-                                                                <span class="product-price-old">
-                                                                    <span class="money">$60.00</span>
+{{--                                                            <span class="product-price-wrapper">--}}
+{{--                                                                <span class="money"><i class="fas fa-rupee-sign"></i>{{$key->cost_price}}</span>--}}
+{{--                                                                <!-- If discount price is there -->--}}
+{{--                                                                <!----}}
+{{--                                                                <span class="product-price-old">--}}
+{{--                                                                    <span class="money">$60.00</span>--}}
+{{--                                                                </span>--}}
+{{--                                                                -->--}}
+{{--                                                            </span>--}}
+{{--                                                            <span class="product-weight-wrapper">--}}
+{{--                                                             <span class="weight">{{$key->packaging_weight .' '. $key->packaging_type}}</span>--}}
+{{--                                                             </span>--}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-sale-featured" role="tabpanel"
+                                     aria-labelledby="nav-sale-featured-tab">
+                                    <div class="row">
+
+                                        @foreach($featured_products as $key)
+                                            <div class="col-lg-4 col-sm-6 mb--40 mb-md--30">
+                                                <div class="mmtp-product">
+                                                    <div class="product-inner">
+                                                        <figure class="product-image has--bg">
+                                                            <div class="product-image--holder">
+                                                                <a href="{{route('category_product',[$key->category_slug, $key->page_slug])}}">
+                                                                    <img src="{{asset("images/uploads/products/". $key->image)}}"
+                                                                         alt="Kiwi Mojito" class="primary-image">
+                                                                </a>
+                                                                <a href="{{route('category_product',[$key->category_slug, $key->page_slug])}}">
+                                                                    <img src="{{asset("images/uploads/products/". $key->image)}}"
+                                                                         alt="Kiwi Mojito" class="secondary-image">
+                                                                </a>
+                                                            </div>
+                                                            <div class="mmtp-product-action">
+                                                                <div class="product-action">
+                                                                    <a class="quickview-btn action-btn"
+                                                                       href="{{route('category_product',[$key->category_slug, $key->page_slug])}}"
+                                                                       data-bs-toggle="tooltip" data-bs-placement="left"
+                                                                       title="View">
+                                                                        <i class="dl-icon-view"></i>
+                                                                    </a>
+                                                                    {{--                                                            <a class="add_to_cart_btn action-btn" data-product_info_id="{{$key->product_info_id}}" data-bs-toggle="tooltip"--}}
+                                                                    {{--                                                               data-bs-placement="left" title="Add to Cart">--}}
+                                                                    {{--                                                                        <span data-bs-toggle="modal" data-bs-target="#addtoCart">--}}
+                                                                    {{--                                                                        	<i class="dl-icon-cart29"></i>--}}
+                                                                    {{--                                                                        </span>--}}
+                                                                    {{--                                                            </a>--}}
+                                                                    <a class="add_to_cart_btn action-btn" data-product_id="{{$key->id}}" title="Add to Cart">
+                                                                        <span>
+                                                                        	<i class="dl-icon-cart29"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                    <a class="add_wishlist action-btn"
+                                                                       href="wishlist.html" data-bs-toggle="tooltip"
+                                                                       data-bs-placement="left" title="Add to Wishlist">
+                                                                        <i class="dl-icon-heart4"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <span class="product-badge feature">{{LABEL[$key->label]}}</span>
+                                                            <!-- Other Tag Codes
+
+                                                            <span class="product-badge feature">Feat</span>
+                                                            <span class="product-badge new">New</span>
+
+                                                            -->
+
+                                                        </figure>
+                                                        <div class="product-info">
+                                                            <h3 class="product-title">
+                                                                <a href="#">{{$key->product_name}}</a>
+                                                            </h3>
+                                                            <div class="product-rating">
+                                                                <span>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star rated"></i>
+                                                                    <i class="dl-icon-star"></i>
                                                                 </span>
-                                                                -->
-                                                            </span>
-                                                            <span class="product-weight-wrapper">
-                                                             <span class="weight">{{$key->packaging_weight .' '. $key->packaging_type}}</span>
-                                                             </span>
+                                                            </div>
+{{--                                                            <span class="product-price-wrapper">--}}
+{{--                                                                <span class="money"><i class="fas fa-rupee-sign"></i>{{$key->cost_price}}</span>--}}
+{{--                                                                <!-- If discount price is there -->--}}
+{{--                                                                <!----}}
+{{--                                                                <span class="product-price-old">--}}
+{{--                                                                    <span class="money">$60.00</span>--}}
+{{--                                                                </span>--}}
+{{--                                                                -->--}}
+{{--                                                            </span>--}}
+{{--                                                            <span class="product-weight-wrapper">--}}
+{{--                                                             <span class="weight">{{$key->packaging_weight .' '. $key->packaging_type}}</span>--}}
+{{--                                                             </span>--}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -609,86 +704,24 @@
                                 }' data-slick-responsive='[
                                     {"breakpoint":991, "settings": {"slidesToShow": 1} }
                                 ]'>
-                            <div class="item">
-                                <div class="ct-container">
-                                    <div class="ct-content" data-content="Customer Name">
-                                        <div class="product-rating">
-                                            <span><a href="product-single.html">Lime Mint Mojito - 750ml</a></span>
-                                            <span>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star"></i>
+                            @foreach($customer_reviews as $review)
+                                <div class="item">
+                                    <div class="ct-container">
+                                        <div class="ct-content" data-content="{{$review->name}}">
+                                            <div class="product-rating">
+                                                <span><a href="#">{{$review->product_name}}</a></span>
+                                                <span>
+                                                    @for($x = 0; $x < 5; $x++)
+                                                       <i class="dl-icon-star {{($x < $review->rating) ? 'rated' : ''}}"></i>
+                                                    @endfor
                                                 </span>
 
+                                            </div>
+                                            <p>{{$review->comment}}</p>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie mi ipsum,
-                                            quis luctus est pretium accumsan. Vivamus eu lacinia neque, nec sagittis tellus.
-                                            Quisque quis tincidunt ante.</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="ct-container">
-                                    <div class="ct-content" data-content="Customer Name">
-                                        <div class="product-rating">
-                                            <span><a href="product-single.html">Lime Mint Mojito - 750ml</a></span>
-                                            <span>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star"></i>
-                                                </span>
-
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie mi ipsum,
-                                            quis luctus est pretium accumsan. Vivamus eu lacinia neque, nec sagittis tellus.
-                                            Quisque quis tincidunt ante.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="ct-container">
-                                    <div class="ct-content" data-content="Customer Name">
-                                        <div class="product-rating">
-                                            <span><a href="product-single.html">Lime Mint Mojito - 750ml</a></span>
-                                            <span>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star"></i>
-                                                </span>
-
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie mi ipsum,
-                                            quis luctus est pretium accumsan. Vivamus eu lacinia neque, nec sagittis tellus.
-                                            Quisque quis tincidunt ante.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="ct-container">
-                                    <div class="ct-content" data-content="Customer Name">
-                                        <div class="product-rating">
-                                            <span><a href="product-single.html">Lime Mint Mojito - 750ml</a></span>
-                                            <span>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star rated"></i>
-                                                   <i class="dl-icon-star"></i>
-                                                </span>
-
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie mi ipsum,
-                                            quis luctus est pretium accumsan. Vivamus eu lacinia neque, nec sagittis tellus.
-                                            Quisque quis tincidunt ante.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

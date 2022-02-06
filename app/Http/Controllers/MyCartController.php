@@ -75,10 +75,17 @@ class MyCartController extends Controller
         return response(['status' => true, 'data' => self::get_cart_data($user_id)]);
     }
 
-    public function get_product_by_info_id($product_info_id){
-        $product = ProductInfoModel::select('product_id')->where('id', $product_info_id)->first();
-        if (isset($product->product_id)){
-            $data = ProductInfoModel::select(['id','listing_name','cost_price'])->where('product_id', $product->product_id)->where('is_in_stock', 1)->get();
+    public function get_product_by_info_id($product_info_id, $product_id = ''){
+        $id = '';
+        if (is_numeric($product_id)){
+            $id = $product_id;
+        }else{
+            $product = ProductInfoModel::select('product_id')->where('id', $product_info_id)->first();
+            $id = $product->product_id;
+        }
+
+        if (!empty($id)){
+            $data = ProductInfoModel::select(['id','listing_name','cost_price'])->where('product_id', $id)->where('is_in_stock', 1)->get();
             return response(['status' => true, 'data' => $data]);
         }
         return response(['status' => false, 'data' => []]);

@@ -11,6 +11,7 @@ use App\Models\Reviews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Log;
+use DB;
 
 class ProductController extends Controller
 {
@@ -47,8 +48,7 @@ class ProductController extends Controller
     private function get_category_products($category_id, $limit = '', $exclude_id = '', $sortyBy = ''){
 
         $query = ProductsModel::select(['products.id','products.image as product_image','products.page_slug as product_slug',
-            'products.label','products.name as product_name','product_info.packaging_weight','product_info.id as product_info_id','is_in_stock',
-            'product_info.packaging_type','product_info.cost_price'])
+            'products.label','products.name as product_name','product_info.id as product_info_id'])
             ->join('product_info','product_info.product_id','products.id')
             ->where('products.category_id',$category_id)
             ->where('products.status',1);
@@ -79,7 +79,7 @@ class ProductController extends Controller
         $related_products = [];
         $gallery = [];
 
-        $query = ProductsModel::select(['products.*','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
+        $query = ProductsModel::select(['products.*','product_info.id as product_info_id','products.name as product_name','product_info.packaging_weight',
             'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
             ->join('product_info','product_info.product_id','products.id')
             ->where('products.category_id',$category_id)

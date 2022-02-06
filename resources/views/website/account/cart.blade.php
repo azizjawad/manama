@@ -81,12 +81,12 @@
                                 </div>
                             </div>
                             <div class="row g-0 border-top pt--20 mt--20">
-                                {{-- <div class="col-sm-6">
-                                    <div class="coupon">
-                                        <input type="text" name="coupon_code" id="coupon_code" class="cart-form__input" placeholder="Coupon Code">
-                                        <button type="button" id="btn_apply_coupon" name="btn_apply_coupon" class="cart-form__btn btn_apply_coupon">Apply Coupon</button>
-                                    </div>
-                                </div> --}}
+                                 <div class="col-sm-6">
+{{--                                    <div class="coupon">--}}
+{{--                                        <input type="text" name="coupon_code" id="coupon_code" class="cart-form__input" placeholder="Coupon Code">--}}
+{{--                                        <button type="button" id="btn_apply_coupon" name="btn_apply_coupon" class="cart-form__btn btn_apply_coupon">Apply Coupon</button>--}}
+{{--                                    </div>--}}
+                                </div>
                                 <div class="col-sm-6 text-sm-end">
                                     <input type="submit" name="update_cart" value="Update Cart" class="cart-form__btn"/>
                                     <input type="submit" name="clear_cart" class="cart-form__btn" value="Clear Cart" />
