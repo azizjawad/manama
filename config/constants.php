@@ -1,6 +1,6 @@
 <?php
 if (!defined('ORDER_STATUSES')) {
-    define("LABEL", array('No label', 'New', 'FEAT'));
+    define("LABEL", array('New', 'New', 'FEAT'));
     define("LABEL_CLASS", array('', 'new', 'feature'));
     define("ORDER_STATUSES", [
         'PROCESSING' => [
