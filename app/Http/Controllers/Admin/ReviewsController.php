@@ -11,9 +11,11 @@ class ReviewsController extends Controller
 {
 
     public function new_reviews_page(){
-        $data['reviews'] = Reviews::select(['reviews.*','product_info.listing_name', 'users.name'])->join('product_info','product_info.id','reviews.product_id')
-                            ->join('users','reviews.user_id','users.id')
-                            ->get();
+        $data['reviews'] = Reviews::select(['reviews.*','product_info.listing_name', 'users.name'])
+            ->join('product_info','product_info.id','reviews.product_id')
+            ->join('users','reviews.user_id','users.id')
+            ->where('reviews.status', 0)
+            ->get();
 
         return view('admin.reviews.new', $data);
     }
@@ -31,7 +33,15 @@ class ReviewsController extends Controller
     }
 
     public function moderated_reviews_page(){
-        return view('admin.reviews.moderated');
+        $data['reviews'] = Reviews::select(['reviews.*','product_info.listing_name', 'users.name'])
+            ->join('product_info','product_info.id','reviews.product_id')
+            ->join('users','reviews.user_id','users.id')
+            ->where('reviews.status', 1)
+            ->get();
+
+        return view('admin.reviews.moderated', $data);
+
+//        return view('admin.reviews.moderated');
     }
 
     public function update_review(Request $request){

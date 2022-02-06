@@ -40,7 +40,7 @@ class WebsiteController extends Controller
 
 
     private function get_label_wise_products($label){
-        return DB::table("products")->select(['products.*','categories.page_slug as category_slug','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
+        return DB::table("products")->select(['products.*','categories.page_slug as category_slug','product_info.id as product_info_id','products.name as product_name','product_info.packaging_weight',
             'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
             ->join('product_info','products.id','product_info.product_id')
             ->join('categories','categories.id','products.category_id')

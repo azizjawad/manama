@@ -37,63 +37,29 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
-                                        <table class="data-table data-table-reviews-list dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <table class="data-table data-table-reviews dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                                             <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Review Date: activate to sort column descending" style="width: 117.958px;">Review Date</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Product Name: activate to sort column ascending" style="width: 131.347px;">Product Name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Customer Name: activate to sort column ascending" style="width: 146.722px;">Customer Name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Customer Rating: activate to sort column ascending" style="width: 153.083px;">Customer Rating</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 74.375px;">Status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Updated: activate to sort column ascending" style="width: 124.694px;">Last Updated</th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 152.597px;">Actions</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Review Date: activate to sort column descending" style="width: 163.972px;">Review Date</th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Product Name: activate to sort column ascending" style="width: 181.5px;">Product Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Customer Name: activate to sort column ascending" style="width: 201.611px;">Customer Name</th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Customer Rating: activate to sort column ascending" style="width: 209.944px;">Customer Rating</th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 209.306px;">Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">13/05/2020</td>
-                                                <td>Bangle Type 05</td>
-                                                <td>Jane Smith</td>
-                                                <td>5</td>
-                                                <td>Unpublished</td>
-                                                <td>20/05/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#reviewWindow" class="las la-eye btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">18/08/2020</td>
-                                                <td>Bangle Type 01</td>
-                                                <td>John Smith</td>
-                                                <td>4</td>
-                                                <td>Published</td>
-                                                <td>18/08/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#reviewWindow" class="las la-eye btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1">20/04/2020</td>
-                                                <td>Bangle Type 02</td>
-                                                <td>John Smith</td>
-                                                <td>4</td>
-                                                <td>Published</td>
-                                                <td>22/04/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#reviewWindow" class="las la-eye btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">23/07/2020</td>
-                                                <td>Bangle Type 02</td>
-                                                <td>Jordan Smith</td>
-                                                <td>4</td>
-                                                <td>Unpublished</td>
-                                                <td>23/07/2020</td>
-                                                <td class="text-center"><a href="javascript:void(0)" data-toggle="modal" data-target="#reviewWindow" class="las la-eye btn btn-secondary mx-1"></a>
-                                                    <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>
-                                                </td>
-                                            </tr>
+                                            @foreach($reviews as $key)
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">{{$key->created_at}}</td>
+                                                    <td>{{$key->listing_name}}</td>
+                                                    <td>{{$key->name}}</td>
+                                                    <td>{{$key->rating}}</td>
+                                                    <td class="text-center">
+                                                        <a href="javascript:void(0)" data-review-id="{{$key->id}}" class="las la-eye btn btn-secondary mx-1 show_review_modal"></a>
+                                                        {{--                                                        <a href="javascript:void(0)" class="las la-trash-alt btn btn-secondary mx-1"></a>--}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                         <div class="row view-pager">
@@ -119,4 +85,143 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-sm" id="reviewWindow" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Toggle Review Visibility</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning mb-5" role="alert">* You can only Publish or Unpublish Comments from here. To delete, use Delete Button in the list</div>
+                    <div class="review_data">
+                        <div class="row  text-left">
+                            <div class="col-md-6 col-12">
+                                <p><b>Review Date:</b><br>20/04/2020</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p><b>Customer Name:</b><br>John Doe Smith</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p><b>Customer Email:</b><br>john.dsmith@gmail.com</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p><b>Product Reviewed:</b><br>Original Mojito</p>
+                            </div>
+                        </div>
+                        <div class="row  text-justify">
+                            <div class="col-12">
+                                <div class="form-group mb-1">
+                                    <label class="d-block">Product Rated</label>
+                                    <select class="rating" data-current-rating="4" data-readonly="true">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <p><b>Customer Comment:</b><br>Kada and Bangles have always been an irreplaceable part of a woman's jewellery collection. Whether she is a young and playful teenager or a settled down grandmother, a woman looks forward to on her wrists.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row  text-center">
+                        <div class="col-12">
+                            <label class="form-label font-weight-bold" id="switch5-label">Publish Review</label>
+                            <div class="custom-switch custom-switch-primary-inverse mb-2">
+                                <input class="custom-switch-input" value="1" name="review_status" id="switch5" type="checkbox">
+                                <label class="custom-switch-btn" for="switch5"></label>
+                            </div>
+                            <div class="form-group text-center mt-3">
+                                <input type="hidden" name="review_id" value="">
+                                <button type="button" class="btn btn-secondary update_review_status">Update Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.update_review_status').click(function (){
+            let status = $('input[name="review_status"]:checked').length;
+            let review_id = $('[name="review_id"]').val();
+            console.log(status,review_id)
+            if (review_id != ''){
+                $.ajax({
+                    url: "{{route('update_review')}}",
+                    data: {review_id:review_id, status: status},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    type:"post",
+                    success: (res) => {
+                        if (res.status === true){
+                            success_notification();
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000)
+                        }
+                    }
+                });
+            }
+        })
+        $('.show_review_modal').click(function (){
+            let review_id = $(this).data('review-id');
+            $.ajax({
+                url: "{{route('get-reviews-product')}}/"+review_id,
+                success: function (res) {
+                    if (res.status === true) {
+                        let data = res.data;
+                        $('[name="review_id"]').val(data.id);
+                        $('input[name="review_status"]').prop('checked',(data.status == 1))
+
+                        let review_html = `<div class="row text-left">
+                            <div class="col-md-6 col-12">
+                                <p><b>Review Date:</b><br>${new Date(data.created_at)}</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p><b>Customer Name:</b><br>${data.name}</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p><b>Customer Email:</b><br>${data.email}</p>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <p><b>Product Reviewed:</b><br>${data.listing_name}</p>
+                            </div>
+                        </div>
+                        <div class="row  text-justify">
+                            <div class="col-12">
+                                <div class="form-group mb-1">
+                                    <label class="d-block">Product Rated</label>
+                                    <select class="rating" data-current-rating="${data.rating}" data-readonly="true">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <p><b>Customer Comment:</b><br>${data.comment}</p>
+                            </div>
+                        </div>`;
+                        $('.review_data').html(review_html);
+                        $('#reviewWindow').modal('show');
+                        $(".rating").each(function () {
+                            var current = $(this).data("currentRating");
+                            var readonly = $(this).data("readonly");
+                            $(this).barrating({
+                                theme: "bootstrap-stars",
+                                initialRating: current,
+                                readonly: readonly
+                            });
+                        });
+                    }
+
+
+                }
+            })
+        });
+    </script>
 @endsection

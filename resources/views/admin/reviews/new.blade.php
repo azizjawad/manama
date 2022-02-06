@@ -159,6 +159,9 @@
                     success: (res) => {
                         if (res.status === true){
                             success_notification();
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000)
                         }
                     }
                 });
