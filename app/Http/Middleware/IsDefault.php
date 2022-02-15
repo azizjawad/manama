@@ -25,6 +25,6 @@ class IsDefault
             }
         }
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

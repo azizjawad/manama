@@ -82,6 +82,15 @@ class MyAccountController extends Controller
         }
         \Log::info("discountArray");
         \Log::info($data['discountArray']);
+        $gst_num = $request->post('gstn_no');
+        if (!empty($gst_num)){
+            $request->session()->put('gst_number', $gst_num);
+        }
+        if ($request->session()->exists('gst_number')){
+            $data['gst_number'] = $request->session()->get('gst_number');
+        }else{
+            $data['gst_number'] = '';
+        }
         return view('website.account.checkout', $data);
     }
 

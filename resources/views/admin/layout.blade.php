@@ -116,7 +116,7 @@
                 @php $user = auth()->user(); @endphp
                 <span class="name">{{$user->name}}</span>
                 @if(!empty($user->image))
-                    <span><img alt="Profile Picture" src="{{asset('/images/my-account/'. $user->image)}}" /></span>
+                    <span><img alt="Profile Picture" src="{{asset("/images/uploads/my-account/$user->image")}}" /></span>
                 @else
                     <span><img alt="Profile Picture" src="{{asset('img/profiles/l-1.jpg')}}" /></span>
                 @endif

@@ -26,7 +26,7 @@ class Helpers
 
     public static function getProductVariantText($orders)
     {
-        $productCount = $orders->product_info->count() - 1;
+        $productCount = \App\Models\OrderDetailsModel::where('order_id', $orders->id)->count();
         $productCountSubText = '';
         if ($productCount == 1) {
             $productCountSubText = ' and ' . $productCount . ' item';
@@ -51,19 +51,24 @@ class Helpers
     }
 
     public static function fetchOrderDetails($column_name, $value, $return_type = 'first'){
+
         $orders = OrdersModel::select('orders.*','order_details.product_info_id','quantity','product_cost','my_address.state')
             ->join('order_details', 'order_details.order_id', 'orders.id')
             ->join('my_address','my_address.id','orders.billing_address');
+
         if($column_name != '' && $value != '' ){
-            $orders = $orders->where( $column_name , $value);
+            $orders->where( $column_name , $value);
         }
-        $orders = $orders->groupBy('order_no')->orderBy('orders.id', 'desc');
+
+        $orders->groupBy('order_no')
+                ->orderBy('orders.created_at', 'desc');
+
         if($return_type == 'first' ){
-            $orders = $orders->first();
+           return $orders->first();
         }else {
-            $orders = $orders->get();
+           return $orders->get();
         }
-        return $orders;
+
     }
 
 }

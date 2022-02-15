@@ -12,7 +12,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="mb-4 font-weight-bold">Admin Details</h5>
-                    <form method="post" action="{{route('save-admin-profile')}}">
+                    <form method="post" enctype="multipart/form-data" action="{{route('save-admin-profile')}}">
                         @csrf
                         @php $user = auth()->user(); @endphp
 

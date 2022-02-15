@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriesModel;
 use App\Models\HomepageBannersModel;
 use App\Models\ProductsModel;
 use App\Models\RecipeModel;
@@ -32,7 +33,20 @@ class WebsiteController extends Controller
         return view('home');
     }
 
-    public function homepage(){
+    public function homepage(Request $request){
+        $search =  $request->get('search');
+        if (!empty($search)){
+            $data['products'] = ProductsModel::select(['products.id','products.image as product_image','products.page_slug as product_slug',
+                'products.label','products.name as product_name','product_info.id as product_info_id','cat.name as category_name','cat.page_slug as cat_slug'])
+                ->join('product_info','product_info.product_id','products.id')
+                ->join('categories as cat','cat.id','products.category_id')
+                ->where('products.status',1)
+                ->where('products.name','like',"%$search%")
+                ->groupBy('products.id')
+                ->paginate(9);
+
+            return view('website/search', $data);
+        }
         $data['banners'] = HomepageBannersModel::orderBy('banner_location')->get();
         $data['new_products'] = $this->get_label_wise_products(1);
         $data['featured_products'] = $this->get_label_wise_products(2);

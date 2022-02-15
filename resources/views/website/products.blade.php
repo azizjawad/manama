@@ -260,32 +260,30 @@
                         <div class="product-data-tab tab-style-1">
                             <div class="nav nav-tabs product-data-tab__head mb--40 mb-md--30" id="product-tab"
                                  role="tablist">
-                                <button type="button" class="product-data-tab__link nav-link active"
-                                        id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description"
-                                        role="tab" aria-selected="true">
-                                    <span>Description</span></button>
-                                <button type="button" class="product-data-tab__link nav-link" id="nav-reviews-tab"
-                                        data-bs-toggle="tab" data-bs-target="#nav-reviews" role="tab" aria-selected="true">
-                                    <span>Reviews {{ count($reviews) > 0 ? '(' . count($reviews) . ')' : '' }}</span></button>
+                                <button type="button" class="product-data-tab__link nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" role="tab" aria-selected="true">
+                                    <span>Description</span>
+                                </button>
+                                <button type="button" class="product-data-tab__link nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" role="tab" aria-selected="true">
+                                    <span>Reviews {{ count($reviews) > 0 ? '(' . count($reviews) . ')' : '' }}</span>
+                                </button>
+                                @if($product[0]->how_to_prepare)
+                                    <button type="button" class="product-data-tab__link nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-prepare" role="tab" aria-selected="true">
+                                        <span>How to Prepare</span>
+                                    </button>
+                                @endif
                             </div>
 
 
                             <div class="tab-content product-data-tab__content" id="product-tabContent">
-
-
                                 <!-- Product Description -->
-
                                 <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
                                      aria-labelledby="nav-description-tab">
                                     <div class="product-description">
                                         {!! $product[0]->description !!}
                                     </div>
                                 </div>
-
                                 <!-- Review Area -->
-
-                                <div class="tab-pane fade" id="nav-reviews" role="tabpanel"
-                                     aria-labelledby="nav-reviews-tab">
+                                <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                                     <div class="product-reviews">
                                         <h3 class="review__title"> {{ count($reviews) }}
                                             {{ count($reviews) > 1 ? 'reviews' : 'review' }} for Original Mojito</h3>
@@ -377,7 +375,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @if($product[0]->how_to_prepare)
+                                    <div class="tab-pane fade" id="nav-prepare" role="tabpanel"
+                                         aria-labelledby="nav-description-tab">
+                                        <div class="product-description">
+                                            <img src="{{asset('images/uploads/how_to_prepare/' . $product[0]->how_to_prepare)}}" alt="">
+                                        </div>
+                                    </div>
+                                @endif
 
                             </div>
                         </div>

@@ -140,13 +140,13 @@
                         <!-- Addreess Selection-->
                         <div class="row">
                             <div class="col-md-8 col-12">
-                                <form class="form gstn-tab" action="post" id="gst-form">
+                                <form class="form gstn-tab" method="post" action="{{route('checkout')}}" id="gst-form">
+                                    @csrf
                                     <div class="form__group">
-                                        <input type="text" id="gstn_no" name="gstn_no" class="form__input form__input--2"
-                                               placeholder="Your GSTN">
+                                        <input type="text" id="gstn_no" value="{{$gst_number}}" required name="gstn_no" class="form__input form__input--2" placeholder="Your GSTN">
                                     </div>
                                     <div class="form__group has-button">
-                                        <button type="button" class="btn btn-style-3">Apply</button>
+                                        <button type="submit" class="btn btn-style-3">Apply</button>
                                     </div>
                                     <div class="form__output"></div>
                                 </form>

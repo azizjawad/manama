@@ -60,8 +60,8 @@
                                             <td>{{$key->coupon_value}}</td>
                                             <td>-</td>
                                             <td class="text-center">
-                                                <a href="Discount.Coupon.Details.html"
-                                                   class="las la-eye btn btn-secondary mx-1"></a>
+{{--                                                <a href="Discount.Coupon.Details.html"--}}
+{{--                                                   class="las la-eye btn btn-secondary mx-1"></a>--}}
                                                 <a href="javascript:void(0)"
                                                    class="las la-trash-alt btn btn-secondary mx-1"></a></td>
                                         </tr>

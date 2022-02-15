@@ -1055,7 +1055,7 @@
                     let error = JSON.parse(res.responseText);
                     if (res.status === 401) {
                         // window.location = '/login';
-                        loginValidityForReview('login');
+                        // loginValidityForReview('login');
                     } else {
                         error_notification(error.message);
                     }
@@ -1087,9 +1087,16 @@
             });
         }
     })
-
+    $('.mainmenu__item').removeClass('active');
+    var activeurl = window.location;
+    $('a[href="'+stripTrailingSlash(activeurl.href)+'"]').parent('li').addClass('active');
 })(jQuery);
-
+function stripTrailingSlash(str) {
+    if(str.substr(-1) === '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
+}
 function loginValidityForReview(reference_type){
     const cookieData = {
         cookie_name: 'link_referral',

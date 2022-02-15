@@ -80,7 +80,7 @@ class ProductController extends Controller
         $gallery = [];
 
         $query = ProductsModel::select(['products.*','product_info.id as product_info_id','products.name as product_name','product_info.packaging_weight',
-            'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock'])
+            'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.barcode','is_in_stock','how_to_prepare'])
             ->join('product_info','product_info.product_id','products.id')
             ->where('products.category_id',$category_id)
             ->where('products.page_slug','like',"$product_slug")

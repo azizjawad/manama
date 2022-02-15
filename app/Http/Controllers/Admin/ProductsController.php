@@ -87,6 +87,7 @@ class ProductsController extends Controller
                 'meta_description' => ['required'],
                 'page_slug' => ['required'],
                 'image.*' => 'mimes:jpeg,jpg,png,svg',
+                'how_to_prepare.*' => 'mimes:jpeg,jpg,png,svg',
             ]
         );
 
@@ -115,23 +116,31 @@ class ProductsController extends Controller
                 $fields['image'] = $display_file_name;
             }
 
+            if ($request->hasFile('how_to_prepare')) {
+                $image = $request->file('how_to_prepare')[0];
+                $display_file_name = time() . '_' . $image->getClientOriginalName();
+                $destinationPath = public_path('images/uploads/how_to_prepare');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true);
+                }
+                $image->move($destinationPath, $display_file_name);
+                $fields['how_to_prepare'] = $display_file_name;
+            }
 
             if (isset($post['product_id'])) {
                 $fields['modified_by'] = Auth::user()->id;
-                $status = ProductsModel::where('id', $post['product_id'])->update($fields);
+                ProductsModel::where('id', $post['product_id'])->update($fields);
+                return response(['status' => true, 'message' => 'Product Saved successfully.']);
             } else {
 
                 if(!isset($fields['image']))
                     return response(['status' => false, 'message' => 'Product image is mandatory'],400);
 
                 $fields['created_by'] = Auth::user()->id;
-                $status = ProductsModel::create($fields);
+                ProductsModel::create($fields);
+                return response(['status' => true, 'message' => 'Product Created successfully.']);
             }
 
-            if ($status)
-                return response(['status' => true, 'message' => 'Product created successfully.']);
-            else
-                return response(['status' => false], 500);
         }
     }
 

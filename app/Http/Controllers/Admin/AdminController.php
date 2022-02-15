@@ -52,11 +52,10 @@ class AdminController extends Controller
                 'first_name' => $name[0],
                 'last_name' => $name[1] ?? "",
             ];
-
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $file_name = time() . '_' . $image->getClientOriginalName();
-                $destinationPath = public_path('/images/my-account');
+                $destinationPath = public_path('/images/uploads/my-account');
                 if (!file_exists($destinationPath)) {
                     mkdir($destinationPath, 0777, true);
                 }

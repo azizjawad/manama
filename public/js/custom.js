@@ -288,8 +288,14 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
 
         //File data
         var file_data = $('input[name="image"]')[0].files;
-        for (var i = 0; i < file_data.length; i++) {
+        for (let i = 0; i < file_data.length; i++) {
             data.append("image[]", file_data[i]);
+        }
+
+        //File data
+        file_data = $('input[name="how_to_prepare"]')[0].files;
+        for (let i = 0; i < file_data.length; i++) {
+            data.append("how_to_prepare[]", file_data[i]);
         }
         multipart_ajax(form, data, button);
     }

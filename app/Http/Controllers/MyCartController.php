@@ -33,8 +33,18 @@ class MyCartController extends Controller
         if (!$validator->fails()) {
             $is_online = ProductInfoModel::where('id',$post['product_info_id'])->where('is_in_stock', 1)->exists();
             if ($is_online){
-                if (\Auth::user()){
+                if(!Auth::check()) {
+                    if (!$request->session()->exists('guest_user_id')){
+                        $user_id = rand(11111111,99999999);
+                        $request->session()->put('guest_user_id', $user_id);
+                    }else{
+                        $user_id = $request->session()->get('guest_user_id');
+                    }
+                }else{
                     $user_id = \Auth::id();
+                }
+
+                if ($user_id){
                     $previous_quantity = CartModel::where('user_id', $user_id)
                             ->where("product_info_id", $post['product_info_id'])
                             ->pluck('quantity')->first();
@@ -64,14 +74,20 @@ class MyCartController extends Controller
        return response(['status' => false,'messages' => $validator->errors()], 400);
     }
 
-    public static function cart_page(){
+    public static function cart_page(Request $request){
         $user_id = Auth::id();
+        if (empty($user_id) && $request->session()->get('guest_user_id')){
+            $user_id = $request->session()->get('guest_user_id');
+        }
         $data['cart'] = self::get_cart_data($user_id);
         return view('website/account/cart', $data);
     }
 
-    public function fetch_cart_details(){
+    public function fetch_cart_details(Request $request){
         $user_id = Auth::id();
+        if (empty($user_id) && $request->session()->get('guest_user_id')){
+            $user_id = $request->session()->get('guest_user_id');
+        }
         return response(['status' => true, 'data' => self::get_cart_data($user_id)]);
     }
 
@@ -91,13 +107,17 @@ class MyCartController extends Controller
         return response(['status' => false, 'data' => []]);
     }
 
-    public function delete_cart($cart_id){
+    public function delete_cart(Request $request,$cart_id){
         $user_id = Auth::id();
+        if (empty($user_id) && $request->session()->get('guest_user_id')){
+            $user_id = $request->session()->get('guest_user_id');
+        }
         $is_deleted = CartModel::where('user_id', $user_id)->where('id', $cart_id)->delete();
         return response(['status' => (bool) $is_deleted, 'page' => 'cart']);
     }
 
     public static function get_cart_data($user_id){
+
             return CartModel::select(['cart.id as cart_id','products.image','cart.quantity','product_info.id as product_info_id','product_info.listing_name as product_name','product_info.packaging_weight',
                 'product_info.packaging_type','product_info.cost_price','product_info.sku_code','product_info.gst_rate','product_info.barcode','is_in_stock'])
             ->join('product_info','cart.product_info_id','product_info.id')
@@ -119,6 +139,9 @@ class MyCartController extends Controller
         // Check validation (fail or pass)
         if (!$validator->fails()) {
             $user_id = Auth::id();
+            if (empty($user_id) && $request->session()->get('guest_user_id')){
+                $user_id = $request->session()->get('guest_user_id');
+            }
             if (isset($post['clear_cart'])){
                 CartModel::where('user_id', $user_id)->delete();
             }else{

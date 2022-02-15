@@ -103,7 +103,7 @@
                             <nav class="main-navigation">
                                 <ul class="mainmenu mainmenu--centered">
                                     <li class="mainmenu__item active">
-                                        <a href="/" class="mainmenu__link">
+                                        <a href="{{route('home-page')}}" class="mainmenu__link">
                                             <span class="mm-text">Home</span>
                                         </a>
 
@@ -272,10 +272,12 @@
                                     </ul>
                                 </li>
                                 <li class="header-toolbar__item">
-                                    <a href="#miniCart" class="mini-cart-btn toolbar-btn">
-                                        <img src="{{asset("web/images/icons/006-bag.png")}}" />
-                                        <sup class="mini-cart-count">2</sup>
-                                    </a>
+                                    @if(!Route::is('checkout'))
+                                        <a href="#miniCart" class="mini-cart-btn toolbar-btn">
+                                            <img src="{{asset("web/images/icons/006-bag.png")}}" />
+                                            <sup class="mini-cart-count">0</sup>
+                                        </a>
+                                    @endif
                                 </li>
                                 <li class="header-toolbar__item">
                                     <a href="#searchForm" class="search-btn toolbar-btn">

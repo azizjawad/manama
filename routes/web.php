@@ -148,7 +148,6 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::get('/user-settings', 'App\Http\Controllers\MyAccountController@user_settings')->name('user-settings');
         Route::post('/save-user-setting', 'App\Http\Controllers\MyAccountController@save_user_setting')->name('save-user-setting');
 
-        Route::get('/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
         // Route::post('/apply-coupon', 'App\Http\Controllers\MyCartController@apply_coupon')->name('apply-coupon');
         Route::post('/place-order', 'App\Http\Controllers\MyCartController@place_order')->name('place-order');
         Route::get('/checkout', 'App\Http\Controllers\MyAccountController@checkout')->name('checkout');
@@ -157,10 +156,11 @@ Route::group(['middleware' => 'App\Http\Middleware\IsDefault'], function () {
         Route::get('/thank-you', 'App\Http\Controllers\MyAccountController@thank_you')->name('thank-you');
         Route::get('/order-details/{order_no}', 'App\Http\Controllers\MyAccountController@order_details')->name('order_details');
     });
-    Route::prefix('api')->group(function () {
-        Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
-        Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
-    });
+});
+Route::get('account/cart', 'App\Http\Controllers\MyCartController@cart_page')->name('cart');
+Route::prefix('api')->group(function () {
+    Route::post('/update-quantity', 'App\Http\Controllers\MyCartController@update_quantity')->name('update_quantity');
+    Route::delete('/cart/delete/{cart_id}', 'App\Http\Controllers\MyCartController@delete_cart')->name('delete_cart');
 });
 Route::get('generate-pdf/{order_no}', 'App\Http\Controllers\MyAccountController@generatePDF')->name('generatePDF');
 

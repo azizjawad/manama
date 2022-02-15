@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cookie;
@@ -22,7 +23,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Support\Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function index()
+    public function index(Request $request)
     {
        try {
             $link_referral = Cookie::get('link_referral');
@@ -46,6 +47,10 @@ class LoginController extends Controller
         }
         if(\Auth::user()->role == 'admin'){
             return redirect('/dashboard');
+        }
+        if ($request->session()->get('guest_user_id')){
+            $request->session()->forget('guest_user_id');
+            return redirect('/account/checkout');
         }
         return redirect('/');
     }

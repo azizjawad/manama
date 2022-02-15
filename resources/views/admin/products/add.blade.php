@@ -35,6 +35,9 @@
                                 <label>Long Description (use Redactor or any WYSIWYG html editor)</label>
                                 <textarea class="form-control summernote" name="description" required=""></textarea>
                             </div>
+                            <label class="form-group has-float-label mb-1">
+                                <input class="form-control" name="how_to_prepare" type="file" accept=".jpg,.png"><span>How to Prepare</span></label>
+                            <label class="tooltip-text mb-4">(Only upload 600x600 size images.)</label>
                             <label class="form-group has-float-label mb-4">
                                 <input type="text" name="meta_title" class="form-control" placeholder="">
                                 <span>Meta Page Title</span>
