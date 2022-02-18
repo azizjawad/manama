@@ -134,12 +134,12 @@
                                                 <li class="d-none d-lg-block banner-holder">
                                                     <div class="megamenu-banner">
                                                         <div class="megamenu-banner-image"></div>
-                                                        <div class="megamenu-banner-info">
-                                                            <h3><span>build</span><br><span>flavour box</span></h3>
-                                                            <span>
-                                                                    <a href="#">start here</a>
-                                                                </span>
-                                                        </div>
+{{--                                                        <div class="megamenu-banner-info">--}}
+{{--                                                            <h3><span>build</span><br><span>flavour box</span></h3>--}}
+{{--                                                            <span>--}}
+{{--                                                                    <a href="#">start here</a>--}}
+{{--                                                                </span>--}}
+{{--                                                        </div>--}}
                                                         <a href="#" class="megamenu-banner-link"></a>
                                                     </div>
                                                 </li>
