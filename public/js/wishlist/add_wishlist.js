@@ -13,7 +13,46 @@ $(document).on('click', '.add_to_wishlist_btn', function () {
     const product_info_id = $(this).attr('data-product_info_id');
     toggleWishList(product_info_id);
 });
+$(document).on('click','.delete_wishlist_btn', function (){
+    const element = $(this);
+    const product_info_id = $(this).attr('data-product_info_id');
+    $.ajax({
+        type: 'POST',
+        url: baseUrl + '/toggle-wishlist/' + product_info_id,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        cache: false,
+        success: function (response) {
+            if (response.success) {
+                if (response.show_success) {
+                    console.log(element);
+                    element.parents('tr').remove();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 2500,
+                        width: '380px',
+                        height: '300px'
+                    });
+                }
 
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 2500,
+                    width: '380px',
+                    height: '300px'
+                });
+            }
+        }
+    });
+});
 function toggleWishList(product_info_id) {
     if (!userExists) {
         // user is not logged in then create cookie and redirect to login

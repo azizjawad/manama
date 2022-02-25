@@ -29,7 +29,7 @@
                                             @foreach ($wishListData as $product)
                                                 <tr>
                                                     <td class="product-remove text-start"><a href="javascript:void(0);"
-                                                            class="add_to_wishlist_btn"
+                                                            class="delete_wishlist_btn"
                                                             data-product_info_id="{{ $product->product_info_id }}"><i
                                                                 class="dl-icon-close"></i></a></td>
                                                     <td class="product-thumbnail text-start">

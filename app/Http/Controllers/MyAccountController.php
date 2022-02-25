@@ -38,7 +38,8 @@ class MyAccountController extends Controller
 
     public function my_wishlist()
     {
-        $wishListData = \App\Models\WishListModel::with('product_info')->get();
+        $id = auth::id();
+        $wishListData = \App\Models\WishListModel::with('product_info')->where('created_by', $id)->get();
         return view('website/account/my-wishlist', compact('wishListData'));
     }
 
