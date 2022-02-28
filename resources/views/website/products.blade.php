@@ -588,10 +588,8 @@
                 method: 'get',
                 success: function (res){
                     if (res.status == true){
-                        if (res.data.is_in_stock == 1){
-                        }
                         // $('.product-title').text(res.data.listing_name);
-                        $('.add-to-cart').attr('disabled', (res.data.is_in_stock == 0));
+                        $('.add-to-cart, .add_from_mini_cart').attr('disabled', (res.data.is_in_stock == 0));
                         let span_html = '';
                         if(res.data.is_in_stock == 0) {
                             span_html = `<span class="product-stock out-of-stock float-right">
