@@ -1087,8 +1087,11 @@
             });
         }
     })
-    $('.mainmenu__item').removeClass('active');
+    $('.mainmenu__item, #shop-menu').removeClass('active');
     var activeurl = window.location;
+    if (activeurl.href.includes('shop')){
+        $('#shop-menu').addClass('active');
+    }
     $('a[href="'+stripTrailingSlash(activeurl.href)+'"]').parent('li').addClass('active');
 })(jQuery);
 function stripTrailingSlash(str) {
@@ -1130,7 +1133,6 @@ function fetchOrderDetailModal(order_no){
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         cache: false,
         success: function (response) {
-            console.log(' fetchOrderDetailModal : ', response);
             $('.orderDetailsModalBody').html(response);
             $('#orderDetailsModal').modal('show');
 

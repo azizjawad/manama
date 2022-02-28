@@ -94,7 +94,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
 
         Route::prefix('customers')->group(function () {
             Route::get('manage', 'App\Http\Controllers\Admin\CustomersController@customer_manege_page')->name('admin-customer-manage');
-            Route::get('summary', 'App\Http\Controllers\Admin\CustomersController@customer_summary_page')->name('admin-customer-summary');
+            Route::get('summary/{user_id?}', 'App\Http\Controllers\Admin\CustomersController@customer_summary_page')->name('admin-customer-summary');
             Route::get('wishlist', 'App\Http\Controllers\Admin\CustomersController@customer_wishlist_page')->name('admin-customer-wishlist');
         });
 
@@ -185,4 +185,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::post('create-cookie', 'App\Http\Controllers\CookieController@createCookie')->name('createCookie');
 Route::post('save-review', 'App\Http\Controllers\ProductController@saveReview')->name('saveReview');
 
-Route::get('{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');
+Route::get('shop/{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');
+//Route::get('{category_slug?}/{product_name?}/{product_info_id?}', 'App\Http\Controllers\ProductController@category_product')->name('category_product');

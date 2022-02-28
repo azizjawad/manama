@@ -120,9 +120,9 @@
                                                 </a>
                                                 <ul class="product-ordering__list">
                                                     {{-- <li class=""><a href="#">Sort by popularity</a></li> --}}
-                                                    <li class="{{ (isset($sortBy) && $sortBy == 'newness') ? 'active':''}}"><a href="{{route('category_product',[$category->page_slug]).'?sort_by=newness'}}" >Sort by newness</a></li>
-                                                    <li class="{{ (isset($sortBy) && $sortBy == 'low_to_high') ? 'active':''}}"><a href="{{route('category_product',[$category->page_slug]).'?sort_by=low_to_high'}}" >Sort by price: low to high</a></li>
-                                                    <li class="{{ (isset($sortBy) && $sortBy == 'high_to_low') ? 'active':''}}"><a href="{{route('category_product',[$category->page_slug]).'?sort_by=high_to_low'}}" >Sort by price: high to low</a></li>
+                                                    <li class="{{ (isset($sortBy) && $sortBy == 'newness') ? 'active':''}}"><a href="{{route('category_product',[$category->page_slug]).'?sort_by=newness'}}" >Sort by Newness</a></li>
+                                                    <li class="{{ (isset($sortBy) && $sortBy == 'featured') ? 'active':''}}"><a href="{{route('category_product',[$category->page_slug]).'?sort_by=featured'}}" >Sort by Featured</a></li>
+{{--                                                    <li class="{{ (isset($sortBy) && $sortBy == 'high_to_low') ? 'active':''}}"><a href="{{route('category_product',[$category->page_slug]).'?sort_by=high_to_low'}}" >Sort by price: high to low</a></li>--}}
                                                 </ul>
                                             </div>
                                         </div>

@@ -24,6 +24,9 @@ function multipart_ajax(form, data, button){
                     width: '380px',
                     height: '300px'
                 });
+                setTimeout(() => {
+                    location.reload()
+                },500);
                 if ($('input[name="product_id"]') === 0)
                     form[0].reset();
             }
@@ -60,6 +63,9 @@ function ajax_function(form){
             if(res.status === true){
                 form[0].reset();
                 success_notification(res.message);
+                setTimeout(() => {
+                    location.reload()
+                },500);
             }
         },
         error: (res) => {
@@ -253,7 +259,7 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
             },
         },
         errorElement: 'div',
-        submitHandler: function (){
+        submitHandler: function (e){
             let form = $('#kt_category_image_form');
             image_data_creation(form);
         }
@@ -293,9 +299,11 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
         }
 
         //File data
-        file_data = $('input[name="how_to_prepare"]')[0].files;
-        for (let i = 0; i < file_data.length; i++) {
-            data.append("how_to_prepare[]", file_data[i]);
+        if ($('input[name="how_to_prepare"]').length > 0) {
+            file_data = $('input[name="how_to_prepare"]')[0].files;
+            for (let i = 0; i < file_data.length; i++) {
+                data.append("how_to_prepare[]", file_data[i]);
+            }
         }
         multipart_ajax(form, data, button);
     }
@@ -348,3 +356,5 @@ function error_notification(message = 'Oops!! Something went wrong, please try a
         });
     })
 })(jQuery);
+
+

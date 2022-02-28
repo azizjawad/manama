@@ -65,10 +65,10 @@ class ProductController extends Controller
         if($sortyBy != '' ){
             if($sortyBy == 'low_to_high'){
                 $query->orderBy('product_info.cost_price','ASC');
-            }elseif($sortyBy == 'high_to_low'){
-                $query->orderBy('product_info.cost_price','DESC');
+            }elseif($sortyBy == 'featured'){
+                $query->orderBy('products.label','DESC');
             }elseif($sortyBy == 'newness'){
-                $query->orderBy('product_info.created_at','DESC');
+                $query->orderBy('products.label','ASC');
             }
         }
         return $query->paginate(9);
