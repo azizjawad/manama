@@ -197,12 +197,11 @@
                                                     </h3>
                                                     <div class="product-rating">
                                                         <span>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star rated"></i>
-                                                            <i class="dl-icon-star"></i>
+                                                            @for ($i = 1; $i <= $key->rating_count; $i++)
+                                                                <i class="dl-icon-star rated"></i>
+                                                            @endfor
                                                         </span>
+                                                        
                                                     </div>
 {{--                                                    <span class="product-price-wrapper">--}}
 {{--                                                        <span class="money"><i--}}
