@@ -14,7 +14,7 @@
                         <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static"
                            data-target="#createcoupon" class="btn btn-secondary mb-2 float-right adjust-margin-01">Create
                             Coupon</a>
-                        <h5 class="mb-4 font-weight-bold">Discount Manager</h5>
+                        <h5 class="mb-4 font-weight-bold">Coupon Manager</h5>
                         <div class="separator mb-5"></div>
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success alert-block">

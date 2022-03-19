@@ -60,15 +60,13 @@ class Helpers
             $orders->where( $column_name , $value);
         }
 
-        $orders->groupBy('order_no')
-                ->orderBy('orders.created_at', 'desc');
+        $orders->groupBy('order_no')->orderBy('orders.id', 'desc');
 
         if($return_type == 'first' ){
            return $orders->first();
         }else {
-           return $orders->get();
+            return $orders->get();
         }
-
     }
 
 }

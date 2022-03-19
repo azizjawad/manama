@@ -21,16 +21,18 @@ class AdminController extends Controller
 
     public function adminDashboard(){
         $data['new_sales'] = OrdersModel::select(DB::raw('COUNT(id) as new_sales'))->whereRaw('created_at > now() - interval 1 hour')->where('status', 1)->first()->new_sales;
-        $data['pending_orders'] = OrdersModel::select(DB::raw('COUNT(id) as pending_orders'))->where('status', 2)->first()->pending_orders;
+        $data['pending_orders'] = OrdersModel::select(DB::raw('COUNT(id) as pending_orders'))->where('status', 1)->first()->pending_orders;
         $data['completed_orders'] = OrdersModel::select(DB::raw('COUNT(id) as completed_orders'))->where('status', 3)->first()->completed_orders;
         $data['daily_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as daily_sales'))->where(DB::raw('DATE(created_at)'), date('Y-m-d'))->first()->daily_sales;
-        $data['monthly_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as monthly_sales'))->where('created_at', date('Y-m'))->first()->monthly_sales;
+        $data['monthly_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as monthly_sales'))->where(DB::raw("DATE_FORMAT(created_at ,'%Y-%m-01')"), DB::raw("DATE_FORMAT(curdate(),'%Y-%m-01')"))->first()->monthly_sales;
         $data['total_sales'] = OrdersModel::select(DB::raw('SUM(total_amount) as monthly_sales'))->first()->monthly_sales;
-        $data['recent_orders'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->where('status', 1)->get();
-        $data['daily_new_registration'] = User::where('created_at', date('Y-m-d'))->count();
-        $data['monthly_new_registration'] = User::where('created_at', date('Y-m'))->count();
+        $data['recent_orders'] = OrdersModel::join('order_details', 'order_details.order_id', 'orders.id')->where('status', 1)->groupBy('order_no')->orderBy('orders.created_at','desc')->get();
+
+        $data['daily_new_registration'] = User::where(DB::raw("DATE(created_at)"), date('Y-m-d'))->count();
+
+        $data['monthly_new_registration'] = User::where(DB::raw("DATE_FORMAT(created_at ,'%Y-%m-01')"), DB::raw("DATE_FORMAT(curdate(),'%Y-%m-01')"))->count();
         $data['total_users'] = User::count();
-        $data['new_registrations'] = User::limit(10)->get();
+        $data['new_registrations'] = User::limit(10)->orderBy('created_at','desc')->get();
 
         return view('admin.dashboard', compact('data'));
     }

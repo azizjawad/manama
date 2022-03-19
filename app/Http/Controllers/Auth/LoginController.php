@@ -46,16 +46,16 @@ class LoginController extends Controller
     {
         $user = User::where('email', $request->email)->select('id','role')->first();
 
-        if ($user->role == 'admin'){
+        if (isset($user->role) && $user->role == 'admin'){
             $request->session()->forget('guest_user_id');
         }
 
-        if ($request->session()->get('guest_user_id')){
+        if ($request->session()->get('guest_user_id') && isset($user->id)){
             $user_id = $request->session()->get('guest_user_id');
             CartModel::where('user_id', $user_id)->update(['user_id' => $user->id]);
         }
 
-        if (isset($request->login_from) && $request->login_from == 'default-login' && $user->role == 'admin'){
+        if (isset($request->login_from) && $request->login_from == 'default-login' && isset($user->role) && $user->role == 'admin'){
             return [];
         }else {
             return [

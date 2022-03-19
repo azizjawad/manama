@@ -21,7 +21,7 @@ class OrdersController extends Controller
 
     public function manage_order($order_no)
     {
-        $order = Helpers::fetchOrderDetails('orders.order_no', $order_no , 'first');
+        $order = Helpers::fetchOrderDetails('orders.order_no', $order_no);
         return view('admin.manage_order', compact('order'));
     }
 

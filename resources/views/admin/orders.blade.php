@@ -18,6 +18,7 @@
                                     <table class="data-table data-table-shipping-rate-list">
                                         <thead>
                                             <tr>
+                                                <th>SR No.</th>
                                                 <th>Order No.</th>
                                                 <th>Order Date</th>
                                                 <th>Customer Name</th>
@@ -31,7 +32,8 @@
                                         <tbody>
                                             @foreach ($orders as $order)
                                                 <tr role="row" class="odd">
-                                                    <td class="sorting_1"><a href="javascript:void(0);"
+                                                    <td>{{$loop->index +1}}</td>
+                                                    <td class="sorting"><a href="javascript:void(0);"
                                                             onClick="fetchOrderDetailModal({{ $order->order_no }})"
                                                             data-toggle="modal" data-target="#orderDetails"
                                                             title="Manage Order">{{ $order->order_no }}</a></td>

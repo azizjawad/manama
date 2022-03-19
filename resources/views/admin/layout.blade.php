@@ -297,7 +297,7 @@
             <ul class="list-unstyled" data-link="ecom-management">
                 <li>
                     <a href="{{Route('admin-discount-manager')}}">
-                        <i class="simple-icon-tag"></i> <span class="d-inline-block">Discount Manager</span>
+                        <i class="simple-icon-tag"></i> <span class="d-inline-block">Coupon Manager</span>
                     </a>
                 </li>
                 <li>

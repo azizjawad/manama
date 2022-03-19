@@ -26,9 +26,9 @@
                                             <div class="card colorBox cal-card">
                                                 <p
                                                     class="text-primary lead text-white font-weight-medium text-center p-2 mb-0">
-                                                    {{ date('d') }}<small
-                                                        class="text-small d-block">{{ date('M') }}</small><small
-                                                        class="text-small d-block">{{ date('Y') }}</small></p>
+                                                    {{ date('d', strtotime($order->created_at)) }}<small
+                                                        class="text-small d-block">{{ date('M', strtotime($order->created_at)) }}</small><small
+                                                        class="text-small d-block">{{ date('Y', strtotime($order->created_at)) }}</small></p>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-9">
@@ -43,14 +43,19 @@
                                                     {{ number_format($order->total_amount) }}</p>
                                                 <div class="pr-4 d-block">
                                                     <p class="text-extra-small mb-0 line-height-2">Orderd by -
-                                                        {{ $order->order_by->name }}</p>
+                                                        {{ ucwords($order->order_by->name) }}</p>
                                                     <p class="text-extra-small mb-0 line-height-2">Txn ID -
-                                                        {{ $order->transaction_id }}</p>
+                                                        {{ $order->transaction_id ?? 'COD' }}</p>
                                                 </div>
 
                                             </a>
                                         </div>
                                         <div class="col-md-auto col-12 text-right">
+                                            <a href="javascript:void(0);"
+                                               onClick="fetchOrderDetailModal({{ $order->order_no }})"
+                                               data-toggle="modal" data-target="#orderDetails"
+                                               class="las la-eye btn btn-secondary mx-1 my-3"
+                                               title="Manage Order"></a>
                                             <a  href="{{ route('generatePDF',[$order->order_no])}}" target="_blank"
                                                 class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
                                         </div>
@@ -261,6 +266,25 @@
             </div>
         </div>
     </div>
+    <!-- Order Details Modal Start -->
+    <div class="modal fade bd-example-modal-lg" id="orderDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Order Summary</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body orderDetailsModalBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal End -->
+3333
     <script>
         $('body').on('click','.get-user-details',function (){
             let user_id = $(this).data('id');
@@ -274,5 +298,26 @@
                 }
             })
         })
+        function fetchOrderDetailModal(order_no) {
+            $.ajax({
+                type: 'GET',
+                url: window.location.origin + '/account/order-details/' + order_no+'?adminFlag=true',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                cache: false,
+                success: function(response) {
+                    console.log(' fetchOrderDetailModal : ', response);
+                    $('.orderDetailsModalBody').html(response);
+                    $('#orderDetailsModal').modal('show');
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+        $(document).on('click', '.btn-close', function(e) {
+            $('#orderDetailsModal').modal('hide');
+        });
     </script>
 @endsection
