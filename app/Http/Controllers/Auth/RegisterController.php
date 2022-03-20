@@ -78,7 +78,7 @@ class RegisterController extends Controller
 
         if (isset($user->email)) {
             \Mail::send('mail.user-registration-mail', ['user' => $user], function ($message) use ($user) {
-                $message->to($user->email)->subject('Your submitted information');
+                $message->to($user->email)->subject('Welcome to Manama Farms & Foods');
             });
         }
 
