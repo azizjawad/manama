@@ -66,7 +66,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $name = explode(' ', $data['name']);
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'first_name' => $name[0],
             'last_name' => $name[1] ?? "",
@@ -75,6 +76,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        if (isset($user->email)) {
+            \Mail::send('mail.user-registration-mail', ['user' => $user], function ($message) use ($user) {
+                $message->to($user->email)->subject('Your submitted information');
+            });
+        }
 
+        return $user;
     }
 }
