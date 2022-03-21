@@ -200,10 +200,20 @@
                                             {{ number_format($gst_total, 2) }}
                                         </td>
                                     </tr>
-                                    {{-- <tr class="cart-subtotal"> --}}
-                                    {{-- <th>Discount <small>(-)</small></th> --}}
-                                    {{-- <td class="text-end"><i class="fas fa-rupee-sign" aria-hidden="true"></i>100.00</td> --}}
-                                    {{-- </tr> --}}
+                                    @php
+                                        $discount_rate =  Helpers::volume_discount_check($total);
+                                        $discount_total = $total * $discount_rate / 100;
+                                        $total = $total - $discount_total;
+                                    @endphp
+
+                                    @if($discount_rate > 0)
+                                        <tr class="shipping">
+                                            <th>Discount</th>
+                                            <td class="text-end">
+                                                <span><small>(- {{$discount_rate}}%)</small><i class="fas fa-rupee-sign"></i>{{ $discount_total }} <small class="manama-red"></small></span>
+                                            </td>
+                                        </tr>
+                                    @endif
                                     <tr class="shipping">
                                         <th>Shipping</th>
                                         <td class="text-end">

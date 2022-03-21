@@ -109,6 +109,8 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::get('discount', 'App\Http\Controllers\Admin\ManageController@discount_page')->name('admin-discount-manager');
             Route::post('save-coupon', 'App\Http\Controllers\Admin\ManageController@save_coupon')->name('admin-save-coupon');
             Route::get('shipping', 'App\Http\Controllers\Admin\ManageController@shipping_page')->name('admin-shipping-manager');
+            Route::get('volume-discount-manager', 'App\Http\Controllers\Admin\ManageController@volume_discount_manager')->name('admin-volume-discount-manager');
+            Route::any('volume-discount-manager-update', 'App\Http\Controllers\Admin\ManageController@volume_discount_manager_update')->name('admin-volume-discount-manager-update');
             Route::delete('shipping/delete/{shipping_id}', 'App\Http\Controllers\Admin\ManageController@shipping_delete');
             Route::post('shipping-form', 'App\Http\Controllers\Admin\ManageController@shipping_form')->name('admin-shipping-form');
         });

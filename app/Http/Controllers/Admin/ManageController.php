@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class ManageController extends Controller
 {
@@ -96,5 +97,52 @@ class ManageController extends Controller
             return response(['status' => true, 'message' => 'Shipping rules has been deleted']);
         }
         return response(['status' => true, 'message' => 'Shipping rule has been deleted']);
+    }
+
+    public function volume_discount_manager(Request $request){
+
+        $data['data'] = DB::table('volume_discounts')->get();
+
+        return view('admin.manage.volume-discount',$data);
+    }
+
+    public function volume_discount_manager_update(Request $request){
+        $post = $request->all();
+        if (!empty($post)) {
+
+            if (isset($post['cart_price']) && !empty($post['cart_price'])) {
+                $validator = Validator::make($post, [
+                        'id' => ['required'],
+                        'cart_price' => ['required', 'numeric'],
+                        'discount' => ['required', 'numeric'],
+                    ]
+                );
+                if (!$validator->fails()) {
+                    $fields = [
+                        'cart_price' => $post['cart_price'],
+                        'discount' => $post['discount'],
+                        'updated_at' => date('Y-m-d h:i:s'),
+                    ];
+
+                    DB::table('volume_discounts')->where('id', $post['id'])->update($fields);
+                }
+            } else if (isset($post['delete_discounts']) && !empty($post['id'])) {
+                $validator = Validator::make($post, [
+                        'id' => ['required', 'numeric'],
+                        'delete_discounts' => ['required'],
+                    ]
+                );
+                if (!$validator->fails()) {
+                    $fields = [
+                        'cart_price' => 0,
+                        'discount' => 0,
+                        'updated_at' => date('Y-m-d h:i:s'),
+                    ];
+
+                    DB::table('volume_discounts')->where('id', $post['id'])->update($fields);
+                }
+            }
+        }
+        return redirect('/admin/manage/volume-discount-manager');
     }
 }

@@ -305,7 +305,16 @@
                         <i class="simple-icon-handbag"></i> <span class="d-inline-block">Shipping Manager</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{Route('admin-volume-discount-manager')}}">
+                        <i class="simple-icon-wallet"></i> <span class="d-inline-block">Volume Discount Manager</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Cart.Limit.Manage.html">
+                        <i class="simple-icon-basket"></i> <span class="d-inline-block">Cart Limit Manager</span>
+                    </a>
+                </li>
             </ul>
             <ul class="list-unstyled" data-link="cms-management">
                 <li>

@@ -80,6 +80,7 @@ class MyCartController extends Controller
             $user_id = $request->session()->get('guest_user_id');
         }
         $data['cart'] = self::get_cart_data($user_id);
+
         return view('website/account/cart', $data);
     }
 

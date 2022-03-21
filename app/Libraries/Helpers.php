@@ -11,6 +11,13 @@ class Helpers
             ->get();
     }
 
+    public static function volume_discount_check($amount){
+        if (is_numeric($amount)){
+            return DB::table('volume_discounts')->where('cart_price','<=', $amount)->orderBy('cart_price','desc')->pluck('discount')->first();
+        }
+        return 0;
+    }
+
     public static function getOrderStatusText($status_id)
     {
         $order_status = array_values(ORDER_STATUSES);

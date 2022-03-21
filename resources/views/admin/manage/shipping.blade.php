@@ -28,13 +28,12 @@
                                             <th>No Shipping At</th>
                                             <th>Status</th>
                                             <th>Actions</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($shipping as $rule)
                                             <tr>
-                                                <td>{{$loop->index}}</td>
+                                                <td>{{$loop->index + 1}}</td>
                                                 <td>{{date('d M Y', strtotime($rule->created_at))}}</td>
                                                 <td>Free Shipping above {{$rule->free_shipping_above}}</td>
                                                 <td>{{$rule->shipping_rate}}</td>

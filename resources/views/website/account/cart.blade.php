@@ -105,12 +105,21 @@
                                             <th>Subtotal</th>
                                             <td><i class="fas fa-rupee-sign"></i>{{number_format($total,2)}}</td>
                                         </tr>
-                                        {{-- <tr>
+                                        @php
+                                            $discount_rate =  Helpers::volume_discount_check($total);
+                                            $discount_total = $total * $discount_rate / 100;
+                                            $total = $total - $discount_total;
+                                        @endphp
+
+                                        @if($discount_rate > 0)
+                                        <tr>
                                             <th>Discount</th>
                                             <td>
-                                                <span><small>(-)</small><i class="fas fa-rupee-sign"></i>100.00 <small class="manama-red">(MANAMANEW applied)</small></span>
+                                                <span><small>(- {{$discount_rate}}%)</small><i class="fas fa-rupee-sign"></i>{{ $discount_total }} <small class="manama-red"></small></span>
                                             </td>
-                                        </tr> --}}
+                                        </tr>
+                                        @endif
+
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td>
