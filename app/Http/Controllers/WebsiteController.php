@@ -34,7 +34,6 @@ class WebsiteController extends Controller
     }
 
     public function homepage(Request $request){
-        return view('maintain-view');
 
         $search =  $request->get('search');
         if (!empty($search)){
