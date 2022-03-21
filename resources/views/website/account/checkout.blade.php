@@ -203,7 +203,6 @@
                                     @php
                                         $discount_rate =  Helpers::volume_discount_check($total);
                                         $discount_total = $total * $discount_rate / 100;
-                                        $total = $total - $discount_total;
                                         $coupon_discount = $discountArray['discount'];
                                         if (empty($discountArray['discount'])){
                                             $discountArray['discount'] = $discount_total;
@@ -213,14 +212,6 @@
                                         }
                                     @endphp
 
-                                    @if($discount_rate > 0)
-                                        <tr class="shipping">
-                                            <th>Volume Discount</th>
-                                            <td class="text-end">
-                                                <span><small>(- {{$discount_rate}}%)</small><i class="fas fa-rupee-sign"></i>{{ $discount_total }} <small class="manama-red"></small></span>
-                                            </td>
-                                        </tr>
-                                    @endif
                                     <tr class="shipping">
                                         <th>Shipping</th>
                                         <td class="text-end">
@@ -239,10 +230,18 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    @if($discount_rate > 0)
+                                        <tr class="shipping">
+                                            <th>Volume Discount</th>
+                                            <td class="text-end">
+                                                <span><small>(- {{$discount_rate}}%)</small><i class="fas fa-rupee-sign"></i>{{ $discount_total }} <small class="manama-red"></small></span>
+                                            </td>
+                                        </tr>
+                                    @endif
                                     @if (isset($coupon_discount) && $coupon_discount != '')
                                         <tr class="order-discount">
                                             <th>Coupon Discount</th>
-                                            <td class="text-end"><span class="order-total-ammount"><i
+                                            <td class="text-end"><span class="order-total-ammount">(-)<i
                                                         class="fas fa-rupee-sign" aria-hidden="true"></i>
                                                         {{ number_format($coupon_discount, 2) }}
                                                     </span>
