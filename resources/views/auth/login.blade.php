@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@php
+    auth()->logout();
+@endphp
 @section('content')
     <div id="content" class="main-content-wrapper">
 

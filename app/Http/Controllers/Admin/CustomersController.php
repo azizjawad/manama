@@ -32,7 +32,21 @@ class CustomersController extends Controller
         return view('admin.customers.summary', $data);
     }
 
-    public function customer_wishlist_page(){
-        return view('admin.customers.wishlist');
+    public function customer_wishlist_page(Request $request){
+        $user_id = $request->get('user_id');
+
+        if (!empty($user_id) && is_numeric($user_id)){
+
+            $data['wishlists'] = \App\Models\WishListModel::with('product_info')->where('created_by', $user_id)->get();
+
+            $data['name'] = User::where('id',$user_id)->pluck('name')->first();
+        }
+
+        $data['users'] =  User::select('users.id','users.name')->where('role','Default')
+            ->join('wishlist','wishlist.created_by','users.id')
+            ->groupBy('users.id')
+            ->get();
+
+        return view('admin.customers.wishlist', $data);
     }
 }

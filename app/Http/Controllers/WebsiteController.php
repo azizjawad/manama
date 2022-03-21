@@ -34,6 +34,8 @@ class WebsiteController extends Controller
     }
 
     public function homepage(Request $request){
+        return view('maintain-view');
+
         $search =  $request->get('search');
         if (!empty($search)){
             $data['products'] = ProductsModel::select(['products.id','products.image as product_image','products.page_slug as product_slug',
