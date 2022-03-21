@@ -204,11 +204,18 @@
                                         $discount_rate =  Helpers::volume_discount_check($total);
                                         $discount_total = $total * $discount_rate / 100;
                                         $total = $total - $discount_total;
+                                        $coupon_discount = $discountArray['discount'];
+                                        if (empty($discountArray['discount'])){
+                                            $discountArray['discount'] = $discount_total;
+                                        }else if ($discountArray['discount'] > 0){
+                                            $discountArray['discount'] = ($discount_total + $discountArray['discount']);
+
+                                        }
                                     @endphp
 
                                     @if($discount_rate > 0)
                                         <tr class="shipping">
-                                            <th>Discount</th>
+                                            <th>Volume Discount</th>
                                             <td class="text-end">
                                                 <span><small>(- {{$discount_rate}}%)</small><i class="fas fa-rupee-sign"></i>{{ $discount_total }} <small class="manama-red"></small></span>
                                             </td>
@@ -232,12 +239,12 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @if (isset($discountArray['discount']) && $discountArray['discount'] != '')
+                                    @if (isset($coupon_discount) && $coupon_discount != '')
                                         <tr class="order-discount">
-                                            <th>Discount</th>
+                                            <th>Coupon Discount</th>
                                             <td class="text-end"><span class="order-total-ammount"><i
                                                         class="fas fa-rupee-sign" aria-hidden="true"></i>
-                                                        {{ number_format($discountArray['discount'], 2) }}
+                                                        {{ number_format($coupon_discount, 2) }}
                                                     </span>
                                             </td>
                                         </tr>
@@ -246,6 +253,9 @@
                                         @php
                                             if(isset($discountArray['discountedTotal']) && $discountArray['discountedTotal'] != ''){
                                                 $total = $discountArray['discountedTotal'];
+                                            }
+                                            if($discount_total > 0){
+                                                $total = $total - $discount_total;
                                             }
                                             if($shippingDetails['shippingCharges'] > 0){
                                                 $total = $total + $shippingDetails['shippingCharges'];
