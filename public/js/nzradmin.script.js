@@ -3103,7 +3103,7 @@ $.nzradmin = function (element, options) {
                 {"data": "adddate"},
                 {"data": "ruledesc"},
                 {"data": "shippingrate"},
-                // {"data": "noshippingrate"},
+                {"data": "noshippingrate"},
                 {"data": "rulestatus"},
                 {"data": "actions"}
             ],
