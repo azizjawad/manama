@@ -99,6 +99,10 @@ class ManageController extends Controller
         return response(['status' => true, 'message' => 'Shipping rule has been deleted']);
     }
 
+    public function cart_limit_manager(){
+        return view('admin.manage.cart-limit');
+    }
+
     public function volume_discount_manager(Request $request){
 
         $data['data'] = DB::table('volume_discounts')->get();

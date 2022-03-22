@@ -311,7 +311,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Cart.Limit.Manage.html">
+                    <a href="{{Route('admin-cart-limit-manager')}}">
                         <i class="simple-icon-basket"></i> <span class="d-inline-block">Cart Limit Manager</span>
                     </a>
                 </li>
