@@ -453,7 +453,7 @@
             if(billing_address) {
                 if ($('input[name="payment-method"]:checked').val() === 'online') {
                     let button = $('#btn_place_order');
-                    button.attr('disabled',true).text('Please wait..');
+                    // button.attr('disabled',true).text('Please wait..');
                     rzp1.open();
                     e.preventDefault();
                 }else{
