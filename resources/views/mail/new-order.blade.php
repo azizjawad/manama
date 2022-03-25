@@ -195,7 +195,7 @@
             <div style="width:50%;display:block; float:left; padding:5px; box-sizing: border-box;">
                 <p style="font-size:11px; color:#333; line-height:175%; font-family: 'Poppins', sans-serif; font-weight:700; text-align:left; margin:0; padding:0 0 15px;letter-spacing:1px; ">
                     <small style="display:block; font-size:10px; color:#666; font-weight:500;">Payment Method</small>
-                    {{ empty($order->transaction_id) ? 'Cash On Delivery' : 'Online CC Avenue' }}<br>
+                    {{ empty($order->transaction_id) ? 'Cash On Delivery' : 'Online Razorpay' }}<br>
 
                 </p>
             </div>
