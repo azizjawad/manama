@@ -476,7 +476,7 @@
             <div class="mobile-sticky-header-height"></div>
         </div>
     </header>
-    <marquee style="background: green;color: #fff;" behavior="" direction="">MANAMA NEW WEBSITE IS UNDER CONSTRUCTION AND TESTING. NO PURCHASE POSSIBLE. WILL BE OPERATIONAL VERY SHORTLY.</marquee>
+{{--    <marquee style="background: green;color: #fff;" behavior="" direction="">MANAMA NEW WEBSITE IS UNDER CONSTRUCTION AND TESTING. NO PURCHASE POSSIBLE. WILL BE OPERATIONAL VERY SHORTLY.</marquee>--}}
 
     <!-- Mobile Header area End -->
 

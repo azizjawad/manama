@@ -307,8 +307,8 @@
                                     </div>
                                     <div class="payment-group mt--20">
                                         <p class="mb--15 text-end small">The above bill is inclusive of GST.</p>
-                                        <button type="button" disabled class="btn btn-fullwidth btn-style-1"
-                                                id='btn_place_order-stop'>Place Order</button>
+                                        <button type="button" class="btn btn-fullwidth btn-style-1"
+                                                id='btn_place_order'>Place Order</button>
                                     </div>
                                 </form>
                             </div>

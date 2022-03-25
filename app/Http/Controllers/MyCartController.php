@@ -221,6 +221,7 @@ class MyCartController extends Controller
             return response(['status' => false, 'errors' => $validator->errors()], 400);
         }else {
             $user_id = Auth::id();
+            $user = Auth::user();
             $cart_products = self::get_cart_data($user_id);
             $order_no = time().random_int(10000, 99999);
             $sub_total = 0;
@@ -233,7 +234,7 @@ class MyCartController extends Controller
                 'order_no'              => $order_no,
                 'transaction_type'      => $post['transaction_type'],
                 'total_amount'          => $post['total'],
-                'transaction_id'         => $post['transaction_id'] ?? null,
+                'transaction_id'        => $post['transaction_id'] ?? null,
                 'sub_total'             => $sub_total,
                 'discount'              => $post['discount'],
                 'shipping_charges'      => $post['shipping_charges'],
@@ -267,6 +268,10 @@ class MyCartController extends Controller
                 $status = OrderDetailsModel::insert($order_details);
                 if ($status) {
                     CartModel::where('user_id', $user_id)->delete();
+                    $order = \Helpers::fetchOrderDetails('order_no', $order_no);
+                    \Mail::send('mail.new-order', ['order' => $order], function ($message) use ($user) {
+                        $message->to($user->email)->subject('New Order | Manama Farms & Foods');
+                    });
                     return response(['status' => true, 'message' => 'Order placed successfully']);
                 }
             }
