@@ -176,7 +176,7 @@
 </style>
 <div style="position:relative; max-width:650px; display:block; padding:2%; margin:auto; border:2px solid #f0f0f0; background-color:#264796;">
     <div style="position:relative; display:block; padding:20px; background-color: #fafafa;">
-        <img src="{{asset('images/logo.png')}}" style="position:relative; max-width:200px; height:auto; margin:0 auto 20px; padding:0; display:block;" />
+        <img src="{{asset('web/images/logo.png')}}" style="position:relative; max-width:200px; height:auto; margin:0 auto 20px; padding:0; display:block;" />
         <h1 style="color:#e31e24; font-family:'Lato', sans-serif; font-weight:700; font-size:30px; line-height:125%; text-transform: none; text-align: center; margin:0; padding:35px 0 0;">
             <span style="font-weight: 400;font-size:18px">Greetings</span>,
             <span style="color:#111111; font-family: 'Poppins', sans-serif; font-size:24px; font-weight:600; display:block; margin:0; padding:0;">{{$user->name}}</span></h1>
