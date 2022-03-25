@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartModel;
-use App\Models\CouponsModel;
 use App\Models\OrderDetailsModel;
 use App\Models\OrdersModel;
 use App\Models\OrderHistory;
 use App\Models\ProductInfoModel;
-use App\Models\ProductsModel;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Unique;
 use Log;
+use DB;
 
 class MyCartController extends Controller
 {
@@ -223,7 +220,11 @@ class MyCartController extends Controller
             $user_id = Auth::id();
             $user = Auth::user();
             $cart_products = self::get_cart_data($user_id);
-            $order_no = time().random_int(10000, 99999);
+            $order_no = DB::table('orders')->orderBy('created_at','desc')->pluck('order_no')->first();
+            $number = substr($order_no,5);
+            $last_number =  (int) ltrim($number, '0');
+            $order_no = 'MFFOM'.str_pad($last_number + 1, 10, '0', STR_PAD_LEFT);
+
             $sub_total = 0;
             $order_details = [];
             foreach($cart_products as $cart_product) {

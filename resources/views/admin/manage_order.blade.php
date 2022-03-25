@@ -55,7 +55,10 @@
                     <div class="card-body">
                         <h5 class="font-weight-bold">Customer Details</h5>
                         <p class="text-small line-height-2 mb-1">
-                            <b>{{ $order->shipping_address_detail->fullname }}</b><br>{{ $order->shipping_address_detail->address }}
+                            <b>{{ $order->shipping_address_detail->fullname }}</b><br>
+                            {{ $order->shipping_address_detail->address }},<br>
+                            {{$order->shipping_address_detail->city_village .'-'. $order->shipping_address_detail->pincode}},<br>
+                            {{$order->shipping_address_detail->state}}<br>
                         </p>
                         <p class="text-small line-height-2 mb-1"><b>Mobile Number:</b>
                             {{ $order->shipping_address_detail->mobile_no }}<br>

@@ -17,11 +17,14 @@
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="font-weight-bold">Customer Details</h5>
-                <p class="text-small line-height-2 mb-1"><b>{{ $order->shipping_address_detail->fullname }}</b><br>{{ $order->shipping_address_detail->address }}</p>
+                <p class="text-small line-height-2 mb-1"><b>{{ $order->shipping_address_detail->fullname }}</b>
+                    {{ $order->shipping_address_detail->address }},<br>
+                    {{$order->shipping_address_detail->city_village .'-'. $order->shipping_address_detail->pincode}},<br>
+                    {{$order->shipping_address_detail->state}}<br></p>
                 <p class="text-small line-height-2 mb-1"><b>Mobile Number:</b> {{ $order->shipping_address_detail->mobile_no }}<br>
                     <b>Email Address :</b> {{ $order->seller->email }}
                 </p>
-                <a href="{{ route('generatePDF',[$order->order_no])}}" target="_blank" 
+                <a href="{{ route('generatePDF',[$order->order_no])}}" target="_blank"
                     class="btn btn-secondary mt-1 float-right">Print Invoice</a>
                 <div>
 
@@ -59,7 +62,7 @@
                                     <td><i class="las la-rupee-sign"></i> {{number_format($item->product_cost * $item->quantity)}}</td>
                                 </tr>
                             @endforeach
-                           
+
                         </tbody>
                         <tfoot class="thead-light">
                             <tr>

@@ -32,7 +32,7 @@
                                                 <td>{{ $order->order_no }}</td>
                                                 <td>{{ Helpers::getOrderStatusText($order->status) }}</td>
                                                 <td><a href="javascript:void(0);"
-                                                        onClick="fetchOrderDetailModal({{ $order->order_no }})"
+                                                        onClick="fetchOrderDetailModal('{{ $order->order_no }}')"
                                                         data-bs-toggle="modal" data-bs-target="#odmwindow"
                                                         class="table-link"><i
                                                             class="fas fa-external-link-alt"></i>Details</a><a

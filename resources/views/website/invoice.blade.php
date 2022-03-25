@@ -38,6 +38,7 @@
                             <b>Sold By : Outlet Mall</b><br>
                             Address : 26/3, Bhose, Panchgani 412 805.Maharashtra, India.<br>
                             GSTIN : 27AHKPJ8468J1ZN<br>
+                            License Number : 11521039001024<br>
                             Email : info@manamatoppings.com
                         </p>
                     </td>
@@ -52,7 +53,12 @@
                                         style="vertical-align:middle; border-radius: 3px; padding:30px; background-color: #f9f9f9; border-right: 5px solid white;">
                                         <p
                                             style="color:#303030; font-size: 12px;  line-height: 1.6; margin:0; padding:0;">
-                                            {{ $order->shipping_address_detail->fullname }}<br>{{ $order->shipping_address_detail->address }}<br>
+                                            <b>{{ ucwords($order->shipping_address_detail->fullname) }}</b><br>
+                                            <b>Mobile:</b> {{ $order->shipping_address_detail->mobile_no }}<br>
+                                            <b>Email:</b> {{ $order->seller->email }}<br>
+                                            {{ $order->shipping_address_detail->address }},<br>
+                                            {{$order->shipping_address_detail->city_village .'-'. $order->shipping_address_detail->pincode}},<br>
+                                            {{$order->shipping_address_detail->state}}<br>
                                             Order ID : {{ $order->order_no }}<br>
                                             {{($order->gstn_no) ? 'GST No: '.$order->gstn_no:'' }}
                                             {{-- Shipping Method : Standard Shipping --}}

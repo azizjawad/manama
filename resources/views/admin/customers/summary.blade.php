@@ -61,7 +61,7 @@
                                                     <td>{{$order->transaction_id}}</td>
                                                     <td>{{Helpers::getOrderStatusText($order->status)}}</td>
                                                     <td>
-                                                        <a href="javascript:void(0);" onclick="fetchOrderDetailModal({{$order->order_no}})" data-toggle="modal" data-target="#orderDetails" class="las la-eye btn btn-secondary mx-1 my-3" title="Manage Order"></a>
+                                                        <a href="javascript:void(0);" onclick="fetchOrderDetailModal('{{$order->order_no}}')" data-toggle="modal" data-target="#orderDetails" class="las la-eye btn btn-secondary mx-1 my-3" title="Manage Order"></a>
                                                         <a href="{{route('generatePDF',[$order->order_no - 1])}}" target="_blank" class="las la-print btn btn-secondary mx-1 my-3" title="Print Order"></a>
                                                     </td>
                                                 </tr>

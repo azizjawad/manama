@@ -34,7 +34,7 @@
                                                 <tr role="row" class="odd">
                                                     <td>{{$loop->index +1}}</td>
                                                     <td class="sorting"><a href="javascript:void(0);"
-                                                            onClick="fetchOrderDetailModal({{ $order->order_no }})"
+                                                            onClick="fetchOrderDetailModal('{{ $order->order_no }}')"
                                                             data-toggle="modal" data-target="#orderDetails"
                                                             title="Manage Order">{{ $order->order_no }}</a></td>
                                                     <td>{{ date('d M, Y', strtotime($order->created_at)) }}</td>
@@ -43,7 +43,7 @@
                                                     <td>{{ $order->transaction_id }}</td>
                                                     <td>{{ Helpers::getOrderStatusText($order->status) }}</td>
                                                     <td><a href="javascript:void(0);"
-                                                            onClick="fetchOrderDetailModal({{ $order->order_no }})"
+                                                            onClick="fetchOrderDetailModal('{{ $order->order_no }}')"
                                                             data-toggle="modal" data-target="#orderDetails"
                                                             class="las la-eye btn btn-secondary mx-1 my-3"
                                                             title="Manage Order"></a>

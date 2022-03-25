@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="col-md-auto col-12 text-right">
                                             <a href="javascript:void(0);"
-                                               onClick="fetchOrderDetailModal({{ $order->order_no }})"
+                                               onClick="fetchOrderDetailModal('{{ $order->order_no }}')"
                                                data-toggle="modal" data-target="#orderDetails"
                                                class="las la-eye btn btn-secondary mx-1 my-3"
                                                title="Manage Order"></a>
