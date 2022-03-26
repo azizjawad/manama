@@ -295,12 +295,12 @@
 {{--                                        </div>--}}
                                     </div>
                                     <div class="payment-group mb--10">
-                                        <div class="payment-radio">
-                                            <input type="radio" value="COD" name="payment-method" id="cash">
-                                            <label class="payment-label" for="cash">
-                                                CASH ON DELIVERY
-                                            </label>
-                                        </div>
+{{--                                        <div class="payment-radio">--}}
+{{--                                            <input type="radio" value="COD" name="payment-method" id="cash">--}}
+{{--                                            <label class="payment-label" for="cash">--}}
+{{--                                                CASH ON DELIVERY--}}
+{{--                                            </label>--}}
+{{--                                        </div>--}}
                                         <div class="payment-info cash hide-in-default" data-method="cash">
                                             <p>Pay with cash upon delivery.</p>
                                         </div>
