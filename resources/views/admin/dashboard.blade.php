@@ -284,7 +284,6 @@
     </div>
 
     <!-- Order Details Modal End -->
-3333
     <script>
         $('body').on('click','.get-user-details',function (){
             let user_id = $(this).data('id');
