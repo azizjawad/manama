@@ -14,16 +14,15 @@
                         <h5 class="mb-4 font-weight-bold">Cart Limit Manager</h5>
                         <div class="alert alert-warning mb-5 mr-md-5" role="alert">* Please note, if you set limit to '0', it will become unlimited. If you update the current limit with new, it will replace current limit to new limit.</div>
                         <div class="row mb-3">
-                            <div class="col-md-6 col-12">
-                                <form>
+                            <div class="col-md-4 col-12">
+                                <form method="post" action="{{route('admin-cart-limit-manager')}}">
+                                    @csrf
                                     <div class="form-group mb-4">
                                         <label class="form-group has-float-label mb-4">
-                                            <input class="form-control" data-role="tagsinput" type="number" placeholer="" />
+                                            <input class="form-control" name="cart_max_limit" data-role="tagsinput" type="number" placeholer="" />
                                             <span>Set Cart Limit</span>
                                         </label>
                                     </div>
-
-
                                     <div class="form-group text-right">
                                         <button class="btn btn-secondary" type="submit">Set Cart Limit</button>
                                     </div>
@@ -44,8 +43,8 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>20/04/2020</td>
-                                            <td>12</td>
+                                            <td>{{date('d/m/Y H:i:s', strtotime($cart->updated_at))}}</td>
+                                            <td>{{$cart->cart_max_limit}}</td>
                                         </tr>
 
                                         </tbody>

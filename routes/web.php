@@ -112,7 +112,7 @@ Route::group(['middleware' => 'App\Http\Middleware\IsAdmin'], function () {
             Route::get('volume-discount-manager', 'App\Http\Controllers\Admin\ManageController@volume_discount_manager')->name('admin-volume-discount-manager');
             Route::any('volume-discount-manager-update', 'App\Http\Controllers\Admin\ManageController@volume_discount_manager_update')->name('admin-volume-discount-manager-update');
 
-            Route::get('cart-limit-manager', 'App\Http\Controllers\Admin\ManageController@cart_limit_manager')->name('admin-cart-limit-manager');
+            Route::any('cart-limit-manager', 'App\Http\Controllers\Admin\ManageController@cart_limit_manager')->name('admin-cart-limit-manager');
             Route::delete('shipping/delete/{shipping_id}', 'App\Http\Controllers\Admin\ManageController@shipping_delete');
             Route::post('shipping-form', 'App\Http\Controllers\Admin\ManageController@shipping_form')->name('admin-shipping-form');
         });

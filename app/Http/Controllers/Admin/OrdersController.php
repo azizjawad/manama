@@ -45,6 +45,7 @@ class OrdersController extends Controller
         }
         $ordersData = OrdersModel::where('order_no', $order_no)->first();
         if (!empty($ordersData)) {
+            $user = \Auth::user();
             $ordersData->status = $post['order_status'];
             $ordersData->modified_by = $post['order_status'];
             if ( $post['order_status'] == ORDER_STATUSES['SHIPPED']['id']) {
@@ -52,11 +53,10 @@ class OrdersController extends Controller
                 $ordersData->tracking_number = $post['tracking_number'];
             }
             $ordersData->save();
-
-            $statusMessage = 'Status Changed Successfully';
             foreach (array_values(ORDER_STATUSES) as $status) {
                 if ($status['id'] == $post['order_status']) {
                     $message = $status['description'];
+                    $status_text = $status['text'];
                     if ($status['id'] == ORDER_STATUSES['SHIPPED']['id'] && $post['order_status'] == ORDER_STATUSES['SHIPPED']['id']) {
                         $deliveryCompany = \Helpers::getDeliveryCompany($post['delivery_company']);
 
@@ -70,8 +70,20 @@ class OrdersController extends Controller
                 'order_id'            => $ordersData->id,
                 'status'            => $post['order_status'],
                 'description'        => $message,
-                'created_by'        => \Auth::user()->id
+                'created_by'        => $user->id
             ]);
+            try {
+                if (isset($status_text) && isset($message)) {
+                    \Mail::send('mail.order-status-update', ['order_no' => $order_no, 'order_message' => $message, 'username' => ucwords($user->name)],
+                        function ($mail_message) use ($user, $status_text) {
+                            $mail_message->to($user->email)->subject("Order $status_text | Manama Farms & Foods");
+                        }
+                    );
+                }
+            } catch (\Exception $e){
+                Log::info("New Order Mail exception");
+                Log::info($e);
+            }
         }
         return back()->with('success', 'Order status updated successfully!!');
     }

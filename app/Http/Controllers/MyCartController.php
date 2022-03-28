@@ -9,8 +9,8 @@ use App\Models\OrderHistory;
 use App\Models\ProductInfoModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Log;
 use DB;
 
 class MyCartController extends Controller
@@ -40,29 +40,33 @@ class MyCartController extends Controller
                 }else{
                     $user_id = \Auth::id();
                 }
-
-                if ($user_id){
-                    $previous_quantity = CartModel::where('user_id', $user_id)
+                if ($user_id) {
+                    $limit_result = \Helpers::check_cart_limit($user_id, $post['quantity']);
+                    if (isset($limit_result['status']) && $limit_result['status'] == true) {
+                        $previous_quantity = CartModel::where('user_id', $user_id)
                             ->where("product_info_id", $post['product_info_id'])
                             ->pluck('quantity')->first();
 
-                    if (!empty($previous_quantity)){
-                        $result = CartModel::where("product_info_id", $post['product_info_id'])->update(['quantity' => $previous_quantity + $post['quantity']]);
-                        if ($result)
-                        return response(['status' => true,'message' => "Success!! quantity has been updated in the cart"]);
-                    }else{
-                        $fields = [
-                            "quantity" => $post['quantity'],
-                            "product_info_id" => $post['product_info_id'],
-                            "user_id" => $user_id
-                        ];
-                        $result = CartModel::create($fields);
-                        if ($result)
-                        return response(['status' => true,'message' => "Success!! product added into cart"]);
+                        if (!empty($previous_quantity)) {
+                            $result = CartModel::where("product_info_id", $post['product_info_id'])->update(['quantity' => $previous_quantity + $post['quantity']]);
+                            if ($result)
+                                return response(['status' => true, 'message' => "Success!! quantity has been updated in the cart"]);
+                        } else {
+                            $fields = [
+                                "quantity" => $post['quantity'],
+                                "product_info_id" => $post['product_info_id'],
+                                "user_id" => $user_id
+                            ];
+                            $result = CartModel::create($fields);
+                            if ($result)
+                                return response(['status' => true, 'message' => "Success!! product added into cart"]);
+                        }
+                        return response(['status' => false], 500);
+                    } else{
+                        return response(['status' => false, 'message' => $limit_result['message'] ?? 'Oops!! Something went wrong please try again'], 403);
                     }
-                    return response(['status' => false], 500);
-                }else{
-                    return response(['status' => false,'messages' => 'User is not logged in'], 401);
+                } else {
+                    return response(['status' => false, 'messages' => 'User is not logged in'], 401);
                 }
             }
             return response(['status' => false,'messages' => 'Product is out of stock'], 403);
@@ -137,17 +141,21 @@ class MyCartController extends Controller
         // Check validation (fail or pass)
         if (!$validator->fails()) {
             $user_id = Auth::id();
-            if (empty($user_id) && $request->session()->get('guest_user_id')){
+            $limit_result = \Helpers::check_cart_limit($user_id, array_sum($post['qty']), false);
+            if (empty($user_id) && $request->session()->get('guest_user_id')) {
                 $user_id = $request->session()->get('guest_user_id');
             }
-            if (isset($post['clear_cart'])){
+            if (isset($post['clear_cart'])) {
                 CartModel::where('user_id', $user_id)->delete();
-            }else{
-                foreach ($post['qty'] as $key => $value){
-                    CartModel::where('user_id', $user_id)->where('id', $key)->update(['quantity' => $value]);
+            }else {
+                if (isset($limit_result['status']) && $limit_result['status'] == true) {
+                    foreach ($post['qty'] as $key => $value) {
+                        CartModel::where('user_id', $user_id)->where('id', $key)->update(['quantity' => $value]);
+                    }
+                } else {
+                    return redirect('/account/cart')->withErrors($limit_result['message']);
                 }
             }
-
             return redirect('/account/cart');
         }
     }
@@ -269,10 +277,17 @@ class MyCartController extends Controller
                 $status = OrderDetailsModel::insert($order_details);
                 if ($status) {
                     CartModel::where('user_id', $user_id)->delete();
-                    $order = \Helpers::fetchOrderDetails('order_no', $order_no);
-                    \Mail::send('mail.new-order', ['order' => $order], function ($message) use ($user) {
-                        $message->to($user->email)->subject('New Order | Manama Farms & Foods');
-                    });
+                    try {
+                        $order = \Helpers::fetchOrderDetails('order_no', $order_no);
+                        \Mail::send('mail.new-order', ['order' => $order], function ($message) use ($user) {
+                            $message->to($user->email)->subject('New Order | Manama Farms & Foods');
+                        });
+                    } catch (\Exception $e){
+                        Log::info("New Order Mail exception");
+                        Log::info($e);
+                    }
+
+
                     return response(['status' => true, 'message' => 'Order placed successfully']);
                 }
             }

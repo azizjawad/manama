@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\CartModel;
 use App\Models\OrdersModel;
 class Helpers
 {
@@ -55,6 +57,16 @@ class Helpers
 
         }
         return $status_text;
+    }
+
+    public static function check_cart_limit($user_id, $current_quantity, $is_single_quantity = true){
+        $default_cart_limit = DB::table('cart_limit_manage')->pluck('cart_max_limit')->first();
+        $total_cart = CartModel::select(DB::raw('SUM(quantity) as total_cart'))->where('user_id', $user_id)->pluck('total_cart')->first();
+        $current_total_cart = $is_single_quantity ? ($total_cart + $current_quantity) : $current_quantity;
+        if ($default_cart_limit > 0 && $default_cart_limit < $current_total_cart){
+            return ['status' => false,'message' => "Oops!! You have exceed the cart limit"];
+        }
+        return ['status' => true];
     }
 
     public static function fetchOrderDetails($column_name, $value, $return_type = 'first'){

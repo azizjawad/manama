@@ -25,6 +25,11 @@
         @if(count($cart))
             <div class="page-content-inner enable-full-width pb--50">
             <div class="container">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <h4>{{$errors->first()}}</h4>
+                    </div>
+                @endif
                 <div class="row pt--80 pb--80 justify-content-center">
                     <div class="col-md-8 col-12 ">
                         <form class="cart-form" method="post" action="{{route('update_quantity')}}">
