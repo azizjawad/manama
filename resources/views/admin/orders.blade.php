@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <table class="data-table data-table-shipping-rate-list">
+                                    <table class="data-table data-table-orders-rate-list">
                                         <thead>
                                             <tr>
                                                 <th>SR No.</th>
