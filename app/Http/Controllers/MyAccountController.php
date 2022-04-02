@@ -299,7 +299,7 @@ class MyAccountController extends Controller
 
     public static function getCartTotal($user_id)
     {
-        return \App\Models\CartModel::select([\DB::raw('SUM(product_info.cost_price * cart.quantity) as cart_total'), \DB::raw('COUNT(product_info.id) as product_count')])
+        return \App\Models\CartModel::select([\DB::raw('SUM(product_info.cost_price * cart.quantity) as cart_total'), \DB::raw('COUNT(product_info.id) as product_count'), \DB::raw('SUM(cart.quantity) as total_quantity')])
             ->join('product_info', 'cart.product_info_id', 'product_info.id')
             ->join('products', 'product_info.product_id', 'products.id')
             ->where('cart.user_id', $user_id)
@@ -335,8 +335,9 @@ class MyAccountController extends Controller
         });
         $shippingCharges = 0;
         Log::info('resetShippingValue : ' . $resetShippingValue);
+
         if (!$resetShippingValue) {
-            $shippingCharges = $productDetails->product_count * $perBottleRate;
+            $shippingCharges = ($productDetails->total_quantity * $perBottleRate);
         }
         Log::info('product_count : ' . $productDetails->product_count);
         Log::info('shippingCharges : ' . $shippingCharges);

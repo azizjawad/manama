@@ -3099,7 +3099,7 @@ $.nzradmin = function (element, options) {
             pageLength: 10,
             "columns": [
                 {"data": "srno"},
-                {"data": "orderno"},
+                // {"data": "orderno"},
                 {"data": "adddate"},
                 {"data": "ruledesc"},
                 {"data": "shippingrate"},

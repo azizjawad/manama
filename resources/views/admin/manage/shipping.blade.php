@@ -22,6 +22,7 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
+{{--                                            <th>Order No.</th>--}}
                                             <th>Created on</th>
                                             <th>Rule Description</th>
                                             <th>Shipping Rate</th>
