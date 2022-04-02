@@ -231,7 +231,7 @@ class MyCartController extends Controller
             $order_no = DB::table('orders')->orderBy('created_at','desc')->pluck('order_no')->first();
             $number = substr($order_no,5);
             $last_number =  (int) ltrim($number, '0');
-            $order_no = 'MFFOM'.str_pad($last_number + 1, 10, '0', STR_PAD_LEFT);
+            $order_no = 'MFFOM'.str_pad($last_number + 1, 5, '0', STR_PAD_LEFT);
 
             $sub_total = 0;
             $order_details = [];
