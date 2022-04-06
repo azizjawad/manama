@@ -41,7 +41,7 @@ class MyCartController extends Controller
                     $user_id = \Auth::id();
                 }
                 if ($user_id) {
-                    $limit_result = \Helpers::check_cart_limit($user_id, $post['quantity']);
+                    $limit_result = \Helpers::check_cart_limit($user_id);
                     if (isset($limit_result['status']) && $limit_result['status'] == true) {
                         $previous_quantity = CartModel::where('user_id', $user_id)
                             ->where("product_info_id", $post['product_info_id'])
@@ -141,7 +141,7 @@ class MyCartController extends Controller
         // Check validation (fail or pass)
         if (!$validator->fails()) {
             $user_id = Auth::id();
-            $limit_result = \Helpers::check_cart_limit($user_id, array_sum($post['qty']), false);
+            $limit_result = \Helpers::check_cart_limit($user_id);
             if (empty($user_id) && $request->session()->get('guest_user_id')) {
                 $user_id = $request->session()->get('guest_user_id');
             }

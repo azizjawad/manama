@@ -26,7 +26,6 @@
                                                 <th>Txn. ID</th>
                                                 <th>Status</th>
                                                 <th>Actions</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
