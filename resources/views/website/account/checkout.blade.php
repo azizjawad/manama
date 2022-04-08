@@ -280,7 +280,7 @@
                                            data-total="{{$total}}">
                                     <div class="payment-group mb--10">
                                         <div class="payment-radio">
-                                            <input type="radio" value="online" name="payment-method" id="razorpay">
+                                            <input type="radio" checked value="online" name="payment-method" id="razorpay">
                                             <label class="payment-label" for="razorpay">Pay via Razorpay</label>
                                         </div>
                                         <div class="payment-info razorpay hide-in-default" data-method="online">
@@ -451,14 +451,14 @@
         document.getElementById('btn_place_order').onclick = function(e){
             let billing_address = $('input[name="billing_address"]').is(':checked');
             if(billing_address) {
-                if ($('input[name="payment-method"]:checked').val() === 'online') {
-                    let button = $('#btn_place_order');
+                // if ($('input[name="payment-method"]:checked').val() === 'online') {
+                //     let button = $('#btn_place_order');
                     // button.attr('disabled',true).text('Please wait..');
                     rzp1.open();
                     e.preventDefault();
-                }else{
-                    place_order();
-                }
+                // }else{
+                //     place_order();
+                // }
             } else {
                 error_notification('Please select shipping address');
             }
