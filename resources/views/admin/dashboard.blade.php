@@ -32,7 +32,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-9">
-                                            <a href="#">
+                                            <a onClick="fetchOrderDetailModal('{{ $order->order_no }}')" href="javascript:void(0);">
                                                 <p class="list-item-heading mb-2 font-weight-bold">{{ $order->order_no }}
                                                     <span class="badge badge-pill top-pos badge-theme-1 text-uppercase">
                                                         {{ Helpers::getOrderStatusText($order->status) }}</span>
