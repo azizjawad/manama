@@ -18,6 +18,7 @@
                             <table class="data-table data-table-customer-access-list">
                                 <thead>
                                 <tr>
+                                    <th>Sr No</th>
                                     <th>Registration Date</th>
                                     <th>Customer's Name</th>
                                     <th>Mobile No.</th>
@@ -28,7 +29,8 @@
                                 <tbody>
                                     @foreach($users as $user)
                                         <tr>
-                                            <td>{{date('d M Y',strtotime($user->created_at))}}</td>
+                                            <td>{{$loop->index + 1}}</td>
+                                            <td>{{($user->created_at) ? date('d M Y', strtotime($user->created_at)) : 'N/A'}}</td>
                                             <td>{{ucwords($user->name)}}</td>
                                             <td>{{$user->mobile ?? 'N/A'}}</td>
                                             <td>{{$user->email}}</td>

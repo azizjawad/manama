@@ -25,7 +25,7 @@ class CustomersController extends Controller
 
             $data['name'] = User::where('id',$user_id)->pluck('name')->first();
         }
-        $data['users'] =  User::select('users.id','users.name')->where('role','Default')
+        $data['users'] =  DB::table('users')->select('users.id','users.name')->where('role','Default')
                     ->join('orders','orders.user_id','users.id')
                     ->groupBy('users.id')
                     ->get();

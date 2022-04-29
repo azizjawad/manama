@@ -3381,6 +3381,7 @@ $.nzradmin = function (element, options) {
             sDom: '<"row view-filter"<"col-sm-12"<"float-right"l><"float-left"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             pageLength: 10,
             "columns": [
+                {"data": "sr_no"},
                 {"data": "regdate"},
                 {"data": "customername"},
                 {"data": "mobileno"},
