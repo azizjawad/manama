@@ -1004,7 +1004,7 @@
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="product-action d-flex flex-row align-items-center justify-content-center">
-                                        <div class="quantity">
+                                        <div class="quantity"> 
                                             <input type="number" class="quantity-input" name="qty-${item.id}" id="qty-${item.id}" value="1" min="1" max="5">
                                             <div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
                                             <button data-product_info_id="${item.id}" type="button" class="btn btn-style-1 add_from_mini_cart">
