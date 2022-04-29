@@ -12,7 +12,7 @@ class CustomersController extends Controller
 {
 
     public function customer_manege_page(){
-        $data['users'] = DB::table('users')->select('id','name','email','mobile','status','created_at')->where('role','default')->get();
+        $data['users'] = DB::table('users')->select('id','name','email','mobile','status','created_at')->orderby('created_at','desc')->where('role','default')->get();
         return view('admin.customers.manage', $data);
     }
 

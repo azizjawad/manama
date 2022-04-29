@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+{!! NoCaptcha::renderJs() !!}
 @section('content')
     <div id="content" class="main-content-wrapper">
 
@@ -20,7 +20,7 @@
                                     <input id="name" type="text" placeholder="Full Name" class="form__input form__input--2 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
@@ -30,7 +30,7 @@
                                     <input id="email" placeholder="Email Address" type="email" class="form__input form__input--2 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
@@ -39,7 +39,7 @@
                                     <input type="text" id="mobile" name="mobile"
                                            class="form__input form__input--2 callnoinput" value="{{ old('mobile') }}" placeholder="Mobile Numbers">
                                     @error('mobile')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
@@ -48,7 +48,7 @@
                                     <input id="password" placeholder="Set a Strong Password" type="password" class="form__input form__input--2 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
@@ -62,6 +62,13 @@
                                     </div>
 
                                 </div>
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                                 <div class="form__group row align-items-center">
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-style-3">Register</button>
